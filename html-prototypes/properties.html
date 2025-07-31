@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Properties - Real Estate Closing</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white">
+    <div class="flex h-screen">
+        <!-- Left Sidebar -->
+        <section class="w-72 bg-gray-800 border-r border-gray-600">
+            <div class="p-5 text-gray-400 text-center border-b border-gray-600">
+                <div class="text-xs">Navigation Sidebar</div>
+                <div class="text-xs mt-1">Properties is active</div>
+            </div>
+        </section>
+
+        <!-- Main Content -->
+        <section class="flex-1 bg-gray-900 overflow-y-auto">
+            <!-- Page Header -->
+            <section class="py-8 px-10 pb-5 border-b border-gray-600 flex items-center justify-between">
+                <div class="flex items-center gap-4">
+                    <i class="fa fa-map-marker text-gray-400 text-xl"></i>
+                    <h2 class="text-2xl font-semibold text-white">Properties</h2>
+                </div>
+                <button class="bg-gray-600 border border-gray-500 rounded px-3 py-2 text-white text-sm hover:bg-gray-500">
+                    <i class="fa fa-plus mr-2"></i>
+                    Add Property
+                </button>
+            </section>
+
+            <!-- Tab Container -->
+            <section class="px-10">
+                <!-- Tab Menu -->
+                <div class="flex border-b-2 border-gray-600 mb-8">
+                    <button class="tab-btn px-5 py-4 bg-transparent border-none text-blue-400 text-sm cursor-pointer border-b-3 border-b-blue-400 bg-gray-800" onclick="showTab(0, this)">Property</button>
+                    <button class="tab-btn px-5 py-4 bg-transparent border-none text-gray-400 text-sm cursor-pointer border-b-3 border-b-transparent hover:text-gray-300 hover:bg-gray-800" onclick="showTab(1, this)">Legal Description</button>
+                    <button class="tab-btn px-5 py-4 bg-transparent border-none text-gray-400 text-sm cursor-pointer border-b-3 border-b-transparent hover:text-gray-300 hover:bg-gray-800" onclick="showTab(2, this)">Subdivision</button>
+                    <button class="tab-btn px-5 py-4 bg-transparent border-none text-gray-400 text-sm cursor-pointer border-b-3 border-b-transparent hover:text-gray-300 hover:bg-gray-800" onclick="showTab(3, this)">Survey</button>
+                </div>
+
+                <!-- Property Tab Content -->
+                <section class="tab-content pb-10">
+                    <form class="space-y-8">
+                        <!-- Address Section -->
+                        <section>
+                            <h3 class="text-base font-semibold text-white mb-5 pb-2 border-b border-gray-600">Address</h3>
+                            
+                            <div class="flex gap-5 mb-5">
+                                <div class="flex-[2.5]">
+                                    <label class="block text-sm font-medium text-gray-300 mb-2">Address</label>
+                                    <div class="relative">
+                                        <i class="fa fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                                        <input type="text" class="w-full pl-9 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" placeholder="Search address...">
+                                    </div>
+                                </div>
+                                <div class="flex-[1.5]">
+                                    <label class="block text-sm font-medium text-gray-300 mb-2">Apt, Suite, Etc.</label>
+                                    <input type="text" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" placeholder="">
+                                </div>
+                            </div>
+
+                            <div class="flex gap-5 mb-5">
+                                <div class="flex-1">
+                                    <label class="block text-sm font-medium text-gray-300 mb-2">City</label>
+                                    <input type="text" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" placeholder="">
+                                </div>
+                                <div class="flex-1">
+                                    <label class="block text-sm font-medium text-gray-300 mb-2">County</label>
+                                    <input type="text" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" placeholder="">
+                                </div>
+                                <div class="flex-1">
+                                    <label class="block text-sm font-medium text-gray-300 mb-2">State</label>
+                                    <select class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none">
+                                        <option value="RI" selected>RI</option>
+                                        <option value="CA">CA</option>
+                                        <option value="NY">NY</option>
+                                        <option value="TX">TX</option>
+                                        <option value="FL">FL</option>
+                                    </select>
+                                </div>
+                                <div class="flex-1">
+                                    <label class="block text-sm font-medium text-gray-300 mb-2">Zipcode</label>
+                                    <input type="text" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" placeholder="12345">
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Additional Details Section -->
+                        <section>
+                            <h3 class="text-base font-semibold text-white mb-5 pb-2 border-b border-gray-600">Additional Details</h3>
+                            
+                            <div class="flex gap-5 mb-5">
+                                <div class="flex-1">
+                                    <label class="block text-sm font-medium text-gray-300 mb-2">Property Type</label>
+                                    <select class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none">
+                                        <option selected>Residence (1-4 Families)</option>
+                                        <option>Commercial</option>
+                                        <option>Condominium</option>
+                                        <option>Land/Lot</option>
+                                        <option>Mobile Home</option>
+                                        <option>Cooperative</option>
+                                    </select>
+                                </div>
+                                <div class="flex-1">
+                                    <label class="block text-sm font-medium text-gray-300 mb-2">Municipal Jurisdiction</label>
+                                    <select class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none">
+                                        <option selected>City</option>
+                                        <option>Town</option>
+                                        <option>Borough</option>
+                                        <option>County</option>
+                                        <option>Village</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Legal Description -->
+                        <section>
+                            <div class="mb-5">
+                                <label class="flex justify-between items-center text-sm font-medium text-gray-300 mb-2">
+                                    Property Brief Legal Description
+                                    <a href="#" class="text-blue-400 text-xs hover:underline">Add Full Description</a>
+                                </label>
+                                <input type="text" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" placeholder="">
+                            </div>
+                        </section>
+
+                        <!-- Parcel ID Section -->
+                        <section>
+                            <h3 class="text-base font-semibold text-white mb-5 pb-2 border-b border-gray-600">Parcel ID</h3>
+                            
+                            <div class="bg-gray-700 border border-gray-600 rounded-md p-10 text-center mt-5">
+                                <i class="fa fa-file-text text-5xl text-gray-500 mb-4"></i>
+                                <h3 class="text-gray-400 text-lg font-normal mb-5">No Parcel IDs Added</h3>
+                                <div class="flex gap-4 justify-center">
+                                    <button type="button" class="px-5 py-2.5 border border-gray-500 rounded bg-transparent text-gray-300 text-sm hover:bg-gray-600 hover:text-white">Add Manually</button>
+                                    <button type="button" class="px-5 py-2.5 bg-blue-600 border border-blue-600 rounded text-white text-sm hover:bg-blue-700 hover:border-blue-700">Lookup by Address</button>
+                                </div>
+                            </div>
+                        </section>
+                    </form>
+                </section>
+
+                <!-- Legal Description Tab Content (Hidden) -->
+                <section class="tab-content pb-10 hidden">
+                    <form class="space-y-8">
+                        <!-- OCR Button -->
+                        <div class="flex justify-end mb-5">
+                            <button type="button" class="px-5 py-2.5 bg-blue-600 border border-blue-600 rounded text-white text-sm hover:bg-blue-700 hover:border-blue-700">
+                                <i class="fa fa-magic mr-2"></i>
+                                Read Legal Description
+                            </button>
+                        </div>
+                        
+                        <section>
+                            <h3 class="text-base font-semibold text-white mb-5 pb-2 border-b border-gray-600">Legal Description</h3>
+                            
+                            <!-- Legal Description Textarea -->
+                            <div class="mb-5">
+                                <label class="flex justify-between items-center text-sm font-medium text-gray-300 mb-2">
+                                    Property Final Legal Description
+                                    <div class="flex gap-4">
+                                        <a href="#" class="text-blue-400 text-xs hover:underline">View History</a>
+                                        <a href="#" class="text-blue-400 text-xs hover:underline">Add Hyperlink</a>
+                                    </div>
+                                </label>
+                                <textarea rows="13" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 font-mono leading-normal min-h-[200px] resize-y" placeholder="Enter the complete legal description of the property..."></textarea>
+                            </div>
+                        </section>
+                    </form>
+                </section>
+
+                <!-- Subdivision Tab Content (Hidden) -->
+                <section class="tab-content pb-10 hidden">
+                    <form class="space-y-8">
+                        <!-- Subdivision Section -->
+                        <section>
+                            <h3 class="text-base font-semibold text-white mb-5 pb-2 border-b border-gray-600">Subdivision</h3>
+                            <div class="flex gap-5 mb-5">
+                                <div class="flex-1">
+                                    <label class="block text-sm font-medium text-gray-300 mb-2">Subdivision</label>
+                                    <input type="text" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" placeholder="">
+                                </div>
+                                <div class="flex-1">
+                                    <label class="block text-sm font-medium text-gray-300 mb-2">Phase</label>
+                                    <input type="text" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" placeholder="">
+                                </div>
+                                <div class="flex-1">
+                                    <label class="block text-sm font-medium text-gray-300 mb-2">Block</label>
+                                    <input type="text" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" placeholder="">
+                                </div>
+                                <div class="flex-1">
+                                    <label class="block text-sm font-medium text-gray-300 mb-2">Lot</label>
+                                    <input type="text" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" placeholder="">
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Township Section -->
+                        <section>
+                            <h3 class="text-base font-semibold text-white mb-5 pb-2 border-b border-gray-600">Township</h3>
+                            <div class="flex gap-5 mb-5">
+                                <div class="flex-1">
+                                    <label class="block text-sm font-medium text-gray-300 mb-2">Township</label>
+                                    <input type="text" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" placeholder="">
+                                </div>
+                                <div class="flex-1">
+                                    <label class="block text-sm font-medium text-gray-300 mb-2">Range</label>
+                                    <input type="text" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" placeholder="">
+                                </div>
+                                <div class="flex-1">
+                                    <label class="block text-sm font-medium text-gray-300 mb-2">Section</label>
+                                    <input type="text" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" placeholder="">
+                                </div>
+                                <div class="flex-1">
+                                    <label class="block text-sm font-medium text-gray-300 mb-2">Square</label>
+                                    <input type="text" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" placeholder="">
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Additional Details Section -->
+                        <section>
+                            <h3 class="text-base font-semibold text-white mb-5 pb-2 border-b border-gray-600">Additional Details</h3>
+                            <div class="flex gap-5 mb-5">
+                                <div class="flex-1">
+                                    <label class="block text-sm font-medium text-gray-300 mb-2">Tax Map Id</label>
+                                    <input type="text" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" placeholder="">
+                                </div>
+                                <div class="flex-1">
+                                    <label class="block text-sm font-medium text-gray-300 mb-2">Filing</label>
+                                    <input type="text" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" placeholder="">
+                                </div>
+                                <div class="flex-1">
+                                    <label class="block text-sm font-medium text-gray-300 mb-2">Unit</label>
+                                    <input type="text" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" placeholder="">
+                                </div>
+                                <div class="flex-1">
+                                    <label class="block text-sm font-medium text-gray-300 mb-2">District</label>
+                                    <input type="text" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" placeholder="">
+                                </div>
+                                <div class="flex-1">
+                                    <label class="block text-sm font-medium text-gray-300 mb-2">Part</label>
+                                    <input type="text" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" placeholder="">
+                                </div>
+                            </div>
+                        </section>
+                    </form>
+                </section>
+
+                <!-- Survey Tab Content (Hidden) -->
+                <section class="tab-content pb-10 hidden">
+                    <form class="space-y-8">
+                        <!-- Survey Information Section -->
+                        <section>
+                            <h3 class="text-base font-semibold text-white mb-5 pb-2 border-b border-gray-600">Survey Information</h3>
+                            <div class="flex gap-5 mb-5">
+                                <div class="flex-1">
+                                    <label class="block text-sm font-medium text-gray-300 mb-2">Date of Survey</label>
+                                    <div class="relative">
+                                        <i class="fa fa-calendar absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                                        <input type="text" class="w-full pl-9 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" placeholder="MM/DD/YYYY">
+                                    </div>
+                                </div>
+                                <div class="flex-1">
+                                    <label class="block text-sm font-medium text-gray-300 mb-2">Survey Number</label>
+                                    <input type="text" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" placeholder="">
+                                </div>
+                            </div>
+
+                            <div class="mb-5">
+                                <label class="block text-sm font-medium text-gray-300 mb-2">Survey Info</label>
+                                <textarea rows="8" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 font-mono leading-normal resize-y" placeholder="Enter survey information, notes, and additional details..."></textarea>
+                            </div>
+                        </section>
+                    </form>
+                </section>
+            </section>
+        </section>
+
+        <!-- Right Rail -->
+        <section class="w-64 bg-gray-800 border-l border-gray-600 p-5">
+            <section class="mb-5 p-4 bg-gray-700 rounded">
+                <h4 class="text-white text-sm mb-2.5">Marketplace</h4>
+                <button class="w-full p-2.5 bg-blue-600 border-none rounded text-white text-sm cursor-pointer hover:bg-blue-700">
+                    <i class="fa fa-home mr-2"></i>
+                    View Surveys
+                </button>
+            </section>
+
+            <section class="mb-5 p-4 bg-gray-700 rounded">
+                <h4 class="text-white text-sm mb-2.5">Chat</h4>
+                <p class="text-gray-400 text-xs">Chat functionality</p>
+            </section>
+
+            <section class="mb-5 p-4 bg-gray-700 rounded">
+                <h4 class="text-white text-sm mb-2.5">Tasks</h4>
+                <p class="text-gray-400 text-xs">No tasks assigned</p>
+            </section>
+
+            <section class="mb-5 p-4 bg-gray-700 rounded">
+                <h4 class="text-white text-sm mb-2.5">Notes</h4>
+                <p class="text-gray-400 text-xs">No notes added</p>
+            </section>
+        </section>
+    </div>
+
+    <script>
+        function showTab(tabIndex, tabButton) {
+            // Hide all tab contents
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.add('hidden'));
+            
+            // Remove active from all tab buttons
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(button => {
+                button.classList.remove('text-blue-400', 'border-b-blue-400', 'bg-gray-800');
+                button.classList.add('text-gray-400', 'border-b-transparent');
+            });
+            
+            // Show selected tab content
+            if (contents[tabIndex]) {
+                contents[tabIndex].classList.remove('hidden');
+            }
+            
+            // Mark button as active
+            tabButton.classList.remove('text-gray-400', 'border-b-transparent');
+            tabButton.classList.add('text-blue-400', 'border-b-blue-400', 'bg-gray-800');
+        }
+    </script>
+</body>
+</html>

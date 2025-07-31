@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real Estate Closing - Sidebar Navigation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white flex h-screen">
+    <section class="w-72 bg-gray-800 border-r border-gray-600 overflow-y-auto">
+        <!-- Dashboard Header -->
+        <section class="p-5 border-b border-gray-600 bg-gray-700">
+            <div class="flex items-center gap-3 mb-4">
+                <i class="fa fa-map-marker text-gray-400 text-base"></i>
+                <div>
+                    <h3 class="text-sm font-semibold mb-1">123 TEST TOM FILE CD</h3>
+                    <div class="text-xs text-gray-400">TomTestCD</div>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-2 mb-4">
+                <div class="flex flex-col items-center p-2 bg-gray-600 rounded text-xs text-center">
+                    <i class="fa fa-sticky-note text-sm mb-1 text-gray-400"></i>
+                    <div class="mb-0.5 text-gray-400">Notes</div>
+                    <div class="font-semibold text-white">0</div>
+                </div>
+                <div class="flex flex-col items-center p-2 bg-gray-600 rounded text-xs text-center">
+                    <i class="fa fa-tasks text-sm mb-1 text-gray-400"></i>
+                    <div class="mb-0.5 text-gray-400">Tasks</div>
+                    <div class="font-semibold text-white">0 / 42</div>
+                </div>
+                <div class="flex flex-col items-center p-2 bg-gray-600 rounded text-xs text-center">
+                    <i class="fa fa-cogs text-sm mb-1 text-gray-400"></i>
+                    <div class="mb-0.5 text-gray-400">Automations</div>
+                    <div class="font-semibold text-white">3 / 88</div>
+                </div>
+                <div class="flex flex-col items-center p-2 bg-gray-600 rounded text-xs text-center">
+                    <i class="fa fa-rss text-sm mb-1 text-gray-400"></i>
+                    <div class="mb-0.5 text-gray-400">Activity</div>
+                    <div class="font-semibold text-white">11</div>
+                </div>
+            </div>
+            
+            <button class="w-full p-2 bg-transparent border border-gray-500 text-white rounded text-xs hover:bg-gray-600 transition-colors">
+                Send Message
+            </button>
+        </section>
+
+        <!-- ORDER Section -->
+        <section class="py-4 px-5 pb-2 border-t border-gray-600 text-center text-xs font-semibold text-gray-400 uppercase tracking-wider">
+            ORDER
+        </section>
+        
+        <section class="border-b border-gray-600">
+            <div class="flex justify-between items-center py-4 px-5 bg-blue-600 cursor-pointer font-semibold text-sm">
+                General
+                <i class="fa fa-chevron-down text-xs rotate-180"></i>
+            </div>
+            <div class="bg-gray-800">
+                <a href="#" class="flex items-center justify-between py-3 pl-8 pr-5 text-white bg-blue-600 border-l-3 border-l-blue-400 text-xs transition-all">Basic Info</a>
+                <a href="#" class="flex items-center justify-between py-3 pl-8 pr-5 text-gray-300 border-l-3 border-l-transparent text-xs transition-all hover:bg-gray-700 hover:text-white">Properties</a>
+                <a href="#" class="flex items-center justify-between py-3 pl-8 pr-5 text-gray-300 border-l-3 border-l-transparent text-xs transition-all hover:bg-gray-700 hover:text-white">Contacts</a>
+                <a href="#" class="flex items-center justify-between py-3 pl-8 pr-5 text-gray-300 border-l-3 border-l-transparent text-xs transition-all hover:bg-gray-700 hover:text-white">Loan</a>
+                <a href="#" class="flex items-center justify-between py-3 pl-8 pr-5 text-gray-300 border-l-3 border-l-transparent text-xs transition-all hover:bg-gray-700 hover:text-white">Earnest & Commissions</a>
+                <a href="#" class="flex items-center justify-between py-3 pl-8 pr-5 text-gray-300 border-l-3 border-l-transparent text-xs transition-all hover:bg-gray-700 hover:text-white">Taxes & Prorations</a>
+                <a href="#" class="flex items-center justify-between py-3 pl-8 pr-5 text-gray-300 border-l-3 border-l-transparent text-xs transition-all hover:bg-gray-700 hover:text-white">Payoffs</a>
+            </div>
+        </section>
+
+        <section class="border-b border-gray-600">
+            <div class="flex justify-between items-center py-4 px-5 bg-blue-600 cursor-pointer font-semibold text-sm">
+                Title
+                <i class="fa fa-chevron-down text-xs rotate-180"></i>
+            </div>
+            <div class="bg-gray-800">
+                <a href="#" class="flex items-center justify-between py-3 pl-8 pr-5 text-gray-300 border-l-3 border-l-transparent text-xs transition-all hover:bg-gray-700 hover:text-white">CPL</a>
+                <a href="#" class="flex items-center justify-between py-3 pl-8 pr-5 text-gray-300 border-l-3 border-l-transparent text-xs transition-all hover:bg-gray-700 hover:text-white">
+                    Policy Info & Rates
+                    <i class="fa fa-exclamation-circle text-red-500 text-sm"></i>
+                </a>
+                <a href="#" class="flex items-center justify-between py-3 pl-8 pr-5 text-gray-300 border-l-3 border-l-transparent text-xs transition-all hover:bg-gray-700 hover:text-white">Commitment</a>
+                <a href="#" class="flex items-center justify-between py-3 pl-8 pr-5 text-gray-300 border-l-3 border-l-transparent text-xs transition-all hover:bg-gray-700 hover:text-white">Final Policy</a>
+            </div>
+        </section>
+
+        <!-- CLOSING Section -->
+        <section class="py-4 px-5 pb-2 border-t border-gray-600 text-center text-xs font-semibold text-gray-400 uppercase tracking-wider">
+            CLOSING
+        </section>
+        
+        <section class="border-b border-gray-600">
+            <div class="flex justify-between items-center py-4 px-5 bg-blue-600 cursor-pointer font-semibold text-sm">
+                Charges
+                <i class="fa fa-chevron-down text-xs rotate-180"></i>
+            </div>
+            <div class="bg-gray-800">
+                <a href="#" class="flex items-center justify-between py-3 pl-8 pr-5 text-gray-300 border-l-3 border-l-transparent text-xs transition-all hover:bg-gray-700 hover:text-white">
+                    Origination Charges
+                    <span class="bg-gray-500 text-white min-w-[20px] h-5 rounded text-xs font-semibold inline-flex items-center justify-center">A</span>
+                </a>
+                <a href="#" class="flex items-center justify-between py-3 pl-8 pr-5 text-gray-300 border-l-3 border-l-transparent text-xs transition-all hover:bg-gray-700 hover:text-white">
+                    Did Not Shop For
+                    <span class="bg-gray-500 text-white min-w-[20px] h-5 rounded text-xs font-semibold inline-flex items-center justify-center">B</span>
+                </a>
+                <a href="#" class="flex items-center justify-between py-3 pl-8 pr-5 text-gray-300 border-l-3 border-l-transparent text-xs transition-all hover:bg-gray-700 hover:text-white">
+                    Did Shop For
+                    <span class="bg-gray-500 text-white min-w-[20px] h-5 rounded text-xs font-semibold inline-flex items-center justify-center">C</span>
+                </a>
+                <a href="#" class="flex items-center justify-between py-3 pl-8 pr-5 text-gray-300 border-l-3 border-l-transparent text-xs transition-all hover:bg-gray-700 hover:text-white">
+                    Taxes & Fees
+                    <span class="bg-gray-500 text-white min-w-[20px] h-5 rounded text-xs font-semibold inline-flex items-center justify-center">E</span>
+                </a>
+                <a href="#" class="flex items-center justify-between py-3 pl-8 pr-5 text-gray-300 border-l-3 border-l-transparent text-xs transition-all hover:bg-gray-700 hover:text-white">
+                    Prepaids
+                    <span class="bg-gray-500 text-white min-w-[20px] h-5 rounded text-xs font-semibold inline-flex items-center justify-center">F</span>
+                </a>
+                <a href="#" class="flex items-center justify-between py-3 pl-8 pr-5 text-gray-300 border-l-3 border-l-transparent text-xs transition-all hover:bg-gray-700 hover:text-white">
+                    Escrow
+                    <span class="bg-gray-500 text-white min-w-[20px] h-5 rounded text-xs font-semibold inline-flex items-center justify-center">G</span>
+                </a>
+                <a href="#" class="flex items-center justify-between py-3 pl-8 pr-5 text-gray-300 border-l-3 border-l-transparent text-xs transition-all hover:bg-gray-700 hover:text-white">
+                    Other Charges
+                    <span class="bg-gray-500 text-white min-w-[20px] h-5 rounded text-xs font-semibold inline-flex items-center justify-center">H</span>
+                </a>
+                <a href="#" class="flex items-center justify-between py-3 pl-8 pr-5 text-gray-300 border-l-3 border-l-transparent text-xs transition-all hover:bg-gray-700 hover:text-white">
+                    Lender Credits
+                    <span class="bg-gray-500 text-white min-w-[20px] h-5 rounded text-xs font-semibold inline-flex items-center justify-center">J</span>
+                </a>
+                <a href="#" class="flex items-center justify-between py-3 pl-8 pr-5 text-gray-300 border-l-3 border-l-transparent text-xs transition-all hover:bg-gray-700 hover:text-white">
+                    Debits/Credits
+                    <span class="bg-gray-500 text-white min-w-[20px] h-5 rounded text-xs font-semibold inline-flex items-center justify-center">K/M</span>
+                </a>
+                <a href="#" class="flex items-center justify-between py-3 pl-8 pr-5 text-gray-300 border-l-3 border-l-transparent text-xs transition-all hover:bg-gray-700 hover:text-white">
+                    Debits/Credits
+                    <span class="bg-gray-500 text-white min-w-[20px] h-5 rounded text-xs font-semibold inline-flex items-center justify-center">L/N</span>
+                </a>
+            </div>
+        </section>
+
+        <section class="border-b border-gray-600">
+            <div class="flex justify-between items-center py-4 px-5 bg-blue-600 cursor-pointer font-semibold text-sm">
+                Disclosures
+                <i class="fa fa-chevron-down text-xs rotate-180"></i>
+            </div>
+            <div class="bg-gray-800">
+                <a href="#" class="flex items-center justify-between py-3 pl-8 pr-5 text-gray-300 border-l-3 border-l-transparent text-xs transition-all hover:bg-gray-700 hover:text-white">
+                    Loan Terms
+                    <span class="bg-gray-600 text-white px-2 py-0.5 rounded-full text-xs font-semibold">1</span>
+                </a>
+                <a href="#" class="flex items-center justify-between py-3 pl-8 pr-5 text-gray-300 border-l-3 border-l-transparent text-xs transition-all hover:bg-gray-700 hover:text-white">
+                    Projected Payments
+                    <span class="bg-gray-600 text-white px-2 py-0.5 rounded-full text-xs font-semibold">1</span>
+                </a>
+                <a href="#" class="flex items-center justify-between py-3 pl-8 pr-5 text-gray-300 border-l-3 border-l-transparent text-xs transition-all hover:bg-gray-700 hover:text-white">
+                    Cash to Close
+                    <span class="bg-gray-600 text-white px-2 py-0.5 rounded-full text-xs font-semibold">3</span>
+                </a>
+                <a href="#" class="flex items-center justify-between py-3 pl-8 pr-5 text-gray-300 border-l-3 border-l-transparent text-xs transition-all hover:bg-gray-700 hover:text-white">
+                    Loan Disclosures
+                    <span class="bg-gray-600 text-white px-2 py-0.5 rounded-full text-xs font-semibold">4</span>
+                </a>
+                <a href="#" class="flex items-center justify-between py-3 pl-8 pr-5 text-gray-300 border-l-3 border-l-transparent text-xs transition-all hover:bg-gray-700 hover:text-white">
+                    AP Table
+                    <span class="bg-gray-600 text-white px-2 py-0.5 rounded-full text-xs font-semibold">4</span>
+                </a>
+                <a href="#" class="flex items-center justify-between py-3 pl-8 pr-5 text-gray-300 border-l-3 border-l-transparent text-xs transition-all hover:bg-gray-700 hover:text-white">
+                    AIR Table
+                    <span class="bg-gray-600 text-white px-2 py-0.5 rounded-full text-xs font-semibold">4</span>
+                </a>
+                <a href="#" class="flex items-center justify-between py-3 pl-8 pr-5 text-gray-300 border-l-3 border-l-transparent text-xs transition-all hover:bg-gray-700 hover:text-white">
+                    Loan Calculations
+                    <span class="bg-gray-600 text-white px-2 py-0.5 rounded-full text-xs font-semibold">5</span>
+                </a>
+            </div>
+        </section>
+
+        <section class="border-b border-gray-600">
+            <div class="flex justify-between items-center py-4 px-5 bg-blue-600 cursor-pointer font-semibold text-sm">
+                Proceeds
+                <i class="fa fa-chevron-down text-xs rotate-180"></i>
+            </div>
+            <div class="bg-gray-800">
+                <a href="#" class="flex items-center justify-between py-3 pl-8 pr-5 text-gray-300 border-l-3 border-l-transparent text-xs transition-all hover:bg-gray-700 hover:text-white">Borrower</a>
+                <a href="#" class="flex items-center justify-between py-3 pl-8 pr-5 text-gray-300 border-l-3 border-l-transparent text-xs transition-all hover:bg-gray-700 hover:text-white">Seller</a>
+            </div>
+        </section>
+
+        <!-- TASKS Section -->
+        <section class="py-4 px-5 pb-2 border-t border-gray-600 text-center text-xs font-semibold text-gray-400 uppercase tracking-wider">
+            TASKS
+        </section>
+        
+        <section class="border-b border-gray-600">
+            <a href="#" class="flex items-center justify-between py-4 px-5 text-gray-300 border-l-3 border-l-transparent text-xs transition-all hover:bg-gray-700 hover:text-white">
+                <span><i class="fa fa-file-text mr-3 text-base w-5 text-center"></i>Documents</span>
+            </a>
+            <a href="#" class="flex items-center justify-between py-4 px-5 text-gray-300 border-l-3 border-l-transparent text-xs transition-all hover:bg-gray-700 hover:text-white">
+                <span><i class="fa fa-balance-scale mr-3 text-base w-5 text-center"></i>Accounting</span>
+                <i class="fa fa-exclamation-circle text-red-500 text-sm"></i>
+            </a>
+            <a href="#" class="flex items-center justify-between py-4 px-5 text-white bg-green-600 border-l-3 border-l-green-400 text-xs transition-all">
+                <span><i class="fa fa-shopping-cart mr-3 text-base w-5 text-center"></i>Marketplace</span>
+            </a>
+        </section>
+
+        <!-- INTEGRATIONS Section -->
+        <section class="py-4 px-5 pb-2 border-t border-gray-600 text-center text-xs font-semibold text-gray-400 uppercase tracking-wider">
+            INTEGRATIONS
+        </section>
+        
+        <section class="border-b border-gray-600">
+            <a href="#" class="flex items-center justify-between py-4 px-5 text-gray-300 border-l-3 border-l-transparent text-xs transition-all hover:bg-gray-700 hover:text-white">
+                <span><i class="fa fa-envelope mr-3 text-base w-5 text-center"></i>Envelopes & Shipping</span>
+            </a>
+            <a href="#" class="flex items-center justify-between py-4 px-5 text-gray-300 border-l-3 border-l-transparent text-xs transition-all hover:bg-gray-700 hover:text-white">
+                <span><i class="fa fa-university mr-3 text-base w-5 text-center"></i>Recording</span>
+            </a>
+        </section>
+
+        <!-- PREVIEW Section -->
+        <section class="py-4 px-5 pb-2 border-t border-gray-600 text-center text-xs font-semibold text-gray-400 uppercase tracking-wider">
+            PREVIEW
+        </section>
+        
+        <section class="border-b border-gray-600">
+            <a href="#" class="flex items-center justify-between py-4 px-5 text-gray-300 border-l-3 border-l-transparent text-xs transition-all hover:bg-gray-700 hover:text-white">
+                <span><i class="fa fa-eye mr-3 text-base w-5 text-center"></i>Closing Disclosure</span>
+            </a>
+            <a href="#" class="flex items-center justify-between py-4 px-5 text-gray-300 border-l-3 border-l-transparent text-xs transition-all hover:bg-gray-700 hover:text-white">
+                <span><i class="fa fa-file mr-3 text-base w-5 text-center"></i>Settlement Statement</span>
+            </a>
+        </section>
+    </section>
+
+    <section class="flex-1 bg-gray-900 p-5">
+        <h1 class="text-2xl font-bold mb-4">Main Content Area</h1>
+        <p class="text-gray-300">Select a menu item from the sidebar to view its content.</p>
+    </section>
+</body>
+</html>

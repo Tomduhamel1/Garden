@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seller Info - Real Estate Closing</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white">
+    <div class="flex h-screen">
+        <!-- Left Sidebar -->
+        <section class="w-72 bg-gray-800 border-r border-gray-600 p-5 text-center text-gray-400">
+            <div class="text-xs">Navigation Sidebar</div>
+            <div class="text-xs mt-1">Contacts is active</div>
+        </section>
+
+        <!-- Main Content -->
+        <section class="flex-1 bg-gray-900 flex">
+            <!-- Content Area -->
+            <section class="flex-1 p-10">
+                <!-- Page Header -->
+                <section class="flex items-center justify-between gap-4 mb-8 pb-4 border-b border-gray-600">
+                    <div class="flex items-center gap-4">
+                        <i class="fa fa-users text-gray-400 text-xl"></i>
+                        <h2 class="text-2xl font-semibold">Contacts</h2>
+                    </div>
+                    <div class="flex gap-2">
+                        <button class="bg-gray-600 border border-gray-500 rounded px-3 py-2 text-white text-sm hover:bg-gray-500">
+                            <i class="fa fa-plus mr-1"></i>
+                            Add Seller
+                        </button>
+                        <button class="bg-gray-600 border border-gray-500 rounded px-3 py-2 text-gray-400 text-sm opacity-50 cursor-not-allowed">
+                            <i class="fa fa-minus mr-1"></i>
+                            Remove Seller
+                        </button>
+                    </div>
+                </section>
+
+                <!-- Individual Seller Tab -->
+                <section class="mb-5">
+                    <div class="bg-gray-700 px-5 py-3 inline-block border-t-2 border-t-blue-500 text-blue-400">
+                        <span>Seller #1</span>
+                    </div>
+                </section>
+
+                <!-- Sub Tabs with Type Dropdown -->
+                <section class="flex items-center justify-between mb-8 border-b border-gray-600">
+                    <div class="flex">
+                        <button class="tab-btn px-5 py-3 bg-transparent border-none text-blue-400 text-sm cursor-pointer border-b-2 border-b-blue-400" onclick="showTab(0, this)">Info</button>
+                        <button class="tab-btn px-5 py-3 bg-transparent border-none text-gray-400 text-sm cursor-pointer border-b-2 border-b-transparent hover:text-gray-300" onclick="showTab(1, this)">Addresses</button>
+                        <button class="tab-btn px-5 py-3 bg-transparent border-none text-gray-400 text-sm cursor-pointer border-b-2 border-b-transparent hover:text-gray-300" onclick="showTab(2, this)">Attorney</button>
+                        <button class="tab-btn px-5 py-3 bg-transparent border-none text-gray-400 text-sm cursor-pointer border-b-2 border-b-transparent hover:text-gray-300" onclick="showTab(3, this)">Signature & Vesting</button>
+                        <button class="tab-btn px-5 py-3 bg-transparent border-none text-gray-400 text-sm cursor-pointer border-b-2 border-b-transparent hover:text-gray-300" onclick="showTab(4, this)">Notary Blocks</button>
+                    </div>
+                    <div class="mb-3">
+                        <select class="px-3 py-2 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none" data-schema-key="contacts.sellers.0.type">
+                            <option value="individual" selected>Individual</option>
+                            <option value="organization">Organization</option>
+                        </select>
+                    </div>
+                </section>
+
+                <!-- TAB 0: Info -->
+                <section class="tab-content">
+                    <form class="space-y-8">
+                        <!-- Search Existing Sellers -->
+                        <section class="mb-6">
+                            <h3 class="text-base font-semibold mb-4 pb-2 border-b border-gray-600">Basic Info</h3>
+                            <div class="mb-5">
+                                <div class="relative">
+                                    <i class="fa fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                                    <input type="text" class="w-full pl-9 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" placeholder="Search existing sellers..." data-schema-key="customerName">
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Name Fields -->
+                        <section>
+                            <div class="grid grid-cols-4 gap-5 mb-5">
+                                <div>
+                                    <label class="block text-sm text-gray-300 mb-2">First Name</label>
+                                    <input type="text" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" data-schema-key="contacts.sellers.0.first_name">
+                                </div>
+                                <div>
+                                    <label class="block text-sm text-gray-300 mb-2">Middle Name</label>
+                                    <input type="text" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" data-schema-key="contacts.sellers.0.middle_name">
+                                </div>
+                                <div>
+                                    <label class="block text-sm text-gray-300 mb-2">Last Name</label>
+                                    <input type="text" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" data-schema-key="contacts.sellers.0.last_name">
+                                </div>
+                                <div>
+                                    <label class="block text-sm text-gray-300 mb-2">Suffix</label>
+                                    <input type="text" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" data-schema-key="contacts.sellers.0.suffix">
+                                </div>
+                            </div>
+
+                            <div class="flex gap-5 mb-5">
+                                <div class="flex-1">
+                                    <label class="block text-sm text-gray-300 mb-2">Gender</label>
+                                    <select class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none" data-schema-key="contacts.sellers.0.gender">
+                                        <option value="">Select one...</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                    </select>
+                                </div>
+                                <div class="flex-1">
+                                    <label class="block text-sm text-gray-300 mb-2">Marital Status</label>
+                                    <select class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none" data-schema-key="contacts.sellers.0.marital_status">
+                                        <option value="">Select one...</option>
+                                        <option value="Married">Married</option>
+                                        <option value="Unmarried">Unmarried</option>
+                                        <option value="Single">Single</option>
+                                        <option value="Reg. Dom. Partnership">Reg. Dom. Partnership</option>
+                                        <option value="Unknown">Unknown</option>
+                                        <option value="Widow">Widow</option>
+                                        <option value="Widower">Widower</option>
+                                    </select>
+                                </div>
+                                <div class="flex-1">
+                                    <label class="block text-sm text-gray-300 mb-2">SSN</label>
+                                    <input type="text" inputmode="numeric" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" data-schema-key="contacts.sellers.0.SSN">
+                                </div>
+                                <div class="flex-1">
+                                    <label class="block text-sm text-gray-300 mb-2">Date of Birth</label>
+                                    <div class="relative">
+                                        <i class="fa fa-calendar absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                                        <input type="text" inputmode="numeric" class="w-full pl-9 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" data-schema-key="contacts.sellers.0.date_of_birth">
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Contact Info -->
+                        <section>
+                            <h3 class="text-base font-semibold mb-4 pb-2 border-b border-gray-600">Contact Info</h3>
+                            
+                            <div class="flex gap-5 mb-5">
+                                <div class="flex-1">
+                                    <label class="block text-sm text-gray-300 mb-2">Email</label>
+                                    <input type="email" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" data-schema-key="contacts.sellers.0.email">
+                                </div>
+                                <div class="flex-1">
+                                    <label class="block text-sm text-gray-300 mb-2">Cell Phone</label>
+                                    <input type="tel" inputmode="tel" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" data-schema-key="contacts.sellers.0.cell_phone">
+                                </div>
+                            </div>
+
+                            <div class="flex gap-5 mb-5">
+                                <div class="flex-1">
+                                    <label class="block text-sm text-gray-300 mb-2">Home Phone</label>
+                                    <input type="tel" inputmode="tel" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" data-schema-key="contacts.sellers.0.home_phone">
+                                </div>
+                                <div class="flex-1">
+                                    <label class="block text-sm text-gray-300 mb-2">Work Phone</label>
+                                    <input type="tel" inputmode="tel" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" data-schema-key="contacts.sellers.0.work_phone">
+                                </div>
+                                <div class="flex-1">
+                                    <label class="block text-sm text-gray-300 mb-2">Fax</label>
+                                    <input type="tel" inputmode="tel" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" data-schema-key="contacts.sellers.0.fax">
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Grid Layout for Additional Sections -->
+                        <section class="grid grid-cols-4 gap-8">
+                            <!-- Column 1: On -->
+                            <div>
+                                <h4 class="text-sm font-semibold mb-4">On</h4>
+                                <div class="space-y-3">
+                                    <div class="flex items-center gap-3">
+                                        <input type="checkbox" class="w-4 h-4" data-schema-key="contacts.sellers.0.on_title">
+                                        <label class="text-sm cursor-pointer">Title</label>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm text-gray-300 mb-2">Ownership %</label>
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" data-schema-key="contacts.sellers.0.ownership_percentage">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Column 2: Participating In & POA -->
+                            <div>
+                                <h4 class="text-sm font-semibold mb-4">Participating In</h4>
+                                <div class="flex items-center gap-3 mb-6">
+                                    <input type="checkbox" class="w-4 h-4" data-schema-key="contacts.sellers.0.has_exchange">
+                                    <label class="text-sm cursor-pointer">1031 Exchange</label>
+                                </div>
+                                
+                                <h4 class="text-sm font-semibold mb-4">POA</h4>
+                                <div class="flex items-center gap-3">
+                                    <input type="checkbox" class="w-4 h-4" data-schema-key="contacts.sellers.0.power_of_attorney.has">
+                                    <label class="text-sm cursor-pointer">Given</label>
+                                </div>
+                            </div>
+
+                            <!-- Column 3: Patriot Search -->
+                            <div>
+                                <h4 class="text-sm font-semibold mb-4 flex items-center gap-2">
+                                    Patriot Search
+                                    <i class="fa fa-question-circle text-gray-400 cursor-help" title="This searches all available OFAC sanction lists for Patriot Act compliance"></i>
+                                </h4>
+                                <p class="text-gray-400 text-sm">Full name not entered</p>
+                            </div>
+
+                            <!-- Column 4: Empty -->
+                            <div></div>
+                        </section>
+
+                        <!-- 1099 Reporting -->
+                        <section>
+                            <h3 class="text-base font-semibold mb-4 pb-2 border-b border-gray-600">1099 Reporting</h3>
+                            
+                            <div class="flex gap-8 mb-5">
+                                <div class="flex items-center gap-3">
+                                    <input type="checkbox" class="w-4 h-4" data-schema-key="contacts.sellers.0.exempt_from_1099">
+                                    <label class="text-sm cursor-pointer">Exempt From 1099</label>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <input type="checkbox" class="w-4 h-4" data-schema-key="contacts.sellers.0.foreign_entity">
+                                    <label class="text-sm cursor-pointer">Foreign Person</label>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <input type="checkbox" class="w-4 h-4" data-schema-key="contacts.sellers.0.declines_to_provide_tin">
+                                    <label class="text-sm cursor-pointer">Declines to provide SSN</label>
+                                </div>
+                            </div>
+
+                            <div class="flex gap-5 mb-5">
+                                <div class="flex-1">
+                                    <label class="flex items-center gap-2 text-sm text-gray-300 mb-2">
+                                        Gross Allocated Proceeds
+                                        <i class="fa fa-lock text-gray-400" title="This field cannot be modified."></i>
+                                    </label>
+                                    <input type="text" inputmode="decimal" class="w-full px-3 py-2.5 bg-gray-600 border border-gray-500 rounded text-gray-400 text-sm cursor-not-allowed" data-schema-key="contacts.sellers.0.gross_allocated_proceeds" readonly>
+                                </div>
+                                <div class="flex-1">
+                                    <label class="flex items-center gap-2 text-sm text-gray-300 mb-2">
+                                        Buyers Part Of Real Estate Tax
+                                        <i class="fa fa-lock text-gray-400" title="This field cannot be modified."></i>
+                                    </label>
+                                    <input type="text" inputmode="decimal" class="w-full px-3 py-2.5 bg-gray-600 border border-gray-500 rounded text-gray-400 text-sm cursor-not-allowed" data-schema-key="contacts.sellers.0.buyers_part_of_real_estate_tax" readonly>
+                                </div>
+                            </div>
+
+                            <div class="flex gap-5">
+                                <div class="flex-1">
+                                    <label class="flex items-center gap-2 text-sm text-gray-300 mb-2">
+                                        Name Control
+                                        <i class="fa fa-lock text-gray-400" title="This field cannot be modified."></i>
+                                    </label>
+                                    <input type="text" class="w-full px-3 py-2.5 bg-gray-600 border border-gray-500 rounded text-gray-400 text-sm cursor-not-allowed" data-schema-key="contacts.sellers.0.name_control" readonly>
+                                </div>
+                                <div class="flex-1"></div>
+                            </div>
+                        </section>
+                    </form>
+                </section>
+
+                <!-- Hidden Tab Contents for other tabs -->
+                <section class="tab-content hidden">
+                    <div class="p-8 bg-gray-700 rounded text-center text-gray-400">
+                        Addresses tab content would go here
+                    </div>
+                </section>
+                <section class="tab-content hidden">
+                    <div class="p-8 bg-gray-700 rounded text-center text-gray-400">
+                        Attorney tab content would go here
+                    </div>
+                </section>
+                <section class="tab-content hidden">
+                    <div class="p-8 bg-gray-700 rounded text-center text-gray-400">
+                        Signature & Vesting tab content would go here
+                    </div>
+                </section>
+                <section class="tab-content hidden">
+                    <div class="p-8 bg-gray-700 rounded text-center text-gray-400">
+                        Notary Blocks tab content would go here
+                    </div>
+                </section>
+            </section>
+
+            <!-- Contact Types Menu -->
+            <section class="w-48 bg-gray-800 border-l border-gray-600 py-5">
+                <button class="contact-type-btn block w-full py-3 px-5 text-gray-300 border-l-3 border-l-transparent text-left text-sm hover:bg-gray-700 hover:text-white">Buyers</button>
+                <button class="contact-type-btn block w-full py-3 px-5 text-white bg-blue-600 border-l-3 border-l-blue-400 text-left text-sm">Sellers</button>
+                <button class="contact-type-btn block w-full py-3 px-5 text-gray-300 border-l-3 border-l-transparent text-left text-sm hover:bg-gray-700 hover:text-white">Lenders</button>
+                <button class="contact-type-btn block w-full py-3 px-5 text-gray-300 border-l-3 border-l-transparent text-left text-sm hover:bg-gray-700 hover:text-white">Mortgage Brokerages</button>
+                <button class="contact-type-btn block w-full py-3 px-5 text-gray-300 border-l-3 border-l-transparent text-left text-sm hover:bg-gray-700 hover:text-white">Selling Agencies</button>
+                <button class="contact-type-btn block w-full py-3 px-5 text-gray-300 border-l-3 border-l-transparent text-left text-sm hover:bg-gray-700 hover:text-white">Listing Agencies</button>
+                <button class="contact-type-btn block w-full py-3 px-5 text-gray-300 border-l-3 border-l-transparent text-left text-sm hover:bg-gray-700 hover:text-white">Recording Offices</button>
+                <button class="contact-type-btn block w-full py-3 px-5 text-gray-300 border-l-3 border-l-transparent text-left text-sm hover:bg-gray-700 hover:text-white">Tax Authorities</button>
+                <button class="contact-type-btn block w-full py-3 px-5 text-gray-300 border-l-3 border-l-transparent text-left text-sm hover:bg-gray-700 hover:text-white">Title Abstractors</button>
+                <button class="contact-type-btn block w-full py-3 px-5 text-gray-300 border-l-3 border-l-transparent text-left text-sm hover:bg-gray-700 hover:text-white">Surveying Firms</button>
+                <button class="contact-type-btn block w-full py-3 px-5 text-gray-300 border-l-3 border-l-transparent text-left text-sm hover:bg-gray-700 hover:text-white">Other Contacts</button>
+            </section>
+        </section>
+
+        <!-- Right Rail -->
+        <section class="w-64 bg-gray-800 border-l border-gray-600 p-5">
+            <section class="mb-5 p-4 bg-gray-700 rounded">
+                <h4 class="text-white text-sm mb-2.5">Chat</h4>
+                <p class="text-gray-400 text-xs">Chat functionality</p>
+            </section>
+
+            <section class="mb-5 p-4 bg-gray-700 rounded">
+                <h4 class="text-white text-sm mb-2.5">Tasks</h4>
+                <p class="text-gray-400 text-xs">No tasks assigned</p>
+            </section>
+
+            <section class="mb-5 p-4 bg-gray-700 rounded">
+                <h4 class="text-white text-sm mb-2.5">Notes</h4>
+                <p class="text-gray-400 text-xs">No notes added</p>
+            </section>
+        </section>
+    </div>
+
+    <script>
+        function showTab(tabIndex, tabButton) {
+            // Hide all tab contents
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.add('hidden'));
+            
+            // Remove active from all tab buttons
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(button => {
+                button.classList.remove('text-blue-400', 'border-b-blue-400');
+                button.classList.add('text-gray-400', 'border-b-transparent');
+            });
+            
+            // Show selected tab content
+            if (contents[tabIndex]) {
+                contents[tabIndex].classList.remove('hidden');
+            }
+            
+            // Mark button as active
+            tabButton.classList.remove('text-gray-400', 'border-b-transparent');
+            tabButton.classList.add('text-blue-400', 'border-b-blue-400');
+        }
+    </script>
+</body>
+</html>

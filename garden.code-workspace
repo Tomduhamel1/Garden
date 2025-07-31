@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"typescript.tsdk": "node_modules/typescript/lib",
+		"workbench.colorCustomizations": {
+			"statusBar.background": "#008000",
+			"statusBar.noFolderBackground": "#008000",
+			"statusBar.debuggingBackground": "#006400",
+			"statusBar.foreground": "#ffffff"
+		}
+	}
+}

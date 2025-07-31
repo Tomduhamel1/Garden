@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Info - Real Estate Closing</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white">
+    <div class="flex h-screen">
+        <!-- Left Sidebar (simplified) -->
+        <section class="w-72 bg-gray-800 border-r border-gray-600">
+            <div class="p-5 text-gray-400 text-center border-b border-gray-600">
+                <div class="text-xs">Navigation Sidebar</div>
+                <div class="text-xs mt-1">Basic Info is active</div>
+            </div>
+        </section>
+
+        <!-- Main Content -->
+        <section class="flex-1 bg-gray-900 overflow-y-auto">
+            <!-- Page Header -->
+            <section class="py-8 px-10 pb-5 border-b border-gray-600 flex items-center gap-4">
+                <i class="fa fa-home text-gray-400 text-xl"></i>
+                <h2 class="text-2xl font-semibold text-white">Basic Info</h2>
+            </section>
+
+            <!-- Form Container -->
+            <section class="p-10 max-w-6xl">
+                <form class="grid grid-cols-2 gap-16">
+                    <!-- Left Column -->
+                    <section class="space-y-8">
+                        <!-- Dates Section -->
+                        <section>
+                            <h3 class="text-base font-semibold text-white mb-5 pb-2 border-b border-gray-600">Dates</h3>
+                            
+                            <div class="flex gap-5 mb-5">
+                                <div class="flex-1">
+                                    <label class="block text-sm font-medium text-gray-300 mb-2">Estimated Closing Date</label>
+                                    <div class="relative">
+                                        <i class="fa fa-calendar absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-sm"></i>
+                                        <input type="text" class="w-full pl-9 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" placeholder="MM/DD/YYYY">
+                                    </div>
+                                </div>
+                                <div class="flex-1">
+                                    <label class="block text-sm font-medium text-gray-300 mb-2">Contract Date</label>
+                                    <div class="relative">
+                                        <i class="fa fa-calendar absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-sm"></i>
+                                        <input type="text" class="w-full pl-9 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" placeholder="MM/DD/YYYY">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="flex gap-5 mb-5">
+                                <div class="flex-1">
+                                    <label class="block text-sm font-medium text-gray-300 mb-2">Funding Date</label>
+                                    <div class="relative">
+                                        <i class="fa fa-calendar absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-sm"></i>
+                                        <input type="text" class="w-full pl-9 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" placeholder="MM/DD/YYYY">
+                                    </div>
+                                </div>
+                                <div class="flex-1">
+                                    <label class="block text-sm font-medium text-gray-300 mb-2">Disbursement Date</label>
+                                    <div class="relative">
+                                        <i class="fa fa-calendar absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-sm"></i>
+                                        <input type="text" class="w-full pl-9 pr-9 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" placeholder="MM/DD/YYYY">
+                                        <i class="fa fa-times absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 cursor-pointer hover:text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Closings Section -->
+                        <section>
+                            <div class="flex justify-between items-center mb-5">
+                                <h3 class="text-base font-semibold text-white pb-2 border-b border-gray-600 flex-1">Closings</h3>
+                                <button class="px-4 py-2 border border-gray-600 rounded bg-transparent text-gray-400 text-xs opacity-50 cursor-not-allowed ml-4">Schedule Closing</button>
+                            </div>
+                            
+                            <div class="bg-gray-700 border border-gray-600 rounded-md p-5">
+                                <div class="grid grid-cols-2 gap-5">
+                                    <div>
+                                        <label class="block text-sm text-gray-300 mb-1">Buyer's Closing</label>
+                                        <div class="text-gray-400 italic text-sm">Not Set</div>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm text-gray-300 mb-1">Seller's Closing</label>
+                                        <div class="text-gray-400 italic text-sm">Not Set</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Amounts Section -->
+                        <section>
+                            <h3 class="text-base font-semibold text-white mb-5 pb-2 border-b border-gray-600">Amounts</h3>
+                            
+                            <div class="flex gap-5 mb-5">
+                                <div class="flex-1">
+                                    <label class="block text-sm font-medium text-gray-300 mb-2">Purchase Price</label>
+                                    <input type="text" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" placeholder="$0.00">
+                                </div>
+                                <div class="flex-1">
+                                    <label class="block text-sm font-medium text-gray-300 mb-2">Loan Amount</label>
+                                    <input type="text" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" placeholder="$0.00">
+                                </div>
+                            </div>
+
+                            <div class="flex gap-8 mb-5">
+                                <div class="flex items-center gap-3">
+                                    <input type="checkbox" id="cash_only" class="w-4 h-4">
+                                    <label for="cash_only" class="text-sm text-gray-300 cursor-pointer">Cash Only</label>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <input type="checkbox" id="heloc" class="w-4 h-4">
+                                    <label for="heloc" class="text-sm text-gray-300 cursor-pointer">HELOC</label>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <input type="checkbox" id="construction" class="w-4 h-4">
+                                    <label for="construction" class="text-sm text-gray-300 cursor-pointer">Construction Loan</label>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Type Section -->
+                        <section>
+                            <h3 class="text-base font-semibold text-white mb-5 pb-2 border-b border-gray-600">Type</h3>
+                            
+                            <div class="flex gap-5 mb-5">
+                                <div class="flex-1">
+                                    <label class="block text-sm font-medium text-gray-300 mb-2">Transaction Type</label>
+                                    <select class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none">
+                                        <option value="Purchase" selected>Purchase</option>
+                                        <option value="Sale">Sale</option>
+                                        <option value="Refinance">Refinance</option>
+                                        <option value="HELOC">HELOC</option>
+                                        <option value="Short Sale">Short Sale</option>
+                                        <option value="Foreclosure">Foreclosure</option>
+                                        <option value="Commercial Purchase">Commercial Purchase</option>
+                                    </select>
+                                </div>
+                                <div class="flex-1">
+                                    <label class="block text-sm font-medium text-gray-300 mb-2">Representing</label>
+                                    <select class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none">
+                                        <option value="buyer" selected>Buyer</option>
+                                        <option value="seller">Seller</option>
+                                        <option value="lender">Lender</option>
+                                        <option value="buyer_and_lender">Buyer and Lender</option>
+                                        <option value="buyer_and_seller">Buyer and Seller</option>
+                                        <option value="">N/A</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Configuration Section -->
+                        <section>
+                            <h3 class="text-base font-semibold text-white mb-5 pb-2 border-b border-gray-600">Configuration</h3>
+                            
+                            <div class="bg-gray-700 border border-gray-600 rounded-md p-5">
+                                <div class="grid grid-cols-2 gap-8 mb-5">
+                                    <div class="flex justify-between items-center py-2.5 border-b border-gray-600">
+                                        <div>
+                                            <div class="text-sm text-gray-300">Order #</div>
+                                            <div class="text-sm text-white font-medium">TomTestCD</div>
+                                        </div>
+                                        <a href="#" class="text-blue-400 text-xs hover:underline">Change</a>
+                                    </div>
+                                    <div class="flex justify-between items-center py-2.5 border-b border-gray-600">
+                                        <div>
+                                            <div class="text-sm text-gray-300">Settlement Statement</div>
+                                            <div class="text-sm text-white font-medium">CD</div>
+                                        </div>
+                                        <a href="#" class="text-blue-400 text-xs hover:underline">Switch</a>
+                                    </div>
+                                </div>
+                                <div class="flex justify-between items-center py-2.5">
+                                    <div>
+                                        <div class="text-sm text-gray-300">Workflow</div>
+                                        <div class="text-sm text-white font-medium">Purchase</div>
+                                    </div>
+                                    <a href="#" class="text-blue-400 text-xs hover:underline">Change</a>
+                                </div>
+                            </div>
+                        </section>
+                    </section>
+
+                    <!-- Right Column -->
+                    <section class="space-y-8">
+                        <!-- Reporting Section -->
+                        <section>
+                            <h3 class="text-base font-semibold text-white mb-5 pb-2 border-b border-gray-600">Reporting</h3>
+                            
+                            <div class="mb-5">
+                                <label class="block text-sm font-medium text-gray-300 mb-2">Source of Business</label>
+                                <select class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none">
+                                    <option value="">Select one...</option>
+                                    <option value="borrower">Buyer</option>
+                                    <option value="borrowerAttorney">Buyer's Attorney</option>
+                                    <option value="builder">Builder</option>
+                                    <option value="settlementAgency">External Settlement Agency</option>
+                                    <option value="lender">Lender</option>
+                                    <option value="listingAgent">Listing Agency</option>
+                                    <option value="mortgageBroker">Mortgage Broker</option>
+                                    <option value="seller">Seller</option>
+                                    <option value="sellerAttorney">Seller's Attorney</option>
+                                    <option value="sellingAgent">Selling Agency</option>
+                                    <option value="titleAgency">Title Company</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-5">
+                                <label class="block text-sm font-medium text-gray-300 mb-2">Status Summary</label>
+                                <input type="text" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" placeholder="Brief summary of the order's status">
+                            </div>
+                        </section>
+
+                        <!-- Taxes Section -->
+                        <section>
+                            <h3 class="text-base font-semibold text-white mb-5 pb-2 border-b border-gray-600">Taxes</h3>
+                            
+                            <div class="flex items-center gap-3 mb-4">
+                                <input type="checkbox" id="eligible_1099" class="w-4 h-4">
+                                <label for="eligible_1099" class="text-sm text-gray-300 cursor-pointer">1099 Eligible</label>
+                            </div>
+                        </section>
+
+                        <!-- Settlement Team Section -->
+                        <section>
+                            <h3 class="text-base font-semibold text-white mb-5 pb-2 border-b border-gray-600">Settlement Team</h3>
+                            
+                            <div class="flex gap-5 mb-5">
+                                <div class="flex-1">
+                                    <label class="block text-sm font-medium text-gray-300 mb-2">Settlement Agency</label>
+                                    <select class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none">
+                                        <option value="t3eQskRbLNgkJzx5E" selected>First National Title & Escrow</option>
+                                        <option value="4G9EQK5RidyiAwrWc">The Law Office of Stephen P. Patti, LLC</option>
+                                        <option value="dDeXkPqERweiMQvFg">First National Title Agency LLC</option>
+                                        <option value="E5ArN9ynynZxAjKMd">First National Title Experts, LLC</option>
+                                    </select>
+                                </div>
+                                <div class="flex-1">
+                                    <label class="block text-sm font-medium text-gray-300 mb-2">Escrow Officer</label>
+                                    <div class="relative">
+                                        <i class="fa fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                                        <input type="text" class="w-full pl-9 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" placeholder="Search...">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="flex gap-5 mb-5">
+                                <div class="flex-1">
+                                    <label class="block text-sm font-medium text-gray-300 mb-2">Order Opener</label>
+                                    <div class="relative">
+                                        <i class="fa fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                                        <input type="text" class="w-full pl-9 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" placeholder="Search...">
+                                    </div>
+                                </div>
+                                <div class="flex-1">
+                                    <label class="block text-sm font-medium text-gray-300 mb-2">Assistant</label>
+                                    <div class="relative">
+                                        <i class="fa fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                                        <input type="text" class="w-full pl-9 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" placeholder="Search...">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="flex gap-5 mb-5">
+                                <div class="flex-1">
+                                    <label class="block text-sm font-medium text-gray-300 mb-2">Closing Manager</label>
+                                    <div class="relative">
+                                        <i class="fa fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                                        <input type="text" class="w-full pl-9 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" placeholder="Search...">
+                                    </div>
+                                </div>
+                                <div class="flex-1">
+                                    <label class="block text-sm font-medium text-gray-300 mb-2">Funding</label>
+                                    <div class="relative">
+                                        <i class="fa fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                                        <input type="text" class="w-full pl-9 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" placeholder="Search...">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="flex gap-5 mb-5">
+                                <div class="flex-1">
+                                    <label class="block text-sm font-medium text-gray-300 mb-2">Post-Closing</label>
+                                    <div class="relative">
+                                        <i class="fa fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                                        <input type="text" class="w-full pl-9 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" placeholder="Search...">
+                                    </div>
+                                </div>
+                                <div class="flex-1">
+                                    <label class="block text-sm font-medium text-gray-300 mb-2">Sales Rep</label>
+                                    <div class="relative">
+                                        <i class="fa fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                                        <input type="text" class="w-full pl-9 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" placeholder="Search...">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="flex gap-5 mb-5">
+                                <div class="flex-1">
+                                    <label class="block text-sm font-medium text-gray-300 mb-2">Authorized Signatory</label>
+                                    <div class="relative">
+                                        <i class="fa fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                                        <input type="text" class="w-full pl-9 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" placeholder="Search...">
+                                    </div>
+                                </div>
+                                <div class="flex-1">
+                                    <label class="block text-sm font-medium text-gray-300 mb-2">FNTE Attorney</label>
+                                    <div class="relative">
+                                        <i class="fa fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                                        <input type="text" class="w-full pl-9 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" placeholder="Search...">
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Place of Closing Section -->
+                        <section>
+                            <h3 class="text-base font-semibold text-white mb-5 pb-2 border-b border-gray-600">Place of Closing</h3>
+                            
+                            <div class="flex gap-5 mb-4">
+                                <div class="flex-1">
+                                    <label class="block text-sm font-medium text-gray-300 mb-2">Address</label>
+                                    <div class="relative">
+                                        <i class="fa fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                                        <input type="text" class="w-full pl-9 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" placeholder="Search address...">
+                                    </div>
+                                </div>
+                                <div class="flex-1">
+                                    <label class="block text-sm font-medium text-gray-300 mb-2">Apt, Suite, Etc.</label>
+                                    <input type="text" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" placeholder="">
+                                </div>
+                            </div>
+
+                            <div class="flex gap-5 mb-4">
+                                <div class="flex-1">
+                                    <label class="block text-sm font-medium text-gray-300 mb-2">City</label>
+                                    <input type="text" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" placeholder="">
+                                </div>
+                                <div class="flex-1">
+                                    <label class="block text-sm font-medium text-gray-300 mb-2">County</label>
+                                    <input type="text" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" placeholder="">
+                                </div>
+                            </div>
+
+                            <div class="flex gap-5">
+                                <div class="flex-1">
+                                    <label class="block text-sm font-medium text-gray-300 mb-2">State</label>
+                                    <select class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none">
+                                        <option value="RI" selected>RI</option>
+                                        <option value="CA">CA</option>
+                                        <option value="NY">NY</option>
+                                        <option value="TX">TX</option>
+                                        <option value="FL">FL</option>
+                                    </select>
+                                </div>
+                                <div class="flex-1">
+                                    <label class="block text-sm font-medium text-gray-300 mb-2">Zipcode</label>
+                                    <input type="text" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" placeholder="12345">
+                                </div>
+                            </div>
+                        </section>
+                    </section>
+                </form>
+            </section>
+        </section>
+
+        <!-- Right Rail -->
+        <section class="w-64 bg-gray-800 border-l border-gray-600 p-5">
+            <!-- Chat Section -->
+            <section class="mb-8">
+                <div class="flex justify-between items-center py-2.5 border-b border-gray-600 mb-4 cursor-pointer">
+                    <h4 class="text-sm text-white font-semibold">Chat</h4>
+                    <i class="fa fa-chevron-down text-gray-400 text-xs"></i>
+                </div>
+                <div class="bg-gray-700 border border-gray-600 rounded p-4 text-gray-400 text-sm text-center">
+                    Chat functionality would be here
+                </div>
+            </section>
+
+            <!-- Tasks Section -->
+            <section class="mb-8">
+                <div class="flex justify-between items-center py-2.5 border-b border-gray-600 mb-4 cursor-pointer">
+                    <h4 class="text-sm text-white font-semibold">Tasks <span class="bg-gray-600 px-2 py-0.5 rounded-full text-xs ml-1">0 / 0</span></h4>
+                    <i class="fa fa-chevron-down text-gray-400 text-xs"></i>
+                </div>
+                <div class="bg-gray-700 border border-gray-600 rounded p-4 text-gray-400 text-sm text-center">
+                    You have not been assigned any tasks on this order
+                </div>
+            </section>
+
+            <!-- Notes Section -->
+            <section class="mb-8">
+                <div class="flex justify-between items-center py-2.5 border-b border-gray-600 mb-4 cursor-pointer">
+                    <h4 class="text-sm text-white font-semibold">Notes</h4>
+                    <i class="fa fa-chevron-down text-gray-400 text-xs"></i>
+                </div>
+                <div class="space-y-3">
+                    <div class="bg-gray-700 border border-gray-600 rounded p-4 text-gray-400 text-sm text-center">
+                        No notes have been added to this page
+                    </div>
+                    <button class="w-full p-2.5 bg-transparent border border-gray-500 rounded text-gray-300 text-sm hover:bg-gray-700">
+                        Add Note
+                    </button>
+                </div>
+            </section>
+        </section>
+    </div>
+</body>
+</html>
