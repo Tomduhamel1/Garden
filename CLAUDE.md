@@ -4,67 +4,182 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Garden is a full-stack web application (Qualia clone) with a React TypeScript frontend and Node.js backend using Sequelize ORM with MySQL database.
+Garden is a comprehensive real estate closing management system (Qualia competitor) - a full-stack application with React TypeScript frontend and Node.js/Express backend using Sequelize ORM with PostgreSQL database. The project includes extensive HTML prototypes that define the UI patterns and layout structure.
+
+**Business Context**: Building a $500/mo alternative to Qualia's $1500/mo pricing with 1-month MVP timeline.
+**Product Roadmap**: See `PRODUCT-ROADMAP.md` for detailed timeline and priorities
 
 ## Common Commands
 
 ### Development
 - `npm run install:all` - Install dependencies for both frontend and backend
 - `npm run dev` - Start both frontend and backend in development mode concurrently
+- `npm run start` - Start both frontend (preview) and backend in production mode concurrently
 
 ### Frontend (React + TypeScript + Vite)
-- `cd frontend && npm run dev` - Start development server
-- `cd frontend && npm run build` - Build for production (runs TypeScript compiler then Vite build)
-- `cd frontend && npm run lint` - Run ESLint
-- `cd frontend && npm run preview` - Preview production build
+- `cd frontend && npm run dev` - Start development server (port 5173)
+- `cd frontend && npm run build` - Build for production (TypeScript compile + Vite build)
+- `cd frontend && npm run lint` - Run ESLint with TypeScript rules
+- `cd frontend && npm run preview` - Preview production build locally
+- `cd frontend && npm run start` - Alias for preview
 
 ### Backend (Node.js + Express + Sequelize)
-- `cd backend && npm run start` - Start backend server
-- Backend uses Sequelize CLI for database operations but no start script is defined in package.json
+- `cd backend && npm run dev` - Start with nodemon for auto-reload (port 3001)
+- `cd backend && npm run start` - Start production server
+- No test scripts configured yet
 
 ## Architecture
 
-### Frontend Structure
-- **Framework**: React 19 with TypeScript
-- **Build Tool**: Vite with HMR
-- **Styling**: Tailwind CSS v4
-- **Linting**: ESLint with TypeScript rules
-- **Entry Point**: `src/main.tsx` → `src/App.tsx`
+### Frontend Stack
+- **Framework**: React 19.1.0 with TypeScript 5.8
+- **Build Tool**: Vite 7.0 with Hot Module Replacement
+- **Styling**: Tailwind CSS v4 (latest alpha) with PostCSS and Autoprefixer
+- **Linting**: ESLint 9.30 with TypeScript-ESLint and React Hooks rules
+- **Entry Points**: `src/main.tsx` → `src/App.tsx`
 
-### Backend Structure
-- **Framework**: Express.js with security middleware (helmet, cors, morgan)
-- **Database**: Sequelize ORM configured for MySQL
-- **Models**: Located in `backend/models/` (currently has User model)
-- **Migrations**: Located in `backend/migrations/`
-- **Configuration**: Database config in `backend/config/config.json`
+### Backend Stack
+- **Runtime**: Node.js with Express 5.1.0
+- **Security**: Helmet 8.1, CORS 2.8.5, Morgan logging
+- **Database ORM**: Sequelize 6.37 with MySQL dialect
+- **Configuration**: Environment variables via dotenv
+- **Server Port**: 3001 (or PORT env variable)
+- **API Health Check**: `/api/health` endpoint
 
-### Database Configuration
-- Uses MySQL as the database
-- Three environments: development, test, production
-- Default connection: localhost:3306 with root user
-- User model has: firstName, lastName, email fields
+### Database Architecture
+- **System**: MySQL with Sequelize ORM (transitioning to PostgreSQL for JSONB support)
+- **Environments**: development, test, production (config in `backend/config/config.json`)
+- **Connection**: localhost:3306, root user (no password by default)
+- **Schema Documentation**: 
+  - Database design: `schema/database-schema.md`
+  - **Implementation guide: `schema/SCHEMA-GUIDE.md`** (CRITICAL - defines all 1,150+ fields)
+  - Qualia schema: `schema/qualia-schema.md`
+  - UCD mapping: `schema/ucd-qualia-mapping.csv`
+- **Key Tables**: orders (with JSONB for CDF data), contacts, properties, payoffs
+- **Current Models**: User model implemented with firstName, lastName, email
+- **Schema Size**: 1,150+ fields when all arrays expanded (see SCHEMA-GUIDE.md)
 
 ## Project Structure
 
 ```
 garden/
-├── frontend/          # React TypeScript app
+├── frontend/              # React TypeScript application
 │   ├── src/
-│   │   ├── App.tsx    # Main app component
-│   │   └── main.tsx   # App entry point
-│   └── package.json   # Frontend dependencies
-├── backend/           # Node.js Express API
-│   ├── models/        # Sequelize models
-│   ├── migrations/    # Database migrations
-│   ├── config/        # Database configuration
-│   └── package.json   # Backend dependencies
-└── schema/            # Database schema documentation
+│   │   ├── App.tsx       # Main React component (currently default Vite template)
+│   │   ├── main.tsx      # Application entry point
+│   │   └── App.css       # Component styles
+│   ├── vite.config.ts    # Vite configuration
+│   └── package.json      # Frontend dependencies
+├── backend/              # Node.js Express API
+│   ├── src/
+│   │   └── index.js      # Express server with middleware setup
+│   ├── models/           # Sequelize models
+│   │   ├── index.js     # Model loader
+│   │   └── user.js      # User model definition
+│   ├── migrations/       # Database migrations directory
+│   ├── config/
+│   │   └── config.json  # Database configuration
+│   └── package.json     # Backend dependencies
+├── html-prototypes/      # 35+ HTML mockups with Qualia-style UI
+└── schema/
+    └── database-schema.md # Complete database design documentation
 ```
 
-## Development Notes
+## HTML Prototypes Pattern
 
-- The project uses concurrently to run both frontend and backend simultaneously
-- Frontend runs on Vite's default port (typically 5173)
-- Backend configuration suggests Express setup but no main server file was found
-- Database uses Sequelize with MySQL dialect
-- No test commands are currently configured in backend
+The `html-prototypes/` directory contains 35+ static HTML pages that define the UI/UX patterns for the Garden application. These serve as the blueprint for React component development.
+
+### Design System
+- **Theme**: Dark mode with `bg-gray-900` backgrounds
+- **Layout**: Consistent three-column structure (sidebar, main, rail)
+- **Typography**: White text on dark backgrounds
+- **Icons**: Font Awesome integrated
+- **Styling**: Tailwind CSS classes throughout
+
+### Standard Page Structure
+```html
+<body class="bg-gray-900 text-white">
+  <div class="flex h-screen">
+    <!-- Left Sidebar (w-72) -->
+    <section class="w-72 bg-gray-800 border-r border-gray-600">
+      <!-- Navigation and menu items -->
+    </section>
+
+    <!-- Main Content (flex-1) -->
+    <section class="flex-1 bg-gray-900 overflow-y-auto">
+      <!-- Page header with icon, title, and section label -->
+      <!-- Form content with tables and inputs -->
+    </section>
+
+    <!-- Right Rail (w-64) -->
+    <section class="w-64 bg-gray-800 border-l border-gray-600">
+      <!-- Chat, Tasks, Notes sections -->
+    </section>
+  </div>
+</body>
+```
+
+### UI Components
+- **Tables**: Dark backgrounds (`bg-gray-800`) with gray borders
+- **Form Fields**: 
+  - Read-only: `bg-gray-600 text-gray-400`
+  - Editable: `bg-gray-700` with blue focus states
+- **Headers**: Section headers with icons and colored labels
+- **Data Attributes**: All inputs include `data-schema-key` for data binding
+
+### Implemented Sections
+1. **Basic Info**: Order details, property information, parties
+2. **Contacts**: Borrower, seller, agent information management
+3. **Loan**: Loan terms, amounts, lender information
+4. **Charges**: All fee sections (origination, services, government fees)
+5. **Disclosures**: TRID compliance pages (loan terms, payments, calculations)
+6. **Proceeds**: Borrower and seller proceeds with payment management
+7. **Documents**: Document management interface
+8. **Accounting**: Escrow and financial tracking
+9. **Dashboard**: Overview and metrics display
+
+## Development Workflow
+
+### Setting Up
+1. Clone repository
+2. Run `npm run install:all` to install all dependencies
+3. Run `npm run dev` to start both frontend and backend concurrently
+
+### Adding Features
+1. Review relevant HTML prototypes for UI patterns
+2. Check `schema/database-schema.md` for data model requirements
+3. Create Sequelize models matching the schema
+4. Build React components following the prototype patterns
+5. Implement Express API endpoints for data operations
+
+### Code Patterns
+- Frontend components should match HTML prototype structure
+- Use existing Tailwind classes from prototypes
+- Follow dark theme color scheme consistently
+- Implement data-schema-key attributes for form binding
+- Maintain three-column layout pattern
+- **CRITICAL**: Support array indices for all repeating elements (see SCHEMA-GUIDE.md)
+- Line items use padded format: `line_01`, `line_02`, etc.
+- Entity arrays use zero-based indexing: `[0]`, `[1]`, `[2]`, `[3]`
+
+## Schema Implementation
+
+### Critical Schema Files
+1. **`schema/SCHEMA-GUIDE.md`** - Complete implementation guide with all 1,150+ fields
+2. **`schema/qualia-schema.md`** - Qualia's naming conventions and structure
+3. **`schema/ucd-qualia-mapping.csv`** - Field-by-field UCD to Qualia mapping
+4. **`schema/ucd-qualia-mapping-expanded.csv`** - Array size summary
+
+### Array Limits (MUST IMPLEMENT)
+- Borrowers/Sellers: 4 instances max
+- Payoffs: 4 instances max  
+- Origination charges: 8 line items (line_01 to line_08)
+- Borrower credits: 17 line items (line_01 to line_17)
+- Borrower debits: 15 line items (line_01 to line_15)
+- See SCHEMA-GUIDE.md Section "Array Limits by Section" for complete list
+
+### Data Storage Strategy
+Use PostgreSQL JSONB columns for flexible array storage:
+- `cdf_data` - All CDF namespace data
+- `contacts_data` - All contacts with arrays
+- `properties_data` - Property and tax information
+- `payoffs_data` - Existing loan payoffs

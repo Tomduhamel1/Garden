@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projected Payments - Real Estate Closing</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        .toggle-checkbox:checked {
+            background-color: #3B82F6;
+            border-color: #3B82F6;
+        }
+        .toggle-checkbox:checked::before {
+            transform: translateX(100%);
+        }
+        .toggle-checkbox::before {
+            content: '';
+            position: absolute;
+            top: 1px;
+            left: 1px;
+            width: 18px;
+            height: 18px;
+            background-color: white;
+            border-radius: 50%;
+            transition: transform 0.2s;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white">
+    <div class="flex h-screen">
+        <!-- Left Sidebar -->
+        <section class="w-72 bg-gray-800 border-r border-gray-600">
+            <div class="p-5 text-gray-400 text-center border-b border-gray-600">
+                <div class="text-xs">Navigation Sidebar</div>
+                <div class="text-xs mt-1">Projected Payments is active</div>
+            </div>
+        </section>
+
+        <!-- Main Content -->
+        <section class="flex-1 bg-gray-900 overflow-y-auto">
+            <!-- Page Header -->
+            <section class="py-8 px-10 pb-5 border-b border-gray-600 flex items-center justify-between">
+                <div class="flex items-center gap-4">
+                    <i class="fa fa-calculator text-gray-400 text-xl"></i>
+                    <h2 class="text-2xl font-semibold text-white">Projected Payments</h2>
+                </div>
+            </section>
+
+            <!-- Form Content -->
+            <section class="px-10 py-8">
+                <!-- Add/Remove Column Buttons -->
+                <section class="flex justify-end gap-3 mb-6">
+                    <button type="button" class="bg-gray-600 border border-gray-500 rounded px-3 py-2 text-white text-sm hover:bg-gray-500 disabled:opacity-50" disabled>
+                        <i class="fa fa-minus mr-1"></i>
+                        Remove Column
+                    </button>
+                    <button type="button" class="bg-gray-600 border border-gray-500 rounded px-3 py-2 text-white text-sm hover:bg-gray-500">
+                        <i class="fa fa-plus mr-1"></i>
+                        Add Column
+                    </button>
+                </section>
+
+                <form class="space-y-8">
+                    <!-- Payments Section -->
+                    <section>
+                        <h4 class="text-lg font-semibold text-white mb-4">Payments</h4>
+                        
+                        <!-- Year 1 Payment Projection -->
+                        <div class="mb-8">
+                            <h4 class="text-base font-medium text-white mb-4">Year 1</h4>
+                            <div class="bg-gray-800 border border-gray-600 rounded-lg overflow-hidden">
+                                <table class="w-full">
+                                    <tbody>
+                                        <!-- Year Range Row -->
+                                        <tr class="border-b border-gray-600">
+                                            <td class="py-4 px-6 font-medium text-white bg-gray-700 w-1/3">
+                                                Year Range
+                                            </td>
+                                            <td class="py-4 px-6" colspan="2">
+                                                <div class="flex items-center gap-2">
+                                                    <span class="text-gray-300">Years</span>
+                                                    <input type="text" 
+                                                           class="w-16 px-2 py-1 bg-gray-700 border border-gray-500 rounded text-white text-sm text-center focus:outline-none focus:border-blue-500" 
+                                                           data-schema-key="cdf.loans.0.payment_projections.0.start_year">
+                                                    <span class="text-gray-300">-</span>
+                                                    <input type="text" 
+                                                           class="w-16 px-2 py-1 bg-gray-700 border border-gray-500 rounded text-white text-sm text-center focus:outline-none focus:border-blue-500" 
+                                                           data-schema-key="cdf.loans.0.payment_projections.0.end_year">
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <!-- Principal & Interest Row -->
+                                        <tr class="border-b border-gray-600">
+                                            <td class="py-4 px-6 font-medium text-white bg-gray-700">
+                                                Principal & Interest
+                                            </td>
+                                            <td class="py-4 px-6 w-1/4">
+                                                <div class="relative">
+                                                    <select class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none" 
+                                                            data-schema-key="cdf.loans.0.payment_projections.0.principal_and_interest_type">
+                                                        <option value="Amount" selected>Amount</option>
+                                                        <option value="Range">Range</option>
+                                                    </select>
+                                                    <i class="fa fa-chevron-down absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none"></i>
+                                                </div>
+                                            </td>
+                                            <td class="py-4 px-6">
+                                                <input type="text" 
+                                                       inputmode="decimal"
+                                                       placeholder="Amount"
+                                                       class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
+                                                       data-schema-key="cdf.loans.0.payment_projections.0.principal_and_interest">
+                                            </td>
+                                        </tr>
+
+                                        <!-- Interest Only Row -->
+                                        <tr class="border-b border-gray-600">
+                                            <td class="py-4 px-6 font-medium text-white bg-gray-700">
+                                                Interest Only?
+                                            </td>
+                                            <td class="py-4 px-6" colspan="2">
+                                                <label class="flex items-center gap-3 cursor-pointer">
+                                                    <div class="relative">
+                                                        <input type="checkbox" 
+                                                               class="sr-only toggle-checkbox" 
+                                                               data-schema-key="cdf.loans.0.payment_projections.0.interest_only">
+                                                        <div class="w-10 h-5 bg-gray-600 rounded-full border border-gray-500 relative toggle-checkbox"></div>
+                                                    </div>
+                                                    <span class="text-white text-sm">Interest Only</span>
+                                                </label>
+                                            </td>
+                                        </tr>
+
+                                        <!-- Mortgage Insurance Row -->
+                                        <tr class="border-b border-gray-600">
+                                            <td class="py-4 px-6 font-medium text-white bg-gray-700">
+                                                Mortgage Insurance
+                                            </td>
+                                            <td class="py-4 px-6" colspan="2">
+                                                <input type="text" 
+                                                       class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
+                                                       data-schema-key="cdf.loans.0.payment_projections.0.mortgage_insurance">
+                                            </td>
+                                        </tr>
+
+                                        <!-- Estimated Escrow Row -->
+                                        <tr class="border-b border-gray-600">
+                                            <td class="py-4 px-6 font-medium text-white bg-gray-700">
+                                                Estimated Escrow
+                                            </td>
+                                            <td class="py-4 px-6" colspan="2">
+                                                <input type="text" 
+                                                       class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
+                                                       data-schema-key="cdf.loans.0.payment_projections.0.estimated_escrow">
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Estimated Taxes, Insurance & Assessments Section -->
+                    <section>
+                        <h4 class="text-lg font-semibold text-white mb-4">Estimated Taxes, Insurance & Assessments</h4>
+                        <div class="bg-gray-800 border border-gray-600 rounded-lg overflow-hidden">
+                            <table class="w-full">
+                                <tbody>
+                                    <!-- Amount Row -->
+                                    <tr class="border-b border-gray-600">
+                                        <td class="py-4 px-6 font-medium text-white bg-gray-700 w-1/4">
+                                            Amount
+                                        </td>
+                                        <td class="py-4 px-6" colspan="2">
+                                            <div class="flex items-center gap-3">
+                                                <input type="text" 
+                                                       inputmode="decimal"
+                                                       placeholder="Amount..."
+                                                       class="flex-1 px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
+                                                       data-schema-key="cdf.loans.0.taxes_insurance_assessments.amount">
+                                                <div class="relative">
+                                                    <select class="px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none pr-8" 
+                                                            data-schema-key="cdf.loans.0.taxes_insurance_assessments.payment_period">
+                                                        <option value="month" selected>Per Month</option>
+                                                        <option value="week">Per Week</option>
+                                                    </select>
+                                                    <i class="fa fa-chevron-down absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none"></i>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Includes Header Row -->
+                                    <tr class="border-b border-gray-600">
+                                        <td class="py-4 px-6 font-medium text-white bg-gray-700 align-top" rowspan="3">
+                                            Includes
+                                        </td>
+                                        <td class="py-4 px-6" colspan="2">
+                                            <label class="flex items-center gap-3 cursor-pointer">
+                                                <div class="relative">
+                                                    <input type="checkbox" 
+                                                           class="sr-only toggle-checkbox" 
+                                                           data-schema-key="cdf.loans.0.taxes_insurance_assessments.includes_property_taxes">
+                                                    <div class="w-10 h-5 bg-gray-600 rounded-full border border-gray-500 relative toggle-checkbox"></div>
+                                                </div>
+                                                <span class="text-white text-sm">Property Taxes</span>
+                                            </label>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Homeowner's Insurance Row -->
+                                    <tr class="border-b border-gray-600">
+                                        <td class="py-4 px-6" colspan="2">
+                                            <label class="flex items-center gap-3 cursor-pointer">
+                                                <div class="relative">
+                                                    <input type="checkbox" 
+                                                           class="sr-only toggle-checkbox" 
+                                                           data-schema-key="cdf.loans.0.taxes_insurance_assessments.includes_homeowners_insurance">
+                                                    <div class="w-10 h-5 bg-gray-600 rounded-full border border-gray-500 relative toggle-checkbox"></div>
+                                                </div>
+                                                <span class="text-white text-sm">Homeowner's Insurance</span>
+                                            </label>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Other Row -->
+                                    <tr class="border-b border-gray-600">
+                                        <td class="py-4 px-6" colspan="2">
+                                            <div class="flex items-center gap-3">
+                                                <label class="flex items-center gap-3 cursor-pointer">
+                                                    <div class="relative">
+                                                        <input type="checkbox" 
+                                                               class="sr-only toggle-checkbox" 
+                                                               data-schema-key="cdf.loans.0.taxes_insurance_assessments.includes_other">
+                                                        <div class="w-10 h-5 bg-gray-600 rounded-full border border-gray-500 relative toggle-checkbox"></div>
+                                                    </div>
+                                                    <span class="text-white text-sm">Other:</span>
+                                                </label>
+                                                <input type="text" 
+                                                       placeholder="Description..."
+                                                       class="flex-1 px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
+                                                       data-schema-key="cdf.loans.0.taxes_insurance_assessments.other_description">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                </form>
+            </section>
+        </section>
+
+        <!-- Right Rail -->
+        <section class="w-64 bg-gray-800 border-l border-gray-600 p-5">
+            <section class="mb-5 p-4 bg-gray-700 rounded">
+                <h4 class="text-white text-sm mb-2.5">Chat</h4>
+                <p class="text-gray-400 text-xs">Chat functionality</p>
+            </section>
+
+            <section class="mb-5 p-4 bg-gray-700 rounded">
+                <h4 class="text-white text-sm mb-2.5">Tasks</h4>
+                <p class="text-gray-400 text-xs">No tasks assigned</p>
+            </section>
+
+            <section class="mb-5 p-4 bg-gray-700 rounded">
+                <h4 class="text-white text-sm mb-2.5">Notes</h4>
+                <p class="text-gray-400 text-xs">No notes added</p>
+            </section>
+        </section>
+    </div>
+
+    <script>
+        // Toggle checkbox functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggles = document.querySelectorAll('.toggle-checkbox');
+            
+            toggles.forEach(toggle => {
+                if (toggle.type === 'checkbox') {
+                    const visual = toggle.nextElementSibling;
+                    
+                    toggle.addEventListener('change', function() {
+                        if (this.checked) {
+                            visual.classList.add('bg-blue-500', 'border-blue-500');
+                            visual.classList.remove('bg-gray-600', 'border-gray-500');
+                        } else {
+                            visual.classList.remove('bg-blue-500', 'border-blue-500');
+                            visual.classList.add('bg-gray-600', 'border-gray-500');
+                        }
+                    });
+                    
+                    // Initialize visual state
+                    if (toggle.checked) {
+                        visual.classList.add('bg-blue-500', 'border-blue-500');
+                        visual.classList.remove('bg-gray-600', 'border-gray-500');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

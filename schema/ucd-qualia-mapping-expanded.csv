@@ -1,0 +1,32 @@
+Section,Category,UCD Field Pattern,Qualia Field Pattern,Array Size,Total Fields,Notes
+SECTION_A,Origination Charges,FEE.OriginationCharge[1-8],cdf.origination_charges.line_[01-08].*,8,64,8 lines x 8 fields each (description/amounts/payees)
+SECTION_B,Cannot Shop Services,FEE.RequiredService[1-8],cdf.services_borrower_did_not_shop_for.line_[01-08].*,8,64,8 lines x 8 fields each
+SECTION_C,Can Shop Services,FEE.ShoppableService[1-8],cdf.services_borrower_did_shop_for.line_[01-08].*,8,64,8 lines x 8 fields each
+SECTION_E,Taxes & Gov Fees,FEE.GovernmentFee[1-4],cdf.taxes_and_government_fees.line_[01-04].*,4,32,4 lines x 8 fields each
+SECTION_F,Prepaids,PREPAID.Item[1-5],cdf.prepaid_item_information.line_[01-05].*,5,40,5 lines x 8 fields each
+SECTION_G,Initial Escrow,ESCROW.Item[1-8],cdf.escrow_information.line_[01-08].*,8,64,8 lines x 8 fields each
+SECTION_H,Other Charges,FEE.OtherCharge[0-7],cdf.other_charges.[0-7].*,8,64,8 items x 8 fields each
+SECTION_K,Borrower Credits,CREDIT.BorrowerCredit[1-17],cdf.borrower_credit_information.line_[01-17].*,17,51,17 lines x 3 fields each (amount/text/column)
+SECTION_L,Borrower Debits,DEBIT.BorrowerDebit[1-15],cdf.borrower_debit_information.line_[01-15].*,15,45,15 lines x 3 fields each
+SECTION_M,Seller Credits,CREDIT.SellerCredit[1-5],cdf.seller_credit_information.line_[01-05].*,5,15,5 lines x 3 fields each
+SECTION_N,Seller Debits,DEBIT.SellerDebit[1-9],cdf.seller_debit_information.line_[01-09].*,9,27,9 lines x 3 fields each
+BORROWERS,Primary Borrower,BORROWER[0].*,contacts.borrowers.0.*,1,25,Single borrower with 25+ fields
+BORROWERS,Co-Borrowers,BORROWER[1-3].*,contacts.borrowers.[1-3].*,3,75,3 additional borrowers possible
+SELLERS,Primary Seller,SELLER[0].*,contacts.sellers.0.*,1,30,Single seller with 30+ fields
+SELLERS,Additional Sellers,SELLER[1-3].*,contacts.sellers.[1-3].*,3,90,3 additional sellers possible
+PAYOFFS,First Mortgage,PAYOFF[0].*,payoffs.0.*,1,8,Primary loan payoff
+PAYOFFS,Second Mortgage,PAYOFF[1].*,payoffs.1.*,1,8,Second mortgage payoff
+PAYOFFS,HELOC,PAYOFF[2].*,payoffs.2.*,1,8,HELOC payoff
+PAYOFFS,Other Liens,PAYOFF[3].*,payoffs.3.*,1,8,Other lien payoff
+PAYEES,Borrower Payees,PAYEE.Borrower[0-3],contacts.borrower_payees.[0-3].*,4,20,4 payees x 5 fields each
+PAYEES,Seller Payees,PAYEE.Seller[0-3],contacts.seller_payees.[0-3].*,4,20,4 payees x 5 fields each
+SERVICE_PROVIDERS,Lenders,LENDER[0-2],contacts.lenders.[0-2].*,3,18,3 lenders x 6 fields each
+SERVICE_PROVIDERS,Title Companies,TITLE[0-1],contacts.title_companies.[0-1].*,2,12,2 title companies x 6 fields
+SERVICE_PROVIDERS,Listing Agencies,LISTING_AGENCY[0-1],contacts.listing_agencies.[0-1].*,2,16,2 agencies x 8 fields
+SERVICE_PROVIDERS,Selling Agencies,SELLING_AGENCY[0-1],contacts.selling_agencies.[0-1].*,2,16,2 agencies x 8 fields
+PROPERTIES,Primary Property,PROPERTY[0].*,properties.0.*,1,20,Single property
+PROPERTIES,Tax Information,PROPERTY[0].TAX[0-2],properties.0.tax_information.[0-2].*,3,30,3 tax records x 10 fields
+LOANS,Primary Loan,LOAN[0].*,cdf.loans.0.*,1,45,Single loan with all features
+PAYMENT_SCHEDULE,Payment Amounts,-,payment_amounts.[0-3],4,4,4 payment amounts
+PAYMENT_SCHEDULE,Payment Dates,-,payment_dates.[0-3],4,4,4 payment dates
+TOTALS,Estimated Total Fields,-,-,-,1150+,All expanded arrays included

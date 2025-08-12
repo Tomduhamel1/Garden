@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketplace - Real Estate Closing</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        .carousel-container {
+            overflow-x: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        .carousel-container::-webkit-scrollbar {
+            display: none;
+        }
+        .service-icon {
+            width: 64px;
+            height: 64px;
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white">
+    <div class="flex h-screen">
+        <!-- Left Sidebar -->
+        <section class="w-72 bg-gray-800 border-r border-gray-600">
+            <div class="p-5 text-gray-400 text-center border-b border-gray-600">
+                <div class="text-xs">Navigation Sidebar</div>
+                <div class="text-xs mt-1">Marketplace is active</div>
+            </div>
+        </section>
+
+        <!-- Main Content -->
+        <section class="flex-1 bg-gray-900 overflow-y-auto">
+            <!-- Page Header -->
+            <section class="py-8 px-10 pb-5 border-b border-gray-600">
+                <div class="flex items-center gap-4">
+                    <i class="fa fa-shopping-cart text-gray-400 text-xl"></i>
+                    <h2 class="text-2xl font-semibold text-white">Marketplace</h2>
+                </div>
+            </section>
+
+            <!-- Search Section -->
+            <section class="px-10 py-8">
+                <div class="text-center mb-8">
+                    <h3 class="text-xl font-semibold text-white mb-4">Explore our marketplace of closing services</h3>
+                    <div class="max-w-md mx-auto relative">
+                        <input type="text" 
+                               placeholder="Search vendors and products..."
+                               class="w-full px-4 py-3 pl-12 bg-gray-800 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-blue-500">
+                        <i class="fa fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                    </div>
+                </div>
+
+                <!-- Featured Section -->
+                <section class="mb-12">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-yellow-500 rounded-full flex items-center justify-center">
+                                <i class="fa fa-star text-white"></i>
+                            </div>
+                            <h4 class="text-lg font-semibold text-white">Featured</h4>
+                        </div>
+                        <div class="flex gap-2">
+                            <button type="button" class="p-2 hover:bg-gray-700 rounded">
+                                <i class="fa fa-chevron-left text-gray-400"></i>
+                            </button>
+                            <button type="button" class="p-2 hover:bg-gray-700 rounded">
+                                <i class="fa fa-chevron-right text-gray-400"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="carousel-container">
+                        <div class="flex gap-4 pb-4" style="width: max-content;">
+                            <!-- Featured Card 1 -->
+                            <div class="w-64 bg-gray-800 border border-gray-600 rounded-lg overflow-hidden hover:border-gray-500 cursor-pointer">
+                                <div class="h-32 bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center">
+                                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iOCIgZmlsbD0iIzM3NDE1MSIvPgo8cGF0aCBkPSJNMTYgMjBIMjBWMjRIMTZWMjBaIiBmaWxsPSIjNkI3MjgwIi8+CjxwYXRoIGQ9Ik0yNCAxNkg0OFYyMEgyNFYxNloiIGZpbGw9IiM2QjcyODAiLz4KPHBhdGggZD0iTTE2IDI4SDIwVjMyMDE2VjI4WiIgZmlsbD0iIzZCNzI4MCIvPgo8cGF0aCBkPSJNMjQgMjhINDhWMzJIMjRWMjhaIiBmaWxsPSIjNkI3MjgwIi8+CjxwYXRoIGQ9Ik0xNiA0MEgyMFY0NEgxNlY0MFoiIGZpbGw9IiM2QjcyODAiLz4KPHBhdGggZD0iTTI0IDQwSDQ4VjQ0SDI0VjQwWiIgZmlsbD0iIzZCNzI4MCIvPgo8L3N2Zz4K" alt="Title Search" class="service-icon">
+                                </div>
+                                <div class="p-4">
+                                    <h5 class="font-medium text-white mb-2">Full Search Plus</h5>
+                                    <p class="text-xs text-gray-400">Popular in Rhode Island</p>
+                                </div>
+                            </div>
+
+                            <!-- Featured Card 2 -->
+                            <div class="w-64 bg-gray-800 border border-gray-600 rounded-lg overflow-hidden hover:border-gray-500 cursor-pointer">
+                                <div class="h-32 bg-gradient-to-br from-green-600 to-teal-600 flex items-center justify-center">
+                                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iOCIgZmlsbD0iIzM3NDE1MSIvPgo8cGF0aCBkPSJNMTYgMjBIMjBWMjRIMTZWMjBaIiBmaWxsPSIjNkI3MjgwIi8+CjxwYXRoIGQ9Ik0yNCAxNkg0OFYyMEgyNFYxNloiIGZpbGw9IiM2QjcyODAiLz4KPHBhdGggZD0iTTE2IDI4SDIwVjMyMDE2VjI4WiIgZmlsbD0iIzZCNzI4MCIvPgo8cGF0aCBkPSJNMjQgMjhINDhWMzJIMjRWMjhaIiBmaWxsPSIjNkI3MjgwIi8+CjxwYXRoIGQ9Ik0xNiA0MEgyMFY0NEgxNlY0MFoiIGZpbGw9IiM2QjcyODAiLz4KPHBhdGggZD0iTTI0IDQwSDQ4VjQ0SDI0VjQwWiIgZmlsbD0iIzZCNzI4MCIvPgo8L3N2Zz4K" alt="Title Search" class="service-icon">
+                                </div>
+                                <div class="p-4">
+                                    <h5 class="font-medium text-white mb-2">Two-Owner Search Plus</h5>
+                                    <p class="text-xs text-gray-400">Popular in Rhode Island</p>
+                                </div>
+                            </div>
+
+                            <!-- Featured Card 3 -->
+                            <div class="w-64 bg-gray-800 border border-gray-600 rounded-lg overflow-hidden hover:border-gray-500 cursor-pointer">
+                                <div class="h-32 bg-gradient-to-br from-orange-600 to-red-600 flex items-center justify-center">
+                                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iOCIgZmlsbD0iIzM3NDE1MSIvPgo8cGF0aCBkPSJNMzIgMTJMMzggMjhIMjZMMzIgMTJaIiBmaWxsPSIjNkI3MjgwIi8+CjxjaXJjbGUgY3g9IjMyIiBjeT0iNDAiIHI9IjgiIGZpbGw9IiM2QjcyODAiLz4KPHBhdGggZD0iTTI0IDUySDQwVjU2SDI0VjUyWiIgZmlsbD0iIzZCNzI4MCIvPgo8L3N2Zz4K" alt="Municipal Lien" class="service-icon">
+                                </div>
+                                <div class="p-4">
+                                    <h5 class="font-medium text-white mb-2">Municipal Lien Search</h5>
+                                    <p class="text-xs text-gray-400">Used on purchases</p>
+                                </div>
+                            </div>
+
+                            <!-- Featured Card 4 -->
+                            <div class="w-64 bg-gray-800 border border-gray-600 rounded-lg overflow-hidden hover:border-gray-500 cursor-pointer">
+                                <div class="h-32 bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center">
+                                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iOCIgZmlsbD0iIzM3NDE1MSIvPgo8cGF0aCBkPSJNMTYgMTZINDhWNDhIMTZWMTZaIiBzdHJva2U9IiM2QjcyODAiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPgo8cGF0aCBkPSJNMjQgMjRIMzJWMzJIMjRWMjRaIiBmaWxsPSIjNkI3MjgwIi8+CjxwYXRoIGQ9Ik0zNiAyNEg0MFYyOEgzNlYyNFoiIGZpbGw9IiM2QjcyODAiLz4KPHBhdGggZD0iTTM2IDMySDQwVjM2SDM2VjMyWiIgZmlsbD0iIzZCNzI4MCIvPgo8cGF0aCBkPSJNMjQgMzZIMzJWNDBIMjRWMzZaIiBmaWxsPSIjNkI3MjgwIi8+CjwvdXZnPgo=" alt="Notary" class="service-icon">
+                                </div>
+                                <div class="p-4">
+                                    <h5 class="font-medium text-white mb-2">Loan Purchase - Buyer</h5>
+                                    <p class="text-xs text-gray-400">Used on purchases</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Order Again Section -->
+                <section class="mb-12">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-yellow-500 rounded-full flex items-center justify-center">
+                                <i class="fa fa-history text-white"></i>
+                            </div>
+                            <h4 class="text-lg font-semibold text-white">Order Again</h4>
+                        </div>
+                        <div class="flex gap-2">
+                            <button type="button" class="p-2 hover:bg-gray-700 rounded">
+                                <i class="fa fa-chevron-left text-gray-400"></i>
+                            </button>
+                            <button type="button" class="p-2 hover:bg-gray-700 rounded">
+                                <i class="fa fa-chevron-right text-gray-400"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="carousel-container">
+                        <div class="flex gap-4 pb-4" style="width: max-content;">
+                            <!-- Order Again Card 1 -->
+                            <div class="w-64 bg-gray-800 border border-gray-600 rounded-lg overflow-hidden hover:border-gray-500 cursor-pointer">
+                                <div class="h-24 bg-gray-700 flex items-center justify-center border-b border-gray-600">
+                                    <i class="fa fa-file-text-o text-gray-400 text-2xl"></i>
+                                </div>
+                                <div class="p-4">
+                                    <h5 class="font-medium text-white mb-1">Full Search Plus</h5>
+                                    <p class="text-sm text-gray-400 mb-2">CATIC</p>
+                                    <span class="inline-block px-2 py-1 bg-gray-600 text-gray-300 text-xs rounded">Preferred</span>
+                                    <p class="text-xs text-gray-500 mt-2">Ordered on 7/29</p>
+                                </div>
+                            </div>
+
+                            <!-- Order Again Card 2 -->
+                            <div class="w-64 bg-gray-800 border border-gray-600 rounded-lg overflow-hidden hover:border-gray-500 cursor-pointer">
+                                <div class="h-24 bg-gray-700 flex items-center justify-center border-b border-gray-600">
+                                    <i class="fa fa-file-text-o text-gray-400 text-2xl"></i>
+                                </div>
+                                <div class="p-4">
+                                    <h5 class="font-medium text-white mb-1">Two-Owner Search Plus</h5>
+                                    <p class="text-sm text-gray-400 mb-2">CATIC</p>
+                                    <span class="inline-block px-2 py-1 bg-gray-600 text-gray-300 text-xs rounded">Preferred</span>
+                                    <p class="text-xs text-gray-500 mt-2">Ordered on 7/28</p>
+                                </div>
+                            </div>
+
+                            <!-- Order Again Card 3 -->
+                            <div class="w-64 bg-gray-800 border border-gray-600 rounded-lg overflow-hidden hover:border-gray-500 cursor-pointer">
+                                <div class="h-24 bg-gray-700 flex items-center justify-center border-b border-gray-600">
+                                    <i class="fa fa-file-text-o text-gray-400 text-2xl"></i>
+                                </div>
+                                <div class="p-4">
+                                    <h5 class="font-medium text-white mb-1">Title Search Plus Update</h5>
+                                    <p class="text-sm text-gray-400 mb-2">CATIC</p>
+                                    <span class="inline-block px-2 py-1 bg-gray-600 text-gray-300 text-xs rounded">Preferred</span>
+                                    <p class="text-xs text-gray-500 mt-2">Ordered on 6/11</p>
+                                </div>
+                            </div>
+
+                            <!-- Order Again Card 4 -->
+                            <div class="w-64 bg-gray-800 border border-gray-600 rounded-lg overflow-hidden hover:border-gray-500 cursor-pointer">
+                                <div class="h-24 bg-gray-700 flex items-center justify-center border-b border-gray-600">
+                                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMjAiIGZpbGw9IiM2QjcyODAiLz4KPHRleHQgeD0iNTAlIiB5PSI1NSUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlA8L3RleHQ+Cjwvc3ZnPgo=" alt="Pippin Title" class="w-10 h-10">
+                                </div>
+                                <div class="p-4">
+                                    <h5 class="font-medium text-white mb-1">Full Search Plus</h5>
+                                    <p class="text-sm text-gray-400 mb-2">Pippin Title</p>
+                                    <p class="text-xs text-gray-500 mt-2">Ordered on 5/30</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Browse All Link -->
+                <div class="text-center mb-8">
+                    <a href="#" class="text-blue-400 hover:text-blue-300 font-medium">Browse All</a>
+                </div>
+
+                <!-- Browse By Category Section -->
+                <section>
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 bg-yellow-500 rounded-full flex items-center justify-center">
+                            <i class="fa fa-home text-white"></i>
+                        </div>
+                        <h4 class="text-lg font-semibold text-white">Browse By Category</h4>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <!-- Category Card 1 -->
+                        <div class="bg-gray-800 border border-gray-600 rounded-lg p-6 hover:border-gray-500 cursor-pointer">
+                            <div class="text-center mb-4">
+                                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iOCIgZmlsbD0iIzM3NDE1MSIvPgo8cGF0aCBkPSJNMTYgMjBIMjBWMjRIMTZWMjBaIiBmaWxsPSIjNkI3MjgwIi8+CjxwYXRoIGQ9Ik0yNCAxNkg0OFYyMEgyNFYxNloiIGZpbGw9IiM2QjcyODAiLz4KPHBhdGggZD0iTTE2IDI4SDIwVjMyMDE2VjI4WiIgZmlsbD0iIzZCNzI4MCIvPgo8cGF0aCBkPSJNMjQgMjhINDhWMzJIMjRWMjhaIiBmaWxsPSIjNkI3MjgwIi8+CjxwYXRoIGQ9Ik0xNiA0MEgyMFY0NEgxNlY0MFoiIGZpbGw9IiM2QjcyODAiLz4KPHBhdGggZD0iTTI0IDQwSDQ4VjQ0SDI0VjQwWiIgZmlsbD0iIzZCNzI4MCIvPgo8L3N2Zz4K" alt="Title Services" class="service-icon mx-auto mb-2">
+                                <h5 class="font-medium text-white">Title Services</h5>
+                            </div>
+                            <button type="button" class="w-full px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium">
+                                View Title Services
+                            </button>
+                        </div>
+
+                        <!-- Category Card 2 -->
+                        <div class="bg-gray-800 border border-gray-600 rounded-lg p-6 hover:border-gray-500 cursor-pointer">
+                            <div class="text-center mb-4">
+                                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iOCIgZmlsbD0iIzM3NDE1MSIvPgo8cGF0aCBkPSJNMTYgMTZINDhWNDhIMTZWMTZaIiBzdHJva2U9IiM2QjcyODAiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPgo8cGF0aCBkPSJNMjQgMjRIMzJWMzJIMjRWMjRaIiBmaWxsPSIjNkI3MjgwIi8+CjxwYXRoIGQ9Ik0zNiAyNEg0MFYyOEgzNlYyNFoiIGZpbGw9IiM2QjcyODAiLz4KPHBhdGggZD0iTTM2IDMySDQwVjM2SDM2VjMyWiIgZmlsbD0iIzZCNzI4MCIvPgo8cGF0aCBkPSJNMjQgMzZIMzJWNDBIMjRWMzZaIiBmaWxsPSIjNkI3MjgwIi8+CjwvdXZnPgo=" alt="Payoffs" class="service-icon mx-auto mb-2">
+                                <h5 class="font-medium text-white">Payoffs</h5>
+                            </div>
+                            <button type="button" class="w-full px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium">
+                                View Release Tracking
+                            </button>
+                        </div>
+
+                        <!-- Category Card 3 -->
+                        <div class="bg-gray-800 border border-gray-600 rounded-lg p-6 hover:border-gray-500 cursor-pointer">
+                            <div class="text-center mb-4">
+                                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iOCIgZmlsbD0iIzM3NDE1MSIvPgo8cGF0aCBkPSJNMTYgMjBIMjBWMjRIMTZWMjBaIiBmaWxsPSIjNkI3MjgwIi8+CjxwYXRoIGQ9Ik0yNCAxNkg0OFYyMEgyNFYxNloiIGZpbGw9IiM2QjcyODAiLz4KPHBhdGggZD0iTTE2IDI4SDIwVjMyMDE2VjI4WiIgZmlsbD0iIzZCNzI4MCIvPgo8cGF0aCBkPSJNMjQgMjhINDhWMzJIMjRWMjhaIiBmaWxsPSIjNkI3MjgwIi8+CjxwYXRoIGQ9Ik0xNiA0MEgyMFY0NEgxNlY0MFoiIGZpbGw9IiM2QjcyODAiLz4KPHBhdGggZD0iTTI0IDQwSDQ4VjQ0SDI0VjQwWiIgZmlsbD0iIzZCNzI4MCIvPgo8L3N2Zz4K" alt="Surveys" class="service-icon mx-auto mb-2">
+                                <h5 class="font-medium text-white">Surveys</h5>
+                            </div>
+                            <button type="button" class="w-full px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium">
+                                View Property Surveys
+                            </button>
+                        </div>
+
+                        <!-- Category Card 4 -->
+                        <div class="bg-gray-800 border border-gray-600 rounded-lg p-6 hover:border-gray-500 cursor-pointer">
+                            <div class="text-center mb-4">
+                                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iOCIgZmlsbD0iIzM3NDE1MSIvPgo8cGF0aCBkPSJNMTYgMTZINDhWNDhIMTZWMTZaIiBzdHJva2U9IiM2QjcyODAiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPgo8cGF0aCBkPSJNMjQgMjRIMzJWMzJIMjRWMjRaIiBmaWxsPSIjNkI3MjgwIi8+CjxwYXRoIGQ9Ik0zNiAyNEg0MFYyOEgzNlYyNFoiIGZpbGw9IiM2QjcyODAiLz4KPHBhdGggZD0iTTM2IDMySDQwVjM2SDM2VjMyWiIgZmlsbD0iIzZCNzI4MCIvPgo8cGF0aCBkPSJNMjQgMzZIMzJWNDBIMjRWMzZaIiBmaWxsPSIjNkI3MjgwIi8+CjwvdXZnPgo=" alt="Notaries" class="service-icon mx-auto mb-2">
+                                <h5 class="font-medium text-white">Notaries</h5>
+                            </div>
+                            <button type="button" class="w-full px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium">
+                                View Notary Signing
+                            </button>
+                        </div>
+
+                        <!-- Category Card 5 -->
+                        <div class="bg-gray-800 border border-gray-600 rounded-lg p-6 hover:border-gray-500 cursor-pointer">
+                            <div class="text-center mb-4">
+                                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iOCIgZmlsbD0iIzM3NDE1MSIvPgo8cGF0aCBkPSJNMTYgMjBIMjBWMjRIMTZWMjBaIiBmaWxsPSIjNkI3MjgwIi8+CjxwYXRoIGQ9Ik0yNCAxNkg0OFYyMEgyNFYxNloiIGZpbGw9IiM2QjcyODAiLz4KPHBhdGggZD0iTTE2IDI4SDIwVjMyMDE2VjI4WiIgZmlsbD0iIzZCNzI4MCIvPgo8cGF0aCBkPSJNMjQgMjhINDhWMzJIMjRWMjhaIiBmaWxsPSIjNkI3MjgwIi8+CjxwYXRoIGQ9Ik0xNiA0MEgyMFY0NEgxNlY0MFoiIGZpbGw9IiM2QjcyODAiLz4KPHBhdGggZD0iTTI0IDQwSDQ4VjQ0SDI0VjQwWiIgZmlsbD0iIzZCNzI4MCIvPgo8L3N2Zz4K" alt="Release Tracking" class="service-icon mx-auto mb-2">
+                                <h5 class="font-medium text-white">Release Tracking</h5>
+                            </div>
+                            <button type="button" class="w-full px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium">
+                                View Release Tracking
+                            </button>
+                        </div>
+
+                        <!-- Category Card 6 -->
+                        <div class="bg-gray-800 border border-gray-600 rounded-lg p-6 hover:border-gray-500 cursor-pointer">
+                            <div class="text-center mb-4">
+                                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iOCIgZmlsbD0iIzM3NDE1MSIvPgo8cGF0aCBkPSJNMjAgMTZINDRWNDBIMjBWMTZaIiBzdHJva2U9IiM2QjcyODAiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPgo8cGF0aCBkPSJNMjQgMjBIMjhWMjRIMjRWMjBaIiBmaWxsPSIjNkI3MjgwIi8+CjxwYXRoIGQ9Ik0zMiAyMEgzNlYyNEgzMlYyMFoiIGZpbGw9IiM2QjcyODAiLz4KPHBhdGggZD0iTTI0IDI4SDI4VjMySDI0VjI4WiIgZmlsbD0iIzZCNzI4MCIvPgo8cGF0aCBkPSJNMzIgMjhIMzZWMzJIMzJWMjhaIiBmaWxsPSIjNkI3MjgwIi8+CjxwYXRoIGQ9Ik0yNCAzNkgyOFY0MEgyNFYzNloiIGZpbGw9IiM2QjcyODAiLz4KPHBhdGggZD0iTTMyIDM2SDM2VjQwSDMyVjM2WiIgZmlsbD0iIzZCNzI4MCIvPgo8cGF0aCBkPSJNMTYgNDhINDhWNTJMMTYgNTJWNDhaIiBmaWxsPSIjNkI3MjgwIi8+CjwvdXZnPgo=" alt="HOA" class="service-icon mx-auto mb-2">
+                                <h5 class="font-medium text-white">HOA</h5>
+                            </div>
+                        </div>
+
+                        <!-- Category Card 7 -->
+                        <div class="bg-gray-800 border border-gray-600 rounded-lg p-6 hover:border-gray-500 cursor-pointer">
+                            <div class="text-center mb-4">
+                                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iOCIgZmlsbD0iIzM3NDE1MSIvPgo8cGF0aCBkPSJNMTIgMjBMMzIgMTJMNTIgMjBWNDhIMTJWMjBaIiBzdHJva2U9IiM2QjcyODAiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPgo8cGF0aCBkPSJNMjAgMjhIMjRWMzZIMjBWMjhaIiBmaWxsPSIjNkI3MjgwIi8+CjxwYXRoIGQ9Ik0zMCAyOEgzNFYzNkgzMFYyOFoiIGZpbGw9IiM2QjcyODAiLz4KPHBhdGggZD0iTTQwIDI4SDQ0VjM2SDQwVjI4WiIgZmlsbD0iIzZCNzI4MCIvPgo8cGF0aCBkPSJNMjggNDBIMzZWNDhIMjhWNDBaIiBmaWxsPSIjNkI3MjgwIi8+CjwvdXZnPgo=" alt="Home Warranty" class="service-icon mx-auto mb-2">
+                                <h5 class="font-medium text-white">Home Warranty</h5>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </section>
+        </section>
+
+        <!-- Right Rail -->
+        <section class="w-64 bg-gray-800 border-l border-gray-600 p-5">
+            <section class="mb-5 p-4 bg-gray-700 rounded">
+                <h4 class="text-white text-sm mb-2.5">Chat</h4>
+                <p class="text-gray-400 text-xs">Chat functionality</p>
+            </section>
+
+            <section class="mb-5 p-4 bg-gray-700 rounded">
+                <h4 class="text-white text-sm mb-2.5">Tasks</h4>
+                <p class="text-gray-400 text-xs">0 / 0</p>
+            </section>
+
+            <section class="mb-5 p-4 bg-gray-700 rounded">
+                <h4 class="text-white text-sm mb-2.5">Notes</h4>
+                <p class="text-gray-400 text-xs">No notes added</p>
+            </section>
+        </section>
+    </div>
+</body>
+</html>

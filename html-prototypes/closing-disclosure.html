@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Closing Disclosure - Real Estate Closing</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        /* Document viewer styles */
+        .document-viewer {
+            background: #374151;
+            min-height: 100vh;
+            padding: 20px 0;
+        }
+        
+        .document-page {
+            background: white;
+            color: #000;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+            margin: 20px auto;
+            width: 8.5in;
+            min-height: 11in;
+            padding: 0.5in;
+            font-size: 10px;
+            line-height: 1.3;
+            position: relative;
+            font-family: Arial, sans-serif;
+            border-radius: 4px;
+        }
+        
+        /* Ensure all text is black by default */
+        .document-page * {
+            color: #000;
+        }
+        
+        .document-page h1 {
+            font-size: 18px;
+            font-weight: bold;
+            color: #000;
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #000;
+            padding-bottom: 8px;
+        }
+        
+        .document-page h1 .sub-header {
+            font-size: 10px;
+            font-weight: normal;
+            display: block;
+            margin-bottom: 8px;
+        }
+        
+        .document-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+            font-size: 9px;
+        }
+        
+        .document-table th,
+        .document-table td {
+            border: 1px solid #000;
+            padding: 3px 5px;
+            vertical-align: top;
+        }
+        
+        .document-table th {
+            background-color: #f0f0f0;
+            color: #000;
+            font-weight: bold;
+            text-align: left;
+        }
+        
+        .document-table td {
+            color: #000;
+        }
+        
+        .document-table .black-header {
+            background-color: #000;
+            color: white !important;
+            font-weight: bold;
+        }
+        
+        .document-table .black-header * {
+            color: white !important;
+        }
+        
+        .document-table .grey-header {
+            background-color: #e0e0e0;
+            color: #000;
+            font-weight: bold;
+        }
+        
+        .document-footer {
+            position: absolute;
+            bottom: 0.3in;
+            left: 0.5in;
+            right: 0.5in;
+            display: flex;
+            justify-content: space-between;
+            font-size: 8px;
+            color: #000;
+            border-top: 1px solid #000;
+            padding-top: 5px;
+        }
+        
+        .emphasized {
+            font-weight: bold;
+            color: #000;
+        }
+        
+        .amount {
+            text-align: right;
+        }
+        
+        .line-item {
+            padding-left: 15px;
+        }
+        
+        .cost-table .line {
+            display: inline-block;
+            width: 20px;
+        }
+        
+        .cost-table .payment {
+            display: inline-block;
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: flex-start;
+            margin: 3px 0;
+        }
+        
+        .checkbox-item input[type="checkbox"] {
+            margin-right: 5px;
+            margin-top: 2px;
+        }
+        
+        .signature-section {
+            margin-top: 30px;
+            padding: 20px 0;
+        }
+        
+        .signature-line {
+            border-bottom: 1px solid #000;
+            margin-bottom: 5px;
+            height: 30px;
+            color: #000;
+        }
+        
+        .page-header {
+            font-size: 14px;
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #000;
+            padding-bottom: 5px;
+        }
+        
+        @media print {
+            .document-viewer {
+                background: white;
+                padding: 0;
+            }
+            .document-page {
+                box-shadow: none;
+                margin: 0;
+                page-break-after: always;
+            }
+            .document-page:last-child {
+                page-break-after: auto;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white">
+    <div class="flex h-screen">
+        <!-- Left Sidebar -->
+        <section class="w-72 bg-gray-800 border-r border-gray-600">
+            <div class="p-5 text-gray-400 text-center border-b border-gray-600">
+                <div class="text-xs">Navigation Sidebar</div>
+                <div class="text-xs mt-1">Closing Disclosure is active</div>
+            </div>
+        </section>
+
+        <!-- Main Content -->
+        <section class="flex-1 bg-gray-900 overflow-y-auto">
+            <!-- Page Header -->
+            <section class="py-6 px-8 pb-4 border-b border-gray-600">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-4">
+                        <i class="fa fa-file-text text-gray-400 text-xl"></i>
+                        <div>
+                            <div class="flex items-center gap-2">
+                                <select class="bg-gray-700 text-white px-3 py-1 rounded text-sm border border-gray-600">
+                                    <option value="cdf" selected>Closing Disclosure</option>
+                                    <option value="cdf_buyer">Buyer's Closing Disclosure</option>
+                                    <option value="cdf_seller">Seller's Closing Disclosure</option>
+                                </select>
+                                <span class="text-sm text-gray-400">Page <span class="text-white" id="currentPage">1</span> of <span class="text-white">6</span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <button type="button" class="p-2 bg-gray-700 hover:bg-gray-600 text-white rounded" title="Print" onclick="window.print()">
+                            <i class="fa fa-print"></i>
+                        </button>
+                        <button type="button" class="p-2 bg-gray-700 hover:bg-gray-600 text-white rounded" title="Save to Documents">
+                            <i class="fa fa-save"></i>
+                        </button>
+                        <button type="button" class="p-2 bg-gray-700 hover:bg-gray-600 text-white rounded" title="Download">
+                            <i class="fa fa-download"></i>
+                        </button>
+                        <button type="button" class="p-2 bg-gray-700 hover:bg-gray-600 text-white rounded" title="Fullscreen" onclick="toggleFullscreen()">
+                            <i class="fa fa-expand"></i>
+                        </button>
+                        <button type="button" class="p-2 bg-gray-700 hover:bg-gray-600 text-white rounded" title="Zoom In" onclick="zoomIn()">
+                            <i class="fa fa-plus"></i>
+                        </button>
+                        <button type="button" class="p-2 bg-gray-700 hover:bg-gray-600 text-white rounded" title="Zoom Out" onclick="zoomOut()">
+                            <i class="fa fa-minus"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Document Viewer -->
+            <section class="document-viewer">
+                <!-- Page 1 -->
+                <div class="document-page" data-page="1">
+                    <h1>
+                        <span class="sub-header">This form is a statement of final loan terms and closing costs. Compare this document with your Loan Estimate.</span>
+                        Closing Disclosure
+                    </h1>
+                    
+                    <!-- Loan Overview -->
+                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin-bottom: 20px;">
+                        <div>
+                            <div style="font-weight: bold; margin-bottom: 8px; font-size: 11px;">Closing Information</div>
+                            <table class="document-table">
+                                <tr><td>Date Issued</td><td></td></tr>
+                                <tr><td>Closing Date</td><td>03/21/2025</td></tr>
+                                <tr><td>Disbursement Date</td><td></td></tr>
+                                <tr><td>Settlement Agent</td><td>First National Title & Escrow</td></tr>
+                                <tr><td>File #</td><td>TomTestCD</td></tr>
+                                <tr><td>Property</td><td>123 TEST TOM FILE CD<br>Warwick, RI 02886</td></tr>
+                                <tr><td>Sale Price</td><td class="emphasized">$500,000.00</td></tr>
+                            </table>
+                        </div>
+                        <div>
+                            <div style="font-weight: bold; margin-bottom: 8px; font-size: 11px;">Transaction Information</div>
+                            <table class="document-table">
+                                <tr><td>Borrower(s)</td><td>Tom TEST TOM TEST<br>120 Fraser Ave<br>Santa Monica, CA 90405</td></tr>
+                                <tr><td>Seller(s)</td><td><br></td></tr>
+                                <tr><td>Lender</td><td></td></tr>
+                            </table>
+                        </div>
+                        <div>
+                            <div style="font-weight: bold; margin-bottom: 8px; font-size: 11px;">Loan Information</div>
+                            <table class="document-table">
+                                <tr><td>Loan Term</td><td></td></tr>
+                                <tr><td>Purpose</td><td>Purchase</td></tr>
+                                <tr><td>Product</td><td></td></tr>
+                                <tr><td>Loan Type</td><td>Conventional Insured</td></tr>
+                                <tr><td>Loan ID #</td><td></td></tr>
+                                <tr><td>MIC #</td><td></td></tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Loan Terms -->
+                    <table class="document-table" style="margin-bottom: 20px;">
+                        <thead>
+                            <tr>
+                                <th class="black-header">Loan Terms</th>
+                                <th style="width: 100px;"></th>
+                                <th class="grey-header">Can this amount increase after closing?</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Loan Amount</td>
+                                <td></td>
+                                <td><span class="emphasized">No</span></td>
+                            </tr>
+                            <tr>
+                                <td>Interest Rate</td>
+                                <td></td>
+                                <td><span class="emphasized">No</span></td>
+                            </tr>
+                            <tr>
+                                <td>Monthly Principal & Interest<br><small style="font-size: 8px;">See Projected Payments below for your Estimated Total Monthly Payment</small></td>
+                                <td></td>
+                                <td><span class="emphasized">No</span></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td class="grey-header">Does the loan have these features?</td>
+                            </tr>
+                            <tr>
+                                <td>Prepayment Penalty</td>
+                                <td></td>
+                                <td><span class="emphasized">No</span></td>
+                            </tr>
+                            <tr>
+                                <td>Balloon Payment</td>
+                                <td></td>
+                                <td><span class="emphasized">YES</span> • <small style="font-size: 8px;">You will have to pay $_79_ at the end of year 323__.</small></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <!-- Projected Payments -->
+                    <div style="display: grid; grid-template-columns: 1fr 200px; gap: 15px; margin-bottom: 20px;">
+                        <div>
+                            <table class="document-table">
+                                <thead>
+                                    <tr>
+                                        <th class="black-header">Projected Payments</th>
+                                        <th style="width: 100px;"></th>
+                                    </tr>
+                                    <tr class="grey-header">
+                                        <th>Payment Calculation</th>
+                                        <th>Year 1</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Principal & Interest</td>
+                                        <td>——<br><strong>only interest</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mortgage Insurance</td>
+                                        <td>+ ——</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Estimated Escrow<br><small style="font-size: 8px;">Amount can increase over time.</small></td>
+                                        <td>+ ——</td>
+                                    </tr>
+                                    <tr class="grey-header">
+                                        <td><strong>Estimated Total Monthly Payment</strong></td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <!-- Estimated Taxes Box -->
+                        <div>
+                            <table class="document-table">
+                                <thead>
+                                    <tr>
+                                        <td rowspan="6" style="font-weight: bold; vertical-align: top; padding: 8px;">
+                                            Estimated Taxes, Insurance & Assessments<br>
+                                            <small style="font-size: 8px; font-weight: normal;">Amount can increase over time. See page 4 for details</small>
+                                        </td>
+                                        <td rowspan="6" style="text-align: center; vertical-align: middle; font-weight: bold; font-size: 14px;">
+                                            $0.00<br>
+                                            <small style="font-size: 8px; font-weight: normal;">a month</small>
+                                        </td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="font-size: 8px; font-weight: bold;">This estimate includes</td>
+                                        <td style="font-size: 8px; font-weight: bold;">In escrow?</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-size: 8px;">
+                                            <input type="checkbox" style="margin-right: 3px;"> Property Taxes
+                                        </td>
+                                        <td style="font-size: 8px;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-size: 8px;">
+                                            <input type="checkbox" style="margin-right: 3px;"> Homeowner's Insurance
+                                        </td>
+                                        <td style="font-size: 8px;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-size: 8px;">
+                                            <input type="checkbox" style="margin-right: 3px;"> Other:
+                                        </td>
+                                        <td style="font-size: 8px;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" style="font-size: 7px; padding-top: 5px;">
+                                            See Escrow Account on page 4 for details. You must pay for other property costs separately.
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Costs at Closing -->
+                    <table class="document-table">
+                        <thead>
+                            <tr>
+                                <th class="black-header">Costs at Closing</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Closing Costs</td>
+                                <td>
+                                    <div class="emphasized">$1,058.00</div>
+                                    <div style="font-size: 8px;">Includes $1,050.00 in Loan Costs + $508.00 in Other Costs - $-500.00 in Lender Credits.</div>
+                                    <div style="font-size: 8px;">See page 2 for details</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Cash to Close</td>
+                                <td>
+                                    <div class="emphasized">$452,046.56</div>
+                                    <div style="font-size: 8px;">Includes Closing Costs. See "Calculating Cash to Close" on page 3 for details.</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="document-footer">
+                        <div>Closing Disclosure</div>
+                        <div>Page 1 - Loan ID #</div>
+                    </div>
+                </div>
+
+                <!-- Page 2 -->
+                <div class="document-page" data-page="2">
+                    <div class="page-header">Closing Cost Details</div>
+                    
+                    <!-- Loan Costs -->
+                    <table class="document-table cost-table" style="margin-bottom: 20px;">
+                        <thead>
+                            <tr>
+                                <th rowspan="2" class="black-header">Loan Costs</th>
+                                <th rowspan="2"></th>
+                                <th colspan="2">Borrower Paid</th>
+                                <th colspan="2">Seller Paid</th>
+                                <th rowspan="2">Paid by Others</th>
+                            </tr>
+                            <tr>
+                                <th>At Closing</th>
+                                <th>Before Closing</th>
+                                <th>At Closing</th>
+                                <th>Before Closing</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="grey-header">
+                                <td colspan="2">A. Origination Charges</td>
+                                <td colspan="2"></td>
+                                <td colspan="2"></td>
+                                <td></td>
+                            </tr>
+                            <tr><td colspan="2"><span class="line">01</span> % of Loan Amount (Points)</td><td></td><td></td><td></td><td></td><td></td></tr>
+                            <tr><td colspan="2"><span class="line">02</span></td><td></td><td></td><td></td><td></td><td></td></tr>
+                            <tr><td colspan="2"><span class="line">03</span></td><td></td><td></td><td></td><td></td><td></td></tr>
+
+                            <tr class="grey-header">
+                                <td colspan="2">B. Services Borrower Did Not Shop For</td>
+                                <td colspan="2"></td>
+                                <td colspan="2"></td>
+                                <td></td>
+                            </tr>
+                            <tr><td colspan="2"><span class="line">01</span></td><td></td><td></td><td></td><td></td><td></td></tr>
+                            <tr><td colspan="2"><span class="line">02</span></td><td></td><td></td><td></td><td></td><td></td></tr>
+
+                            <tr class="grey-header">
+                                <td colspan="2">C. Services Borrower Did Shop For</td>
+                                <td colspan="2"><strong>$1,050.00</strong></td>
+                                <td colspan="2"></td>
+                                <td></td>
+                            </tr>
+                            <tr><td colspan="2"><span class="line">01</span> Closing Protection Letter to First National Title & Escrow</td><td>$50.00</td><td></td><td></td><td></td><td></td></tr>
+                            <tr><td colspan="2"><span class="line">02</span> Courier Fee to First National Title & Escrow</td><td>$50.00</td><td></td><td></td><td></td><td></td></tr>
+                            <tr><td colspan="2"><span class="line">03</span> Municipal Lien Certificate to First National Title & Escrow</td><td>$25.00</td><td></td><td></td><td></td><td></td></tr>
+                            <tr><td colspan="2"><span class="line">04</span> Settlement or Closing Fee to First National Title & Escrow</td><td>$550.00</td><td></td><td></td><td></td><td></td></tr>
+                            <tr><td colspan="2"><span class="line">05</span> Title - Lender's Title Policy to CATIC</td><td></td><td></td><td></td><td></td><td></td></tr>
+                            <tr><td colspan="2"><span class="line">06</span> Title Search Fee to First National Title & Escrow</td><td>$350.00</td><td></td><td></td><td></td><td></td></tr>
+                            <tr><td colspan="2"><span class="line">07</span> Wire Verification Fee to First National Title & Escrow</td><td>$25.00</td><td></td><td></td><td></td><td></td></tr>
+
+                            <tr class="black-header">
+                                <td colspan="2">D. TOTAL LOAN COSTS (Borrower-Paid)</td>
+                                <td colspan="2"><strong>$1,050.00</strong></td>
+                                <td colspan="2"></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Loan Costs Subtotals (A + B + C)</td>
+                                <td>$1,050.00</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <!-- Other Costs -->
+                    <table class="document-table cost-table">
+                        <thead>
+                            <tr>
+                                <th rowspan="2" class="black-header">Other Costs</th>
+                                <th rowspan="2"></th>
+                                <th colspan="2"></th>
+                                <th colspan="2"></th>
+                                <th rowspan="2"></th>
+                            </tr>
+                            <tr><th></th><th></th><th></th><th></th></tr>
+                        </thead>
+                        <tbody>
+                            <tr class="grey-header">
+                                <td colspan="2">E. Taxes and Other Government Fees</td>
+                                <td colspan="2"></td>
+                                <td colspan="2"></td>
+                                <td></td>
+                            </tr>
+                            <tr><td colspan="2"><span class="line">01</span> Recording Fees Deed: Mortgage:</td><td></td><td></td><td></td><td></td><td></td></tr>
+                            <tr><td colspan="2"><span class="line">02</span> State Transfer Taxes (Deed) to City of Warwick</td><td></td><td></td><td>$230.00</td><td></td><td></td></tr>
+
+                            <tr class="grey-header">
+                                <td colspan="2">F. Prepaids</td>
+                                <td colspan="2"></td>
+                                <td colspan="2"></td>
+                                <td></td>
+                            </tr>
+                            <tr><td colspan="2"><span class="line">01</span> Homeowner's Insurance Premium ( mo.)</td><td></td><td></td><td></td><td></td><td></td></tr>
+                            <tr><td colspan="2"><span class="line">02</span> Mortgage Insurance Premium ( mo.)</td><td></td><td></td><td></td><td></td><td></td></tr>
+
+                            <tr class="grey-header">
+                                <td colspan="2">G. Initial Escrow Payment at Closing</td>
+                                <td colspan="2"><strong>$-500.00</strong></td>
+                                <td colspan="2"></td>
+                                <td></td>
+                            </tr>
+                            <tr><td colspan="2"><span class="line">08</span> Aggregate adjustment</td><td>$-500.00</td><td></td><td></td><td></td><td></td></tr>
+
+                            <tr class="grey-header">
+                                <td colspan="2">H. Other</td>
+                                <td colspan="2"><strong>$1,008.00</strong></td>
+                                <td colspan="2"></td>
+                                <td></td>
+                            </tr>
+                            <tr><td colspan="2"><span class="line">01</span> Listing Agent Commission</td><td></td><td></td><td>$10,000.00</td><td></td><td></td></tr>
+                            <tr><td colspan="2"><span class="line">02</span> Selling Agent Commission</td><td></td><td></td><td>$10,000.00</td><td></td><td></td></tr>
+                            <tr><td colspan="2"><span class="line">03</span> Sewer Charges to First National Title & Escrow</td><td></td><td></td><td>$500.00</td><td></td><td></td></tr>
+                            <tr><td colspan="2"><span class="line">04</span> Title - Owner's Title Policy (Optional) to CATIC</td><td>$1,008.00</td><td></td><td></td><td></td><td></td></tr>
+                            <tr><td colspan="2"><span class="line">05</span> Water Charges to First National Title & Escrow</td><td></td><td></td><td>$500.00</td><td></td><td></td></tr>
+                            <tr><td colspan="2"><span class="line">06</span> Wire Verification Fee to First National Title & Escrow</td><td></td><td></td><td>$25.00</td><td></td><td></td></tr>
+
+                            <tr class="black-header">
+                                <td colspan="2">I. TOTAL OTHER COSTS (Borrower-Paid)</td>
+                                <td colspan="2"><strong>$508.00</strong></td>
+                                <td colspan="2"></td>
+                                <td></td>
+                            </tr>
+
+                            <tr class="black-header">
+                                <td colspan="2">J. TOTAL CLOSING COSTS (Borrower-Paid)</td>
+                                <td colspan="2"><strong>$1,058.00</strong></td>
+                                <td colspan="2"></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Closing Costs Subtotals (D + I)</td>
+                                <td>$1,558.00</td>
+                                <td></td>
+                                <td>$21,255.00</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Lender Credits</td>
+                                <td>$-500.00</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="document-footer">
+                        <div>Closing Disclosure</div>
+                        <div>Page 2 - Loan ID #</div>
+                    </div>
+                </div>
+
+                <!-- Page 3 -->
+                <div class="document-page" data-page="3">
+                    <!-- Calculating Cash to Close -->
+                    <div class="page-header">Calculating Cash to Close</div>
+                    <div style="font-size: 9px; margin-bottom: 15px;">Use this table to see what has changed from your Loan Estimate.</div>
+                    
+                    <table class="document-table" style="margin-bottom: 25px;">
+                        <thead>
+                            <tr class="grey-header">
+                                <th></th>
+                                <th>Loan Estimate</th>
+                                <th>Final</th>
+                                <th>Did this change?</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Total Closing Costs (J)</td><td>$0</td><td>$1,058.00</td><td><strong>No</strong></td></tr>
+                            <tr><td>Closing Costs Paid Before Closing</td><td>$0</td><td>$0.00</td><td><strong>No</strong></td></tr>
+                            <tr><td>Closing Costs Financed<br>(Paid from your Loan Amount)</td><td>$0</td><td>$0.00</td><td><strong>No</strong></td></tr>
+                            <tr><td>Down Payment/Funds from Borrower</td><td>$0</td><td>$500,000.00</td><td><strong>No</strong></td></tr>
+                            <tr><td>Deposit</td><td>$0</td><td>$-50,000.00</td><td><strong>No</strong></td></tr>
+                            <tr><td>Funds for Borrower</td><td>$0</td><td>$0.00</td><td><strong>No</strong></td></tr>
+                            <tr><td>Seller Credits</td><td>$0</td><td>$0.00</td><td><strong>No</strong></td></tr>
+                            <tr><td>Adjustments and Other Credits</td><td>$0</td><td>$988.56</td><td><strong>No</strong></td></tr>
+                            <tr class="grey-header"><td><strong>Cash to Close</strong></td><td>$0</td><td><strong>$452,046.56</strong></td><td></td></tr>
+                        </tbody>
+                    </table>
+
+                    <!-- Summaries of Transactions -->
+                    <div class="page-header">Summaries of Transactions</div>
+                    <div style="font-size: 9px; margin-bottom: 15px;">Use this table to see a summary of your transaction.</div>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <!-- Borrower's Transaction -->
+                        <div>
+                            <table class="document-table">
+                                <thead>
+                                    <tr><th colspan="2">Borrower's Transaction</th></tr>
+                                    <tr class="grey-header"><th>K. Due from Borrower at Closing</th><th>$502,091.00</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td><span class="line">01</span> Sale Price of Property</td><td>$500,000.00</td></tr>
+                                    <tr><td><span class="line">02</span> Sale Price of Any Personal Property Included in Sale</td><td></td></tr>
+                                    <tr><td><span class="line">03</span> Closing Costs Paid at Closing (J)</td><td>$1,058.00</td></tr>
+                                    <tr class="grey-header"><td colspan="2">Adjustments</td></tr>
+                                    <tr><td><span class="line">05</span> Title Policy Adjustment</td><td>$1,033.00</td></tr>
+                                    <tr class="grey-header"><td colspan="2">Adjustments for Items Paid by Seller in Advance</td></tr>
+                                    <tr><td><span class="line">08</span> City/Town Taxes</td><td></td></tr>
+                                </tbody>
+                            </table>
+                            
+                            <table class="document-table">
+                                <thead>
+                                    <tr class="grey-header"><th>L. Paid Already by or on Behalf of Borrower at Closing</th><th>$50,044.44</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td><span class="line">01</span> Deposit</td><td>$50,000.00</td></tr>
+                                    <tr><td><span class="line">02</span> Loan Amount</td><td></td></tr>
+                                    <tr class="grey-header"><td colspan="2">Adjustments for Items Unpaid by Seller</td></tr>
+                                    <tr><td><span class="line">12</span> City/Town Taxes 03/20/2025 to 03/21/2025</td><td>$44.44</td></tr>
+                                    <tr class="grey-header"><td colspan="2">Calculation</td></tr>
+                                    <tr><td>Total Due from Borrower at Closing (K)</td><td>$502,091.00</td></tr>
+                                    <tr><td>Total Paid Already by or on Behalf of Borrower at Closing (L)</td><td>-$50,044.44</td></tr>
+                                    <tr class="grey-header">
+                                        <td>Cash to Close 
+                                            <div class="checkbox-item">
+                                                <input type="checkbox"> From
+                                                <input type="checkbox"> To Borrower
+                                            </div>
+                                        </td>
+                                        <td><strong>$452,046.56</strong></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Seller's Transaction -->
+                        <div>
+                            <table class="document-table">
+                                <thead>
+                                    <tr><th colspan="2">Seller's Transaction</th></tr>
+                                    <tr class="grey-header"><th>M. Due to Seller at Closing</th><th>$501,033.00</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td><span class="line">01</span> Sale Price of Property</td><td>$500,000.00</td></tr>
+                                    <tr><td><span class="line">06</span> Title Policy Adjustment</td><td>$1,033.00</td></tr>
+                                    <tr class="grey-header"><td colspan="2">Adjustments for Items Paid by Seller in Advance</td></tr>
+                                    <tr><td><span class="line">09</span> City/Town Taxes</td><td></td></tr>
+                                </tbody>
+                            </table>
+                            
+                            <table class="document-table">
+                                <thead>
+                                    <tr class="grey-header"><th>N. Due from Seller at Closing</th><th>$21,299.44</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td><span class="line">02</span> Closing Costs Paid at Closing (J)</td><td>$21,255.00</td></tr>
+                                    <tr class="grey-header"><td colspan="2">Adjustments for Items Unpaid by Seller</td></tr>
+                                    <tr><td><span class="line">14</span> City/Town Taxes 03/20/2025 to 03/21/2025</td><td>$44.44</td></tr>
+                                    <tr class="grey-header"><td colspan="2">Calculation</td></tr>
+                                    <tr><td>Total Due to Seller at Closing (M)</td><td>$501,033.00</td></tr>
+                                    <tr><td>Total Due from Seller at Closing (N)</td><td>-$21,299.44</td></tr>
+                                    <tr class="grey-header">
+                                        <td>Cash to Close 
+                                            <div class="checkbox-item">
+                                                <input type="checkbox"> From
+                                                <input type="checkbox"> To Seller
+                                            </div>
+                                        </td>
+                                        <td><strong>$479,733.56</strong></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="document-footer">
+                        <div>Closing Disclosure</div>
+                        <div>Page 3 - Loan ID #</div>
+                    </div>
+                </div>
+
+                <!-- Page 4 -->
+                <div class="document-page" data-page="4">
+                    <div class="page-header">Loan Disclosures</div>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div>
+                            <!-- Assumption -->
+                            <div style="margin-bottom: 20px; padding: 10px; border: 1px solid #ccc;">
+                                <div style="font-weight: bold; margin-bottom: 5px;">Assumption</div>
+                                <p style="margin-bottom: 8px;">If you sell or transfer this property to another person, your lender</p>
+                                <div class="checkbox-item">
+                                    <input type="checkbox"> will allow, under certain conditions, this person to assume this loan on the original terms.
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" checked> will not allow assumption of this loan on the original terms.
+                                </div>
+                            </div>
+
+                            <!-- Demand Feature -->
+                            <div style="margin-bottom: 20px; padding: 10px; border: 1px solid #ccc;">
+                                <div style="font-weight: bold; margin-bottom: 5px;">Demand Feature</div>
+                                <p style="margin-bottom: 8px;">Your loan</p>
+                                <div class="checkbox-item">
+                                    <input type="checkbox"> has a demand feature, which permits your lender to require early repayment of the loan. You should review your note for details.
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" checked> does not have a demand feature.
+                                </div>
+                            </div>
+
+                            <!-- Late Payment -->
+                            <div style="margin-bottom: 20px; padding: 10px; border: 1px solid #ccc;">
+                                <div style="font-weight: bold; margin-bottom: 5px;">Late Payment</div>
+                                <p>If your payment is more than _______ days late, your lender will charge a late fee of _______ of the late payment amount.</p>
+                            </div>
+
+                            <!-- Negative Amortization -->
+                            <div style="margin-bottom: 20px; padding: 10px; border: 1px solid #ccc;">
+                                <div style="font-weight: bold; margin-bottom: 5px;">Negative Amortization <em>(Increase in Loan Amount)</em></div>
+                                <p style="margin-bottom: 8px;">Under your loan terms, you</p>
+                                <div class="checkbox-item">
+                                    <input type="checkbox"> are scheduled to make monthly payments that do not pay all of the interest due that month. As a result, your loan amount will increase (negatively amortize), and your loan amount will likely become larger than your original loan amount. Increases in your loan amount lower the equity you have in this property.
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox"> may have monthly payments that do not pay all of the interest due that month. If you do, your loan amount will increase (negatively amortize), and, as a result, your loan amount may become larger than your original loan amount. Increases in your loan amount lower the equity you have in this property.
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox"> do not have a negative amortization feature.
+                                </div>
+                            </div>
+
+                            <!-- Partial Payments -->
+                            <div style="margin-bottom: 20px; padding: 10px; border: 1px solid #ccc;">
+                                <div style="font-weight: bold; margin-bottom: 5px;">Partial Payments</div>
+                                <p style="margin-bottom: 8px;">Your lender</p>
+                                <div class="checkbox-item">
+                                    <input type="checkbox"> may accept payments that are less than the full amount due (partial payments) and apply them to your loan.
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox"> may hold them in a separate account until you pay the rest of the payment, and then apply the full payment to your loan.
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox"> does not accept any partial payments.
+                                </div>
+                                <p style="margin-top: 5px; font-size: 8px;">If this loan is sold, your new lender may have a different policy.</p>
+                            </div>
+
+                            <!-- Security Interest -->
+                            <div style="margin-bottom: 20px; padding: 10px; border: 1px solid #ccc;">
+                                <div style="font-weight: bold; margin-bottom: 5px;">Security Interest</div>
+                                <p style="margin-bottom: 5px;">You are granting a security interest in</p>
+                                <div>123 TEST TOM FILE CD</div>
+                                <div>Warwick, RI 02886</div>
+                                <p style="margin-top: 8px;">You may lose this property if you do not make your payments or satisfy other obligations for this loan.</p>
+                            </div>
+                        </div>
+
+                        <div>
+                            <!-- Escrow Account -->
+                            <div style="margin-bottom: 20px; padding: 10px; border: 1px solid #ccc;">
+                                <div style="font-weight: bold; margin-bottom: 5px;">Escrow Account</div>
+                                <p style="margin-bottom: 8px;"><strong>For now</strong>, your loan</p>
+                                <div class="checkbox-item">
+                                    <input type="checkbox"> will have an escrow account (also called an "impound" or "trust" account) to pay the property costs listed below.
+                                </div>
+                                
+                                <table class="document-table" style="margin: 10px 0;">
+                                    <thead>
+                                        <tr class="grey-header"><th colspan="3">Escrow</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td>Escrowed Property Cost over Year 1</td><td></td><td style="font-size: 8px;">Estimated total amount over year 1 for your escrowed property costs:</td></tr>
+                                        <tr><td>Non-Escrowed Property Cost over Year 1</td><td></td><td style="font-size: 8px;">Estimated total amount over year 1 for your non-escrowed property costs:</td></tr>
+                                        <tr><td>Initial Escrow Payment</td><td></td><td style="font-size: 8px;">A cushion for the escrow account you pay at closing. See Section G on page 2.</td></tr>
+                                        <tr><td>Monthly Escrow Payment</td><td></td><td style="font-size: 8px;">The amount included in your total monthly payment.</td></tr>
+                                    </tbody>
+                                </table>
+
+                                <div class="checkbox-item">
+                                    <input type="checkbox" checked> will not have an escrow account because
+                                </div>
+                                <div class="checkbox-item" style="margin-left: 20px;">
+                                    <input type="checkbox" checked> you declined it
+                                </div>
+                                <div class="checkbox-item" style="margin-left: 20px;">
+                                    <input type="checkbox"> your lender does not offer one. You must directly pay your property costs, such as taxes and homeowner's insurance.
+                                </div>
+                                <p style="font-size: 8px; margin-top: 5px;">Contact your lender to ask if your loan can have an escrow account.</p>
+
+                                <table class="document-table" style="margin: 10px 0;">
+                                    <thead>
+                                        <tr class="grey-header"><th colspan="3">No Escrow</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td>Estimated Property Cost over Year 1</td><td></td><td style="font-size: 8px;">Estimated total amount over year 1. You must pay these costs directly, possibly in one or two large payments a year.</td></tr>
+                                        <tr><td>Escrow Waiver Fee</td><td></td><td></td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <!-- In The Future -->
+                            <div style="margin-bottom: 20px; padding: 10px; border: 1px solid #ccc;">
+                                <div style="font-weight: bold; margin-bottom: 5px;">In The Future</div>
+                                <p style="font-size: 9px;">Your property costs may change and, as a result, your escrow payment may change. You may be able to cancel your escrow account, but if you do, you must pay your property costs directly. If you fail to pay your property taxes, your state or local government may (1) impose fines and penalties or (2) place a tax lien on this property.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="document-footer">
+                        <div>Closing Disclosure</div>
+                        <div>Page 4 - Loan ID #</div>
+                    </div>
+                </div>
+
+                <!-- Page 5 -->
+                <div class="document-page" data-page="5">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div>
+                            <div class="page-header">Loan Calculations</div>
+                            
+                            <table class="document-table" style="margin-bottom: 20px;">
+                                <tr>
+                                    <td><strong>Total of Payments.</strong> Total you will have paid after you make all payments of principal, interest, mortgage insurance, and loan costs, as scheduled.</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Finance Charge.</strong> The dollar amount the loan will cost you.</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Amount Financed.</strong> The loan amount available after paying your upfront finance charge.</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Annual Percentage Rate (APR).</strong> Your costs over the loan term expressed as a rate. This is not your interest rate.</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Total Interest Percentage (TIP).</strong> The total amount of interest that you will pay over the loan term as a percentage of your loan amount.</td>
+                                    <td></td>
+                                </tr>
+                            </table>
+
+                            <div style="padding: 10px; border: 1px solid #ccc;">
+                                <strong>Questions?</strong> If you have questions about the loan terms or costs on this form, use the contact information below. To get more information or make a complaint, contact the Consumer Financial Protection Bureau at <strong>www.consumerfinance.gov/mortgage-closing</strong>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="page-header">Other Disclosures</div>
+
+                            <div style="margin-bottom: 15px; padding: 10px; border: 1px solid #ccc;">
+                                <div style="font-weight: bold; margin-bottom: 5px;">Appraisal</div>
+                                <p style="font-size: 9px;">If the property was appraised for your loan, your lender is required to give you a copy at no additional cost at least 3 days before closing. If you have not yet received it, please contact your lender at the information listed below.</p>
+                            </div>
+
+                            <div style="margin-bottom: 15px; padding: 10px; border: 1px solid #ccc;">
+                                <div style="font-weight: bold; margin-bottom: 5px;">Contract Details</div>
+                                <p style="font-size: 9px; margin-bottom: 5px;">See your note and security instrument for information about</p>
+                                <ul style="font-size: 9px; margin-left: 15px;">
+                                    <li>what happens if you fail to make your payments</li>
+                                    <li>what is a default on the loan,</li>
+                                    <li>situations in which your lender can require early repayment of the loan, and</li>
+                                    <li>the rules for making payments before they are due.</li>
+                                </ul>
+                            </div>
+
+                            <div style="margin-bottom: 15px; padding: 10px; border: 1px solid #ccc;">
+                                <div style="font-weight: bold; margin-bottom: 5px;">Liability after Foreclosure</div>
+                                <p style="font-size: 9px; margin-bottom: 5px;">If your lender forecloses on this property and the foreclosure does not cover the amount of unpaid balance on this loan,</p>
+                                <div class="checkbox-item">
+                                    <input type="checkbox"> state law may protect you from liability for the unpaid balance.
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox"> state law does not protect you from liability for the unpaid balance.
+                                </div>
+                            </div>
+
+                            <div style="margin-bottom: 15px; padding: 10px; border: 1px solid #ccc;">
+                                <div style="font-weight: bold; margin-bottom: 5px;">Refinance</div>
+                                <p style="font-size: 9px;">Refinancing the loan will depend on your future financial situation, the property value, and market conditions. You may not be able to refinance this loan.</p>
+                            </div>
+
+                            <div style="margin-bottom: 15px; padding: 10px; border: 1px solid #ccc;">
+                                <div style="font-weight: bold; margin-bottom: 5px;">Tax Deductions</div>
+                                <p style="font-size: 9px;">If you borrow more than this property is worth, the interest on the loan amount above this property's fair market value is not deductible from your federal income taxes. You should consult a tax advisor for more information.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Information -->
+                    <div class="page-header" style="margin-top: 30px;">Contact Information</div>
+                    <table class="document-table">
+                        <thead>
+                            <tr class="grey-header">
+                                <th></th>
+                                <th>Lender</th>
+                                <th>Mortgage Broker</th>
+                                <th>Real Estate Broker (B)</th>
+                                <th>Real Estate Broker (S)</th>
+                                <th>Settlement Agent</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Name</td><td></td><td></td><td></td><td></td><td>First National Title & Escrow</td></tr>
+                            <tr><td>Address</td><td></td><td></td><td></td><td></td><td>501 Centerville Road<br>Suite 102<br>Warwick, RI 02886</td></tr>
+                            <tr><td>NMLS ID</td><td></td><td></td><td></td><td></td><td></td></tr>
+                            <tr><td>ST License ID</td><td></td><td></td><td></td><td></td><td>2275022</td></tr>
+                            <tr><td>Contact</td><td></td><td></td><td></td><td></td><td></td></tr>
+                            <tr><td>Email</td><td></td><td></td><td></td><td></td><td></td></tr>
+                            <tr><td>Phone</td><td></td><td></td><td></td><td></td><td></td></tr>
+                        </tbody>
+                    </table>
+
+                    <div style="margin-top: 20px; text-align: center;">
+                        <strong>See signature addendum</strong>
+                    </div>
+
+                    <div class="document-footer">
+                        <div>Closing Disclosure</div>
+                        <div>Page 5 - Loan ID #</div>
+                    </div>
+                </div>
+
+                <!-- Page 6 -->
+                <div class="document-page" data-page="6">
+                    <div class="page-header">Signature Addendum</div>
+                    
+                    <p style="margin-bottom: 30px;">By signing, you are only confirming that you have received this form. You do not have to accept this loan because you have signed or received this form.</p>
+                    
+                    <div class="signature-section">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px;">
+                            <div>
+                                <div class="signature-line"></div>
+                                <div style="font-size: 9px; margin-bottom: 20px;">Tom TEST TOM TEST</div>
+                                <div class="signature-line"></div>
+                                <div style="font-size: 9px;">Date</div>
+                            </div>
+                            <div>
+                                <div class="signature-line"></div>
+                                <div style="font-size: 9px; margin-bottom: 20px;">&nbsp;</div>
+                                <div class="signature-line"></div>
+                                <div style="font-size: 9px;">Date</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="document-footer">
+                        <div>Closing Disclosure</div>
+                        <div>Page 6 - Loan ID #</div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- Right Rail -->
+        <section class="w-64 bg-gray-800 border-l border-gray-600 p-5">
+            <!-- Chat -->
+            <section class="mb-5">
+                <div class="flex items-center gap-2 mb-3">
+                    <i class="fa fa-chevron-down text-gray-400 text-xs"></i>
+                    <h4 class="text-white text-sm">Chat</h4>
+                </div>
+                <div class="text-xs text-gray-400">Chat functionality...</div>
+            </section>
+
+            <!-- Tasks -->
+            <section class="mb-5">
+                <div class="flex items-center gap-2 mb-3">
+                    <i class="fa fa-chevron-right text-gray-400 text-xs"></i>
+                    <h4 class="text-white text-sm">Tasks</h4>
+                    <span class="text-xs bg-gray-700 px-2 py-1 rounded">0 / 0</span>
+                </div>
+                <div class="text-xs text-gray-400 p-3 bg-gray-700 rounded">
+                    You have not been assigned any tasks on this order
+                </div>
+            </section>
+
+            <!-- Notes -->
+            <section class="mb-5">
+                <div class="flex items-center gap-2 mb-3">
+                    <i class="fa fa-chevron-right text-gray-400 text-xs"></i>
+                    <h4 class="text-white text-sm">Notes</h4>
+                </div>
+                <div class="text-xs text-gray-400 p-3 bg-gray-700 rounded mb-3">
+                    No notes have been added to this page
+                </div>
+                <button type="button" class="w-full px-3 py-2 bg-gray-700 hover:bg-gray-600 text-white text-xs rounded">
+                    Add Note
+                </button>
+            </section>
+        </section>
+    </div>
+
+    <script>
+        // Page tracking and zoom functionality
+        let zoomLevel = 1;
+        const documentPages = document.querySelectorAll('.document-page');
+        
+        // Update page counter based on scroll position
+        function updatePageCounter() {
+            const viewportHeight = window.innerHeight;
+            const currentPageElement = document.getElementById('currentPage');
+            
+            documentPages.forEach((page, index) => {
+                const rect = page.getBoundingClientRect();
+                const pageCenter = rect.top + (rect.height / 2);
+                
+                if (pageCenter >= 0 && pageCenter <= viewportHeight) {
+                    currentPageElement.textContent = index + 1;
+                }
+            });
+        }
+        
+        // Scroll event listener for page tracking
+        document.querySelector('.flex-1').addEventListener('scroll', updatePageCounter);
+        window.addEventListener('resize', updatePageCounter);
+        
+        // Zoom functionality
+        function zoomIn() {
+            zoomLevel = Math.min(zoomLevel + 0.1, 2);
+            updateZoom();
+        }
+        
+        function zoomOut() {
+            zoomLevel = Math.max(zoomLevel - 0.1, 0.5);
+            updateZoom();
+        }
+        
+        function updateZoom() {
+            documentPages.forEach(page => {
+                page.style.transform = `scale(${zoomLevel})`;
+                page.style.transformOrigin = 'top center';
+                page.style.marginBottom = `${20 * zoomLevel}px`;
+            });
+        }
+        
+        // Fullscreen functionality
+        function toggleFullscreen() {
+            const documentViewer = document.querySelector('.document-viewer');
+            if (document.fullscreenElement) {
+                document.exitFullscreen();
+            } else {
+                documentViewer.requestFullscreen();
+            }
+        }
+        
+        // Initialize page counter
+        updatePageCounter();
+    </script>
+</body>
+</html>

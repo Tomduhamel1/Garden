@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taxes and Other Government Fees - Real Estate Closing</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        .active-row {
+            background-color: rgba(59, 130, 246, 0.1);
+        }
+        .step-flow {
+            background: linear-gradient(90deg, #3b82f6 0%, #1d4ed8 100%);
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white">
+    <div class="flex h-screen">
+        <!-- Left Sidebar -->
+        <section class="w-72 bg-gray-800 border-r border-gray-600">
+            <div class="p-5 text-gray-400 text-center border-b border-gray-600">
+                <div class="text-xs">Navigation Sidebar</div>
+                <div class="text-xs mt-1">Taxes and Other Government Fees is active</div>
+            </div>
+        </section>
+
+        <!-- Main Content -->
+        <section class="flex-1 bg-gray-900 overflow-y-auto">
+            <!-- Page Header -->
+            <section class="py-8 px-10 pb-5 border-b border-gray-600 flex items-center justify-between">
+                <div class="flex items-center gap-4">
+                    <i class="fa fa-university text-gray-400 text-xl"></i>
+                    <h2 class="text-2xl font-semibold text-white">Taxes and Other Government Fees</h2>
+                    <span class="bg-green-600 px-2 py-1 rounded text-xs font-medium">E</span>
+                </div>
+            </section>
+
+            <!-- Form Content -->
+            <section class="px-10 py-8">
+                <!-- Process Flow -->
+                <section class="mb-8">
+                    <div class="flex bg-gray-800 border border-gray-600 rounded-lg overflow-hidden">
+                        <div class="flex-1 step-flow p-4 text-center border-r border-gray-600">
+                            <div class="flex items-center justify-center gap-3">
+                                <i class="fa fa-file-text text-white text-lg"></i>
+                                <div>
+                                    <div class="text-white font-medium">Add Documents</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex-1 bg-gray-700 p-4 text-center">
+                            <div class="flex items-center justify-center gap-3">
+                                <i class="fa fa-check text-gray-400 text-lg"></i>
+                                <div>
+                                    <div class="text-gray-400 font-medium">View Taxes & Fees</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Tax Calculator Section -->
+                <section class="bg-gray-800 border border-gray-600 rounded-lg p-6 mb-8">
+                    <form class="space-y-8">
+                        <!-- Tax Details -->
+                        <div>
+                            <h4 class="text-lg font-semibold text-white mb-4">Tax Details</h4>
+                            <div class="bg-gray-700 border border-gray-600 rounded p-4">
+                                <div class="grid grid-cols-4 gap-4">
+                                    <div>
+                                        <label class="block text-sm text-gray-300 mb-2">Sales Tax Rate</label>
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-2.5 bg-gray-600 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" data-schema-key="accounting.closing_tax_rate">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Document Details -->
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <h4 class="text-lg font-semibold text-white">Document Details</h4>
+                                <div class="relative">
+                                    <button type="button" class="bg-blue-600 border border-blue-600 rounded px-4 py-2 text-white text-sm hover:bg-blue-700 flex items-center gap-2" id="add-document-btn">
+                                        Add Document
+                                        <i class="fa fa-chevron-down"></i>
+                                    </button>
+                                    <div class="absolute right-0 top-full mt-1 w-64 bg-gray-700 border border-gray-600 rounded shadow-lg z-10 hidden" id="document-dropdown">
+                                        <div class="p-3 border-b border-gray-600">
+                                            <input type="text" class="w-full px-3 py-2 bg-gray-600 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" placeholder="Search documents..." id="document-search">
+                                        </div>
+                                        <div class="max-h-64 overflow-y-auto">
+                                            <div class="document-option px-3 py-2 hover:bg-gray-600 cursor-pointer text-sm" data-value="deed">Deed</div>
+                                            <div class="document-option px-3 py-2 hover:bg-gray-600 cursor-pointer text-sm" data-value="mortgage">Mortgage</div>
+                                            <div class="document-option px-3 py-2 hover:bg-gray-600 cursor-pointer text-sm" data-value="affidavit">Affidavit</div>
+                                            <div class="document-option px-3 py-2 hover:bg-gray-600 cursor-pointer text-sm" data-value="assignment of mortgage or lease">Assignment of Mortgage or Lease</div>
+                                            <div class="document-option px-3 py-2 hover:bg-gray-600 cursor-pointer text-sm" data-value="discharge of mortgage">Discharge of Mortgage</div>
+                                            <div class="document-option px-3 py-2 hover:bg-gray-600 cursor-pointer text-sm" data-value="easement">Easement</div>
+                                            <div class="document-option px-3 py-2 hover:bg-gray-600 cursor-pointer text-sm" data-value="lease">Lease</div>
+                                            <div class="document-option px-3 py-2 hover:bg-gray-600 cursor-pointer text-sm" data-value="power of attorney">Power of Attorney</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-gray-400 text-sm mb-6">We just need a few details about your documents to correctly calculate the local fees.</p>
+                            
+                            <div class="grid grid-cols-2 gap-6" id="document-cards">
+                                <!-- Deed Document -->
+                                <div class="bg-gray-700 border border-gray-600 rounded-lg overflow-hidden">
+                                    <div class="bg-gray-600 p-3 flex items-center justify-between border-b border-gray-600">
+                                        <h5 class="text-white font-medium text-center flex-1">Deed</h5>
+                                        <button type="button" class="text-gray-400 hover:text-white" title="Remove Document">
+                                            <i class="fa fa-times"></i>
+                                        </button>
+                                    </div>
+                                    <div class="p-4">
+                                        <table class="w-full">
+                                            <tbody>
+                                                <tr class="border-b border-gray-600">
+                                                    <td class="py-3 text-sm text-gray-300">Number of Pages</td>
+                                                    <td class="py-3">
+                                                        <input type="text" class="w-full px-3 py-1.5 bg-gray-600 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" placeholder="count" data-schema-key="quotingservice_documents.0.attributes.0.value">
+                                                    </td>
+                                                </tr>
+                                                <tr class="border-b border-gray-600">
+                                                    <td class="py-3 text-sm text-gray-300">Consideration Amount</td>
+                                                    <td class="py-3">
+                                                        <input type="text" inputmode="decimal" class="w-full px-3 py-1.5 bg-gray-600 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" placeholder="amount" data-schema-key="quotingservice_documents.0.attributes.1.value">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="py-3 text-sm text-gray-300">Taxable?</td>
+                                                    <td class="py-3">
+                                                        <div class="flex bg-gray-600 border border-gray-500 rounded overflow-hidden">
+                                                            <button type="button" class="flex-1 px-3 py-1.5 bg-blue-600 text-white text-sm font-medium">Yes</button>
+                                                            <button type="button" class="flex-1 px-3 py-1.5 bg-gray-600 text-gray-300 text-sm font-medium hover:bg-gray-500">No</button>
+                                                        </div>
+                                                        <input type="hidden" data-schema-key="quotingservice_documents.0.attributes.2.value" value="true">
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <!-- Mortgage Document -->
+                                <div class="bg-gray-700 border border-gray-600 rounded-lg overflow-hidden">
+                                    <div class="bg-gray-600 p-3 flex items-center justify-between border-b border-gray-600">
+                                        <h5 class="text-white font-medium text-center flex-1">Mortgage</h5>
+                                        <button type="button" class="text-gray-400 hover:text-white" title="Remove Document">
+                                            <i class="fa fa-times"></i>
+                                        </button>
+                                    </div>
+                                    <div class="p-4">
+                                        <table class="w-full">
+                                            <tbody>
+                                                <tr class="border-b border-red-500">
+                                                    <td class="py-3 text-sm text-gray-300">Number of Pages</td>
+                                                    <td class="py-3">
+                                                        <input type="text" class="w-full px-3 py-1.5 bg-gray-600 border border-red-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" placeholder="count" data-schema-key="quotingservice_documents.1.attributes.0.value">
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-6">
+                                <button type="button" class="bg-blue-600 border border-blue-600 rounded px-6 py-2.5 text-white text-sm hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                                    Calculate Fees
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </section>
+
+                <!-- Line Management Buttons -->
+                <section class="flex justify-start gap-3 mb-6">
+                    <button type="button" class="bg-gray-600 border border-gray-500 rounded px-3 py-2 text-white text-sm hover:bg-gray-500 disabled:opacity-50" disabled>
+                        <i class="fa fa-minus mr-1"></i>
+                        Remove Last Line
+                    </button>
+                    <button type="button" class="bg-gray-600 border border-gray-500 rounded px-3 py-2 text-white text-sm hover:bg-gray-500">
+                        <i class="fa fa-plus mr-1"></i>
+                        Add Line
+                    </button>
+                </section>
+
+                <form class="space-y-8">
+                    <!-- Charges Table -->
+                    <section>
+                        <table class="w-full bg-gray-800 border border-gray-600 rounded-lg overflow-hidden">
+                            <thead>
+                                <tr class="bg-gray-700">
+                                    <th class="w-12 py-3 px-4 text-center border-b border-gray-600"></th>
+                                    <th class="py-3 px-4 text-left border-b border-gray-600"></th>
+                                    <th class="py-3 px-4 text-left border-b border-gray-600"></th>
+                                    <th class="py-3 px-4 text-center border-b border-gray-600" colspan="2">Paid by Borrower</th>
+                                    <th class="py-3 px-4 text-center border-b border-gray-600" colspan="2">Paid by Seller</th>
+                                    <th class="py-3 px-4 text-center border-b border-gray-600"></th>
+                                </tr>
+                                <tr class="bg-gray-700">
+                                    <th class="w-12 py-3 px-4 text-center text-sm text-gray-300 border-b border-gray-600"></th>
+                                    <th class="py-3 px-4 text-left text-sm text-gray-300 border-b border-gray-600">Description</th>
+                                    <th class="py-3 px-4 text-left text-sm text-gray-300 border-b border-gray-600">Payee</th>
+                                    <th class="py-3 px-4 text-center text-sm text-gray-300 border-b border-gray-600">At Closing</th>
+                                    <th class="py-3 px-4 text-center text-sm text-gray-300 border-b border-gray-600">Before Closing</th>
+                                    <th class="py-3 px-4 text-center text-sm text-gray-300 border-b border-gray-600">At Closing</th>
+                                    <th class="py-3 px-4 text-center text-sm text-gray-300 border-b border-gray-600">Before Closing</th>
+                                    <th class="py-3 px-4 text-center text-sm text-gray-300 border-b border-gray-600" rowspan="2">By Others</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Line 01 (Active) -->
+                                <tr class="border-b border-gray-600 hover:bg-gray-700/30 focus-within:bg-gray-700/30 active-row">
+                                    <td class="py-3 px-4 text-center text-sm text-gray-400">01</td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" class="w-full px-3 py-1.5 bg-gray-600 border border-gray-500 rounded text-gray-400 text-sm" data-schema-key="cdf.taxes_and_government_fees.line_01.description" readonly>
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" data-schema-key="cdf.taxes_and_government_fees.line_01.payee_name">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-1.5 bg-gray-600 border border-gray-500 rounded text-gray-400 text-sm text-right" data-schema-key="cdf.taxes_and_government_fees.line_01.borrower_amount" readonly>
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" data-schema-key="cdf.taxes_and_government_fees.line_01.before_borrower_amount">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-1.5 bg-gray-600 border border-gray-500 rounded text-gray-400 text-sm text-right" data-schema-key="cdf.taxes_and_government_fees.line_01.seller_amount" readonly>
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" data-schema-key="cdf.taxes_and_government_fees.line_01.before_seller_amount">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-1.5 bg-gray-600 border border-gray-500 rounded text-gray-400 text-sm text-right" data-schema-key="cdf.taxes_and_government_fees.line_01.paid_by_others_amount" readonly>
+                                    </td>
+                                </tr>
+                                <!-- Line 02 -->
+                                <tr class="border-b border-gray-600 hover:bg-gray-700/30 focus-within:bg-gray-700/30">
+                                    <td class="py-3 px-4 text-center text-sm text-gray-400">02</td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" data-schema-key="cdf.taxes_and_government_fees.line_02.description">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <div class="relative">
+                                            <input type="text" class="w-full pl-3 pr-8 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" data-schema-key="cdf.taxes_and_government_fees.line_02.payee_name">
+                                            <button type="button" class="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white">
+                                                <i class="fa fa-times"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" data-schema-key="cdf.taxes_and_government_fees.line_02.borrower_amount">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" data-schema-key="cdf.taxes_and_government_fees.line_02.before_borrower_amount">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <div class="relative">
+                                            <input type="text" inputmode="decimal" class="w-full pl-3 pr-8 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" data-schema-key="cdf.taxes_and_government_fees.line_02.seller_amount">
+                                            <button type="button" class="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white">
+                                                <i class="fa fa-times"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" data-schema-key="cdf.taxes_and_government_fees.line_02.before_seller_amount">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" data-schema-key="cdf.taxes_and_government_fees.line_02.paid_by_others_amount">
+                                    </td>
+                                </tr>
+                                <!-- Line 03 -->
+                                <tr class="border-b border-gray-600 hover:bg-gray-700/30 focus-within:bg-gray-700/30">
+                                    <td class="py-3 px-4 text-center text-sm text-gray-400">03</td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" data-schema-key="cdf.taxes_and_government_fees.line_03.description">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" data-schema-key="cdf.taxes_and_government_fees.line_03.payee_name">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" data-schema-key="cdf.taxes_and_government_fees.line_03.borrower_amount">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" data-schema-key="cdf.taxes_and_government_fees.line_03.before_borrower_amount">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" data-schema-key="cdf.taxes_and_government_fees.line_03.seller_amount">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" data-schema-key="cdf.taxes_and_government_fees.line_03.before_seller_amount">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" data-schema-key="cdf.taxes_and_government_fees.line_03.paid_by_others_amount">
+                                    </td>
+                                </tr>
+                                <!-- Line 04 -->
+                                <tr class="border-b border-gray-600 hover:bg-gray-700/30 focus-within:bg-gray-700/30">
+                                    <td class="py-3 px-4 text-center text-sm text-gray-400">04</td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" data-schema-key="cdf.taxes_and_government_fees.line_04.description">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" data-schema-key="cdf.taxes_and_government_fees.line_04.payee_name">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" data-schema-key="cdf.taxes_and_government_fees.line_04.borrower_amount">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" data-schema-key="cdf.taxes_and_government_fees.line_04.before_borrower_amount">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" data-schema-key="cdf.taxes_and_government_fees.line_04.seller_amount">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" data-schema-key="cdf.taxes_and_government_fees.line_04.before_seller_amount">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" data-schema-key="cdf.taxes_and_government_fees.line_04.paid_by_others_amount">
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr class="bg-gray-700">
+                                    <th class="py-3 px-4"></th>
+                                    <th class="py-3 px-4"></th>
+                                    <th class="py-3 px-4 text-right text-sm text-gray-300">Totals</th>
+                                    <th class="py-3 px-4 text-center text-sm text-white">$0.00</th>
+                                    <th class="py-3 px-4 text-center text-sm text-white">$0.00</th>
+                                    <th class="py-3 px-4 text-center text-sm text-white">$230.00</th>
+                                    <th class="py-3 px-4 text-center text-sm text-white">$0.00</th>
+                                    <th class="py-3 px-4 text-center text-sm text-white">$0.00</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </section>
+
+                    <!-- Action Buttons -->
+                    <section class="flex justify-between items-center">
+                        <div class="flex gap-3">
+                            <button type="button" class="bg-gray-600 border border-gray-500 rounded px-4 py-2 text-white text-sm hover:bg-gray-500 flex items-center gap-2">
+                                <i class="fa fa-file-text-o"></i>
+                                Extract From CD
+                            </button>
+                            <button type="button" class="bg-gray-600 border border-gray-500 rounded px-4 py-2 text-white text-sm hover:bg-gray-500 disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                                Sort Lines
+                            </button>
+                        </div>
+                        <div class="flex gap-3">
+                            <button type="button" class="bg-gray-600 border border-gray-500 rounded px-4 py-2 text-white text-sm hover:bg-gray-500">
+                                Clear
+                            </button>
+                            <button type="button" class="bg-blue-600 border border-blue-600 rounded px-4 py-2 text-white text-sm hover:bg-blue-700">
+                                Add Contact
+                            </button>
+                        </div>
+                    </section>
+
+                    <!-- Settings Section -->
+                    <section>
+                        <h4 class="text-lg font-semibold text-white mb-4 flex items-center gap-3">
+                            Settings
+                            <span class="bg-green-600 px-3 py-1 rounded text-sm">Line 01</span>
+                        </h4>
+                        <div class="bg-gray-800 border border-gray-600 rounded-lg p-6 mb-6">
+                            <!-- Recording Details -->
+                            <div class="space-y-4 mb-6">
+                                <div class="grid grid-cols-4 gap-4">
+                                    <div>
+                                        <label class="block text-sm text-gray-300 mb-2">Recording Type</label>
+                                        <input type="text" class="w-full px-3 py-2.5 bg-gray-600 border border-gray-500 rounded text-gray-400 text-sm" value="Deed" readonly>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm text-gray-300 mb-2">Deed Amount</label>
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" data-schema-key="cdf.taxes_and_government_fees.line_01.deed_amount">
+                                    </div>
+                                    <div class="col-span-2">
+                                        <label class="block text-sm text-gray-300 mb-2">Paid By</label>
+                                        <div class="flex bg-gray-700 border border-gray-500 rounded overflow-hidden">
+                                            <button type="button" class="flex-1 px-3 py-2.5 bg-gray-700 text-gray-300 text-sm hover:bg-gray-600">Buyer</button>
+                                            <button type="button" class="flex-1 px-3 py-2.5 bg-gray-700 text-gray-300 text-sm hover:bg-gray-600">Seller</button>
+                                            <button type="button" class="flex-1 px-3 py-2.5 bg-gray-700 text-gray-300 text-sm hover:bg-gray-600">Split</button>
+                                            <button type="button" class="flex-1 px-3 py-2.5 bg-gray-700 text-gray-300 text-sm hover:bg-gray-600">Paid By Others</button>
+                                        </div>
+                                        <input type="hidden" data-schema-key="cdf.taxes_and_government_fees.line_01.deed_who_pays">
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-4 gap-4">
+                                    <div>
+                                        <label class="block text-sm text-gray-300 mb-2">Recording Type</label>
+                                        <input type="text" class="w-full px-3 py-2.5 bg-gray-600 border border-gray-500 rounded text-gray-400 text-sm" value="Mortgage" readonly>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm text-gray-300 mb-2">Mortgage Amount</label>
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" data-schema-key="cdf.taxes_and_government_fees.line_01.mortgage_amount">
+                                    </div>
+                                    <div class="col-span-2">
+                                        <label class="block text-sm text-gray-300 mb-2">Paid By</label>
+                                        <div class="flex bg-gray-700 border border-gray-500 rounded overflow-hidden">
+                                            <button type="button" class="flex-1 px-3 py-2.5 bg-gray-700 text-gray-300 text-sm hover:bg-gray-600">Buyer</button>
+                                            <button type="button" class="flex-1 px-3 py-2.5 bg-gray-700 text-gray-300 text-sm hover:bg-gray-600">Seller</button>
+                                            <button type="button" class="flex-1 px-3 py-2.5 bg-gray-700 text-gray-300 text-sm hover:bg-gray-600">Split</button>
+                                            <button type="button" class="flex-1 px-3 py-2.5 bg-gray-700 text-gray-300 text-sm hover:bg-gray-600">Paid By Others</button>
+                                        </div>
+                                        <input type="hidden" data-schema-key="cdf.taxes_and_government_fees.line_01.mortgage_who_pays">
+                                    </div>
+                                </div>
+                                <div class="flex gap-3">
+                                    <button type="button" class="bg-gray-600 border border-gray-500 rounded px-4 py-2 text-white text-sm hover:bg-gray-500 disabled:opacity-50" disabled>
+                                        Remove
+                                    </button>
+                                    <button type="button" class="bg-gray-600 border border-gray-500 rounded px-4 py-2 text-white text-sm hover:bg-gray-500">
+                                        Add
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Payments Section -->
+                    <section>
+                        <h4 class="text-lg font-semibold text-white mb-4 flex items-center gap-3">
+                            Payments
+                            <span class="bg-green-600 px-3 py-1 rounded text-sm">Recording fees</span>
+                        </h4>
+                        
+                        <!-- Payee Tabs -->
+                        <div class="bg-gray-800 border border-gray-600 rounded-lg overflow-hidden">
+                            <div class="bg-gray-700 px-6 py-3 flex items-center justify-between border-b border-gray-600">
+                                <div class="flex items-center gap-4">
+                                    <span class="text-white">City of Warwick</span>
+                                </div>
+                                <div class="flex gap-2">
+                                    <button type="button" class="text-gray-400 hover:text-white disabled:opacity-50" disabled>
+                                        <i class="fa fa-minus"></i>
+                                    </button>
+                                    <button type="button" class="text-gray-400 hover:text-white">
+                                        <i class="fa fa-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="p-6">
+                                <!-- Payment Type Toggle -->
+                                <div class="mb-6">
+                                    <div class="flex items-center justify-between mb-4">
+                                        <a href="#" class="text-gray-500 text-sm flex items-center gap-2 pointer-events-none">
+                                            <i class="fa fa-list"></i>
+                                            Itemize
+                                        </a>
+                                    </div>
+                                    
+                                    <div class="flex border-b border-gray-600">
+                                        <button type="button" class="payment-type-btn px-4 py-2 text-blue-400 border-b-2 border-blue-400" data-payment-type="check">Check</button>
+                                        <button type="button" class="payment-type-btn px-4 py-2 text-gray-400 hover:text-white border-b-2 border-transparent hover:border-gray-400" data-payment-type="wire">Wire</button>
+                                        <button type="button" class="payment-type-btn px-4 py-2 text-gray-400 hover:text-white border-b-2 border-transparent hover:border-gray-400" data-payment-type="net funded">Net Funded</button>
+                                        <button type="button" class="payment-type-btn px-4 py-2 text-gray-400 hover:text-white border-b-2 border-transparent hover:border-gray-400" data-payment-type="global payment">Aggregate</button>
+                                        <button type="button" class="payment-type-btn px-4 py-2 text-gray-400 hover:text-white border-b-2 border-transparent hover:border-gray-400" data-payment-type="order transfer">Transfer</button>
+                                        <button type="button" class="payment-type-btn px-4 py-2 text-gray-400 hover:text-white border-b-2 border-transparent hover:border-gray-400" data-payment-type="holdback">Holdback</button>
+                                    </div>
+                                    <input type="hidden" value="check" data-schema-key="cdf.taxes_and_government_fees.line_01.payees.0.type">
+                                </div>
+                                
+                                <!-- Standard Payment Fields -->
+                                <div id="standard-payment-fields">
+                                    <h5 class="text-base font-semibold text-white mb-4">Payment</h5>
+                                    <div class="grid grid-cols-3 gap-4 mb-6">
+                                        <div>
+                                            <label class="block text-sm text-gray-300 mb-2">Name</label>
+                                            <input type="text" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" data-schema-key="cdf.taxes_and_government_fees.line_01.payees.0.name_dep">
+                                        </div>
+                                        <div>
+                                            <label class="block text-sm text-gray-300 mb-2">
+                                                Payment Amount
+                                                <i class="fa fa-lock text-gray-500 ml-1"></i>
+                                            </label>
+                                            <input type="text" inputmode="decimal" class="w-full px-3 py-2.5 bg-gray-600 border border-gray-500 rounded text-gray-400 text-sm" data-schema-key="cdf.taxes_and_government_fees.line_01.payees.0.payment_dep" readonly>
+                                        </div>
+                                        <div>
+                                            <label class="block text-sm text-gray-300 mb-2">Label</label>
+                                            <select class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none" data-schema-key="cdf.taxes_and_government_fees.line_01.payees.0.label.payee_label_id">
+                                                <option value="insurance">Insurance</option>
+                                                <option value="lenders_policy">Lender's Policy</option>
+                                                <option value="owners_policy">Owner's Policy</option>
+                                                <option value="payoff">Payoff</option>
+                                                <option value="property_tax">Property Tax</option>
+                                                <option value="recording_fee" selected>Recording Fee</option>
+                                                <option value="reimbursement">Reimbursement</option>
+                                                <option value="sales_tax">Sales Tax</option>
+                                                <option value="settlement_fee">Settlement Fee</option>
+                                                <option value="transfer_tax">Transfer Tax</option>
+                                                <option value="excluded">Excluded</option>
+                                                <option value="unclassified">Unclassified</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="grid grid-cols-1 gap-4 mb-6">
+                                        <div>
+                                            <label class="block text-sm text-gray-300 mb-2">Memo</label>
+                                            <input type="text" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" data-schema-key="cdf.taxes_and_government_fees.line_01.payees.0.reference_number">
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Payment Type Specific Content -->
+                                <div id="payment-type-content">
+                                    <!-- Check Content (Active) -->
+                                    <div class="payment-content" data-payment-type="check">
+                                        <h5 class="text-base font-semibold text-white mb-4">Mailing Address</h5>
+                                        <div class="grid grid-cols-2 gap-4 mb-4">
+                                            <div>
+                                                <label class="block text-sm text-gray-300 mb-2">Address</label>
+                                                <div class="relative">
+                                                    <input type="text" class="w-full pl-3 pr-8 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" placeholder="Search address..." data-schema-key="cdf.taxes_and_government_fees.line_01.payees.0.address.address_1">
+                                                    <button type="button" class="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white" title="Clear Mailing Address">
+                                                        <i class="fa fa-times"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <label class="block text-sm text-gray-300 mb-2">Apt, Suite, Etc.</label>
+                                                <input type="text" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" data-schema-key="cdf.taxes_and_government_fees.line_01.payees.0.address.address_2">
+                                            </div>
+                                        </div>
+                                        <div class="grid grid-cols-3 gap-4">
+                                            <div>
+                                                <label class="block text-sm text-gray-300 mb-2">City</label>
+                                                <input type="text" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" data-schema-key="cdf.taxes_and_government_fees.line_01.payees.0.address.city">
+                                            </div>
+                                            <div>
+                                                <label class="block text-sm text-gray-300 mb-2">State</label>
+                                                <div class="relative">
+                                                    <select class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none" data-schema-key="cdf.taxes_and_government_fees.line_01.payees.0.address.state">
+                                                        <option value="RI" selected>RI</option>
+                                                        <option value="CA">CA</option>
+                                                        <option value="NY">NY</option>
+                                                        <option value="TX">TX</option>
+                                                        <option value="FL">FL</option>
+                                                    </select>
+                                                    <button type="button" class="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white">
+                                                        <i class="fa fa-times"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <label class="block text-sm text-gray-300 mb-2">Zipcode</label>
+                                                <input type="text" inputmode="numeric" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" data-schema-key="cdf.taxes_and_government_fees.line_01.payees.0.address.zipcode">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Wire Content -->
+                                    <div class="payment-content hidden" data-payment-type="wire">
+                                        <h5 class="text-base font-semibold text-white mb-4">Wire Instructions</h5>
+                                        <div class="grid grid-cols-3 gap-4 mb-4">
+                                            <div>
+                                                <label class="block text-sm text-gray-300 mb-2">Routing #</label>
+                                                <input type="text" inputmode="numeric" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" data-schema-key="wire_info.routing_number">
+                                            </div>
+                                            <div>
+                                                <label class="block text-sm text-gray-300 mb-2">Bank Name</label>
+                                                <input type="text" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" data-schema-key="wire_info.bank_name">
+                                            </div>
+                                            <div>
+                                                <label class="block text-sm text-gray-300 mb-2">Account #</label>
+                                                <input type="text" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" data-schema-key="wire_info.account_number">
+                                            </div>
+                                        </div>
+                                        <div class="grid grid-cols-2 gap-4">
+                                            <div>
+                                                <label class="block text-sm text-gray-300 mb-2">Name on Account</label>
+                                                <input type="text" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" data-schema-key="wire_info.account_name">
+                                            </div>
+                                            <div>
+                                                <label class="block text-sm text-gray-300 mb-2">Further Credit To</label>
+                                                <input type="text" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" data-schema-key="wire_info.further_credit_to">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Net Funded Content -->
+                                    <div class="payment-content hidden" data-payment-type="net funded">
+                                        <!-- Net Funded has no additional fields -->
+                                    </div>
+                                    
+                                    <!-- Aggregate Content -->
+                                    <div class="payment-content hidden" data-payment-type="global payment">
+                                        <h5 class="text-base font-semibold text-white mb-4">Aggregate Payee</h5>
+                                        <div class="grid grid-cols-2 gap-4">
+                                            <div>
+                                                <label class="block text-sm text-gray-300 mb-2">Payee</label>
+                                                <select class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none" data-schema-key="global_payee_id">
+                                                    <option value="">Select Payee</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Transfer Content -->
+                                    <div class="payment-content hidden" data-payment-type="order transfer">
+                                        <h5 class="text-base font-semibold text-white mb-4">Order Transfer</h5>
+                                        <div class="grid grid-cols-2 gap-4">
+                                            <div>
+                                                <label class="block text-sm text-gray-300 mb-2">Order</label>
+                                                <select class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none" data-schema-key="transfer_order_id">
+                                                    <option value="">Select Order</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Holdback Content -->
+                                    <div class="payment-content hidden" data-payment-type="holdback">
+                                        <h5 class="text-base font-semibold text-white mb-4">Escrow Information</h5>
+                                        <div class="space-y-4">
+                                            <div>
+                                                <label class="block text-sm text-gray-300 mb-2">Reason for Escrow</label>
+                                                <input type="text" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" data-schema-key="escrow_reason">
+                                            </div>
+                                            <div>
+                                                <label class="block text-sm text-gray-300 mb-2">Conditions for Release</label>
+                                                <textarea rows="3" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 resize-none" data-schema-key="release_conditions"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Disbursement -->
+                                <div class="mt-6">
+                                    <h5 class="text-base font-semibold text-white mb-4">Disbursement</h5>
+                                    <div class="grid grid-cols-4 gap-4">
+                                        <div>
+                                            <label class="block text-sm text-gray-300 mb-2">
+                                                Disburse Separately
+                                                <i class="fa fa-question-circle text-gray-500 ml-1"></i>
+                                            </label>
+                                            <select class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none" data-schema-key="separate">
+                                                <option value="yes">Yes</option>
+                                                <option value="no" selected>No</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </form>
+            </section>
+        </section>
+
+        <!-- Right Rail -->
+        <section class="w-64 bg-gray-800 border-l border-gray-600 p-5">
+            <section class="mb-5 p-4 bg-gray-700 rounded">
+                <h4 class="text-white text-sm mb-2.5">Chat</h4>
+                <p class="text-gray-400 text-xs">Chat functionality</p>
+            </section>
+
+            <section class="mb-5 p-4 bg-gray-700 rounded">
+                <h4 class="text-white text-sm mb-2.5">Tasks</h4>
+                <p class="text-gray-400 text-xs">No tasks assigned</p>
+            </section>
+
+            <section class="mb-5 p-4 bg-gray-700 rounded">
+                <h4 class="text-white text-sm mb-2.5">Notes</h4>
+                <p class="text-gray-400 text-xs">No notes added</p>
+            </section>
+        </section>
+    </div>
+
+    <script>
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set Check as default active
+            const checkBtn = document.querySelector('[data-payment-type="check"]');
+            const checkContent = document.querySelector('.payment-content[data-payment-type="check"]');
+            if (checkContent) {
+                checkContent.classList.remove('hidden');
+            }
+        });
+
+        // Document dropdown functionality
+        document.getElementById('add-document-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            const dropdown = document.getElementById('document-dropdown');
+            dropdown.classList.toggle('hidden');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            const dropdown = document.getElementById('document-dropdown');
+            const button = document.getElementById('add-document-btn');
+            if (!dropdown.contains(e.target) && !button.contains(e.target)) {
+                dropdown.classList.add('hidden');
+            }
+        });
+
+        // Document search functionality
+        document.getElementById('document-search').addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const options = document.querySelectorAll('.document-option');
+            options.forEach(option => {
+                const text = option.textContent.toLowerCase();
+                option.style.display = text.includes(searchTerm) ? 'block' : 'none';
+            });
+        });
+
+        // Row highlighting functionality
+        document.querySelectorAll('tbody tr').forEach(row => {
+            const inputs = row.querySelectorAll('input');
+            inputs.forEach(input => {
+                input.addEventListener('focus', function() {
+                    // Remove active class from all rows
+                    document.querySelectorAll('tbody tr').forEach(r => r.classList.remove('active-row'));
+                    // Add active class to current row
+                    row.classList.add('active-row');
+                });
+            });
+        });
+
+        // Button group functionality
+        document.querySelectorAll('.ui.compact.buttons').forEach(buttonGroup => {
+            const buttons = buttonGroup.querySelectorAll('button');
+            const hiddenInput = buttonGroup.nextElementSibling;
+            
+            buttons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    // Remove active state from all buttons
+                    buttons.forEach(btn => {
+                        btn.classList.remove('bg-blue-600', 'text-white');
+                        btn.classList.add('bg-gray-700', 'text-gray-300');
+                    });
+                    
+                    // Add active state to clicked button
+                    this.classList.remove('bg-gray-700', 'text-gray-300');
+                    this.classList.add('bg-blue-600', 'text-white');
+                    
+                    // Update hidden input value
+                    if (hiddenInput) {
+                        hiddenInput.value = this.getAttribute('data-value');
+                    }
+                });
+            });
+        });
+
+        // Payment type switching
+        function switchPaymentType(paymentType) {
+            // Update button states
+            document.querySelectorAll('.payment-type-btn').forEach(btn => {
+                btn.classList.remove('text-blue-400', 'border-blue-400');
+                btn.classList.add('text-gray-400', 'border-transparent');
+            });
+            
+            const activeBtn = document.querySelector(`[data-payment-type="${paymentType}"]`);
+            if (activeBtn) {
+                activeBtn.classList.remove('text-gray-400', 'border-transparent');
+                activeBtn.classList.add('text-blue-400', 'border-blue-400');
+            }
+            
+            // Update hidden input
+            const hiddenInput = document.querySelector('[data-schema-key$="type"]');
+            if (hiddenInput) {
+                hiddenInput.value = paymentType;
+            }
+            
+            // Switch content
+            switchPaymentTypeContent(paymentType);
+        }
+
+        function switchPaymentTypeContent(paymentType) {
+            // Hide all payment content sections
+            document.querySelectorAll('.payment-content').forEach(content => {
+                content.classList.add('hidden');
+            });
+            
+            // Show selected payment content
+            const selectedContent = document.querySelector(`.payment-content[data-payment-type="${paymentType}"]`);
+            if (selectedContent) {
+                selectedContent.classList.remove('hidden');
+            }
+            
+            // Get standard fields element
+            const standardFields = document.getElementById('standard-payment-fields');
+            
+            // Show/hide standard payment fields based on payment type
+            if (paymentType === 'global payment') {
+                // Hide standard payment fields for aggregate
+                if (standardFields) {
+                    standardFields.style.display = 'none';
+                }
+            } else {
+                // Show standard payment fields for all other types
+                if (standardFields) {
+                    standardFields.style.display = 'block';
+                }
+            }
+        }
+
+        // Add click handlers to payment type buttons
+        document.querySelectorAll('.payment-type-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const paymentType = this.getAttribute('data-payment-type');
+                switchPaymentType(paymentType);
+            });
+        });
+    </script>
+</body>
+</html>

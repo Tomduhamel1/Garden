@@ -751,77 +751,472 @@
                     </section>
                 </section>
 
-                <!-- Simple Contact Form (For Lenders, Agents, etc.) -->
-                <section id="simple-contact-form" class="hidden">
-                    <section class="mb-8">
-                        <h3 class="text-base font-semibold mb-4 pb-2 border-b border-gray-600">Contact Information</h3>
-                        
-                        <div class="flex gap-5 mb-5">
-                            <div class="flex-1">
-                                <label class="block text-sm text-gray-300 mb-2">Company/Organization Name</label>
-                                <input type="text" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" placeholder="">
-                            </div>
-                            <div class="flex-1">
-                                <label class="block text-sm text-gray-300 mb-2">Contact Person</label>
-                                <input type="text" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" placeholder="">
-                            </div>
-                        </div>
+                <!-- Lenders Form -->
+                <section id="lenders-form" class="hidden">
+                    <form class="space-y-8">
+                        <section class="mb-8">
+                            <div class="bg-gray-700 border border-gray-600 rounded-md p-10 grid grid-cols-3 gap-10 items-center text-center">
+                                <!-- Search Existing Lenders -->
+                                <div class="flex flex-col items-center">
+                                    <div class="text-5xl mb-4">🏦</div>
+                                    <h3 class="text-lg font-semibold mb-5 text-white">Existing Lender</h3>
+                                    <div class="w-full">
+                                        <div class="relative">
+                                            <i class="fa fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                                            <input type="text" class="w-full pl-9 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 text-left" placeholder="Search for lender..." data-schema-key="contacts.lenders.0.company_id">
+                                        </div>
+                                    </div>
+                                </div>
 
-                        <div class="flex gap-5 mb-5">
-                            <div class="flex-1">
-                                <label class="block text-sm text-gray-300 mb-2">Email</label>
-                                <input type="email" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" placeholder="">
-                            </div>
-                            <div class="flex-1">
-                                <label class="block text-sm text-gray-300 mb-2">Phone</label>
-                                <input type="tel" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" placeholder="">
-                            </div>
-                            <div class="flex-1">
-                                <label class="block text-sm text-gray-300 mb-2">Fax</label>
-                                <input type="tel" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" placeholder="">
-                            </div>
-                        </div>
+                                <!-- Divider -->
+                                <div class="relative">
+                                    <div class="w-px h-32 bg-gray-500 mx-auto"></div>
+                                    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-700 px-3 py-2 text-gray-400 text-sm font-medium">
+                                        Or
+                                    </div>
+                                </div>
 
-                        <h3 class="text-base font-semibold mb-4 pb-2 border-b border-gray-600 mt-8">Address</h3>
-                        
-                        <div class="flex gap-5 mb-5">
-                            <div class="flex-[2.5]">
-                                <label class="block text-sm text-gray-300 mb-2">Address</label>
-                                <input type="text" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" placeholder="Street address">
+                                <!-- Add New Lender -->
+                                <div class="flex flex-col items-center">
+                                    <div class="text-5xl mb-4">🏢</div>
+                                    <h3 class="text-lg font-semibold mb-5 text-white">New Lender</h3>
+                                    <button type="button" class="bg-blue-600 border border-blue-600 rounded px-6 py-3 text-white text-sm font-medium hover:bg-blue-700">
+                                        Add New Lender
+                                    </button>
+                                </div>
                             </div>
-                            <div class="flex-[1.5]">
-                                <label class="block text-sm text-gray-300 mb-2">Suite/Unit</label>
-                                <input type="text" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" placeholder="">
-                            </div>
-                        </div>
+                        </section>
+                    </form>
+                </section>
 
-                        <div class="flex gap-5 mb-5">
-                            <div class="flex-1">
-                                <label class="block text-sm text-gray-300 mb-2">City</label>
-                                <input type="text" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" placeholder="">
+                <!-- Mortgage Brokerages Form -->
+                <section id="mortgage-brokerages-form" class="hidden">
+                    <form class="space-y-8">
+                        <section class="mb-8">
+                            <div class="bg-gray-700 border border-gray-600 rounded-md p-10 grid grid-cols-3 gap-10 items-center text-center">
+                                <!-- Search Existing Mortgage Brokerages -->
+                                <div class="flex flex-col items-center">
+                                    <div class="text-5xl mb-4">🏘️</div>
+                                    <h3 class="text-lg font-semibold mb-5 text-white">Existing Mortgage Brokerage</h3>
+                                    <div class="w-full">
+                                        <div class="relative">
+                                            <i class="fa fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                                            <input type="text" class="w-full pl-9 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 text-left" placeholder="Search for mortgage brokerage..." data-schema-key="contacts.mortgage_brokerages.0.company_id">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Divider -->
+                                <div class="relative">
+                                    <div class="w-px h-32 bg-gray-500 mx-auto"></div>
+                                    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-700 px-3 py-2 text-gray-400 text-sm font-medium">
+                                        Or
+                                    </div>
+                                </div>
+
+                                <!-- Add New Mortgage Brokerage -->
+                                <div class="flex flex-col items-center">
+                                    <div class="text-5xl mb-4">👥</div>
+                                    <h3 class="text-lg font-semibold mb-5 text-white">New Mortgage Brokerage</h3>
+                                    <button type="button" class="bg-blue-600 border border-blue-600 rounded px-6 py-3 text-white text-sm font-medium hover:bg-blue-700">
+                                        Add New Mortgage Brokerage
+                                    </button>
+                                </div>
                             </div>
-                            <div class="flex-1">
-                                <label class="block text-sm text-gray-300 mb-2">State</label>
-                                <select class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none">
-                                    <option value="">Select state...</option>
-                                    <option value="CA">CA</option>
-                                    <option value="NY">NY</option>
-                                    <option value="TX">TX</option>
-                                    <option value="FL">FL</option>
-                                    <option value="RI">RI</option>
+                        </section>
+                    </form>
+                </section>
+
+                <!-- Selling Agencies Form -->
+                <section id="selling-agencies-form" class="hidden">
+                    <form class="space-y-8">
+                        <section class="mb-8">
+                            <div class="bg-gray-700 border border-gray-600 rounded-md p-10 grid grid-cols-3 gap-10 items-center text-center">
+                                <!-- Search Existing Selling Agencies -->
+                                <div class="flex flex-col items-center">
+                                    <div class="text-5xl mb-4">🏡</div>
+                                    <h3 class="text-lg font-semibold mb-5 text-white">Existing Selling Agency</h3>
+                                    <div class="w-full">
+                                        <div class="relative">
+                                            <i class="fa fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                                            <input type="text" class="w-full pl-9 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 text-left" placeholder="Search for selling agency..." data-schema-key="contacts.selling_agencies.0.company_id">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Divider -->
+                                <div class="relative">
+                                    <div class="w-px h-32 bg-gray-500 mx-auto"></div>
+                                    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-700 px-3 py-2 text-gray-400 text-sm font-medium">
+                                        Or
+                                    </div>
+                                </div>
+
+                                <!-- Add New Selling Agency -->
+                                <div class="flex flex-col items-center">
+                                    <div class="text-5xl mb-4">🏢</div>
+                                    <h3 class="text-lg font-semibold mb-5 text-white">New Selling Agency</h3>
+                                    <button type="button" class="bg-blue-600 border border-blue-600 rounded px-6 py-3 text-white text-sm font-medium hover:bg-blue-700">
+                                        Add New Selling Agency
+                                    </button>
+                                </div>
+                            </div>
+                        </section>
+                    </form>
+                </section>
+
+                <!-- Listing Agencies Form -->
+                <section id="listing-agencies-form" class="hidden">
+                    <form class="space-y-8">
+                        <section class="mb-8">
+                            <div class="bg-gray-700 border border-gray-600 rounded-md p-10 grid grid-cols-3 gap-10 items-center text-center">
+                                <!-- Search Existing Listing Agencies -->
+                                <div class="flex flex-col items-center">
+                                    <div class="text-5xl mb-4">📋</div>
+                                    <h3 class="text-lg font-semibold mb-5 text-white">Existing Listing Agency</h3>
+                                    <div class="w-full">
+                                        <div class="relative">
+                                            <i class="fa fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                                            <input type="text" class="w-full pl-9 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 text-left" placeholder="Search for listing agency..." data-schema-key="contacts.listing_agencies.0.company_id">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Divider -->
+                                <div class="relative">
+                                    <div class="w-px h-32 bg-gray-500 mx-auto"></div>
+                                    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-700 px-3 py-2 text-gray-400 text-sm font-medium">
+                                        Or
+                                    </div>
+                                </div>
+
+                                <!-- Add New Listing Agency -->
+                                <div class="flex flex-col items-center">
+                                    <div class="text-5xl mb-4">🏢</div>
+                                    <h3 class="text-lg font-semibold mb-5 text-white">New Listing Agency</h3>
+                                    <button type="button" class="bg-blue-600 border border-blue-600 rounded px-6 py-3 text-white text-sm font-medium hover:bg-blue-700">
+                                        Add New Listing Agency
+                                    </button>
+                                </div>
+                            </div>
+                        </section>
+                    </form>
+                </section>
+
+                <!-- Recording Offices Form -->
+                <section id="recording-offices-form" class="hidden">
+                    <form class="space-y-8">
+                        <!-- Header Actions -->
+                        <section class="flex justify-between items-center mb-6">
+                            <h3 class="text-base font-semibold text-white">Recording Office</h3>
+                            <div class="flex gap-3">
+                                <button type="button" class="px-4 py-2 bg-gray-600 border border-gray-500 rounded text-white text-sm hover:bg-gray-500">
+                                    <i class="fa fa-refresh mr-2"></i>
+                                    Switch Recording Office
+                                </button>
+                                <button type="button" class="px-4 py-2 bg-transparent border border-gray-500 rounded text-gray-300 text-sm hover:bg-gray-700">
+                                    Edit Global Contact
+                                </button>
+                            </div>
+                        </section>
+
+                        <!-- Company Overview -->
+                        <section class="bg-gray-700 border border-gray-600 rounded-md p-6 mb-8">
+                            <table class="w-full">
+                                <tbody class="divide-y divide-gray-600">
+                                    <tr>
+                                        <td class="py-3 pr-6 text-sm font-semibold text-gray-300 w-32">Name</td>
+                                        <td class="py-3 text-sm text-white">City of Warwick</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-3 pr-6 text-sm font-semibold text-gray-300">Disclosed Payee</td>
+                                        <td class="py-3">
+                                            <select class="px-3 py-2 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none" data-schema-key="contacts.recording_offices.0.disclosed_payee">
+                                                <option value="recordingOffice" selected>Recording Office</option>
+                                                <option value="titleAgency">Title Company</option>
+                                                <option value="settlementAgency">Settlement Agency</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-3 pr-6 text-sm font-semibold text-gray-300">Phone</td>
+                                        <td class="py-3 text-sm text-white">401-738-2006</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-3 pr-6 text-sm font-semibold text-gray-300">Email</td>
+                                        <td class="py-3 text-sm text-white">land.evidence@warwickri.com</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-3 pr-6 text-sm font-semibold text-gray-300">Primary Address</td>
+                                        <td class="py-3 text-sm text-white">Warwick City Hall, 3275 Post Road, Warwick, RI, 02886</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </section>
+
+                        <!-- Notes Section -->
+                        <section class="mb-8">
+                            <h3 class="text-base font-semibold mb-4 pb-2 border-b border-gray-600 text-white">Notes</h3>
+                            <div class="bg-gray-700 border border-gray-600 rounded-md p-4">
+                                <div class="border-b border-gray-600 pb-3 mb-3">
+                                    <div class="flex justify-between items-start mb-2">
+                                        <a href="#" class="text-blue-400 hover:underline font-medium">City of Warwick</a>
+                                        <span class="text-xs text-gray-400">10/6/2023 11:32 am (Edited 2 years ago)</span>
+                                    </div>
+                                </div>
+                                <div class="text-sm text-white">
+                                    <p>E-RECORD WITH CSC</p>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Employees Section -->
+                        <section class="mb-8">
+                            <h3 class="text-base font-semibold mb-4 pb-2 border-b border-gray-600 text-white">Employees from City of Warwick</h3>
+                            <div class="bg-gray-700 border border-gray-600 rounded-md p-10 grid grid-cols-3 gap-10 items-center text-center">
+                                <!-- Search Existing Employees -->
+                                <div class="flex flex-col items-center">
+                                    <div class="text-5xl mb-4">👤</div>
+                                    <h3 class="text-lg font-semibold mb-5 text-white">Search Existing Employees</h3>
+                                    <div class="w-full">
+                                        <div class="relative">
+                                            <i class="fa fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                                            <input type="text" class="w-full pl-9 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 text-left" placeholder="Search Employees..." data-schema-key="contact">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Divider -->
+                                <div class="relative">
+                                    <div class="w-px h-32 bg-gray-500 mx-auto"></div>
+                                    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-700 px-3 py-2 text-gray-400 text-sm font-medium">
+                                        Or
+                                    </div>
+                                </div>
+
+                                <!-- Add New Employee -->
+                                <div class="flex flex-col items-center">
+                                    <div class="text-5xl mb-4">👥</div>
+                                    <h3 class="text-lg font-semibold mb-5 text-white">Add New Employee</h3>
+                                    <button type="button" class="bg-blue-600 border border-blue-600 rounded px-6 py-3 text-white text-sm font-medium hover:bg-blue-700">
+                                        Add Employee
+                                    </button>
+                                </div>
+                            </div>
+                        </section>
+                    </form>
+                </section>
+
+                <!-- Tax Authorities Form -->
+                <section id="tax-authorities-form" class="hidden">
+                    <form class="space-y-8">
+                        <!-- Header Buttons -->
+                        <section class="flex justify-end gap-3 mb-5">
+                            <button type="button" class="bg-gray-600 border border-gray-500 rounded px-4 py-2 text-white text-sm hover:bg-gray-500">
+                                <i class="fa fa-refresh mr-2"></i>
+                                Switch Tax Authority
+                            </button>
+                            <button type="button" class="bg-transparent border border-gray-500 rounded px-4 py-2 text-gray-300 text-sm hover:bg-gray-600">
+                                Edit Global Contact
+                            </button>
+                        </section>
+
+                        <!-- Company Overview -->
+                        <section class="mb-8">
+                            <h3 class="text-base font-semibold mb-4 text-white">Tax Authority</h3>
+                            <table class="w-full bg-gray-700 border border-gray-600 rounded-md">
+                                <tbody>
+                                    <tr class="border-b border-gray-600">
+                                        <td class="py-3 pl-6 pr-6 text-sm font-semibold text-gray-300 w-32">Name</td>
+                                        <td class="py-3 text-sm text-white">City of Warwick, RI Tax Collector</td>
+                                    </tr>
+                                    <tr class="border-b border-gray-600">
+                                        <td class="py-3 pl-6 pr-6 text-sm font-semibold text-gray-300">Phone</td>
+                                        <td class="py-3 text-sm text-white">401-738-2002</td>
+                                    </tr>
+                                    <tr class="border-b border-gray-600">
+                                        <td class="py-3 pl-6 pr-6 text-sm font-semibold text-gray-300">Website</td>
+                                        <td class="py-3 text-sm text-white">
+                                            <a href="http://www.warwickri.gov/tax-collectors" target="_blank" class="text-blue-400 hover:underline">http://www.warwickri.gov/tax-collectors</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-3 pl-6 pr-6 text-sm font-semibold text-gray-300">Primary Address</td>
+                                        <td class="py-3 text-sm text-white">PO Box 981027, Boston, MA, 02298-1027</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </section>
+
+                        <!-- Notes Section -->
+                        <section class="mb-8">
+                            <h3 class="text-base font-semibold mb-4 pb-2 border-b border-gray-600 text-white">Notes</h3>
+                            <div class="bg-gray-700 border border-gray-600 rounded-md p-4">
+                                <div class="border-b border-gray-600 pb-3 mb-3">
+                                    <div class="flex justify-between items-start mb-2">
+                                        <a href="#" class="text-blue-400 hover:underline font-medium">City of Warwick, RI Tax Collector</a>
+                                        <span class="text-xs text-gray-400">11/21/2023 11:28 am</span>
+                                    </div>
+                                </div>
+                                <div class="text-sm text-white">
+                                    <p><strong>TAXES ONLINE:</strong><br>
+                                    <a href="https://www.warwickri.gov/tax-collectors" target="_blank" class="text-blue-400 hover:underline">https://www.warwickri.gov/tax-collectors</a></p>
+                                    <p class="mt-2"><strong>Quarterly:</strong> 7/15, 10/15, 1/15, 4/15</p>
+                                    <p><strong>Calendar:</strong> 1/1-12/31</p>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Employees Section -->
+                        <section class="mb-8">
+                            <h3 class="text-base font-semibold mb-4 pb-2 border-b border-gray-600 text-white">Employees from City of Warwick, RI Tax Collector</h3>
+                            <div class="bg-gray-700 border border-gray-600 rounded-md p-10 grid grid-cols-3 gap-10 items-center text-center">
+                                <!-- Search Existing Employees -->
+                                <div class="flex flex-col items-center">
+                                    <div class="text-5xl mb-4">👤</div>
+                                    <h3 class="text-lg font-semibold mb-5 text-white">Search Existing Employees</h3>
+                                    <div class="w-full">
+                                        <div class="relative">
+                                            <i class="fa fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                                            <input type="text" class="w-full pl-9 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 text-left" placeholder="Search Employees..." data-schema-key="contact">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Divider -->
+                                <div class="relative">
+                                    <div class="w-px h-32 bg-gray-500 mx-auto"></div>
+                                    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-700 px-3 py-2 text-gray-400 text-sm font-medium">
+                                        Or
+                                    </div>
+                                </div>
+
+                                <!-- Add New Employee -->
+                                <div class="flex flex-col items-center">
+                                    <div class="text-5xl mb-4">👥</div>
+                                    <h3 class="text-lg font-semibold mb-5 text-white">Add New Employee</h3>
+                                    <button type="button" class="bg-blue-600 border border-blue-600 rounded px-6 py-3 text-white text-sm font-medium hover:bg-blue-700">
+                                        Add Employee
+                                    </button>
+                                </div>
+                            </div>
+                        </section>
+                    </form>
+                </section>
+
+                <!-- Title Abstractors Form -->
+                <section id="title-abstractors-form" class="hidden">
+                    <form class="space-y-8">
+                        <section class="bg-gray-700 border border-gray-600 rounded-md p-10 grid grid-cols-3 gap-10 items-center text-center">
+                            <!-- Search Existing Title Abstractors -->
+                            <div class="flex flex-col items-center">
+                                <div class="text-5xl mb-4">🏢</div>
+                                <h3 class="text-lg font-semibold mb-5 text-white">Existing Title Abstractor</h3>
+                                <div class="w-full">
+                                    <div class="relative">
+                                        <i class="fa fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                                        <input type="text" class="w-full pl-9 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 text-left" placeholder="Search for title abstractor..." data-schema-key="contacts.title_companies.0.company_id">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Divider -->
+                            <div class="relative">
+                                <div class="w-px h-32 bg-gray-500 mx-auto"></div>
+                                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-700 px-3 py-2 text-gray-400 text-sm font-medium">
+                                    Or
+                                </div>
+                            </div>
+
+                            <!-- Add New Title Abstractor -->
+                            <div class="flex flex-col items-center">
+                                <div class="text-5xl mb-4">👥</div>
+                                <h3 class="text-lg font-semibold mb-5 text-white">New Title Abstractor</h3>
+                                <button type="button" class="bg-blue-600 border border-blue-600 rounded px-6 py-3 text-white text-sm font-medium hover:bg-blue-700">
+                                    Add New Title Abstractor
+                                </button>
+                            </div>
+                        </section>
+                    </form>
+                </section>
+
+                <!-- Surveying Firms Form -->
+                <section id="surveying-firms-form" class="hidden">
+                    <form class="space-y-8">
+                        <section class="bg-gray-700 border border-gray-600 rounded-md p-10 grid grid-cols-3 gap-10 items-center text-center">
+                            <!-- Search Existing Surveying Firms -->
+                            <div class="flex flex-col items-center">
+                                <div class="text-5xl mb-4">🏢</div>
+                                <h3 class="text-lg font-semibold mb-5 text-white">Existing Surveying Firm</h3>
+                                <div class="w-full">
+                                    <div class="relative">
+                                        <i class="fa fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                                        <input type="text" class="w-full pl-9 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 text-left" placeholder="Search for surveying firm..." data-schema-key="contacts.surveying_firms.0.company_id">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Divider -->
+                            <div class="relative">
+                                <div class="w-px h-32 bg-gray-500 mx-auto"></div>
+                                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-700 px-3 py-2 text-gray-400 text-sm font-medium">
+                                    Or
+                                </div>
+                            </div>
+
+                            <!-- Add New Surveying Firm -->
+                            <div class="flex flex-col items-center">
+                                <div class="text-5xl mb-4">👥</div>
+                                <h3 class="text-lg font-semibold mb-5 text-white">New Surveying Firm</h3>
+                                <button type="button" class="bg-blue-600 border border-blue-600 rounded px-6 py-3 text-white text-sm font-medium hover:bg-blue-700">
+                                    Add New Surveying Firm
+                                </button>
+                            </div>
+                        </section>
+                    </form>
+                </section>
+
+                <!-- Simple Contact Form (For other contact types) -->
+                <section id="other-contacts-form" class="hidden">
+                    <form class="space-y-8">
+                        <section class="bg-gray-700 border border-gray-600 rounded-md p-10 text-center">
+                            <div class="text-5xl mb-4">📋</div>
+                            <h3 class="text-lg font-semibold mb-8 text-white">Choose a type of contact to add to this order</h3>
+                            
+                            <div class="max-w-md mx-auto relative">
+                                <select class="w-full px-4 py-3 bg-blue-600 border border-blue-600 rounded text-white text-base font-medium focus:outline-none focus:bg-blue-700 appearance-none cursor-pointer" data-schema-key="contacts.other_contacts.0.company_type">
+                                    <option value="">Select Contact Type</option>
+                                    <option value="appraisalCompany">Appraisal Company</option>
+                                    <option value="builder">Builder</option>
+                                    <option value="creditCardCompany">Credit Card Co.</option>
+                                    <option value="exchangeAccommodator">Exchange Accommodator</option>
+                                    <option value="generalContractor">General Contractor</option>
+                                    <option value="governmentEntity">Government Entity</option>
+                                    <option value="HOA">HOA</option>
+                                    <option value="HOAManagementCompany">HOA Management Co.</option>
+                                    <option value="homeWarrantyCompany">Home Warranty Co.</option>
+                                    <option value="insuranceCompany">Insurance Company</option>
+                                    <option value="lawFirm">Law Firm</option>
+                                    <option value="notary">Notary Company</option>
+                                    <option value="other">Other Company</option>
+                                    <option value="payoffLender">Payoff Lender</option>
+                                    <option value="pestInspector">Pest Inspector</option>
+                                    <option value="REOManagementCompany">REO Management Co.</option>
+                                    <option value="realEstateAgency">Real Estate Agency</option>
+                                    <option value="releaseTracker">Release Tracker</option>
+                                    <option value="settlementAgency">Settlement Agency</option>
+                                    <option value="taxAssessor">Tax Assessor</option>
+                                    <option value="titleCompany">Title Abstractor</option>
+                                    <option value="titleAgency">Title Company</option>
+                                    <option value="underwriter">Underwriter</option>
+                                    <option value="utilityCompany">Utility Co.</option>
                                 </select>
+                                <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                                    <i class="fa fa-chevron-down text-white"></i>
+                                </div>
                             </div>
-                            <div class="flex-1">
-                                <label class="block text-sm text-gray-300 mb-2">Zipcode</label>
-                                <input type="text" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" placeholder="12345">
-                            </div>
-                        </div>
-
-                        <div class="mb-5">
-                            <label class="block text-sm text-gray-300 mb-2">Notes</label>
-                            <textarea rows="4" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" placeholder="Additional notes or comments..."></textarea>
-                        </div>
-                    </section>
+                        </section>
+                    </form>
                 </section>
             </section>
 
@@ -897,7 +1292,15 @@
             
             // Get UI elements
             const horizontalTabs = document.getElementById('horizontal-tabs');
-            const simpleContactForm = document.getElementById('simple-contact-form');
+            const otherContactsForm = document.getElementById('other-contacts-form');
+            const lendersForm = document.getElementById('lenders-form');
+            const mortgageBrokeragesForm = document.getElementById('mortgage-brokerages-form');
+            const sellingAgenciesForm = document.getElementById('selling-agencies-form');
+            const listingAgenciesForm = document.getElementById('listing-agencies-form');
+            const recordingOfficesForm = document.getElementById('recording-offices-form');
+            const taxAuthoritiesForm = document.getElementById('tax-authorities-form');
+            const titleAbstractorsForm = document.getElementById('title-abstractors-form');
+            const surveyingFirmsForm = document.getElementById('surveying-firms-form');
             const allTabContents = document.querySelectorAll('.tab-content');
             const contactNameElement = document.getElementById('contactName');
             const buyersInfoForm = document.getElementById('buyers-info-form');
@@ -905,9 +1308,17 @@
             
             // Update contact name and show appropriate UI
             if (contactType === 'Buyers' || contactType === 'Sellers') {
-                // Show horizontal tabs and hide simple form
+                // Show horizontal tabs and hide other forms
                 horizontalTabs.classList.remove('hidden');
-                simpleContactForm.classList.add('hidden');
+                otherContactsForm.classList.add('hidden');
+                lendersForm.classList.add('hidden');
+                mortgageBrokeragesForm.classList.add('hidden');
+                sellingAgenciesForm.classList.add('hidden');
+                listingAgenciesForm.classList.add('hidden');
+                recordingOfficesForm.classList.add('hidden');
+                taxAuthoritiesForm.classList.add('hidden');
+                titleAbstractorsForm.classList.add('hidden');
+                surveyingFirmsForm.classList.add('hidden');
                 
                 // Show the first tab content by default
                 allTabContents.forEach(content => content.classList.add('hidden'));
@@ -952,34 +1363,264 @@
                         removeButtonText.textContent = 'Remove Seller';
                     }
                 }
-            } else {
-                // Hide tabs and show simple form
+            } else if (contactType === 'Lenders') {
+                // Show lenders form
                 horizontalTabs.classList.add('hidden');
                 allTabContents.forEach(content => content.classList.add('hidden'));
-                simpleContactForm.classList.remove('hidden');
+                otherContactsForm.classList.add('hidden');
+                lendersForm.classList.remove('hidden');
+                mortgageBrokeragesForm.classList.add('hidden');
+                sellingAgenciesForm.classList.add('hidden');
+                listingAgenciesForm.classList.add('hidden');
+                recordingOfficesForm.classList.add('hidden');
                 
-                // Hide both buyer and seller forms
+                // Hide buyer and seller forms
+                buyersInfoForm.classList.add('hidden');
+                sellersInfoForm.classList.add('hidden');
+                
+                // Update contact name
+                if (contactNameElement) {
+                    contactNameElement.textContent = 'Lender #1';
+                }
+                
+                // Update button text
+                const addButtonText = document.getElementById('add-button-text');
+                const removeButtonText = document.getElementById('remove-button-text');
+                if (addButtonText && removeButtonText) {
+                    addButtonText.textContent = 'Add Lender';
+                    removeButtonText.textContent = 'Remove Lender';
+                }
+            } else if (contactType === 'Mortgage Brokerages') {
+                // Show mortgage brokerages form
+                horizontalTabs.classList.add('hidden');
+                allTabContents.forEach(content => content.classList.add('hidden'));
+                otherContactsForm.classList.add('hidden');
+                lendersForm.classList.add('hidden');
+                mortgageBrokeragesForm.classList.remove('hidden');
+                sellingAgenciesForm.classList.add('hidden');
+                listingAgenciesForm.classList.add('hidden');
+                recordingOfficesForm.classList.add('hidden');
+                
+                // Hide buyer and seller forms
+                buyersInfoForm.classList.add('hidden');
+                sellersInfoForm.classList.add('hidden');
+                
+                // Update contact name
+                if (contactNameElement) {
+                    contactNameElement.textContent = 'Mortgage Brokerage #1';
+                }
+                
+                // Update button text
+                const addButtonText = document.getElementById('add-button-text');
+                const removeButtonText = document.getElementById('remove-button-text');
+                if (addButtonText && removeButtonText) {
+                    addButtonText.textContent = 'Add Mortgage Brokerage';
+                    removeButtonText.textContent = 'Remove Mortgage Brokerage';
+                }
+            } else if (contactType === 'Selling Agencies') {
+                // Show selling agencies form
+                horizontalTabs.classList.add('hidden');
+                allTabContents.forEach(content => content.classList.add('hidden'));
+                otherContactsForm.classList.add('hidden');
+                lendersForm.classList.add('hidden');
+                mortgageBrokeragesForm.classList.add('hidden');
+                sellingAgenciesForm.classList.remove('hidden');
+                listingAgenciesForm.classList.add('hidden');
+                recordingOfficesForm.classList.add('hidden');
+                
+                // Hide buyer and seller forms
+                buyersInfoForm.classList.add('hidden');
+                sellersInfoForm.classList.add('hidden');
+                
+                // Update contact name
+                if (contactNameElement) {
+                    contactNameElement.textContent = 'Selling Agency #1';
+                }
+                
+                // Update button text
+                const addButtonText = document.getElementById('add-button-text');
+                const removeButtonText = document.getElementById('remove-button-text');
+                if (addButtonText && removeButtonText) {
+                    addButtonText.textContent = 'Add Selling Agency';
+                    removeButtonText.textContent = 'Remove Selling Agency';
+                }
+            } else if (contactType === 'Listing Agencies') {
+                // Show listing agencies form
+                horizontalTabs.classList.add('hidden');
+                allTabContents.forEach(content => content.classList.add('hidden'));
+                otherContactsForm.classList.add('hidden');
+                lendersForm.classList.add('hidden');
+                mortgageBrokeragesForm.classList.add('hidden');
+                sellingAgenciesForm.classList.add('hidden');
+                listingAgenciesForm.classList.remove('hidden');
+                recordingOfficesForm.classList.add('hidden');
+                
+                // Hide buyer and seller forms
+                buyersInfoForm.classList.add('hidden');
+                sellersInfoForm.classList.add('hidden');
+                
+                // Update contact name
+                if (contactNameElement) {
+                    contactNameElement.textContent = 'Listing Agency #1';
+                }
+                
+                // Update button text
+                const addButtonText = document.getElementById('add-button-text');
+                const removeButtonText = document.getElementById('remove-button-text');
+                if (addButtonText && removeButtonText) {
+                    addButtonText.textContent = 'Add Listing Agency';
+                    removeButtonText.textContent = 'Remove Listing Agency';
+                }
+            } else if (contactType === 'Recording Offices') {
+                // Show recording offices form
+                horizontalTabs.classList.add('hidden');
+                allTabContents.forEach(content => content.classList.add('hidden'));
+                otherContactsForm.classList.add('hidden');
+                lendersForm.classList.add('hidden');
+                mortgageBrokeragesForm.classList.add('hidden');
+                sellingAgenciesForm.classList.add('hidden');
+                listingAgenciesForm.classList.add('hidden');
+                recordingOfficesForm.classList.remove('hidden');
+                
+                // Hide buyer and seller forms
+                buyersInfoForm.classList.add('hidden');
+                sellersInfoForm.classList.add('hidden');
+                
+                // Update contact name
+                if (contactNameElement) {
+                    contactNameElement.textContent = 'City of Warwick';
+                }
+                
+                // Update button text
+                const addButtonText = document.getElementById('add-button-text');
+                const removeButtonText = document.getElementById('remove-button-text');
+                if (addButtonText && removeButtonText) {
+                    addButtonText.textContent = 'Add Recording Office';
+                    removeButtonText.textContent = 'Remove Recording Office';
+                }
+            } else if (contactType === 'Tax Authorities') {
+                // Show tax authorities form
+                horizontalTabs.classList.add('hidden');
+                allTabContents.forEach(content => content.classList.add('hidden'));
+                otherContactsForm.classList.add('hidden');
+                lendersForm.classList.add('hidden');
+                mortgageBrokeragesForm.classList.add('hidden');
+                sellingAgenciesForm.classList.add('hidden');
+                listingAgenciesForm.classList.add('hidden');
+                recordingOfficesForm.classList.add('hidden');
+                taxAuthoritiesForm.classList.add('hidden');
+                titleAbstractorsForm.classList.add('hidden');
+                surveyingFirmsForm.classList.add('hidden');
+                taxAuthoritiesForm.classList.remove('hidden');
+                
+                // Hide buyer and seller forms
+                buyersInfoForm.classList.add('hidden');
+                sellersInfoForm.classList.add('hidden');
+                
+                // Update contact name
+                if (contactNameElement) {
+                    contactNameElement.textContent = 'City of Warwick, RI Tax Collector';
+                }
+                
+                // Update button text
+                const addButtonText = document.getElementById('add-button-text');
+                const removeButtonText = document.getElementById('remove-button-text');
+                if (addButtonText && removeButtonText) {
+                    addButtonText.textContent = 'Add Tax Authority';
+                    removeButtonText.textContent = 'Remove Tax Authority';
+                }
+            } else if (contactType === 'Title Abstractors') {
+                // Show title abstractors form
+                horizontalTabs.classList.add('hidden');
+                allTabContents.forEach(content => content.classList.add('hidden'));
+                otherContactsForm.classList.add('hidden');
+                lendersForm.classList.add('hidden');
+                mortgageBrokeragesForm.classList.add('hidden');
+                sellingAgenciesForm.classList.add('hidden');
+                listingAgenciesForm.classList.add('hidden');
+                recordingOfficesForm.classList.add('hidden');
+                taxAuthoritiesForm.classList.add('hidden');
+                titleAbstractorsForm.classList.add('hidden');
+                surveyingFirmsForm.classList.add('hidden');
+                titleAbstractorsForm.classList.remove('hidden');
+                
+                // Hide buyer and seller forms
+                buyersInfoForm.classList.add('hidden');
+                sellersInfoForm.classList.add('hidden');
+                
+                // Update contact name
+                if (contactNameElement) {
+                    contactNameElement.textContent = 'Title Abstractor #1';
+                }
+                
+                // Update button text
+                const addButtonText = document.getElementById('add-button-text');
+                const removeButtonText = document.getElementById('remove-button-text');
+                if (addButtonText && removeButtonText) {
+                    addButtonText.textContent = 'Add Title Abstractor';
+                    removeButtonText.textContent = 'Remove Title Abstractor';
+                }
+            } else if (contactType === 'Surveying Firms') {
+                // Show surveying firms form
+                horizontalTabs.classList.add('hidden');
+                allTabContents.forEach(content => content.classList.add('hidden'));
+                otherContactsForm.classList.add('hidden');
+                lendersForm.classList.add('hidden');
+                mortgageBrokeragesForm.classList.add('hidden');
+                sellingAgenciesForm.classList.add('hidden');
+                listingAgenciesForm.classList.add('hidden');
+                recordingOfficesForm.classList.add('hidden');
+                taxAuthoritiesForm.classList.add('hidden');
+                titleAbstractorsForm.classList.add('hidden');
+                surveyingFirmsForm.classList.add('hidden');
+                surveyingFirmsForm.classList.remove('hidden');
+                
+                // Hide buyer and seller forms
+                buyersInfoForm.classList.add('hidden');
+                sellersInfoForm.classList.add('hidden');
+                
+                // Update contact name
+                if (contactNameElement) {
+                    contactNameElement.textContent = 'Surveying Firm #1';
+                }
+                
+                // Update button text
+                const addButtonText = document.getElementById('add-button-text');
+                const removeButtonText = document.getElementById('remove-button-text');
+                if (addButtonText && removeButtonText) {
+                    addButtonText.textContent = 'Add Surveying Firm';
+                    removeButtonText.textContent = 'Remove Surveying Firm';
+                }
+            } else {
+                // Hide tabs and show simple form for other contact types
+                horizontalTabs.classList.add('hidden');
+                allTabContents.forEach(content => content.classList.add('hidden'));
+                otherContactsForm.classList.remove('hidden');
+                lendersForm.classList.add('hidden');
+                mortgageBrokeragesForm.classList.add('hidden');
+                sellingAgenciesForm.classList.add('hidden');
+                listingAgenciesForm.classList.add('hidden');
+                recordingOfficesForm.classList.add('hidden');
+                taxAuthoritiesForm.classList.add('hidden');
+                titleAbstractorsForm.classList.add('hidden');
+                surveyingFirmsForm.classList.add('hidden');
+                taxAuthoritiesForm.classList.add('hidden');
+                
+                // Hide buyer and seller forms
                 buyersInfoForm.classList.add('hidden');
                 sellersInfoForm.classList.add('hidden');
                 
                 // Update contact name based on type
                 if (contactNameElement) {
-                    switch(contactType) {
-                        case 'Lenders':
-                            contactNameElement.textContent = 'Bank of America';
-                            break;
-                        case 'Mortgage Brokerages':
-                            contactNameElement.textContent = 'Quicken Loans';
-                            break;
-                        case 'Selling Agencies':
-                            contactNameElement.textContent = 'Century 21 Realty';
-                            break;
-                        case 'Listing Agencies':
-                            contactNameElement.textContent = 'Coldwell Banker';
-                            break;
-                        default:
-                            contactNameElement.textContent = contactType;
-                    }
+                    contactNameElement.textContent = contactType;
+                }
+                
+                // Update button text based on type
+                const addButtonText = document.getElementById('add-button-text');
+                const removeButtonText = document.getElementById('remove-button-text');
+                if (addButtonText && removeButtonText) {
+                    addButtonText.textContent = 'Add Contact';
+                    removeButtonText.textContent = 'Remove Contact';
                 }
             }
         }

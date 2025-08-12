@@ -1,0 +1,178 @@
+Section,Category,UCD Field,Qualia Field,UCD Type,Qualia Type,Required,Notes
+LOAN,Basic Terms,LOAN.LoanAmount,cdf.loans.0.initial_loan_amount,MISMOAmount,number,Yes,Principal loan amount
+LOAN,Basic Terms,LOAN.InterestRate,cdf.loans.0.interest_rate,MISMOPercent,number,Yes,Note rate percentage
+LOAN,Basic Terms,LOAN.LoanTermMonths,cdf.loans.0.loan_term_months,MISMOInteger,number,Yes,Total term in months
+LOAN,Basic Terms,LOAN.LoanTermYears,cdf.loans.0.loan_term_years,MISMOInteger,number,No,Years component of term
+LOAN,Basic Terms,LOAN.LoanNumber,cdf.loans.0.loan_number,MISMOString,string,Yes,Lender's loan identifier
+LOAN,Basic Terms,LOAN.LoanType,cdf.loans.0.loan_type,MISMOEnum,string,Yes,Conventional/FHA/VA/USDA
+LOAN,Basic Terms,LOAN.LoanPurpose,cdf.loans.0.loan_purpose,MISMOEnum,string,Yes,Purchase/Refinance/Construction
+LOAN,Basic Terms,LOAN.ProductType,cdf.loans.0.loan_product,MISMOEnum,string,Yes,Fixed Rate/ARM/Other
+LOAN,Features,LOAN.PrepaymentPenaltyIndicator,cdf.loans.0.has_prepayment_penalty,MISMOBoolean,boolean,Yes,Prepayment penalty flag
+LOAN,Features,LOAN.BalloonIndicator,cdf.loans.0.has_balloon_payment,MISMOBoolean,boolean,Yes,Balloon payment flag
+LOAN,Features,LOAN.InterestOnlyIndicator,cdf.loans.0.interest_only,MISMOBoolean,boolean,No,Interest-only period
+LOAN,Features,LOAN.NegativeAmortizationIndicator,cdf.loans.0.negative_amortization,MISMOBoolean,boolean,No,Negative amortization allowed
+LOAN,Features,LOAN.ConstructionLoanIndicator,cdf.loans.0.is_construction_loan,MISMOBoolean,boolean,No,Construction loan flag
+LOAN,Features,LOAN.HELOCIndicator,cdf.loans.0.is_heloc,MISMOBoolean,boolean,No,HELOC flag
+LOAN,Features,LOAN.MERSIndicator,cdf.loans.0.is_MERS,MISMOBoolean,boolean,No,MERS registration
+LOAN,Payment,LOAN.MonthlyPrincipalInterest,cdf.loans.0.monthly_principal_and_interest,MISMOAmount,number,Yes,Monthly P&I payment
+LOAN,Payment,LOAN.FirstPaymentDate,cdf.loans.0.first_payment_date,MISMODate,date,Yes,First payment due date
+LOAN,Payment,LOAN.MaturityDate,cdf.loans.0.last_payment_date,MISMODate,date,No,Final payment date
+LOAN,Payment,LOAN.MortgageInsurancePremium,cdf.prepaid_item_information.line_02.paid_by_borrower,MISMOAmount,number,No,MI premium amount
+LOAN,Penalties,LOAN.PenaltyGracePeriodDays,cdf.loans.0.penalty_grace_period_days,MISMOInteger,number,No,Days before penalty
+LOAN,Penalties,LOAN.LatePenaltyAmount,cdf.loans.0.late_penalty_amount,MISMOAmount,number,No,Late payment penalty
+LOAN,Penalties,LOAN.LatePenaltyType,cdf.loans.0.late_penalty_type,MISMOEnum,string,No,Percentage or fixed amount
+BORROWER,Personal,BORROWER.FirstName,contacts.borrowers.0.first_name,MISMOString,string,Yes,Given name
+BORROWER,Personal,BORROWER.MiddleName,contacts.borrowers.0.middle_name,MISMOString,string,No,Middle name
+BORROWER,Personal,BORROWER.LastName,contacts.borrowers.0.last_name,MISMOString,string,Yes,Surname
+BORROWER,Personal,BORROWER.NameSuffix,contacts.borrowers.0.suffix,MISMOString,string,No,Jr/Sr/III
+BORROWER,Personal,BORROWER.SSN,contacts.borrowers.0.SSN,MISMOString,string,Yes,Social Security Number
+BORROWER,Personal,BORROWER.DateOfBirth,contacts.borrowers.0.date_of_birth,MISMODate,date,No,Date of birth
+BORROWER,Personal,BORROWER.MaritalStatus,contacts.borrowers.0.marital_status,MISMOEnum,string,No,Single/Married/Divorced
+BORROWER,Personal,BORROWER.Gender,contacts.borrowers.0.gender,MISMOEnum,string,No,Male/Female/Other
+BORROWER,Contact,BORROWER.Email,contacts.borrowers.0.email,MISMOString,string,No,Email address
+BORROWER,Contact,BORROWER.CellPhone,contacts.borrowers.0.cell_phone,MISMOString,string,Yes,Primary phone
+BORROWER,Contact,BORROWER.HomePhone,contacts.borrowers.0.home_phone,MISMOString,string,No,Home phone
+BORROWER,Contact,BORROWER.WorkPhone,contacts.borrowers.0.work_phone,MISMOString,string,No,Work phone
+BORROWER,Address,BORROWER.AddressLine1,contacts.borrowers.0.current_address.address_1,MISMOString,string,Yes,Street address
+BORROWER,Address,BORROWER.AddressLine2,contacts.borrowers.0.current_address.address_2,MISMOString,string,No,Unit/Apartment
+BORROWER,Address,BORROWER.City,contacts.borrowers.0.current_address.city,MISMOString,string,Yes,City
+BORROWER,Address,BORROWER.State,contacts.borrowers.0.current_address.state,MISMOString,string,Yes,State code
+BORROWER,Address,BORROWER.PostalCode,contacts.borrowers.0.current_address.zipcode,MISMOString,string,Yes,ZIP code
+BORROWER,Ownership,BORROWER.OnTitle,contacts.borrowers.0.on_title,MISMOBoolean,boolean,Yes,On property title
+BORROWER,Ownership,BORROWER.OwnershipPercent,contacts.borrowers.0.ownership_percentage,MISMOPercent,number,No,Ownership percentage
+SELLER,Personal,SELLER.FirstName,contacts.sellers.0.first_name,MISMOString,string,Yes,Given name
+SELLER,Personal,SELLER.MiddleName,contacts.sellers.0.middle_name,MISMOString,string,No,Middle name
+SELLER,Personal,SELLER.LastName,contacts.sellers.0.last_name,MISMOString,string,Yes,Surname
+SELLER,Personal,SELLER.EntityName,contacts.sellers.0.company_name,MISMOString,string,No,Company/Trust name
+SELLER,Personal,SELLER.SSN,contacts.sellers.0.SSN,MISMOString,string,No,Tax ID
+SELLER,Contact,SELLER.Email,contacts.sellers.0.email,MISMOString,string,No,Email address
+SELLER,Contact,SELLER.Phone,contacts.sellers.0.cell_phone,MISMOString,string,No,Primary phone
+SELLER,Ownership,SELLER.OwnershipPercent,contacts.sellers.0.ownership_percentage,MISMOPercent,number,No,Ownership share
+SELLER,Proceeds,-,contacts.sellers.0.proceeds_delivery_method,-,string,No,Qualia-specific: check/wire/holdback
+SELLER,Proceeds,-,contacts.seller_payees.0.type,-,string,No,Qualia-specific: payment type
+LENDER,Company,LENDER.Name,contacts.lenders.0.company_name,MISMOString,string,Yes,Lender name
+LENDER,Company,LENDER.NMLSIdentifier,contacts.lenders.0.nmls_id,MISMOString,string,No,NMLS number
+LENDER,Contact,LENDER.ContactName,contacts.lenders.0.loan_officer_name,MISMOString,string,No,Loan officer name
+LENDER,Contact,LENDER.Email,contacts.lenders.0.email,MISMOString,string,No,Contact email
+LENDER,Contact,LENDER.Phone,contacts.lenders.0.phone,MISMOString,string,No,Contact phone
+LENDER,Address,LENDER.AddressLine1,contacts.lenders.0.address.address_1,MISMOString,string,No,Street address
+LENDER,Address,LENDER.City,contacts.lenders.0.address.city,MISMOString,string,No,City
+LENDER,Address,LENDER.State,contacts.lenders.0.address.state,MISMOString,string,No,State
+PROPERTY,Address,PROPERTY.AddressLine1,properties.0.address_line_1,MISMOString,string,Yes,Street address
+PROPERTY,Address,PROPERTY.AddressLine2,properties.0.address_line_2,MISMOString,string,No,Unit number
+PROPERTY,Address,PROPERTY.City,properties.0.address_city,MISMOString,string,Yes,City
+PROPERTY,Address,PROPERTY.County,properties.0.address_county,MISMOString,string,Yes,County
+PROPERTY,Address,PROPERTY.State,properties.0.address_state,MISMOString,string,Yes,State code
+PROPERTY,Address,PROPERTY.PostalCode,properties.0.address_zip,MISMOString,string,Yes,ZIP code
+PROPERTY,Legal,PROPERTY.LegalDescription,properties.0.legal_description,MISMOString,string,Yes,Legal description
+PROPERTY,Legal,PROPERTY.APN,properties.0.apn,MISMOString,string,No,Assessor parcel number
+PROPERTY,Legal,PROPERTY.Lot,properties.0.lot,MISMOString,string,No,Lot number
+PROPERTY,Legal,PROPERTY.Block,properties.0.block,MISMOString,string,No,Block number
+PROPERTY,Financial,PROPERTY.SalePrice,purchase_price,MISMOAmount,number,Yes,Contract sales price
+PROPERTY,Tax,PROPERTY.AnnualTaxAmount,properties.0.tax_information.annual_amount,MISMOAmount,number,Yes,Annual property tax
+PROPERTY,Tax,PROPERTY.TaxProrationDate,properties.0.tax_information.proration.through_date,MISMODate,date,No,Tax proration date
+PROPERTY,Tax,PROPERTY.TaxProrationAmount,properties.0.tax_information.proration.credit_buyer,MISMOAmount,number,No,Prorated tax amount
+PROPERTY,HOA,-,properties.0.hoa.name,-,string,No,Qualia-specific: HOA name
+PROPERTY,HOA,-,properties.0.hoa.monthly_dues,-,number,No,Qualia-specific: HOA dues
+SECTION_A,Origination,FEE.LoanOriginationFee,cdf.origination_charges.line_01.paid_by_borrower,MISMOAmount,number,No,Origination fee
+SECTION_A,Origination,FEE.LoanDiscountPoints,cdf.origination_charges.line_02.paid_by_borrower,MISMOAmount,number,No,Discount points
+SECTION_A,Origination,FEE.ProcessingFee,cdf.origination_charges.line_03.paid_by_borrower,MISMOAmount,number,No,Processing fee
+SECTION_A,Origination,FEE.UnderwritingFee,cdf.origination_charges.line_04.paid_by_borrower,MISMOAmount,number,No,Underwriting fee
+SECTION_A,Origination,FEE.ApplicationFee,cdf.origination_charges.line_05.paid_by_borrower,MISMOAmount,number,No,Application fee
+SECTION_A,Origination,FEE.RateLockFee,cdf.origination_charges.line_06.paid_by_borrower,MISMOAmount,number,No,Rate lock fee
+SECTION_A,Origination,FEE.AdministrationFee,cdf.origination_charges.line_07.paid_by_borrower,MISMOAmount,number,No,Admin fee
+SECTION_B,Cannot Shop,FEE.AppraisalFee,cdf.services_borrower_did_not_shop_for.line_01.paid_by_borrower,MISMOAmount,number,No,Appraisal
+SECTION_B,Cannot Shop,FEE.CreditReportFee,cdf.services_borrower_did_not_shop_for.line_02.paid_by_borrower,MISMOAmount,number,No,Credit report
+SECTION_B,Cannot Shop,FEE.FloodCertification,cdf.services_borrower_did_not_shop_for.line_03.paid_by_borrower,MISMOAmount,number,No,Flood cert
+SECTION_B,Cannot Shop,FEE.TaxServiceFee,cdf.services_borrower_did_not_shop_for.line_04.paid_by_borrower,MISMOAmount,number,No,Tax service
+SECTION_B,Cannot Shop,FEE.FloodMonitoringFee,cdf.services_borrower_did_not_shop_for.line_05.paid_by_borrower,MISMOAmount,number,No,Flood monitoring
+SECTION_C,Can Shop,FEE.TitleSearchFee,cdf.services_borrower_did_shop_for.line_01.paid_by_borrower,MISMOAmount,number,No,Title search
+SECTION_C,Can Shop,FEE.TitleExaminationFee,cdf.services_borrower_did_shop_for.line_02.paid_by_borrower,MISMOAmount,number,No,Title exam
+SECTION_C,Can Shop,FEE.TitleLendersCoveragePremium,cdf.services_borrower_did_shop_for.line_03.paid_by_borrower,MISMOAmount,number,Yes,Lender's title insurance
+SECTION_C,Can Shop,FEE.TitleOwnersCoveragePremium,cdf.services_borrower_did_shop_for.line_04.paid_by_borrower,MISMOAmount,number,No,Owner's title insurance
+SECTION_C,Can Shop,FEE.SettlementFee,cdf.services_borrower_did_shop_for.line_05.paid_by_borrower,MISMOAmount,number,No,Settlement/closing fee
+SECTION_C,Can Shop,FEE.EscrowServiceFee,cdf.services_borrower_did_shop_for.line_06.paid_by_borrower,MISMOAmount,number,No,Escrow service
+SECTION_C,Can Shop,FEE.SurveyFee,cdf.services_borrower_did_shop_for.line_07.paid_by_borrower,MISMOAmount,number,No,Survey
+SECTION_C,Can Shop,FEE.PestInspectionFee,cdf.services_borrower_did_shop_for.line_08.paid_by_borrower,MISMOAmount,number,No,Pest inspection
+SECTION_E,Government,FEE.RecordingFeeForDeed,cdf.taxes_and_government_fees.line_01.paid_by_borrower,MISMOAmount,number,Yes,Deed recording
+SECTION_E,Government,FEE.RecordingFeeForMortgage,cdf.taxes_and_government_fees.line_02.paid_by_borrower,MISMOAmount,number,Yes,Mortgage recording
+SECTION_E,Government,FEE.TransferTax,cdf.taxes_and_government_fees.line_03.paid_by_seller,MISMOAmount,number,No,Transfer tax
+SECTION_E,Government,FEE.StateStampTax,cdf.taxes_and_government_fees.line_04.paid_by_seller,MISMOAmount,number,No,State stamps
+SECTION_E,Government,FEE.CountyStampTax,cdf.taxes_and_government_fees.line_05.paid_by_seller,MISMOAmount,number,No,County stamps
+SECTION_E,Government,FEE.CityStampTax,cdf.taxes_and_government_fees.line_06.paid_by_seller,MISMOAmount,number,No,City stamps
+SECTION_F,Prepaids,PREPAID.HomeownersInsurance,cdf.prepaid_item_information.line_01.paid_by_borrower,MISMOAmount,number,Yes,Hazard insurance premium
+SECTION_F,Prepaids,PREPAID.MortgageInsurance,cdf.prepaid_item_information.line_02.paid_by_borrower,MISMOAmount,number,No,MI premium
+SECTION_F,Prepaids,PREPAID.PrepaidInterest,cdf.prepaid_item_information.line_03.paid_by_borrower,MISMOAmount,number,Yes,Prepaid interest
+SECTION_F,Prepaids,PREPAID.PropertyTax,cdf.prepaid_item_information.line_04.paid_by_borrower,MISMOAmount,number,No,Property tax prepaid
+SECTION_F,Prepaids,PREPAID.HOADues,cdf.prepaid_item_information.line_05.paid_by_borrower,MISMOAmount,number,No,HOA dues prepaid
+SECTION_G,Escrow,ESCROW.HomeownersInsurance,cdf.escrow_information.line_01.paid_by_borrower,MISMOAmount,number,No,Insurance escrow
+SECTION_G,Escrow,ESCROW.MortgageInsurance,cdf.escrow_information.line_02.paid_by_borrower,MISMOAmount,number,No,MI escrow
+SECTION_G,Escrow,ESCROW.PropertyTax,cdf.escrow_information.line_03.paid_by_borrower,MISMOAmount,number,No,Tax escrow
+SECTION_G,Escrow,ESCROW.HOADues,cdf.escrow_information.line_04.paid_by_borrower,MISMOAmount,number,No,HOA escrow
+SECTION_G,Escrow,ESCROW.FloodInsurance,cdf.escrow_information.line_05.paid_by_borrower,MISMOAmount,number,No,Flood insurance escrow
+SECTION_G,Escrow,ESCROW.OtherEscrow1,cdf.escrow_information.line_06.paid_by_borrower,MISMOAmount,number,No,Other escrow item
+SECTION_G,Escrow,ESCROW.AggregateAdjustment,cdf.escrow_information.line_07.paid_by_borrower,MISMOAmount,number,No,Aggregate adjustment
+SECTION_H,Other,FEE.HomeWarrantyFee,cdf.other_charges.line_01.paid_by_seller,MISMOAmount,number,No,Home warranty
+SECTION_H,Other,FEE.RealEstateCommission,cdf.other_charges.line_02.paid_by_seller,MISMOAmount,number,No,Real estate commission
+SECTION_H,Other,FEE.HomeInspectionFee,cdf.other_charges.line_03.paid_by_borrower,MISMOAmount,number,No,Home inspection
+SECTION_H,Other,FEE.AttorneyFee,cdf.other_charges.line_04.paid_by_borrower,MISMOAmount,number,No,Attorney fees
+SECTION_H,Other,FEE.CourierFee,cdf.other_charges.line_05.paid_by_borrower,MISMOAmount,number,No,Courier/delivery
+SECTION_J,Credits,CLOSING.LenderCredits,cdf.total_closing_costs.lender_credits.borrower_amount,MISMOAmount,number,No,Lender credits
+SECTION_J,Credits,CLOSING.SellerCredits,cdf.total_closing_costs.lender_credits.seller_amount,MISMOAmount,number,No,Seller contribution to lender credits
+SECTION_K,Borrower Credits,CREDIT.SaleContractCredit,cdf.borrower_credit_information.line_01.amount,MISMOAmount,number,No,Contract sales price
+SECTION_K,Borrower Credits,CREDIT.PersonalPropertyCredit,cdf.borrower_credit_information.line_02.amount,MISMOAmount,number,No,Personal property value
+SECTION_K,Borrower Credits,CREDIT.ClosingCostsCredit,cdf.borrower_credit_information.line_03.amount,MISMOAmount,number,No,Closing costs paid by seller
+SECTION_K,Borrower Credits,CREDIT.SellerCreditAmount,cdf.borrower_credit_information.line_04.amount,MISMOAmount,number,No,Seller credit
+SECTION_K,Borrower Credits,CREDIT.AdjustmentsCredit,cdf.borrower_credit_information.line_05.amount,MISMOAmount,number,No,Other adjustments
+SECTION_L,Borrower Debits,DEBIT.SaleContractDebit,cdf.borrower_debit_information.line_01.amount,MISMOAmount,number,No,Due from borrower at closing
+SECTION_L,Borrower Debits,DEBIT.ClosingCostsDebit,cdf.borrower_debit_information.line_02.amount,MISMOAmount,number,No,Closing costs from section J
+SECTION_L,Borrower Debits,DEBIT.ExistingLoanPayoff,cdf.borrower_debit_information.line_03.amount,MISMOAmount,number,No,Payoff first mortgage
+SECTION_L,Borrower Debits,DEBIT.PayoffSecondMortgage,cdf.borrower_debit_information.line_04.amount,MISMOAmount,number,No,Payoff second mortgage
+SECTION_M,Seller Credits,CREDIT.SaleContractSellerCredit,cdf.seller_credit_information.line_01.amount,MISMOAmount,number,No,Contract sales price
+SECTION_M,Seller Credits,CREDIT.PersonalPropertySellerCredit,cdf.seller_credit_information.line_02.amount,MISMOAmount,number,No,Personal property
+SECTION_M,Seller Credits,CREDIT.CityTaxCredit,cdf.seller_credit_information.line_03.amount,MISMOAmount,number,No,City/town taxes
+SECTION_M,Seller Credits,CREDIT.CountyTaxCredit,cdf.seller_credit_information.line_04.amount,MISMOAmount,number,No,County taxes
+SECTION_M,Seller Credits,CREDIT.AssessmentsCredit,cdf.seller_credit_information.line_05.amount,MISMOAmount,number,No,Assessments
+SECTION_N,Seller Debits,DEBIT.ExcessDepositDebit,cdf.seller_debit_information.line_01.amount,MISMOAmount,number,No,Excess deposit
+SECTION_N,Seller Debits,DEBIT.ClosingCostsSellerDebit,cdf.seller_debit_information.line_02.amount,MISMOAmount,number,No,Closing costs from section J
+SECTION_N,Seller Debits,DEBIT.ExistingLoanSellerPayoff,cdf.seller_debit_information.line_03.amount,MISMOAmount,number,No,Payoff first mortgage
+SECTION_N,Seller Debits,DEBIT.PayoffSecondSellerMortgage,cdf.seller_debit_information.line_04.amount,MISMOAmount,number,No,Payoff second mortgage
+SECTION_N,Seller Debits,DEBIT.SellerCreditDebit,cdf.seller_debit_information.line_05.amount,MISMOAmount,number,No,Seller credit
+CASH_TO_CLOSE,Calculations,CLOSING.TotalClosingCosts,cdf.purchase_cash_to_close.total_closing_costs.for_borrower,MISMOAmount,number,Yes,Total closing costs
+CASH_TO_CLOSE,Calculations,CLOSING.ClosingCostsFinanced,cdf.purchase_cash_to_close.closing_costs_financed,MISMOAmount,number,No,Costs paid from loan
+CASH_TO_CLOSE,Calculations,CLOSING.DownPayment,cdf.purchase_cash_to_close.down_payment_from_borrower.amount,MISMOAmount,number,Yes,Down payment
+CASH_TO_CLOSE,Calculations,CLOSING.EarnestMoneyDeposit,cdf.purchase_cash_to_close.deposit.earnest_money,MISMOAmount,number,No,Earnest money deposit
+CASH_TO_CLOSE,Calculations,CLOSING.SellerCredits,cdf.purchase_cash_to_close.seller_credits.amount,MISMOAmount,number,No,Seller credits
+CASH_TO_CLOSE,Calculations,CLOSING.Adjustments,cdf.purchase_cash_to_close.adjustments_and_other_credits.amount,MISMOAmount,number,No,Other adjustments
+CASH_TO_CLOSE,Calculations,CLOSING.CashToClose,cdf.purchase_cash_to_close.cash_to_close.from_borrower,MISMOAmount,number,Yes,Final cash to/from borrower
+LOAN_CALC,TRID,CALCULATION.TotalOfPayments,cdf.loan_calculations.total_of_payments,MISMOAmount,number,Yes,Total of all payments
+LOAN_CALC,TRID,CALCULATION.FinanceCharge,cdf.loan_calculations.finance_charge,MISMOAmount,number,Yes,Total finance charge
+LOAN_CALC,TRID,CALCULATION.AmountFinanced,cdf.loan_calculations.amount_financed,MISMOAmount,number,Yes,Amount financed
+LOAN_CALC,TRID,CALCULATION.APR,cdf.loan_calculations.annual_percentage_rate,MISMOPercent,number,Yes,Annual percentage rate
+LOAN_CALC,TRID,CALCULATION.TIP,cdf.loan_calculations.total_interest_percentage,MISMOPercent,number,Yes,Total interest percentage
+PAYOFFS,Liens,PAYOFF.LenderName,payoffs.0.lender_name,MISMOString,string,No,Existing lender name
+PAYOFFS,Liens,PAYOFF.LoanNumber,payoffs.0.loan_number,MISMOString,string,No,Account number
+PAYOFFS,Liens,PAYOFF.PayoffAmount,payoffs.0.payoff_amount,MISMOAmount,number,No,Payoff amount
+PAYOFFS,Liens,PAYOFF.GoodThroughDate,payoffs.0.good_through_date,MISMODate,date,No,Payoff expiration
+PAYOFFS,Liens,PAYOFF.PerDiem,payoffs.0.per_diem,MISMOAmount,number,No,Daily interest
+TRANSACTION,Dates,-,estimated_closing_date,-,date,Yes,Qualia-specific field
+TRANSACTION,Dates,-,contract_date,-,date,No,Qualia-specific field
+TRANSACTION,Dates,-,funding_date,-,date,No,Qualia-specific field
+TRANSACTION,Dates,-,disbursement_date,-,date,No,Qualia-specific field
+TRANSACTION,Dates,-,recording_date,-,date,No,Qualia-specific field
+TRANSACTION,Earnest,-,earnest_amount,-,number,No,Qualia-specific field
+TRANSACTION,Earnest,-,earnest_held_by,-,string,No,Qualia-specific field
+TRANSACTION,Commission,-,listing_commission_amount,-,number,No,Qualia-specific field
+TRANSACTION,Commission,-,listing_percentage,-,number,No,Qualia-specific field
+TRANSACTION,Commission,-,selling_commission_amount,-,number,No,Qualia-specific field
+TRANSACTION,Commission,-,selling_percentage,-,number,No,Qualia-specific field
+WIRE_INFO,Banking,-,wire_info.bank_name,-,string,No,Qualia-specific field
+WIRE_INFO,Banking,-,wire_info.routing_number,-,string,No,Qualia-specific field
+WIRE_INFO,Banking,-,wire_info.account_number,-,string,No,Qualia-specific field
+WIRE_INFO,Banking,-,wire_info.account_name,-,string,No,Qualia-specific field
+WIRE_INFO,Banking,-,wire_info.reference,-,string,No,Qualia-specific field
+CHECK_INFO,Mailing,-,check_info.payable_to,-,string,No,Qualia-specific field
+CHECK_INFO,Mailing,-,check_info.street_address_1,-,string,No,Qualia-specific field
+CHECK_INFO,Mailing,-,check_info.city,-,string,No,Qualia-specific field
+CHECK_INFO,Mailing,-,check_info.state,-,string,No,Qualia-specific field
+CHECK_INFO,Mailing,-,check_info.zip_code,-,string,No,Qualia-specific field

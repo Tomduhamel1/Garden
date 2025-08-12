@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Terms - Real Estate Closing</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white">
+    <div class="flex h-screen">
+        <!-- Left Sidebar -->
+        <section class="w-72 bg-gray-800 border-r border-gray-600">
+            <div class="p-5 text-gray-400 text-center border-b border-gray-600">
+                <div class="text-xs">Navigation Sidebar</div>
+                <div class="text-xs mt-1">Loan Terms is active</div>
+            </div>
+        </section>
+
+        <!-- Main Content -->
+        <section class="flex-1 bg-gray-900 overflow-y-auto">
+            <!-- Page Header -->
+            <section class="py-8 px-10 pb-5 border-b border-gray-600 flex items-center justify-between">
+                <div class="flex items-center gap-4">
+                    <i class="fa fa-file-text-o text-gray-400 text-xl"></i>
+                    <h2 class="text-2xl font-semibold text-white">Loan Terms</h2>
+                </div>
+            </section>
+
+            <!-- Form Content -->
+            <section class="px-10 py-8">
+                <form class="space-y-8">
+                    <!-- Issue Dates Section -->
+                    <section>
+                        <h4 class="text-lg font-semibold text-white mb-4">Issue Dates</h4>
+                        <div class="bg-gray-800 border border-gray-600 rounded-lg overflow-hidden">
+                            <table class="w-full">
+                                <tbody>
+                                    <tr class="border-b border-gray-600">
+                                        <td class="py-4 px-6 font-medium text-white bg-gray-700 w-1/3">
+                                            Buyer CD Issue Date
+                                        </td>
+                                        <td class="py-4 px-6">
+                                            <div class="relative">
+                                                <i class="fa fa-calendar absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                                                <input type="text" 
+                                                       class="w-full pl-10 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
+                                                       placeholder="Issued date"
+                                                       inputmode="numeric"
+                                                       data-schema-key="borrower_statement_issued_date">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="border-b border-gray-600">
+                                        <td class="py-4 px-6 font-medium text-white bg-gray-700">
+                                            Seller CD Issue Date
+                                        </td>
+                                        <td class="py-4 px-6">
+                                            <div class="relative">
+                                                <i class="fa fa-calendar absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                                                <input type="text" 
+                                                       class="w-full pl-10 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
+                                                       placeholder="Issued date"
+                                                       inputmode="numeric"
+                                                       data-schema-key="seller_statement_issued_date">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <!-- Loan Type Section -->
+                    <section>
+                        <h4 class="text-lg font-semibold text-white mb-4">Loan Type</h4>
+                        <div class="bg-gray-800 border border-gray-600 rounded-lg p-6">
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-300 mb-2">
+                                        Loan Type
+                                    </label>
+                                    <div class="relative">
+                                        <select class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none" 
+                                                data-schema-key="cdf.loans.0.loan_type">
+                                            <option value="Conventional Insured" selected>Conventional Insured</option>
+                                            <option value="Conventional Uninsured">Conventional Uninsured</option>
+                                            <option value="RHS">RHS</option>
+                                            <option value="FHA">FHA</option>
+                                            <option value="VA">VA</option>
+                                        </select>
+                                        <i class="fa fa-chevron-down absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-300 mb-2">
+                                        Loan Purpose
+                                    </label>
+                                    <div class="relative">
+                                        <select class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none" 
+                                                data-schema-key="cdf.loans.0.loan_purpose">
+                                            <option value="Purchase" selected>Purchase</option>
+                                            <option value="Refinance">Refinance</option>
+                                            <option value="Home Equity Loan">Home Equity Loan</option>
+                                            <option value="Construction">Construction</option>
+                                        </select>
+                                        <i class="fa fa-chevron-down absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-300 mb-2">
+                                        Loan Product
+                                    </label>
+                                    <input type="text" 
+                                           class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
+                                           data-schema-key="cdf.loans.0.loan_product">
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Loan Term Table Section -->
+                    <section>
+                        <h4 class="text-lg font-semibold text-white mb-4">Loan Term Table</h4>
+                        <div class="bg-gray-800 border border-gray-600 rounded-lg overflow-hidden">
+                            <table class="w-full">
+                                <tbody>
+                                    <!-- Loan Amount Row -->
+                                    <tr class="border-b border-gray-600">
+                                        <td class="py-4 px-6 font-medium text-white bg-gray-700 w-1/4">
+                                            Loan Amount
+                                        </td>
+                                        <td class="py-4 px-6 w-1/4">
+                                            <input type="text" 
+                                                   inputmode="decimal"
+                                                   class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
+                                                   data-schema-key="cdf.loans.0.initial_loan_amount">
+                                        </td>
+                                        <td class="py-4 px-6 w-1/4">
+                                            <div class="relative">
+                                                <select class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none" 
+                                                        data-schema-key="cdf.loans.0.initial_loan_amount_can_increase">
+                                                    <option value="no" selected>Cannot increase</option>
+                                                    <option value="yes">Can increase</option>
+                                                </select>
+                                                <i class="fa fa-chevron-down absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none"></i>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 px-6 w-1/4"></td>
+                                    </tr>
+
+                                    <!-- Interest Rate Row -->
+                                    <tr class="border-b border-gray-600">
+                                        <td class="py-4 px-6 font-medium text-white bg-gray-700">
+                                            Interest Rate
+                                        </td>
+                                        <td class="py-4 px-6">
+                                            <input type="text" 
+                                                   inputmode="decimal"
+                                                   class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
+                                                   data-schema-key="cdf.loans.0.interest_rate">
+                                        </td>
+                                        <td class="py-4 px-6">
+                                            <div class="relative">
+                                                <select class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none" 
+                                                        data-schema-key="cdf.loans.0.interest_rate_can_increase">
+                                                    <option value="no" selected>Cannot increase</option>
+                                                    <option value="yes">Can increase</option>
+                                                </select>
+                                                <i class="fa fa-chevron-down absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none"></i>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 px-6"></td>
+                                    </tr>
+
+                                    <!-- Monthly Principal & Interest Row -->
+                                    <tr class="border-b border-gray-600">
+                                        <td class="py-4 px-6 font-medium text-white bg-gray-700">
+                                            Monthly Principal & Interest
+                                        </td>
+                                        <td class="py-4 px-6">
+                                            <input type="text" 
+                                                   inputmode="decimal"
+                                                   class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
+                                                   data-schema-key="cdf.loans.0.monthly_principal_and_interest">
+                                        </td>
+                                        <td class="py-4 px-6">
+                                            <div class="relative">
+                                                <select class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none" 
+                                                        data-schema-key="cdf.loans.0.monthly_principal_and_interest_can_increase">
+                                                    <option value="no" selected>Cannot increase</option>
+                                                    <option value="yes">Can increase</option>
+                                                </select>
+                                                <i class="fa fa-chevron-down absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none"></i>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 px-6"></td>
+                                    </tr>
+
+                                    <!-- Prepayment Penalty Row -->
+                                    <tr class="border-b border-gray-600">
+                                        <td class="py-4 px-6 font-medium text-white bg-gray-700">
+                                            Prepayment Penalty
+                                        </td>
+                                        <td class="py-4 px-6"></td>
+                                        <td class="py-4 px-6">
+                                            <div class="relative">
+                                                <select class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none" 
+                                                        data-schema-key="cdf.loans.0.has_prepayment_penalty">
+                                                    <option value="no" selected>No</option>
+                                                    <option value="yes">Yes</option>
+                                                </select>
+                                                <i class="fa fa-chevron-down absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none"></i>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 px-6"></td>
+                                    </tr>
+
+                                    <!-- Balloon Payment Row -->
+                                    <tr class="border-b border-gray-600">
+                                        <td class="py-4 px-6 font-medium text-white bg-gray-700">
+                                            Balloon Payment
+                                        </td>
+                                        <td class="py-4 px-6"></td>
+                                        <td class="py-4 px-6">
+                                            <div class="relative">
+                                                <select class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none" 
+                                                        data-schema-key="cdf.loans.0.has_balloon_payment"
+                                                        onchange="toggleBalloonDescription(this)">
+                                                    <option value="yes" selected>Yes</option>
+                                                    <option value="no">No</option>
+                                                </select>
+                                                <i class="fa fa-chevron-down absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none"></i>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 px-6">
+                                            <div id="balloon-description" class="flex items-center gap-2">
+                                                <i class="fa fa-trash text-red-400 hover:text-red-300 cursor-pointer" title="Remove Term"></i>
+                                                <input type="text" 
+                                                       class="flex-1 px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
+                                                       data-schema-key="cdf.loans.0.balloon_payment_description.0">
+                                                <div class="relative">
+                                                    <button type="button" class="px-3 py-2.5 bg-gray-600 border border-gray-500 rounded text-white text-sm hover:bg-gray-500 flex items-center gap-1">
+                                                        <i class="fa fa-plus text-xs"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                </form>
+            </section>
+        </section>
+
+        <!-- Right Rail -->
+        <section class="w-64 bg-gray-800 border-l border-gray-600 p-5">
+            <section class="mb-5 p-4 bg-gray-700 rounded">
+                <h4 class="text-white text-sm mb-2.5">Chat</h4>
+                <p class="text-gray-400 text-xs">Chat functionality</p>
+            </section>
+
+            <section class="mb-5 p-4 bg-gray-700 rounded">
+                <h4 class="text-white text-sm mb-2.5">Tasks</h4>
+                <p class="text-gray-400 text-xs">No tasks assigned</p>
+            </section>
+
+            <section class="mb-5 p-4 bg-gray-700 rounded">
+                <h4 class="text-white text-sm mb-2.5">Notes</h4>
+                <p class="text-gray-400 text-xs">No notes added</p>
+            </section>
+        </section>
+    </div>
+
+    <script>
+        function toggleBalloonDescription(select) {
+            const balloonDescription = document.getElementById('balloon-description');
+            if (select.value === 'yes') {
+                balloonDescription.style.display = 'flex';
+            } else {
+                balloonDescription.style.display = 'none';
+            }
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const balloonSelect = document.querySelector('[data-schema-key="cdf.loans.0.has_balloon_payment"]');
+            toggleBalloonDescription(balloonSelect);
+        });
+    </script>
+</body>
+</html>

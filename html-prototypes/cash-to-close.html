@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cash to Close - Real Estate Closing</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        [contenteditable] {
+            outline: none;
+        }
+        [contenteditable]:focus {
+            background-color: rgb(55 65 81);
+            border-color: rgb(59 130 246);
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white">
+    <div class="flex h-screen">
+        <!-- Left Sidebar -->
+        <section class="w-72 bg-gray-800 border-r border-gray-600">
+            <div class="p-5 text-gray-400 text-center border-b border-gray-600">
+                <div class="text-xs">Navigation Sidebar</div>
+                <div class="text-xs mt-1">Cash to Close is active</div>
+            </div>
+        </section>
+
+        <!-- Main Content -->
+        <section class="flex-1 bg-gray-900 overflow-y-auto">
+            <!-- Page Header -->
+            <section class="py-8 px-10 pb-5 border-b border-gray-600 flex items-center justify-between">
+                <div class="flex items-center gap-4">
+                    <i class="fa fa-money text-gray-400 text-xl"></i>
+                    <h2 class="text-2xl font-semibold text-white">Cash to Close</h2>
+                </div>
+            </section>
+
+            <!-- Form Content -->
+            <section class="px-10 py-8">
+                <form class="space-y-8">
+                    <!-- Cash to Close Table -->
+                    <section>
+                        <div class="bg-gray-800 border border-gray-600 rounded-lg overflow-hidden">
+                            <table class="w-full">
+                                <thead>
+                                    <tr class="bg-gray-700">
+                                        <th class="py-4 px-6 text-left border-b border-gray-600 font-medium text-white"></th>
+                                        <th class="py-4 px-6 text-center border-b border-gray-600 border-l border-gray-600 font-medium text-white w-32">
+                                            Loan Estimate
+                                        </th>
+                                        <th class="py-4 px-6 text-center border-b border-gray-600 border-l border-gray-600 font-medium text-white w-32">
+                                            Final
+                                        </th>
+                                        <th class="py-4 px-6 text-center border-b border-gray-600 border-l border-gray-600 font-medium text-white" colspan="2">
+                                            Did this change?
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Total Closing Costs Row -->
+                                    <tr class="border-b border-gray-600">
+                                        <td class="py-4 px-6 font-medium text-white">
+                                            Total Closing Costs (J)
+                                        </td>
+                                        <td class="py-4 px-6 border-l border-gray-600">
+                                            <input type="text" 
+                                                   inputmode="decimal"
+                                                   class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" 
+                                                   data-schema-key="cdf.purchase_cash_to_close.total_closing_costs.estimate">
+                                        </td>
+                                        <td class="py-4 px-6 border-l border-gray-600">
+                                            <input type="text" 
+                                                   inputmode="decimal"
+                                                   class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" 
+                                                   data-schema-key="cdf.purchase_cash_to_close.total_closing_costs.final_amount">
+                                        </td>
+                                        <td class="py-4 px-6 border-l border-gray-600 w-24">
+                                            <div class="relative">
+                                                <select class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none" 
+                                                        data-schema-key="cdf.purchase_cash_to_close.total_closing_costs.changed">
+                                                    <option value="No" selected>No</option>
+                                                    <option value="Yes">Yes</option>
+                                                </select>
+                                                <i class="fa fa-chevron-down absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none"></i>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 px-6 border-l border-gray-600">
+                                            <div contenteditable="true" 
+                                                 class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm min-h-[42px] focus:outline-none focus:border-blue-500" 
+                                                 data-schema-key="cdf.purchase_cash_to_close.total_closing_costs.change_description"></div>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Paid Before Closing Row -->
+                                    <tr class="border-b border-gray-600">
+                                        <td class="py-4 px-6 font-medium text-white">
+                                            Paid Before Closing
+                                        </td>
+                                        <td class="py-4 px-6 border-l border-gray-600">
+                                            <input type="text" 
+                                                   inputmode="decimal"
+                                                   class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" 
+                                                   data-schema-key="cdf.purchase_cash_to_close.closing_costs_paid_before_closing.estimate">
+                                        </td>
+                                        <td class="py-4 px-6 border-l border-gray-600">
+                                            <input type="text" 
+                                                   inputmode="decimal"
+                                                   class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" 
+                                                   data-schema-key="cdf.purchase_cash_to_close.closing_costs_paid_before_closing.final_amount">
+                                        </td>
+                                        <td class="py-4 px-6 border-l border-gray-600">
+                                            <div class="relative">
+                                                <select class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none" 
+                                                        data-schema-key="cdf.purchase_cash_to_close.closing_costs_paid_before_closing.changed">
+                                                    <option value="No" selected>No</option>
+                                                    <option value="Yes">Yes</option>
+                                                </select>
+                                                <i class="fa fa-chevron-down absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none"></i>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 px-6 border-l border-gray-600">
+                                            <div contenteditable="true" 
+                                                 class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm min-h-[42px] focus:outline-none focus:border-blue-500" 
+                                                 data-schema-key="cdf.purchase_cash_to_close.closing_costs_paid_before_closing.change_description"></div>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Closing Costs Financed Row -->
+                                    <tr class="border-b border-gray-600">
+                                        <td class="py-4 px-6 font-medium text-white">
+                                            Closing Costs Financed
+                                        </td>
+                                        <td class="py-4 px-6 border-l border-gray-600">
+                                            <input type="text" 
+                                                   inputmode="decimal"
+                                                   class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" 
+                                                   data-schema-key="cdf.purchase_cash_to_close.closing_costs_financed.estimate">
+                                        </td>
+                                        <td class="py-4 px-6 border-l border-gray-600">
+                                            <input type="text" 
+                                                   inputmode="decimal"
+                                                   class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" 
+                                                   data-schema-key="cdf.purchase_cash_to_close.closing_costs_financed.final_amount">
+                                        </td>
+                                        <td class="py-4 px-6 border-l border-gray-600">
+                                            <div class="relative">
+                                                <select class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none" 
+                                                        data-schema-key="cdf.purchase_cash_to_close.closing_costs_financed.changed">
+                                                    <option value="No" selected>No</option>
+                                                    <option value="Yes">Yes</option>
+                                                </select>
+                                                <i class="fa fa-chevron-down absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none"></i>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 px-6 border-l border-gray-600">
+                                            <div contenteditable="true" 
+                                                 class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm min-h-[42px] focus:outline-none focus:border-blue-500" 
+                                                 data-schema-key="cdf.purchase_cash_to_close.closing_costs_financed.change_description"></div>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Down Payment From Borrower Row -->
+                                    <tr class="border-b border-gray-600">
+                                        <td class="py-4 px-6 font-medium text-white">
+                                            Down Payment From Borrower
+                                        </td>
+                                        <td class="py-4 px-6 border-l border-gray-600">
+                                            <input type="text" 
+                                                   inputmode="decimal"
+                                                   class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" 
+                                                   data-schema-key="cdf.purchase_cash_to_close.down_payment_from_borrower.estimate">
+                                        </td>
+                                        <td class="py-4 px-6 border-l border-gray-600">
+                                            <input type="text" 
+                                                   inputmode="decimal"
+                                                   class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" 
+                                                   data-schema-key="cdf.purchase_cash_to_close.down_payment_from_borrower.final_amount">
+                                        </td>
+                                        <td class="py-4 px-6 border-l border-gray-600">
+                                            <div class="relative">
+                                                <select class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none" 
+                                                        data-schema-key="cdf.purchase_cash_to_close.down_payment_from_borrower.changed">
+                                                    <option value="No" selected>No</option>
+                                                    <option value="Yes">Yes</option>
+                                                </select>
+                                                <i class="fa fa-chevron-down absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none"></i>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 px-6 border-l border-gray-600">
+                                            <div contenteditable="true" 
+                                                 class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm min-h-[42px] focus:outline-none focus:border-blue-500" 
+                                                 data-schema-key="cdf.purchase_cash_to_close.down_payment_from_borrower.change_description"></div>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Deposit Row -->
+                                    <tr class="border-b border-gray-600">
+                                        <td class="py-4 px-6 font-medium text-white">
+                                            Deposit
+                                        </td>
+                                        <td class="py-4 px-6 border-l border-gray-600">
+                                            <input type="text" 
+                                                   inputmode="decimal"
+                                                   class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" 
+                                                   data-schema-key="cdf.purchase_cash_to_close.deposit.estimate">
+                                        </td>
+                                        <td class="py-4 px-6 border-l border-gray-600">
+                                            <div class="relative">
+                                                <input type="text" 
+                                                       inputmode="decimal"
+                                                       class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500 pr-10" 
+                                                       data-schema-key="cdf.purchase_cash_to_close.deposit.final_amount">
+                                                <i class="fa fa-times absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 cursor-pointer hover:text-red-400" title="Clear override"></i>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 px-6 border-l border-gray-600">
+                                            <div class="relative">
+                                                <select class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none" 
+                                                        data-schema-key="cdf.purchase_cash_to_close.deposit.changed">
+                                                    <option value="No" selected>No</option>
+                                                    <option value="Yes">Yes</option>
+                                                </select>
+                                                <i class="fa fa-chevron-down absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none"></i>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 px-6 border-l border-gray-600">
+                                            <div contenteditable="true" 
+                                                 class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm min-h-[42px] focus:outline-none focus:border-blue-500" 
+                                                 data-schema-key="cdf.purchase_cash_to_close.deposit.change_description"></div>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Funds for Borrower Row -->
+                                    <tr class="border-b border-gray-600">
+                                        <td class="py-4 px-6 font-medium text-white">
+                                            Funds for Borrower
+                                        </td>
+                                        <td class="py-4 px-6 border-l border-gray-600">
+                                            <input type="text" 
+                                                   inputmode="decimal"
+                                                   class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" 
+                                                   data-schema-key="cdf.purchase_cash_to_close.funds_for_borrower.estimate">
+                                        </td>
+                                        <td class="py-4 px-6 border-l border-gray-600">
+                                            <input type="text" 
+                                                   inputmode="decimal"
+                                                   class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" 
+                                                   data-schema-key="cdf.purchase_cash_to_close.funds_for_borrower.final_amount">
+                                        </td>
+                                        <td class="py-4 px-6 border-l border-gray-600">
+                                            <div class="relative">
+                                                <select class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none" 
+                                                        data-schema-key="cdf.purchase_cash_to_close.funds_for_borrower.changed">
+                                                    <option value="No" selected>No</option>
+                                                    <option value="Yes">Yes</option>
+                                                </select>
+                                                <i class="fa fa-chevron-down absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none"></i>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 px-6 border-l border-gray-600">
+                                            <div contenteditable="true" 
+                                                 class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm min-h-[42px] focus:outline-none focus:border-blue-500" 
+                                                 data-schema-key="cdf.purchase_cash_to_close.funds_for_borrower.change_description"></div>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Seller Credits Row -->
+                                    <tr class="border-b border-gray-600">
+                                        <td class="py-4 px-6 font-medium text-white">
+                                            Seller Credits
+                                        </td>
+                                        <td class="py-4 px-6 border-l border-gray-600">
+                                            <input type="text" 
+                                                   inputmode="decimal"
+                                                   class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" 
+                                                   data-schema-key="cdf.purchase_cash_to_close.seller_credits.estimate">
+                                        </td>
+                                        <td class="py-4 px-6 border-l border-gray-600">
+                                            <input type="text" 
+                                                   inputmode="decimal"
+                                                   class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" 
+                                                   data-schema-key="cdf.purchase_cash_to_close.seller_credits.final_amount">
+                                        </td>
+                                        <td class="py-4 px-6 border-l border-gray-600">
+                                            <div class="relative">
+                                                <select class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none" 
+                                                        data-schema-key="cdf.purchase_cash_to_close.seller_credits.changed">
+                                                    <option value="No" selected>No</option>
+                                                    <option value="Yes">Yes</option>
+                                                </select>
+                                                <i class="fa fa-chevron-down absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none"></i>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 px-6 border-l border-gray-600">
+                                            <div contenteditable="true" 
+                                                 class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm min-h-[42px] focus:outline-none focus:border-blue-500" 
+                                                 data-schema-key="cdf.purchase_cash_to_close.seller_credits.change_description"></div>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Adjustments / Other Credits Row -->
+                                    <tr class="border-b border-gray-600">
+                                        <td class="py-4 px-6 font-medium text-white">
+                                            Adjustments / Other Credits
+                                        </td>
+                                        <td class="py-4 px-6 border-l border-gray-600">
+                                            <input type="text" 
+                                                   inputmode="decimal"
+                                                   class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" 
+                                                   data-schema-key="cdf.purchase_cash_to_close.adjustments_and_other_credits.estimate">
+                                        </td>
+                                        <td class="py-4 px-6 border-l border-gray-600">
+                                            <input type="text" 
+                                                   inputmode="decimal"
+                                                   class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" 
+                                                   data-schema-key="cdf.purchase_cash_to_close.adjustments_and_other_credits.final_amount">
+                                        </td>
+                                        <td class="py-4 px-6 border-l border-gray-600">
+                                            <div class="relative">
+                                                <select class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none" 
+                                                        data-schema-key="cdf.purchase_cash_to_close.adjustments_and_other_credits.changed">
+                                                    <option value="No" selected>No</option>
+                                                    <option value="Yes">Yes</option>
+                                                </select>
+                                                <i class="fa fa-chevron-down absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none"></i>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 px-6 border-l border-gray-600">
+                                            <div contenteditable="true" 
+                                                 class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm min-h-[42px] focus:outline-none focus:border-blue-500" 
+                                                 data-schema-key="cdf.purchase_cash_to_close.adjustments_and_other_credits.change_description"></div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr class="bg-gray-700 border-t-2 border-gray-500">
+                                        <th class="py-4 px-6 text-right font-semibold text-white">
+                                            Cash to Close
+                                        </th>
+                                        <th class="py-4 px-6 text-right border-l border-gray-600 font-semibold text-white">
+                                            $0.00
+                                        </th>
+                                        <th class="py-4 px-6 text-right border-l border-gray-600 font-semibold text-white">
+                                            $452,046.56
+                                        </th>
+                                        <th class="py-4 px-6 border-l border-gray-600"></th>
+                                        <th class="py-4 px-6 border-l border-gray-600"></th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </section>
+                </form>
+            </section>
+        </section>
+
+        <!-- Right Rail -->
+        <section class="w-64 bg-gray-800 border-l border-gray-600 p-5">
+            <section class="mb-5 p-4 bg-gray-700 rounded">
+                <h4 class="text-white text-sm mb-2.5">Chat</h4>
+                <p class="text-gray-400 text-xs">Chat functionality</p>
+            </section>
+
+            <section class="mb-5 p-4 bg-gray-700 rounded">
+                <h4 class="text-white text-sm mb-2.5">Tasks</h4>
+                <p class="text-gray-400 text-xs">No tasks assigned</p>
+            </section>
+
+            <section class="mb-5 p-4 bg-gray-700 rounded">
+                <h4 class="text-white text-sm mb-2.5">Notes</h4>
+                <p class="text-gray-400 text-xs">No notes added</p>
+            </section>
+        </section>
+    </div>
+</body>
+</html>

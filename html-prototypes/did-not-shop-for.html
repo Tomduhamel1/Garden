@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services Borrower Did Not Shop For - Real Estate Closing</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        .table-input {
+            border: none;
+            background: transparent;
+            padding: 8px 12px;
+            width: 100%;
+        }
+        .table-input:focus {
+            outline: none;
+            background: rgba(59, 130, 246, 0.1);
+        }
+        .line-number {
+            user-select: none;
+            font-weight: 600;
+        }
+        .active-row {
+            background-color: rgba(59, 130, 246, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white">
+    <div class="flex h-screen">
+        <!-- Left Sidebar -->
+        <section class="w-72 bg-gray-800 border-r border-gray-600">
+            <div class="p-5 text-gray-400 text-center border-b border-gray-600">
+                <div class="text-xs">Navigation Sidebar</div>
+                <div class="text-xs mt-1">Did Not Shop For is active</div>
+            </div>
+        </section>
+
+        <!-- Main Content -->
+        <section class="flex-1 bg-gray-900 overflow-y-auto">
+            <!-- Page Header -->
+            <section class="py-8 px-10 pb-5 border-b border-gray-600 flex items-center justify-between">
+                <div class="flex items-center gap-4">
+                    <i class="fa fa-home text-gray-400 text-xl"></i>
+                    <h2 class="text-2xl font-semibold text-white">Services Borrower Did Not Shop For</h2>
+                    <span class="bg-green-600 text-white px-2 py-1 rounded text-xs font-medium">B</span>
+                </div>
+                <div class="flex gap-3">
+                    <button class="bg-gray-600 border border-gray-500 rounded px-3 py-2 text-white text-sm hover:bg-gray-500 opacity-50 cursor-not-allowed" title="Remove Last Line">
+                        <i class="fa fa-minus mr-2"></i>
+                        Remove Line
+                    </button>
+                    <button class="bg-blue-600 border border-blue-500 rounded px-3 py-2 text-white text-sm hover:bg-blue-700" title="Add Line">
+                        <i class="fa fa-plus mr-2"></i>
+                        Add Line
+                    </button>
+                </div>
+            </section>
+
+            <!-- Form Content -->
+            <section class="px-10 py-8">
+                <form class="space-y-8">
+                    <!-- Services Table -->
+                    <section>
+                        <div class="bg-gray-800 border border-gray-600 rounded-lg overflow-hidden">
+                            <table class="w-full text-sm">
+                                <thead class="bg-gray-700">
+                                    <tr>
+                                        <th class="text-center py-3 px-4 border-r border-gray-600" rowspan="2"></th>
+                                        <th class="text-left py-3 px-4 border-r border-gray-600" rowspan="2">Description</th>
+                                        <th class="text-left py-3 px-4 border-r border-gray-600" rowspan="2">Payee</th>
+                                        <th class="text-center py-2 px-4 border-r border-gray-600 border-b border-gray-600" colspan="2">Paid by Borrower</th>
+                                        <th class="text-center py-2 px-4 border-r border-gray-600 border-b border-gray-600" colspan="2">Paid by Seller</th>
+                                        <th class="text-center py-3 px-4" rowspan="2">By Others</th>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-center py-2 px-4 border-r border-gray-600 text-gray-300">At Closing</th>
+                                        <th class="text-center py-2 px-4 border-r border-gray-600 text-gray-300">Before Closing</th>
+                                        <th class="text-center py-2 px-4 border-r border-gray-600 text-gray-300">At Closing</th>
+                                        <th class="text-center py-2 px-4 border-r border-gray-600 text-gray-300">Before Closing</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-gray-800">
+                                    <!-- Line 01 -->
+                                    <tr class="border-b border-gray-600 hover:bg-gray-750">
+                                        <td class="text-center py-3 px-4 border-r border-gray-600">
+                                            <span class="line-number text-gray-400">01</span>
+                                        </td>
+                                        <td class="border-r border-gray-600">
+                                            <input type="text" class="table-input text-white bg-transparent" data-schema-key="cdf.services_borrower_did_not_shop_for.line_01.description">
+                                        </td>
+                                        <td class="border-r border-gray-600">
+                                            <input type="text" class="table-input text-white bg-transparent" data-schema-key="cdf.services_borrower_did_not_shop_for.line_01.payee_name">
+                                        </td>
+                                        <td class="border-r border-gray-600">
+                                            <input type="text" class="table-input text-white bg-transparent text-right" inputmode="decimal" data-schema-key="cdf.services_borrower_did_not_shop_for.line_01.borrower_amount">
+                                        </td>
+                                        <td class="border-r border-gray-600">
+                                            <input type="text" class="table-input text-white bg-transparent text-right" inputmode="decimal" data-schema-key="cdf.services_borrower_did_not_shop_for.line_01.before_borrower_amount">
+                                        </td>
+                                        <td class="border-r border-gray-600">
+                                            <input type="text" class="table-input text-white bg-transparent text-right" inputmode="decimal" data-schema-key="cdf.services_borrower_did_not_shop_for.line_01.seller_amount">
+                                        </td>
+                                        <td class="border-r border-gray-600">
+                                            <input type="text" class="table-input text-white bg-transparent text-right" inputmode="decimal" data-schema-key="cdf.services_borrower_did_not_shop_for.line_01.before_seller_amount">
+                                        </td>
+                                        <td>
+                                            <input type="text" class="table-input text-white bg-transparent text-right" inputmode="decimal" data-schema-key="cdf.services_borrower_did_not_shop_for.line_01.paid_by_others_amount">
+                                        </td>
+                                    </tr>
+
+                                    <!-- Line 02 -->
+                                    <tr class="border-b border-gray-600 hover:bg-gray-750">
+                                        <td class="text-center py-3 px-4 border-r border-gray-600">
+                                            <span class="line-number text-gray-400">02</span>
+                                        </td>
+                                        <td class="border-r border-gray-600">
+                                            <input type="text" class="table-input text-white bg-transparent" data-schema-key="cdf.services_borrower_did_not_shop_for.line_02.description">
+                                        </td>
+                                        <td class="border-r border-gray-600">
+                                            <input type="text" class="table-input text-white bg-transparent" data-schema-key="cdf.services_borrower_did_not_shop_for.line_02.payee_name">
+                                        </td>
+                                        <td class="border-r border-gray-600">
+                                            <input type="text" class="table-input text-white bg-transparent text-right" inputmode="decimal" data-schema-key="cdf.services_borrower_did_not_shop_for.line_02.borrower_amount">
+                                        </td>
+                                        <td class="border-r border-gray-600">
+                                            <input type="text" class="table-input text-white bg-transparent text-right" inputmode="decimal" data-schema-key="cdf.services_borrower_did_not_shop_for.line_02.before_borrower_amount">
+                                        </td>
+                                        <td class="border-r border-gray-600">
+                                            <input type="text" class="table-input text-white bg-transparent text-right" inputmode="decimal" data-schema-key="cdf.services_borrower_did_not_shop_for.line_02.seller_amount">
+                                        </td>
+                                        <td class="border-r border-gray-600">
+                                            <input type="text" class="table-input text-white bg-transparent text-right" inputmode="decimal" data-schema-key="cdf.services_borrower_did_not_shop_for.line_02.before_seller_amount">
+                                        </td>
+                                        <td>
+                                            <input type="text" class="table-input text-white bg-transparent text-right" inputmode="decimal" data-schema-key="cdf.services_borrower_did_not_shop_for.line_02.paid_by_others_amount">
+                                        </td>
+                                    </tr>
+
+                                    <!-- Line 03 -->
+                                    <tr class="border-b border-gray-600 hover:bg-gray-750">
+                                        <td class="text-center py-3 px-4 border-r border-gray-600">
+                                            <span class="line-number text-gray-400">03</span>
+                                        </td>
+                                        <td class="border-r border-gray-600">
+                                            <input type="text" class="table-input text-white bg-transparent" data-schema-key="cdf.services_borrower_did_not_shop_for.line_03.description">
+                                        </td>
+                                        <td class="border-r border-gray-600">
+                                            <input type="text" class="table-input text-white bg-transparent" data-schema-key="cdf.services_borrower_did_not_shop_for.line_03.payee_name">
+                                        </td>
+                                        <td class="border-r border-gray-600">
+                                            <input type="text" class="table-input text-white bg-transparent text-right" inputmode="decimal" data-schema-key="cdf.services_borrower_did_not_shop_for.line_03.borrower_amount">
+                                        </td>
+                                        <td class="border-r border-gray-600">
+                                            <input type="text" class="table-input text-white bg-transparent text-right" inputmode="decimal" data-schema-key="cdf.services_borrower_did_not_shop_for.line_03.before_borrower_amount">
+                                        </td>
+                                        <td class="border-r border-gray-600">
+                                            <input type="text" class="table-input text-white bg-transparent text-right" inputmode="decimal" data-schema-key="cdf.services_borrower_did_not_shop_for.line_03.seller_amount">
+                                        </td>
+                                        <td class="border-r border-gray-600">
+                                            <input type="text" class="table-input text-white bg-transparent text-right" inputmode="decimal" data-schema-key="cdf.services_borrower_did_not_shop_for.line_03.before_seller_amount">
+                                        </td>
+                                        <td>
+                                            <input type="text" class="table-input text-white bg-transparent text-right" inputmode="decimal" data-schema-key="cdf.services_borrower_did_not_shop_for.line_03.paid_by_others_amount">
+                                        </td>
+                                    </tr>
+
+                                    <!-- Line 04 - Active Row -->
+                                    <tr class="border-b border-gray-600 active-row">
+                                        <td class="text-center py-3 px-4 border-r border-gray-600">
+                                            <span class="line-number text-blue-400">04</span>
+                                        </td>
+                                        <td class="border-r border-gray-600">
+                                            <input type="text" class="table-input text-white bg-transparent" data-schema-key="cdf.services_borrower_did_not_shop_for.line_04.description">
+                                        </td>
+                                        <td class="border-r border-gray-600">
+                                            <input type="text" class="table-input text-white bg-transparent" data-schema-key="cdf.services_borrower_did_not_shop_for.line_04.payee_name">
+                                        </td>
+                                        <td class="border-r border-gray-600">
+                                            <input type="text" class="table-input text-white bg-transparent text-right" inputmode="decimal" data-schema-key="cdf.services_borrower_did_not_shop_for.line_04.borrower_amount">
+                                        </td>
+                                        <td class="border-r border-gray-600">
+                                            <input type="text" class="table-input text-white bg-transparent text-right" inputmode="decimal" data-schema-key="cdf.services_borrower_did_not_shop_for.line_04.before_borrower_amount">
+                                        </td>
+                                        <td class="border-r border-gray-600">
+                                            <input type="text" class="table-input text-white bg-transparent text-right" inputmode="decimal" data-schema-key="cdf.services_borrower_did_not_shop_for.line_04.seller_amount">
+                                        </td>
+                                        <td class="border-r border-gray-600">
+                                            <input type="text" class="table-input text-white bg-transparent text-right" inputmode="decimal" data-schema-key="cdf.services_borrower_did_not_shop_for.line_04.before_seller_amount">
+                                        </td>
+                                        <td>
+                                            <input type="text" class="table-input text-white bg-transparent text-right" inputmode="decimal" data-schema-key="cdf.services_borrower_did_not_shop_for.line_04.paid_by_others_amount">
+                                        </td>
+                                    </tr>
+
+                                    <!-- Line 05 -->
+                                    <tr class="border-b border-gray-600 hover:bg-gray-750">
+                                        <td class="text-center py-3 px-4 border-r border-gray-600">
+                                            <span class="line-number text-gray-400">05</span>
+                                        </td>
+                                        <td class="border-r border-gray-600">
+                                            <input type="text" class="table-input text-white bg-transparent" data-schema-key="cdf.services_borrower_did_not_shop_for.line_05.description">
+                                        </td>
+                                        <td class="border-r border-gray-600">
+                                            <input type="text" class="table-input text-white bg-transparent" data-schema-key="cdf.services_borrower_did_not_shop_for.line_05.payee_name">
+                                        </td>
+                                        <td class="border-r border-gray-600">
+                                            <input type="text" class="table-input text-white bg-transparent text-right" inputmode="decimal" data-schema-key="cdf.services_borrower_did_not_shop_for.line_05.borrower_amount">
+                                        </td>
+                                        <td class="border-r border-gray-600">
+                                            <input type="text" class="table-input text-white bg-transparent text-right" inputmode="decimal" data-schema-key="cdf.services_borrower_did_not_shop_for.line_05.before_borrower_amount">
+                                        </td>
+                                        <td class="border-r border-gray-600">
+                                            <input type="text" class="table-input text-white bg-transparent text-right" inputmode="decimal" data-schema-key="cdf.services_borrower_did_not_shop_for.line_05.seller_amount">
+                                        </td>
+                                        <td class="border-r border-gray-600">
+                                            <input type="text" class="table-input text-white bg-transparent text-right" inputmode="decimal" data-schema-key="cdf.services_borrower_did_not_shop_for.line_05.before_seller_amount">
+                                        </td>
+                                        <td>
+                                            <input type="text" class="table-input text-white bg-transparent text-right" inputmode="decimal" data-schema-key="cdf.services_borrower_did_not_shop_for.line_05.paid_by_others_amount">
+                                        </td>
+                                    </tr>
+
+                                    <!-- Line 06 -->
+                                    <tr class="border-b border-gray-600 hover:bg-gray-750">
+                                        <td class="text-center py-3 px-4 border-r border-gray-600">
+                                            <span class="line-number text-gray-400">06</span>
+                                        </td>
+                                        <td class="border-r border-gray-600">
+                                            <input type="text" class="table-input text-white bg-transparent" data-schema-key="cdf.services_borrower_did_not_shop_for.line_06.description">
+                                        </td>
+                                        <td class="border-r border-gray-600">
+                                            <input type="text" class="table-input text-white bg-transparent" data-schema-key="cdf.services_borrower_did_not_shop_for.line_06.payee_name">
+                                        </td>
+                                        <td class="border-r border-gray-600">
+                                            <input type="text" class="table-input text-white bg-transparent text-right" inputmode="decimal" data-schema-key="cdf.services_borrower_did_not_shop_for.line_06.borrower_amount">
+                                        </td>
+                                        <td class="border-r border-gray-600">
+                                            <input type="text" class="table-input text-white bg-transparent text-right" inputmode="decimal" data-schema-key="cdf.services_borrower_did_not_shop_for.line_06.before_borrower_amount">
+                                        </td>
+                                        <td class="border-r border-gray-600">
+                                            <input type="text" class="table-input text-white bg-transparent text-right" inputmode="decimal" data-schema-key="cdf.services_borrower_did_not_shop_for.line_06.seller_amount">
+                                        </td>
+                                        <td class="border-r border-gray-600">
+                                            <input type="text" class="table-input text-white bg-transparent text-right" inputmode="decimal" data-schema-key="cdf.services_borrower_did_not_shop_for.line_06.before_seller_amount">
+                                        </td>
+                                        <td>
+                                            <input type="text" class="table-input text-white bg-transparent text-right" inputmode="decimal" data-schema-key="cdf.services_borrower_did_not_shop_for.line_06.paid_by_others_amount">
+                                        </td>
+                                    </tr>
+
+                                    <!-- Line 07 -->
+                                    <tr class="border-b border-gray-600 hover:bg-gray-750">
+                                        <td class="text-center py-3 px-4 border-r border-gray-600">
+                                            <span class="line-number text-gray-400">07</span>
+                                        </td>
+                                        <td class="border-r border-gray-600">
+                                            <input type="text" class="table-input text-white bg-transparent" data-schema-key="cdf.services_borrower_did_not_shop_for.line_07.description">
+                                        </td>
+                                        <td class="border-r border-gray-600">
+                                            <input type="text" class="table-input text-white bg-transparent" data-schema-key="cdf.services_borrower_did_not_shop_for.line_07.payee_name">
+                                        </td>
+                                        <td class="border-r border-gray-600">
+                                            <input type="text" class="table-input text-white bg-transparent text-right" inputmode="decimal" data-schema-key="cdf.services_borrower_did_not_shop_for.line_07.borrower_amount">
+                                        </td>
+                                        <td class="border-r border-gray-600">
+                                            <input type="text" class="table-input text-white bg-transparent text-right" inputmode="decimal" data-schema-key="cdf.services_borrower_did_not_shop_for.line_07.before_borrower_amount">
+                                        </td>
+                                        <td class="border-r border-gray-600">
+                                            <input type="text" class="table-input text-white bg-transparent text-right" inputmode="decimal" data-schema-key="cdf.services_borrower_did_not_shop_for.line_07.seller_amount">
+                                        </td>
+                                        <td class="border-r border-gray-600">
+                                            <input type="text" class="table-input text-white bg-transparent text-right" inputmode="decimal" data-schema-key="cdf.services_borrower_did_not_shop_for.line_07.before_seller_amount">
+                                        </td>
+                                        <td>
+                                            <input type="text" class="table-input text-white bg-transparent text-right" inputmode="decimal" data-schema-key="cdf.services_borrower_did_not_shop_for.line_07.paid_by_others_amount">
+                                        </td>
+                                    </tr>
+
+                                    <!-- Line 08 -->
+                                    <tr class="border-b border-gray-600 hover:bg-gray-750">
+                                        <td class="text-center py-3 px-4 border-r border-gray-600">
+                                            <span class="line-number text-gray-400">08</span>
+                                        </td>
+                                        <td class="border-r border-gray-600">
+                                            <input type="text" class="table-input text-white bg-transparent" data-schema-key="cdf.services_borrower_did_not_shop_for.line_08.description">
+                                        </td>
+                                        <td class="border-r border-gray-600">
+                                            <input type="text" class="table-input text-white bg-transparent" data-schema-key="cdf.services_borrower_did_not_shop_for.line_08.payee_name">
+                                        </td>
+                                        <td class="border-r border-gray-600">
+                                            <input type="text" class="table-input text-white bg-transparent text-right" inputmode="decimal" data-schema-key="cdf.services_borrower_did_not_shop_for.line_08.borrower_amount">
+                                        </td>
+                                        <td class="border-r border-gray-600">
+                                            <input type="text" class="table-input text-white bg-transparent text-right" inputmode="decimal" data-schema-key="cdf.services_borrower_did_not_shop_for.line_08.before_borrower_amount">
+                                        </td>
+                                        <td class="border-r border-gray-600">
+                                            <input type="text" class="table-input text-white bg-transparent text-right" inputmode="decimal" data-schema-key="cdf.services_borrower_did_not_shop_for.line_08.seller_amount">
+                                        </td>
+                                        <td class="border-r border-gray-600">
+                                            <input type="text" class="table-input text-white bg-transparent text-right" inputmode="decimal" data-schema-key="cdf.services_borrower_did_not_shop_for.line_08.before_seller_amount">
+                                        </td>
+                                        <td>
+                                            <input type="text" class="table-input text-white bg-transparent text-right" inputmode="decimal" data-schema-key="cdf.services_borrower_did_not_shop_for.line_08.paid_by_others_amount">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <tfoot class="bg-gray-700">
+                                    <tr>
+                                        <th class="text-center py-3 px-4 border-r border-gray-600"></th>
+                                        <th class="text-left py-3 px-4 border-r border-gray-600"></th>
+                                        <th class="text-center py-3 px-4 border-r border-gray-600 text-gray-300">Totals</th>
+                                        <th class="text-right py-3 px-4 border-r border-gray-600 text-gray-300">$0.00</th>
+                                        <th class="text-right py-3 px-4 border-r border-gray-600 text-gray-300">$0.00</th>
+                                        <th class="text-right py-3 px-4 border-r border-gray-600 text-gray-300">$0.00</th>
+                                        <th class="text-right py-3 px-4 border-r border-gray-600 text-gray-300">$0.00</th>
+                                        <th class="text-right py-3 px-4 text-gray-300">$0.00</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </section>
+
+                    <!-- Action Buttons -->
+                    <section class="flex justify-between items-center">
+                        <div class="flex gap-3">
+                            <button type="button" class="bg-blue-600 border border-blue-500 rounded px-4 py-2 text-white text-sm hover:bg-blue-700">
+                                <i class="fa fa-magic mr-2"></i>
+                                Extract From CD
+                            </button>
+                            <button type="button" class="bg-gray-600 border border-gray-500 rounded px-4 py-2 text-white text-sm hover:bg-gray-500 opacity-50 cursor-not-allowed">
+                                Sort Lines
+                            </button>
+                        </div>
+                        <div class="flex gap-3">
+                            <button type="button" class="bg-gray-600 border border-gray-500 rounded px-4 py-2 text-white text-sm hover:bg-gray-500 opacity-50 cursor-not-allowed">
+                                Clear
+                            </button>
+                            <button type="button" class="bg-blue-600 border border-blue-500 rounded px-4 py-2 text-white text-sm hover:bg-blue-700">
+                                Add Contact
+                            </button>
+                        </div>
+                    </section>
+
+                    <!-- Payments Section -->
+                    <section class="bg-gray-800 border border-gray-600 rounded-lg p-6">
+                        <div class="flex items-center gap-3 mb-6">
+                            <h4 class="text-lg font-semibold text-white">Payments</h4>
+                            <span class="bg-green-600 text-white px-2 py-1 rounded text-xs font-medium">New Fee</span>
+                        </div>
+
+                        <!-- Payee Tabs -->
+                        <div class="mb-6">
+                            <div class="flex items-center justify-between border-b border-gray-600">
+                                <div class="flex">
+                                    <button class="px-4 py-2 text-blue-400 border-b-2 border-blue-400 bg-gray-700">New Payee</button>
+                                </div>
+                                <div class="flex gap-2">
+                                    <button class="p-2 text-gray-400 hover:text-white opacity-50 cursor-not-allowed" title="Remove current payee">
+                                        <i class="fa fa-minus"></i>
+                                    </button>
+                                    <button class="p-2 text-blue-400 hover:text-blue-300" title="Add additional payee">
+                                        <i class="fa fa-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Payment Details -->
+                        <div class="space-y-6">
+                            <!-- Itemize Link -->
+                            <div class="mb-4">
+                                <a href="#" class="text-gray-400 text-sm opacity-50 cursor-not-allowed">
+                                    <i class="fa fa-list mr-2"></i>
+                                    Itemize
+                                </a>
+                            </div>
+
+                            <!-- Payment Type Tabs -->
+                            <div class="mb-6">
+                                <div class="flex bg-gray-700 rounded overflow-hidden">
+                                    <button type="button" class="payment-type-btn px-4 py-2 text-gray-300 hover:bg-gray-600" data-value="check">Check</button>
+                                    <button type="button" class="payment-type-btn px-4 py-2 text-gray-300 hover:bg-gray-600" data-value="wire">Wire</button>
+                                    <button type="button" class="payment-type-btn px-4 py-2 bg-blue-600 text-white" data-value="net funded">Net Funded</button>
+                                    <button type="button" class="payment-type-btn px-4 py-2 text-gray-300 hover:bg-gray-600" data-value="global payment">Aggregate</button>
+                                    <button type="button" class="payment-type-btn px-4 py-2 text-gray-300 hover:bg-gray-600" data-value="order transfer">Transfer</button>
+                                    <button type="button" class="payment-type-btn px-4 py-2 text-gray-300 hover:bg-gray-600" data-value="holdback">Holdback</button>
+                                </div>
+                                <input type="hidden" value="net funded" data-schema-key="cdf.services_borrower_did_not_shop_for.line_04.payees.0.type">
+                            </div>
+
+                            <!-- Payment Form -->
+                            <div>
+                                <!-- Standard Payment Fields (hidden for Aggregate) -->
+                                <div id="standard-payment-fields">
+                                    <h5 class="text-base font-semibold text-white mb-4">Payment</h5>
+                                    <div class="grid grid-cols-3 gap-5 mb-5">
+                                        <div>
+                                            <label class="block text-sm text-gray-300 mb-2">Name</label>
+                                            <input type="text" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" data-schema-key="cdf.services_borrower_did_not_shop_for.line_04.payees.0.name_dep">
+                                        </div>
+                                        <div>
+                                            <label class="flex items-center gap-2 text-sm text-gray-300 mb-2">
+                                                Payment Amount
+                                                <i class="fa fa-lock text-gray-400" title="This field cannot be modified."></i>
+                                            </label>
+                                            <input type="text" class="w-full px-3 py-2.5 bg-gray-600 border border-gray-500 rounded text-gray-400 text-sm cursor-not-allowed" inputmode="decimal" data-schema-key="cdf.services_borrower_did_not_shop_for.line_04.payees.0.payment_dep" readonly>
+                                        </div>
+                                        <div>
+                                            <label class="block text-sm text-gray-300 mb-2">Label</label>
+                                            <select class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none" data-schema-key="cdf.services_borrower_did_not_shop_for.line_04.payees.0.label.payee_label_id">
+                                                <option value="insurance">Insurance</option>
+                                                <option value="lenders_policy">Lender's Policy</option>
+                                                <option value="owners_policy">Owner's Policy</option>
+                                                <option value="payoff">Payoff</option>
+                                                <option value="property_tax">Property Tax</option>
+                                                <option value="recording_fee">Recording Fee</option>
+                                                <option value="reimbursement">Reimbursement</option>
+                                                <option value="sales_tax">Sales Tax</option>
+                                                <option value="settlement_fee">Settlement Fee</option>
+                                                <option value="transfer_tax">Transfer Tax</option>
+                                                <option value="excluded">Excluded</option>
+                                                <option value="unclassified" selected>Unclassified</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Additional Fields Container - Content Changes Based on Payment Type -->
+                                <div id="payment-type-content">
+                                    <!-- Check Payment Type Content -->
+                                    <div id="check-content" class="payment-content hidden">
+                                        <!-- Memo Field (for Check payment type) -->
+                                        <div class="grid grid-cols-3 gap-5 mb-6">
+                                            <div>
+                                                <label class="block text-sm text-gray-300 mb-2">Memo</label>
+                                                <input type="text" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" data-schema-key="cdf.services_borrower_did_not_shop_for.line_04.payees.0.reference_number">
+                                            </div>
+                                        </div>
+
+                                        <!-- Mailing Address Section -->
+                                        <div class="space-y-4">
+                                            <h5 class="text-base font-semibold text-white">Mailing Address</h5>
+                                            
+                                            <!-- Hidden coordinates -->
+                                            <input type="hidden" data-schema-key="cdf.services_borrower_did_not_shop_for.line_04.payees.0.address.latitude">
+                                            <input type="hidden" data-schema-key="cdf.services_borrower_did_not_shop_for.line_04.payees.0.address.longitude">
+                                            
+                                            <!-- Address Line 1 & 2 -->
+                                            <div class="grid grid-cols-5 gap-5">
+                                                <div class="col-span-3">
+                                                    <label class="block text-sm text-gray-300 mb-2">Address</label>
+                                                    <div class="relative">
+                                                        <i class="fa fa-map-marker absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                                                        <input type="text" class="w-full pl-9 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" placeholder="Search address..." data-schema-key="cdf.services_borrower_did_not_shop_for.line_04.payees.0.address.address_1">
+                                                    </div>
+                                                </div>
+                                                <div class="col-span-2">
+                                                    <label class="block text-sm text-gray-300 mb-2">Apt, Suite, Etc.</label>
+                                                    <input type="text" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" data-schema-key="cdf.services_borrower_did_not_shop_for.line_04.payees.0.address.address_2">
+                                                </div>
+                                            </div>
+
+                                            <!-- City, State, Zip -->
+                                            <div class="grid grid-cols-3 gap-5">
+                                                <div>
+                                                    <label class="block text-sm text-gray-300 mb-2">City</label>
+                                                    <input type="text" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" data-schema-key="cdf.services_borrower_did_not_shop_for.line_04.payees.0.address.city">
+                                                </div>
+                                                <div>
+                                                    <label class="block text-sm text-gray-300 mb-2">State</label>
+                                                    <select class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none" data-schema-key="cdf.services_borrower_did_not_shop_for.line_04.payees.0.address.state">
+                                                        <option value="">Select one...</option>
+                                                        <option value="AK">AK</option>
+                                                        <option value="AL">AL</option>
+                                                        <option value="AR">AR</option>
+                                                        <option value="AZ">AZ</option>
+                                                        <option value="CA">CA</option>
+                                                        <option value="CO">CO</option>
+                                                        <option value="CT">CT</option>
+                                                        <option value="DC">DC</option>
+                                                        <option value="DE">DE</option>
+                                                        <option value="FL">FL</option>
+                                                        <option value="GA">GA</option>
+                                                        <option value="HI">HI</option>
+                                                        <option value="IA">IA</option>
+                                                        <option value="ID">ID</option>
+                                                        <option value="IL">IL</option>
+                                                        <option value="IN">IN</option>
+                                                        <option value="KS">KS</option>
+                                                        <option value="KY">KY</option>
+                                                        <option value="LA">LA</option>
+                                                        <option value="MA">MA</option>
+                                                        <option value="MD">MD</option>
+                                                        <option value="ME">ME</option>
+                                                        <option value="MI">MI</option>
+                                                        <option value="MN">MN</option>
+                                                        <option value="MO">MO</option>
+                                                        <option value="MS">MS</option>
+                                                        <option value="MT">MT</option>
+                                                        <option value="NC">NC</option>
+                                                        <option value="ND">ND</option>
+                                                        <option value="NE">NE</option>
+                                                        <option value="NH">NH</option>
+                                                        <option value="NJ">NJ</option>
+                                                        <option value="NM">NM</option>
+                                                        <option value="NV">NV</option>
+                                                        <option value="NY">NY</option>
+                                                        <option value="OH">OH</option>
+                                                        <option value="OK">OK</option>
+                                                        <option value="OR">OR</option>
+                                                        <option value="PA">PA</option>
+                                                        <option value="RI" selected>RI</option>
+                                                        <option value="SC">SC</option>
+                                                        <option value="SD">SD</option>
+                                                        <option value="TN">TN</option>
+                                                        <option value="TX">TX</option>
+                                                        <option value="UT">UT</option>
+                                                        <option value="VA">VA</option>
+                                                        <option value="VT">VT</option>
+                                                        <option value="WA">WA</option>
+                                                        <option value="WI">WI</option>
+                                                        <option value="WV">WV</option>
+                                                        <option value="WY">WY</option>
+                                                        <option value="VI">VI</option>
+                                                    </select>
+                                                </div>
+                                                <div>
+                                                    <label class="block text-sm text-gray-300 mb-2">Zipcode</label>
+                                                    <input type="text" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" inputmode="numeric" data-schema-key="cdf.services_borrower_did_not_shop_for.line_04.payees.0.address.zipcode">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Wire Payment Type Content -->
+                                    <div id="wire-content" class="payment-content hidden">
+                                        <!-- Memo Field (for Wire payment type) -->
+                                        <div class="grid grid-cols-3 gap-5 mb-6">
+                                            <div>
+                                                <label class="block text-sm text-gray-300 mb-2">Memo</label>
+                                                <input type="text" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" data-schema-key="cdf.services_borrower_did_not_shop_for.line_04.payees.0.reference_number">
+                                            </div>
+                                        </div>
+
+                                        <!-- Wire Instructions Section -->
+                                        <div class="space-y-4">
+                                            <h5 class="text-base font-semibold text-white">Wire Instructions</h5>
+                                            
+                                            <!-- First Row: Routing #, Bank Name, Account # -->
+                                            <div class="grid grid-cols-3 gap-5">
+                                                <div>
+                                                    <label class="block text-sm text-gray-300 mb-2">Routing #</label>
+                                                    <input type="text" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" inputmode="numeric" maxlength="35" data-schema-key="wire_info.routing_number">
+                                                </div>
+                                                <div>
+                                                    <label class="block text-sm text-gray-300 mb-2">Bank Name</label>
+                                                    <input type="text" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" data-schema-key="wire_info.bank_name">
+                                                </div>
+                                                <div>
+                                                    <label class="block text-sm text-gray-300 mb-2">Account #</label>
+                                                    <input type="text" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" maxlength="35" data-schema-key="wire_info.account_number">
+                                                </div>
+                                            </div>
+
+                                            <!-- Second Row: Name on Account, Further Credit To -->
+                                            <div class="grid grid-cols-2 gap-5">
+                                                <div>
+                                                    <label class="block text-sm text-gray-300 mb-2">Name on Account</label>
+                                                    <input type="text" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" data-schema-key="wire_info.account_name">
+                                                </div>
+                                                <div>
+                                                    <label class="block text-sm text-gray-300 mb-2">Further Credit To</label>
+                                                    <input type="text" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" data-schema-key="wire_info.further_credit_to">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Net Funded Payment Type Content -->
+                                    <div id="net-funded-content" class="payment-content">
+                                        <!-- Net Funded has no additional fields beyond the basic payment fields -->
+                                        <!-- This payment type only includes Name, Payment Amount, and Label -->
+                                        <div class="text-center text-gray-400 py-8">
+                                            <p class="text-sm">Net Funded payments use only the basic payment information above.</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Aggregate Payment Type Content -->
+                                    <div id="aggregate-content" class="payment-content hidden">
+                                        <!-- Aggregate uses a different header and Name field -->
+                                        <div class="mb-6">
+                                            <h5 class="text-base font-semibold text-white mb-4">Aggregate Payee</h5>
+                                            <div class="grid grid-cols-3 gap-5">
+                                                <div>
+                                                    <label class="block text-sm text-gray-300 mb-2">Name</label>
+                                                    <select class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none" data-schema-key="cdf.services_borrower_did_not_shop_for.line_04.payees.0.aggregate_payee_id">
+                                                        <option value="">Select one...</option>
+                                                        <option value="gtgJfJ9sCBvqRdv56">AmTrust Title Insurance Company</option>
+                                                        <option value="pJuj6Let2u2Debee5">Beeline Title, LLC</option>
+                                                        <option value="3c3hJ49hi3wx8Tgpo">CATIC</option>
+                                                        <option value="3dJfDZSd97hNkFmgn">First American Title Insurance Company</option>
+                                                        <option value="ez2fMNoGzaJpBCDa8">First National Title & Escrow</option>
+                                                        <option value="vQxiAeHwrMg7NkuAm">McDonnell and Associates</option>
+                                                        <option value="TpQkANo9d3nbsACaB">Simplifile</option>
+                                                        <option value="CLHt2MzvedwCSrPcx">The Law Office of Stephen P. Patti, LLC DBA The Law Office of Bowman & Patti</option>
+                                                        <option value="Ez9NMsjZbwhDYTJN7">WFG National Title Insurance Company</option>
+                                                    </select>
+                                                </div>
+                                                <div>
+                                                    <label class="flex items-center gap-2 text-sm text-gray-300 mb-2">
+                                                        Payment Amount
+                                                        <i class="fa fa-lock text-gray-400" title="This field cannot be modified."></i>
+                                                    </label>
+                                                    <input type="text" class="w-full px-3 py-2.5 bg-gray-600 border border-gray-500 rounded text-gray-400 text-sm cursor-not-allowed" inputmode="decimal" data-schema-key="cdf.services_borrower_did_not_shop_for.line_04.payees.0.payment_dep" readonly>
+                                                </div>
+                                                <div>
+                                                    <label class="block text-sm text-gray-300 mb-2">Label</label>
+                                                    <select class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none" data-schema-key="cdf.services_borrower_did_not_shop_for.line_04.payees.0.label.payee_label_id">
+                                                        <option value="insurance">Insurance</option>
+                                                        <option value="lenders_policy">Lender's Policy</option>
+                                                        <option value="owners_policy">Owner's Policy</option>
+                                                        <option value="payoff">Payoff</option>
+                                                        <option value="property_tax">Property Tax</option>
+                                                        <option value="recording_fee">Recording Fee</option>
+                                                        <option value="reimbursement">Reimbursement</option>
+                                                        <option value="sales_tax">Sales Tax</option>
+                                                        <option value="settlement_fee">Settlement Fee</option>
+                                                        <option value="transfer_tax">Transfer Tax</option>
+                                                        <option value="excluded">Excluded</option>
+                                                        <option value="unclassified" selected>Unclassified</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Transfer Payment Type Content -->
+                                    <div id="transfer-content" class="payment-content hidden">
+                                        <!-- Order Transfer Section -->
+                                        <div class="space-y-4">
+                                            <h5 class="text-base font-semibold text-white">Order Transfer</h5>
+                                            
+                                            <div class="grid grid-cols-2 gap-5">
+                                                <div>
+                                                    <label class="block text-sm text-gray-300 mb-2">Order Number</label>
+                                                    <div class="relative">
+                                                        <i class="fa fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                                                        <input type="text" class="w-full pl-9 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" placeholder="Search orders..." data-schema-key="cdf.services_borrower_did_not_shop_for.line_04.payees.0.order_transfer_order_id">
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <label class="block text-sm text-gray-300 mb-2">For Benefit Of</label>
+                                                    <select class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none" data-schema-key="cdf.services_borrower_did_not_shop_for.line_04.payees.0.order_transfer_for_benefit_of">
+                                                        <option value="">Select party...</option>
+                                                        <option value="borrower">Buyer</option>
+                                                        <option value="seller">Seller</option>
+                                                        <option value="lender">Lender</option>
+                                                        <option value="listingAgency">Listing Agency</option>
+                                                        <option value="sellingAgency">Selling Agency</option>
+                                                        <option value="settlementAgency">Settlement Agency</option>
+                                                        <option value="none">None</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Holdback Payment Type Content -->
+                                    <div id="holdback-content" class="payment-content hidden">
+                                        <!-- Escrow Information Section -->
+                                        <div class="space-y-4">
+                                            <h5 class="text-base font-semibold text-white">Escrow Information</h5>
+                                            
+                                            <div class="grid grid-cols-2 gap-5">
+                                                <div>
+                                                    <label class="block text-sm text-gray-300 mb-2">Release Note</label>
+                                                    <input type="text" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" data-schema-key="cdf.services_borrower_did_not_shop_for.line_04.payees.0.holdback_release_note">
+                                                </div>
+                                                <div>
+                                                    <label class="block text-sm text-gray-300 mb-2">Release Date</label>
+                                                    <div class="relative">
+                                                        <i class="fa fa-calendar absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                                                        <input type="text" class="w-full pl-9 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" inputmode="numeric" data-schema-key="cdf.services_borrower_did_not_shop_for.line_04.payees.0.holdback_release_date">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </form>
+            </section>
+        </section>
+
+        <!-- Right Rail -->
+        <section class="w-64 bg-gray-800 border-l border-gray-600 p-5">
+            <section class="mb-5 p-4 bg-gray-700 rounded">
+                <h4 class="text-white text-sm mb-2.5">Chat</h4>
+                <p class="text-gray-400 text-xs">Chat functionality</p>
+            </section>
+
+            <section class="mb-5 p-4 bg-gray-700 rounded">
+                <h4 class="text-white text-sm mb-2.5">Tasks</h4>
+                <div class="flex items-center gap-2">
+                    <span class="text-gray-400 text-xs">0 / 0</span>
+                </div>
+                <p class="text-gray-400 text-xs mt-2">You have not been assigned any tasks on this order</p>
+            </section>
+
+            <section class="mb-5 p-4 bg-gray-700 rounded">
+                <h4 class="text-white text-sm mb-2.5">Notes</h4>
+                <p class="text-gray-400 text-xs mb-3">No notes have been added to this page</p>
+                <button class="w-full px-3 py-2 bg-transparent border border-gray-500 rounded text-gray-300 text-xs hover:bg-gray-600">
+                    Add Note
+                </button>
+            </section>
+        </section>
+    </div>
+
+    <script>
+        // Row highlighting on focus
+        document.querySelectorAll('.table-input').forEach(input => {
+            input.addEventListener('focus', function() {
+                // Remove active class from all rows
+                document.querySelectorAll('tr').forEach(row => {
+                    row.classList.remove('active-row');
+                });
+                // Add active class to current row
+                this.closest('tr').classList.add('active-row');
+            });
+        });
+
+        // Payment type tab functionality
+        document.querySelectorAll('.payment-type-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active state from all buttons
+                this.parentElement.querySelectorAll('button').forEach(btn => {
+                    btn.classList.remove('bg-blue-600', 'text-white');
+                    btn.classList.add('text-gray-300');
+                });
+                
+                // Add active state to clicked button
+                this.classList.remove('text-gray-300');
+                this.classList.add('bg-blue-600', 'text-white');
+                
+                // Update hidden input
+                const hiddenInput = this.parentElement.nextElementSibling;
+                if (hiddenInput && hiddenInput.tagName === 'INPUT') {
+                    hiddenInput.value = this.getAttribute('data-value');
+                }
+
+                // Show/hide payment type content
+                const paymentType = this.getAttribute('data-value');
+                switchPaymentTypeContent(paymentType);
+            });
+        });
+
+        // Function to switch payment type content
+        function switchPaymentTypeContent(paymentType) {
+            // Hide all payment content sections
+            document.querySelectorAll('.payment-content').forEach(content => {
+                content.classList.add('hidden');
+            });
+
+            // Show/hide standard payment fields based on payment type
+            const standardFields = document.querySelector('.grid.grid-cols-3.gap-5.mb-5');
+            const paymentHeader = document.querySelector('h5.text-base.font-semibold');
+            
+            if (paymentType === 'global payment') {
+                // Hide standard payment fields for aggregate
+                if (standardFields) standardFields.style.display = 'none';
+                if (paymentHeader) paymentHeader.style.display = 'none';
+            } else {
+                // Show standard payment fields for other types
+                if (standardFields) standardFields.style.display = 'grid';
+                if (paymentHeader) paymentHeader.style.display = 'block';
+            }
+
+            // Show the selected payment type content
+            let contentId;
+            switch(paymentType) {
+                case 'check':
+                    contentId = 'check-content';
+                    break;
+                case 'wire':
+                    contentId = 'wire-content';
+                    break;
+                case 'net funded':
+                    contentId = 'net-funded-content';
+                    break;
+                case 'global payment':
+                    contentId = 'aggregate-content';
+                    break;
+                case 'order transfer':
+                    contentId = 'transfer-content';
+                    break;
+                case 'holdback':
+                    contentId = 'holdback-content';
+                    break;
+                default:
+                    contentId = 'net-funded-content'; // Default to net funded
+            }
+
+            const targetContent = document.getElementById(contentId);
+            if (targetContent) {
+                targetContent.classList.remove('hidden');
+            }
+        }
+
+        // Auto-calculate totals (placeholder functionality)
+        function calculateTotals() {
+            const columns = [
+                'borrower_amount',
+                'before_borrower_amount', 
+                'seller_amount',
+                'before_seller_amount',
+                'paid_by_others_amount'
+            ];
+            
+            columns.forEach((column, index) => {
+                let total = 0;
+                document.querySelectorAll(`[data-schema-key*="${column}"]`).forEach(input => {
+                    const value = parseFloat(input.value) || 0;
+                    total += value;
+                });
+                
+                // Update footer total (simplified - would need proper selector)
+                const footerCells = document.querySelectorAll('tfoot th');
+                if (footerCells[index + 3]) {
+                    footerCells[index + 3].textContent = `$${total.toFixed(2)}`;
+                }
+            });
+        }
+
+        // Add input listeners for auto-calculation
+        document.querySelectorAll('.table-input[inputmode="decimal"]').forEach(input => {
+            input.addEventListener('input', calculateTotals);
+        });
+
+        // Initialize payment type content on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get the default active payment type
+            const activeBtn = document.querySelector('.payment-type-btn.bg-blue-600');
+            if (activeBtn) {
+                const paymentType = activeBtn.getAttribute('data-value');
+                switchPaymentTypeContent(paymentType);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -4,7 +4,15 @@
   "private": true,
   "scripts": {
     "install:all": "npm --prefix frontend install && npm --prefix backend install",
-    "dev": "concurrently \"npm run dev --prefix frontend\" \"npm run start --prefix backend\""
+    "dev": "concurrently \"npm run dev --prefix frontend\" \"npm run dev --prefix backend\"",
+    "start": "concurrently \"npm run start --prefix frontend\" \"npm run start --prefix backend\"",
+    "verify": "node verify-progress.js",
+    "session:start": "node verify-progress.js && echo '\n📋 Reading HANDOFF.md...\n' && cat HANDOFF.md | head -50 && echo '\n📌 Next tasks from NEXT.md...\n' && cat NEXT.md | head -30",
+    "session:end": "node verify-progress.js && git add -A && git status",
+    "progress": "node verify-progress.js",
+    "status": "cat STATUS.json | python3 -m json.tool | head -50",
+    "next": "cat NEXT.md | head -50",
+    "handoff": "cat HANDOFF.md | head -100"
   },
   "devDependencies": {
     "concurrently": "^8.2.2"

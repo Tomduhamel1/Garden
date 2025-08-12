@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proceeds for Borrower - Real Estate Closing</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white">
+    <div class="flex h-screen">
+        <!-- Left Sidebar -->
+        <section class="w-72 bg-gray-800 border-r border-gray-600">
+            <div class="p-5 text-gray-400 text-center border-b border-gray-600">
+                <div class="text-xs">Navigation Sidebar</div>
+                <div class="text-xs mt-1">Proceeds for Borrower is active</div>
+            </div>
+        </section>
+
+        <!-- Main Content -->
+        <section class="flex-1 bg-gray-900 overflow-y-auto">
+            <!-- Page Header -->
+            <section class="py-8 px-10 pb-5 border-b border-gray-600 flex items-center justify-between">
+                <div class="flex items-center gap-4">
+                    <i class="fa fa-home text-gray-400 text-xl"></i>
+                    <h2 class="text-2xl font-semibold text-white">Proceeds for Borrower</h2>
+                </div>
+            </section>
+
+            <!-- Form Content -->
+            <section class="px-10 py-8">
+                <form class="space-y-8">
+                    <!-- Payments Section -->
+                    <section>
+                        <div class="flex items-center gap-3 mb-6">
+                            <h4 class="text-lg font-semibold text-white">Payments</h4>
+                            <span class="bg-green-600 px-3 py-1 rounded text-sm font-medium">Borrower</span>
+                        </div>
+
+                        <!-- Payee Tabs -->
+                        <div class="bg-gray-800 border border-gray-600 rounded-lg overflow-hidden">
+                            <!-- Payee Tab Header -->
+                            <div class="bg-gray-700 border-b border-gray-600 flex items-center justify-between px-6 py-3">
+                                <div class="flex">
+                                    <button type="button" class="px-4 py-2 bg-gray-600 text-white text-sm rounded-l border-r border-gray-500">
+                                        Tom TEST TOM TEST
+                                    </button>
+                                </div>
+                                <div class="flex gap-2">
+                                    <button type="button" class="px-3 py-2 bg-gray-600 hover:bg-gray-500 text-white text-sm rounded disabled:opacity-50" disabled>
+                                        <i class="fa fa-minus"></i>
+                                    </button>
+                                    <button type="button" class="px-3 py-2 bg-gray-600 hover:bg-gray-500 text-white text-sm rounded">
+                                        <i class="fa fa-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Payment Content -->
+                            <div class="p-6 space-y-6">
+                                <!-- Payment Type Tabs -->
+                                <div class="border-b border-gray-600">
+                                    <div class="flex space-x-0">
+                                        <input type="hidden" value="check" data-schema-key="contacts.borrower_payees.0.type">
+                                        <button type="button" class="px-4 py-2 border-b-2 border-blue-500 text-blue-500 font-medium">Check</button>
+                                        <button type="button" class="px-4 py-2 text-gray-400 hover:text-white">Wire</button>
+                                        <button type="button" class="px-4 py-2 text-gray-400 hover:text-white">Net Funded</button>
+                                        <button type="button" class="px-4 py-2 text-gray-400 hover:text-white">Aggregate</button>
+                                        <button type="button" class="px-4 py-2 text-gray-400 hover:text-white">Transfer</button>
+                                        <button type="button" class="px-4 py-2 text-gray-400 hover:text-white">Holdback</button>
+                                    </div>
+                                </div>
+
+                                <!-- Payment Details -->
+                                <div class="space-y-6">
+                                    <h5 class="text-base font-medium text-white">Payment</h5>
+                                    
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-300 mb-2">Name</label>
+                                            <input type="text" 
+                                                   class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
+                                                   data-schema-key="contacts.borrower_payees.0.name">
+                                        </div>
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-300 mb-2">
+                                                Payment Amount
+                                                <i class="fa fa-lock ml-1 text-gray-400" title="This field cannot be modified"></i>
+                                            </label>
+                                            <input type="text" 
+                                                   inputmode="decimal"
+                                                   readonly
+                                                   class="w-full px-3 py-2.5 bg-gray-600 border border-gray-500 rounded text-gray-400 text-sm cursor-not-allowed" 
+                                                   data-schema-key="contacts.borrower_payees.0.payment_dep">
+                                        </div>
+                                    </div>
+
+                                    <div class="grid grid-cols-1 gap-6">
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-300 mb-2">Memo</label>
+                                            <input type="text" 
+                                                   class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
+                                                   data-schema-key="contacts.borrower_payees.0.reference_number">
+                                        </div>
+                                    </div>
+
+                                    <!-- Mailing Address -->
+                                    <div class="space-y-4">
+                                        <h5 class="text-base font-medium text-white">Mailing Address</h5>
+                                        
+                                        <input type="hidden" data-schema-key="contacts.borrower_payees.0.address.latitude">
+                                        <input type="hidden" data-schema-key="contacts.borrower_payees.0.address.longitude">
+                                        
+                                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                            <div class="md:col-span-2">
+                                                <label class="block text-sm font-medium text-gray-300 mb-2">Address</label>
+                                                <div class="relative">
+                                                    <input type="text" 
+                                                           placeholder="Search address..."
+                                                           class="w-full px-3 py-2.5 pr-10 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
+                                                           data-schema-key="contacts.borrower_payees.0.address.address_1">
+                                                    <i class="fa fa-times absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 cursor-pointer hover:text-red-400" title="Clear Mailing Address"></i>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <label class="block text-sm font-medium text-gray-300 mb-2">Apt, Suite, Etc.</label>
+                                                <input type="text" 
+                                                       class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
+                                                       data-schema-key="contacts.borrower_payees.0.address.address_2">
+                                            </div>
+                                        </div>
+
+                                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                            <div>
+                                                <label class="block text-sm font-medium text-gray-300 mb-2">City</label>
+                                                <input type="text" 
+                                                       class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
+                                                       data-schema-key="contacts.borrower_payees.0.address.city">
+                                            </div>
+                                            <div>
+                                                <label class="block text-sm font-medium text-gray-300 mb-2">State</label>
+                                                <div class="relative">
+                                                    <select class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none" 
+                                                            data-schema-key="contacts.borrower_payees.0.address.state">
+                                                        <option value="CA" selected>CA</option>
+                                                        <option value="AK">AK</option>
+                                                        <option value="AL">AL</option>
+                                                        <option value="AR">AR</option>
+                                                        <option value="AZ">AZ</option>
+                                                        <option value="CO">CO</option>
+                                                        <option value="CT">CT</option>
+                                                        <option value="DC">DC</option>
+                                                        <option value="DE">DE</option>
+                                                        <option value="FL">FL</option>
+                                                        <option value="GA">GA</option>
+                                                        <option value="HI">HI</option>
+                                                        <option value="IA">IA</option>
+                                                        <option value="ID">ID</option>
+                                                        <option value="IL">IL</option>
+                                                        <option value="IN">IN</option>
+                                                        <option value="KS">KS</option>
+                                                        <option value="KY">KY</option>
+                                                        <option value="LA">LA</option>
+                                                        <option value="MA">MA</option>
+                                                        <option value="MD">MD</option>
+                                                        <option value="ME">ME</option>
+                                                        <option value="MI">MI</option>
+                                                        <option value="MN">MN</option>
+                                                        <option value="MO">MO</option>
+                                                        <option value="MS">MS</option>
+                                                        <option value="MT">MT</option>
+                                                        <option value="NC">NC</option>
+                                                        <option value="ND">ND</option>
+                                                        <option value="NE">NE</option>
+                                                        <option value="NH">NH</option>
+                                                        <option value="NJ">NJ</option>
+                                                        <option value="NM">NM</option>
+                                                        <option value="NV">NV</option>
+                                                        <option value="NY">NY</option>
+                                                        <option value="OH">OH</option>
+                                                        <option value="OK">OK</option>
+                                                        <option value="OR">OR</option>
+                                                        <option value="PA">PA</option>
+                                                        <option value="RI">RI</option>
+                                                        <option value="SC">SC</option>
+                                                        <option value="SD">SD</option>
+                                                        <option value="TN">TN</option>
+                                                        <option value="TX">TX</option>
+                                                        <option value="UT">UT</option>
+                                                        <option value="VA">VA</option>
+                                                        <option value="VT">VT</option>
+                                                        <option value="WA">WA</option>
+                                                        <option value="WI">WI</option>
+                                                        <option value="WV">WV</option>
+                                                        <option value="WY">WY</option>
+                                                        <option value="VI">VI</option>
+                                                    </select>
+                                                    <i class="fa fa-chevron-down absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none"></i>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <label class="block text-sm font-medium text-gray-300 mb-2">Zipcode</label>
+                                                <input type="text" 
+                                                       inputmode="numeric"
+                                                       class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
+                                                       data-schema-key="contacts.borrower_payees.0.address.zipcode">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </form>
+            </section>
+        </section>
+
+        <!-- Right Rail -->
+        <section class="w-64 bg-gray-800 border-l border-gray-600 p-5">
+            <section class="mb-5 p-4 bg-gray-700 rounded">
+                <h4 class="text-white text-sm mb-2.5">Chat</h4>
+                <p class="text-gray-400 text-xs">Chat functionality</p>
+            </section>
+
+            <section class="mb-5 p-4 bg-gray-700 rounded">
+                <h4 class="text-white text-sm mb-2.5">Tasks</h4>
+                <p class="text-gray-400 text-xs">No tasks assigned</p>
+            </section>
+
+            <section class="mb-5 p-4 bg-gray-700 rounded">
+                <h4 class="text-white text-sm mb-2.5">Notes</h4>
+                <p class="text-gray-400 text-xs">No notes added</p>
+            </section>
+        </section>
+    </div>
+</body>
+</html>

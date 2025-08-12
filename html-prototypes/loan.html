@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan - Real Estate Closing</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white">
+    <div class="flex h-screen">
+        <!-- Left Sidebar -->
+        <section class="w-72 bg-gray-800 border-r border-gray-600">
+            <div class="p-5 text-gray-400 text-center border-b border-gray-600">
+                <div class="text-xs">Navigation Sidebar</div>
+                <div class="text-xs mt-1">Loan is active</div>
+            </div>
+        </section>
+
+        <!-- Main Content -->
+        <section class="flex-1 bg-gray-900 overflow-y-auto">
+            <!-- Page Header -->
+            <section class="py-8 px-10 pb-5 border-b border-gray-600 flex items-center justify-between">
+                <div class="flex items-center gap-4">
+                    <i class="fa fa-university text-gray-400 text-xl"></i>
+                    <h2 class="text-2xl font-semibold text-white">Loan</h2>
+                </div>
+                <button class="bg-gray-600 border border-gray-500 rounded px-3 py-2 text-white text-sm hover:bg-gray-500">
+                    <i class="fa fa-plus mr-2"></i>
+                    Add Loan
+                </button>
+            </section>
+
+            <!-- Loan Form -->
+            <section class="px-10 py-8">
+                <form class="space-y-8">
+                    <div class="grid grid-cols-2 gap-10">
+                        <!-- Left Column -->
+                        <div class="space-y-8">
+                            <!-- Loan Section -->
+                            <section>
+                                <h3 class="text-base font-semibold text-white mb-5 pb-2 border-b border-gray-600">Loan</h3>
+                                <div class="grid grid-cols-2 gap-5">
+                                    <div>
+                                        <label class="block text-sm text-gray-300 mb-2">Loan Amount</label>
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" data-schema-key="cdf.loans.0.initial_loan_amount">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm text-gray-300 mb-2">Funding Type</label>
+                                        <div class="flex bg-gray-700 border border-gray-500 rounded overflow-hidden">
+                                            <button type="button" class="flex-1 px-4 py-2.5 bg-blue-600 text-white text-sm font-medium">Net</button>
+                                            <button type="button" class="flex-1 px-4 py-2.5 bg-gray-700 text-gray-300 text-sm font-medium hover:bg-gray-600">Gross</button>
+                                        </div>
+                                        <input type="hidden" data-schema-key="cdf.loans.0.funding_type" value="net">
+                                    </div>
+                                </div>
+                            </section>
+
+                            <!-- Term & Dates Section -->
+                            <section>
+                                <h3 class="text-base font-semibold text-white mb-5 pb-2 border-b border-gray-600">Term & Dates</h3>
+                                <div class="grid grid-cols-2 gap-5 mb-5">
+                                    <div class="relative">
+                                        <label class="block text-sm text-gray-300 mb-2">Loan Term</label>
+                                        <div class="flex">
+                                            <input type="text" inputmode="numeric" class="flex-1 px-3 py-2.5 bg-gray-700 border border-gray-500 rounded-l text-white text-sm focus:outline-none focus:border-blue-500" data-schema-key="cdf.loans.0.loan_term_years">
+                                            <div class="bg-gray-600 border border-gray-500 border-l-0 px-3 py-2.5 rounded-r text-sm text-gray-300">yr.</div>
+                                        </div>
+                                    </div>
+                                    <div class="relative">
+                                        <label class="block text-sm text-gray-300 mb-2">&nbsp;</label>
+                                        <div class="flex">
+                                            <div class="bg-gray-600 border border-gray-500 border-r-0 px-3 py-2.5 rounded-l text-sm text-gray-300">and</div>
+                                            <input type="text" inputmode="numeric" class="flex-1 px-3 py-2.5 bg-gray-700 border border-gray-500 text-white text-sm focus:outline-none focus:border-blue-500" data-schema-key="cdf.loans.0.loan_term_months">
+                                            <div class="bg-gray-600 border border-gray-500 border-l-0 px-3 py-2.5 rounded-r text-sm text-gray-300">mo.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="grid grid-cols-2 gap-5 mb-5">
+                                    <div>
+                                        <label class="block text-sm text-gray-300 mb-2">First Payment Date</label>
+                                        <div class="relative">
+                                            <i class="fa fa-calendar absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                                            <input type="text" inputmode="numeric" class="w-full pl-9 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" data-schema-key="cdf.loans.0.first_payment_date">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm text-gray-300 mb-2">Last Payment Date</label>
+                                        <div class="relative">
+                                            <i class="fa fa-calendar absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                                            <input type="text" inputmode="numeric" class="w-full pl-9 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" data-schema-key="cdf.loans.0.last_payment_date">
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm text-gray-300 mb-2">Mortgage Commitment Date</label>
+                                    <div class="relative">
+                                        <i class="fa fa-calendar absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                                        <input type="text" inputmode="numeric" class="w-full pl-9 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" data-schema-key="cdf.loans.0.mortgage_commitment_date">
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+
+                        <!-- Right Column -->
+                        <div class="space-y-8">
+                            <!-- Disclosures & Tracking Section -->
+                            <section>
+                                <h3 class="text-base font-semibold text-white mb-5 pb-2 border-b border-gray-600">Disclosures & Tracking</h3>
+                                <div class="space-y-5">
+                                    <div>
+                                        <label class="block text-sm text-gray-300 mb-2">Loan ID #</label>
+                                        <input type="text" maxlength="30" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" data-schema-key="cdf.loans.0.loan_number">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm text-gray-300 mb-2">Mortgage Ins. Case #</label>
+                                        <input type="text" maxlength="30" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" data-schema-key="cdf.loans.0.mortgage_insurance_case_number">
+                                    </div>
+                                </div>
+                            </section>
+
+                            <!-- Late Penalty Section -->
+                            <section>
+                                <h3 class="text-base font-semibold text-white mb-5 pb-2 border-b border-gray-600">Late Penalty</h3>
+                                <div class="grid grid-cols-3 gap-5 mb-5">
+                                    <div>
+                                        <label class="block text-sm text-gray-300 mb-2">Grace Period Days</label>
+                                        <input type="text" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" data-schema-key="cdf.loans.0.penalty_grace_period_days">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm text-gray-300 mb-2">Late Penalty Amount</label>
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" data-schema-key="cdf.loans.0.late_penalty_amount">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm text-gray-300 mb-2">Late Penalty Type</label>
+                                        <div class="flex bg-gray-700 border border-gray-500 rounded overflow-hidden">
+                                            <button type="button" class="flex-1 px-4 py-2.5 bg-blue-600 text-white text-sm font-medium">%</button>
+                                            <button type="button" class="flex-1 px-4 py-2.5 bg-gray-700 text-gray-300 text-sm font-medium hover:bg-gray-600">$</button>
+                                        </div>
+                                        <input type="hidden" data-schema-key="cdf.loans.0.late_penalty_type" value="%">
+                                    </div>
+                                </div>
+                            </section>
+
+                            <!-- Interest Section -->
+                            <section>
+                                <h3 class="text-base font-semibold text-white mb-5 pb-2 border-b border-gray-600">Interest</h3>
+                                
+                                <div class="mb-5">
+                                    <label class="flex items-center cursor-pointer">
+                                        <input type="checkbox" class="sr-only" data-schema-key="cdf.loans.0.interest_only">
+                                        <div class="relative">
+                                            <div class="block bg-gray-600 w-14 h-8 rounded-full"></div>
+                                            <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
+                                        </div>
+                                        <span class="ml-3 text-gray-300">Interest Only</span>
+                                    </label>
+                                </div>
+
+                                <div class="grid grid-cols-2 gap-5">
+                                    <div>
+                                        <label class="block text-sm text-gray-300 mb-2">Interest Rate</label>
+                                        <input type="text" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" data-schema-key="cdf.loans.0.interest_rate">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm text-gray-300 mb-2">Interest Type</label>
+                                        <select class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none" data-schema-key="cdf.loans.0.interest_type">
+                                            <option value="Fixed" selected>Fixed</option>
+                                            <option value="Variable">Variable</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+
+                    <!-- Bottom Section - Checkboxes -->
+                    <section class="border-t border-gray-600 pt-8">
+                        <div class="grid grid-cols-2 gap-8">
+                            <div class="space-y-4">
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="checkbox" class="sr-only" data-schema-key="cdf.loans.0.is_heloc">
+                                    <div class="relative">
+                                        <div class="block bg-gray-600 w-14 h-8 rounded-full"></div>
+                                        <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
+                                    </div>
+                                    <span class="ml-3 text-gray-300">HELOC</span>
+                                </label>
+                                
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="checkbox" class="sr-only" data-schema-key="cdf.loans.0.is_construction_loan">
+                                    <div class="relative">
+                                        <div class="block bg-gray-600 w-14 h-8 rounded-full"></div>
+                                        <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
+                                    </div>
+                                    <span class="ml-3 text-gray-300">Construction Loan</span>
+                                </label>
+                            </div>
+                            
+                            <div class="space-y-4">
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="checkbox" class="sr-only" data-schema-key="cdf.loans.0.is_MERS">
+                                    <div class="relative">
+                                        <div class="block bg-gray-600 w-14 h-8 rounded-full"></div>
+                                        <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
+                                    </div>
+                                    <span class="ml-3 text-gray-300">MERS</span>
+                                </label>
+                                
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="checkbox" class="sr-only" data-schema-key="cdf.loans.0.generating_mortgage_docs">
+                                    <div class="relative">
+                                        <div class="block bg-gray-600 w-14 h-8 rounded-full"></div>
+                                        <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
+                                    </div>
+                                    <span class="ml-3 text-gray-300">Generating Mortgage Docs</span>
+                                </label>
+                            </div>
+                        </div>
+                    </section>
+                </form>
+            </section>
+        </section>
+
+        <!-- Right Rail -->
+        <section class="w-64 bg-gray-800 border-l border-gray-600 p-5">
+            <section class="mb-5 p-4 bg-gray-700 rounded">
+                <h4 class="text-white text-sm mb-2.5">Chat</h4>
+                <p class="text-gray-400 text-xs">Chat functionality</p>
+            </section>
+
+            <section class="mb-5 p-4 bg-gray-700 rounded">
+                <h4 class="text-white text-sm mb-2.5">Tasks</h4>
+                <p class="text-gray-400 text-xs">No tasks assigned</p>
+            </section>
+
+            <section class="mb-5 p-4 bg-gray-700 rounded">
+                <h4 class="text-white text-sm mb-2.5">Notes</h4>
+                <p class="text-gray-400 text-xs">No notes added</p>
+            </section>
+        </section>
+    </div>
+
+    <script>
+        // Toggle switch functionality
+        document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+            const toggle = checkbox.nextElementSibling;
+            const dot = toggle.querySelector('.dot');
+            
+            checkbox.addEventListener('change', function() {
+                if (this.checked) {
+                    toggle.querySelector('.block').classList.add('bg-blue-600');
+                    toggle.querySelector('.block').classList.remove('bg-gray-600');
+                    dot.style.transform = 'translateX(1.5rem)';
+                } else {
+                    toggle.querySelector('.block').classList.remove('bg-blue-600');
+                    toggle.querySelector('.block').classList.add('bg-gray-600');
+                    dot.style.transform = 'translateX(0)';
+                }
+            });
+        });
+
+        // Button toggle functionality for Funding Type and Late Penalty Type
+        document.querySelectorAll('.flex.bg-gray-700').forEach(buttonGroup => {
+            const buttons = buttonGroup.querySelectorAll('button');
+            const hiddenInput = buttonGroup.nextElementSibling;
+            
+            buttons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active state from all buttons
+                    buttons.forEach(btn => {
+                        btn.classList.remove('bg-blue-600', 'text-white');
+                        btn.classList.add('bg-gray-700', 'text-gray-300');
+                    });
+                    
+                    // Add active state to clicked button
+                    this.classList.remove('bg-gray-700', 'text-gray-300');
+                    this.classList.add('bg-blue-600', 'text-white');
+                    
+                    // Update hidden input value
+                    if (hiddenInput) {
+                        hiddenInput.value = this.textContent.trim();
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

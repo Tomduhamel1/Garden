@@ -1,0 +1,128 @@
+{
+  "timestamp": "2025-08-12T22:57:22.462Z",
+  "checks": {
+    "tracking": {
+      "progressMd": true,
+      "statusJson": true,
+      "componentsJson": true,
+      "nextMd": true,
+      "handoffMd": true,
+      "roadmapMd": true,
+      "claudeMd": true
+    },
+    "backend": {
+      "structure": {
+        "srcExists": true,
+        "modelsExists": true,
+        "migrationsExists": true,
+        "configExists": true,
+        "indexExists": true,
+        "packageJsonExists": true
+      },
+      "dependencies": {
+        "express": true,
+        "sequelize": true,
+        "pg": true,
+        "jwt": false,
+        "bcrypt": false,
+        "cors": true,
+        "helmet": true
+      },
+      "endpoints": [],
+      "models": [
+        "index.js",
+        "user.js"
+      ]
+    },
+    "frontend": {
+      "structure": {
+        "srcExists": true,
+        "componentsExists": true,
+        "publicExists": true,
+        "packageJsonExists": true,
+        "viteConfigExists": true,
+        "appExists": true,
+        "mainExists": true
+      },
+      "dependencies": {
+        "react": true,
+        "reactDom": true,
+        "vite": true,
+        "typescript": true,
+        "tailwind": true,
+        "reactRouter": false,
+        "zustand": false,
+        "axios": false
+      },
+      "components": [],
+      "routes": [],
+      "htmlPrototypes": [
+        "accounting.html",
+        "air-table.html",
+        "basic-info.html",
+        "cash-to-close.html",
+        "closing-disclosure.html",
+        "contacts-seller-info.html",
+        "contacts.html",
+        "dashboard.html",
+        "debits-credits-ln.html",
+        "debits-credits.html",
+        "did-not-shop-for.html",
+        "did-shop-for.html",
+        "documents.html",
+        "earnest-commissions.html",
+        "escrow.html",
+        "lender-credits.html",
+        "loan-calculations.html",
+        "loan-disclosures.html",
+        "loan-terms.html",
+        "loan.html",
+        "marketplace.html",
+        "no-ap-table.html",
+        "origination-charges.html",
+        "other-charges.html",
+        "payoffs.html",
+        "prepaids.html",
+        "proceeds-borrower.html",
+        "proceeds-seller.html",
+        "projected-payments.html",
+        "properties.html",
+        "settlement-statement.html",
+        "sidebar.html",
+        "taxes-and-fees.html",
+        "taxes-prorations.html"
+      ]
+    },
+    "database": {
+      "connected": true,
+      "tables": [],
+      "hasJSONB": false,
+      "error": null,
+      "hasConfig": true,
+      "configuredEnvironments": [
+        "development",
+        "test",
+        "production"
+      ]
+    },
+    "git": {
+      "isRepo": true,
+      "branch": "main",
+      "uncommittedChanges": 56,
+      "lastCommit": "1d71843 - Initial commit: Garden title software HTML prototypes (13 days ago)"
+    }
+  },
+  "discrepancies": [],
+  "warnings": [],
+  "summary": {
+    "backendReady": true,
+    "frontendReady": true,
+    "databaseReady": true,
+    "trackingComplete": true,
+    "htmlPrototypesCount": 34,
+    "componentsConverted": 0,
+    "modelsCreated": 2,
+    "gitClean": false,
+    "overallReadiness": "READY"
+  }
+}

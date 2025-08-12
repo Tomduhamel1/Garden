@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Other Charges - Garden</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gray: {
+                            850: '#1f2937',
+                            950: '#030712'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-900 text-gray-100 min-h-screen">
+    <div class="flex">
+        <!-- Left Sidebar -->
+        <div class="w-64 bg-gray-800 min-h-screen p-4">
+            <div class="mb-8">
+                <h1 class="text-xl font-bold text-white">Garden</h1>
+            </div>
+            
+            <nav class="space-y-2">
+                <a href="#" class="block px-3 py-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white">Overview</a>
+                <a href="contacts.html" class="block px-3 py-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white">Contacts</a>
+                <div class="ml-4 space-y-1">
+                    <a href="loan.html" class="block px-3 py-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white">Loan</a>
+                    <a href="earnest-commissions.html" class="block px-3 py-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white">Earnest & Commissions</a>
+                    <a href="taxes-prorations.html" class="block px-3 py-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white">Taxes & Prorations</a>
+                    <a href="payoffs.html" class="block px-3 py-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white">Payoffs</a>
+                </div>
+                <div class="ml-4 space-y-1">
+                    <h3 class="px-3 py-2 text-sm font-medium text-gray-400">Closing</h3>
+                    <a href="origination-charges.html" class="block px-3 py-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white">Origination Charges</a>
+                    <a href="did-not-shop-for.html" class="block px-3 py-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white">Did Not Shop For</a>
+                    <a href="did-shop-for.html" class="block px-3 py-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white">Did Shop For</a>
+                    <a href="taxes-and-fees.html" class="block px-3 py-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white">Taxes and Fees</a>
+                    <a href="prepaids.html" class="block px-3 py-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white">Prepaids</a>
+                    <a href="escrow.html" class="block px-3 py-2 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white">Escrow</a>
+                    <a href="other-charges.html" class="block px-3 py-2 rounded-md bg-gray-700 text-white">Other Charges</a>
+                </div>
+            </nav>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="flex-1 p-6 overflow-auto">
+            <div class="max-w-6xl mx-auto">
+                <header class="mb-6">
+                    <h1 class="text-2xl font-bold text-white">Other Charges</h1>
+                </header>
+                
+                <!-- Line Items Section -->
+                <section class="bg-gray-800 rounded-lg p-6 mb-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-lg font-semibold text-white">Line Items</h2>
+                        <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium">
+                            Add Line Item
+                        </button>
+                    </div>
+                    
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead>
+                                <tr class="border-b border-gray-700">
+                                    <th class="text-left py-3 px-4 text-gray-300 font-medium text-sm w-16">Line</th>
+                                    <th class="text-left py-3 px-4 text-gray-300 font-medium text-sm">Description</th>
+                                    <th class="text-right py-3 px-4 text-gray-300 font-medium text-sm w-32">Amount</th>
+                                    <th class="text-center py-3 px-4 text-gray-300 font-medium text-sm w-24">To</th>
+                                    <th class="text-center py-3 px-4 text-gray-300 font-medium text-sm w-24">From</th>
+                                    <th class="w-10"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b border-gray-700 hover:bg-gray-750 focus-within:bg-gray-750">
+                                    <td class="py-3 px-4 text-gray-300 text-sm">01</td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" class="w-full bg-transparent text-gray-100 border-none outline-none focus:ring-0" placeholder="Description" data-schema-key="cdf.other_charges.0.description">
+                                    </td>
+                                    <td class="py-3 px-4 text-right">
+                                        <input type="text" inputmode="decimal" class="w-full bg-transparent text-gray-100 border-none outline-none focus:ring-0 text-right" placeholder="0.00" data-schema-key="cdf.other_charges.0.amount">
+                                    </td>
+                                    <td class="py-3 px-4 text-center">
+                                        <input type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-700 border-gray-600 rounded focus:ring-blue-500" data-schema-key="cdf.other_charges.0.paid_by_borrower">
+                                    </td>
+                                    <td class="py-3 px-4 text-center">
+                                        <input type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-700 border-gray-600 rounded focus:ring-blue-500" data-schema-key="cdf.other_charges.0.paid_by_seller">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <button class="text-gray-400 hover:text-red-400 p-1">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                            </svg>
+                                        </button>
+                                    </td>
+                                </tr>
+                                
+                                <tr class="border-b border-gray-700 hover:bg-gray-750 focus-within:bg-gray-750">
+                                    <td class="py-3 px-4 text-gray-300 text-sm">02</td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" class="w-full bg-transparent text-gray-100 border-none outline-none focus:ring-0" placeholder="Description" data-schema-key="cdf.other_charges.1.description">
+                                    </td>
+                                    <td class="py-3 px-4 text-right">
+                                        <input type="text" inputmode="decimal" class="w-full bg-transparent text-gray-100 border-none outline-none focus:ring-0 text-right" placeholder="0.00" data-schema-key="cdf.other_charges.1.amount">
+                                    </td>
+                                    <td class="py-3 px-4 text-center">
+                                        <input type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-700 border-gray-600 rounded focus:ring-blue-500" data-schema-key="cdf.other_charges.1.paid_by_borrower">
+                                    </td>
+                                    <td class="py-3 px-4 text-center">
+                                        <input type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-700 border-gray-600 rounded focus:ring-blue-500" data-schema-key="cdf.other_charges.1.paid_by_seller">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <button class="text-gray-400 hover:text-red-400 p-1">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                            </svg>
+                                        </button>
+                                    </td>
+                                </tr>
+                                
+                                <tr class="border-b border-gray-700 hover:bg-gray-750 focus-within:bg-gray-750">
+                                    <td class="py-3 px-4 text-gray-300 text-sm">03</td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" class="w-full bg-transparent text-gray-100 border-none outline-none focus:ring-0" placeholder="Description" data-schema-key="cdf.other_charges.2.description">
+                                    </td>
+                                    <td class="py-3 px-4 text-right">
+                                        <input type="text" inputmode="decimal" class="w-full bg-transparent text-gray-100 border-none outline-none focus:ring-0 text-right" placeholder="0.00" data-schema-key="cdf.other_charges.2.amount">
+                                    </td>
+                                    <td class="py-3 px-4 text-center">
+                                        <input type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-700 border-gray-600 rounded focus:ring-blue-500" data-schema-key="cdf.other_charges.2.paid_by_borrower">
+                                    </td>
+                                    <td class="py-3 px-4 text-center">
+                                        <input type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-700 border-gray-600 rounded focus:ring-blue-500" data-schema-key="cdf.other_charges.2.paid_by_seller">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <button class="text-gray-400 hover:text-red-400 p-1">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                            </svg>
+                                        </button>
+                                    </td>
+                                </tr>
+                                
+                                <tr class="border-b border-gray-700 hover:bg-gray-750 focus-within:bg-gray-750 bg-yellow-900/20">
+                                    <td class="py-3 px-4 text-gray-300 text-sm">04</td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" class="w-full bg-transparent text-gray-400 border-none outline-none focus:ring-0" placeholder="Description" value="Title Premium" readonly data-schema-key="cdf.other_charges.3.description">
+                                    </td>
+                                    <td class="py-3 px-4 text-right">
+                                        <input type="text" inputmode="decimal" class="w-full bg-transparent text-gray-400 border-none outline-none focus:ring-0 text-right" placeholder="0.00" value="850.00" readonly data-schema-key="cdf.other_charges.3.amount">
+                                    </td>
+                                    <td class="py-3 px-4 text-center">
+                                        <input type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-700 border-gray-600 rounded focus:ring-blue-500" checked disabled data-schema-key="cdf.other_charges.3.paid_by_borrower">
+                                    </td>
+                                    <td class="py-3 px-4 text-center">
+                                        <input type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-700 border-gray-600 rounded focus:ring-blue-500" data-schema-key="cdf.other_charges.3.paid_by_seller">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <button class="bg-blue-600 hover:bg-blue-700 text-white px-2 py-1 rounded text-xs font-medium">
+                                            Edit Premium Line
+                                        </button>
+                                    </td>
+                                </tr>
+                                
+                                <tr class="border-b border-gray-700 hover:bg-gray-750 focus-within:bg-gray-750">
+                                    <td class="py-3 px-4 text-gray-300 text-sm">05</td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" class="w-full bg-transparent text-gray-100 border-none outline-none focus:ring-0" placeholder="Description" data-schema-key="cdf.other_charges.4.description">
+                                    </td>
+                                    <td class="py-3 px-4 text-right">
+                                        <input type="text" inputmode="decimal" class="w-full bg-transparent text-gray-100 border-none outline-none focus:ring-0 text-right" placeholder="0.00" data-schema-key="cdf.other_charges.4.amount">
+                                    </td>
+                                    <td class="py-3 px-4 text-center">
+                                        <input type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-700 border-gray-600 rounded focus:ring-blue-500" data-schema-key="cdf.other_charges.4.paid_by_borrower">
+                                    </td>
+                                    <td class="py-3 px-4 text-center">
+                                        <input type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-700 border-gray-600 rounded focus:ring-blue-500" data-schema-key="cdf.other_charges.4.paid_by_seller">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <button class="text-gray-400 hover:text-red-400 p-1">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                            </svg>
+                                        </button>
+                                    </td>
+                                </tr>
+                                
+                                <tr class="border-b border-gray-700 hover:bg-gray-750 focus-within:bg-gray-750">
+                                    <td class="py-3 px-4 text-gray-300 text-sm">06</td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" class="w-full bg-transparent text-gray-100 border-none outline-none focus:ring-0" placeholder="Description" data-schema-key="cdf.other_charges.5.description">
+                                    </td>
+                                    <td class="py-3 px-4 text-right">
+                                        <input type="text" inputmode="decimal" class="w-full bg-transparent text-gray-100 border-none outline-none focus:ring-0 text-right" placeholder="0.00" data-schema-key="cdf.other_charges.5.amount">
+                                    </td>
+                                    <td class="py-3 px-4 text-center">
+                                        <input type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-700 border-gray-600 rounded focus:ring-blue-500" data-schema-key="cdf.other_charges.5.paid_by_borrower">
+                                    </td>
+                                    <td class="py-3 px-4 text-center">
+                                        <input type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-700 border-gray-600 rounded focus:ring-blue-500" data-schema-key="cdf.other_charges.5.paid_by_seller">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <button class="text-gray-400 hover:text-red-400 p-1">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                            </svg>
+                                        </button>
+                                    </td>
+                                </tr>
+                                
+                                <tr class="border-b border-gray-700 hover:bg-gray-750 focus-within:bg-gray-750">
+                                    <td class="py-3 px-4 text-gray-300 text-sm">07</td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" class="w-full bg-transparent text-gray-100 border-none outline-none focus:ring-0" placeholder="Description" data-schema-key="cdf.other_charges.6.description">
+                                    </td>
+                                    <td class="py-3 px-4 text-right">
+                                        <input type="text" inputmode="decimal" class="w-full bg-transparent text-gray-100 border-none outline-none focus:ring-0 text-right" placeholder="0.00" data-schema-key="cdf.other_charges.6.amount">
+                                    </td>
+                                    <td class="py-3 px-4 text-center">
+                                        <input type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-700 border-gray-600 rounded focus:ring-blue-500" data-schema-key="cdf.other_charges.6.paid_by_borrower">
+                                    </td>
+                                    <td class="py-3 px-4 text-center">
+                                        <input type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-700 border-gray-600 rounded focus:ring-blue-500" data-schema-key="cdf.other_charges.6.paid_by_seller">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <button class="text-gray-400 hover:text-red-400 p-1">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                            </svg>
+                                        </button>
+                                    </td>
+                                </tr>
+                                
+                                <tr class="hover:bg-gray-750 focus-within:bg-gray-750">
+                                    <td class="py-3 px-4 text-gray-300 text-sm">08</td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" class="w-full bg-transparent text-gray-100 border-none outline-none focus:ring-0" placeholder="Description" data-schema-key="cdf.other_charges.7.description">
+                                    </td>
+                                    <td class="py-3 px-4 text-right">
+                                        <input type="text" inputmode="decimal" class="w-full bg-transparent text-gray-100 border-none outline-none focus:ring-0 text-right" placeholder="0.00" data-schema-key="cdf.other_charges.7.amount">
+                                    </td>
+                                    <td class="py-3 px-4 text-center">
+                                        <input type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-700 border-gray-600 rounded focus:ring-blue-500" data-schema-key="cdf.other_charges.7.paid_by_borrower">
+                                    </td>
+                                    <td class="py-3 px-4 text-center">
+                                        <input type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-700 border-gray-600 rounded focus:ring-blue-500" data-schema-key="cdf.other_charges.7.paid_by_seller">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <button class="text-gray-400 hover:text-red-400 p-1">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                            </svg>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+                
+                <!-- Settings Section -->
+                <section class="bg-gray-800 rounded-lg p-6 mb-6">
+                    <h2 class="text-lg font-semibold text-white mb-4">Settings</h2>
+                    
+                    <div class="flex items-center">
+                        <label class="flex items-center cursor-pointer">
+                            <input type="checkbox" class="sr-only" data-schema-key="cdf.other_charges_settings.line_is_taxable">
+                            <div class="relative">
+                                <div class="block bg-gray-600 w-14 h-8 rounded-full"></div>
+                                <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
+                            </div>
+                            <span class="ml-3 text-gray-300">Line is Taxable</span>
+                        </label>
+                    </div>
+                </section>
+                
+                <!-- Payment Section -->
+                <section class="bg-gray-800 rounded-lg p-6">
+                    <h2 class="text-lg font-semibold text-white mb-4">Payment - Listing Agent Commission</h2>
+                    
+                    <!-- Payment Type Tabs -->
+                    <div class="border-b border-gray-700 mb-6">
+                        <nav class="-mb-px flex space-x-8">
+                            <button type="button" class="payment-tab py-2 px-1 border-b-2 font-medium text-sm whitespace-nowrap border-blue-500 text-blue-400" data-payment-type="check">
+                                Check
+                            </button>
+                            <button type="button" class="payment-tab py-2 px-1 border-b-2 font-medium text-sm whitespace-nowrap border-transparent text-gray-400 hover:text-gray-300 hover:border-gray-300" data-payment-type="wire">
+                                Wire
+                            </button>
+                            <button type="button" class="payment-tab py-2 px-1 border-b-2 font-medium text-sm whitespace-nowrap border-transparent text-gray-400 hover:text-gray-300 hover:border-gray-300" data-payment-type="net-funded">
+                                Net Funded
+                            </button>
+                            <button type="button" class="payment-tab py-2 px-1 border-b-2 font-medium text-sm whitespace-nowrap border-transparent text-gray-400 hover:text-gray-300 hover:border-gray-300" data-payment-type="aggregate">
+                                Aggregate
+                            </button>
+                            <button type="button" class="payment-tab py-2 px-1 border-b-2 font-medium text-sm whitespace-nowrap border-transparent text-gray-400 hover:text-gray-300 hover:border-gray-300" data-payment-type="transfer">
+                                Transfer
+                            </button>
+                            <button type="button" class="payment-tab py-2 px-1 border-b-2 font-medium text-sm whitespace-nowrap border-transparent text-gray-400 hover:text-gray-300 hover:border-gray-300" data-payment-type="holdback">
+                                Holdback
+                            </button>
+                        </nav>
+                    </div>
+                    
+                    <!-- Standard Payment Fields (shown for most payment types) -->
+                    <div id="standard-payment-fields" class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-2">Amount</label>
+                            <input type="text" inputmode="decimal" class="w-full bg-gray-700 border border-gray-600 rounded-md px-3 py-2 text-gray-100 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="0.00" data-schema-key="cdf.other_charges_payment.amount">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-2">Payee</label>
+                            <select class="w-full bg-gray-700 border border-gray-600 rounded-md px-3 py-2 text-gray-100 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" data-schema-key="cdf.other_charges_payment.payee">
+                                <option value="">Select payee</option>
+                                <option value="listing-agent">Listing Agent</option>
+                                <option value="selling-agent">Selling Agent</option>
+                                <option value="title-company">Title Company</option>
+                                <option value="lender">Lender</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-2">Date</label>
+                            <input type="date" class="w-full bg-gray-700 border border-gray-600 rounded-md px-3 py-2 text-gray-100 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" data-schema-key="cdf.other_charges_payment.date">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-2">Reference Number</label>
+                            <input type="text" class="w-full bg-gray-700 border border-gray-600 rounded-md px-3 py-2 text-gray-100 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Reference number" data-schema-key="cdf.other_charges_payment.reference_number">
+                        </div>
+                    </div>
+                    
+                    <!-- Payment Type Specific Content -->
+                    <!-- Check Content -->
+                    <div id="check-content" class="payment-content">
+                        <div class="grid grid-cols-1 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-2">Memo</label>
+                                <textarea class="w-full bg-gray-700 border border-gray-600 rounded-md px-3 py-2 text-gray-100 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" rows="3" placeholder="Check memo" data-schema-key="cdf.other_charges_payment.check.memo"></textarea>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-2">Mailing Address</label>
+                                <textarea class="w-full bg-gray-700 border border-gray-600 rounded-md px-3 py-2 text-gray-100 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" rows="4" placeholder="Mailing address" data-schema-key="cdf.other_charges_payment.check.mailing_address"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Wire Content -->
+                    <div id="wire-content" class="payment-content hidden">
+                        <div class="grid grid-cols-1 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-2">Memo</label>
+                                <textarea class="w-full bg-gray-700 border border-gray-600 rounded-md px-3 py-2 text-gray-100 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" rows="3" placeholder="Wire memo" data-schema-key="cdf.other_charges_payment.wire.memo"></textarea>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-2">Wire Instructions</label>
+                                <textarea class="w-full bg-gray-700 border border-gray-600 rounded-md px-3 py-2 text-gray-100 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" rows="6" placeholder="Wire instructions" data-schema-key="cdf.other_charges_payment.wire.instructions"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Net Funded Content (no additional fields) -->
+                    <div id="net-funded-content" class="payment-content hidden">
+                        <!-- No additional fields for net funded -->
+                    </div>
+                    
+                    <!-- Aggregate Content -->
+                    <div id="aggregate-content" class="payment-content hidden">
+                        <div class="grid grid-cols-1 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-2">Payee (Global Payment)</label>
+                                <select class="w-full bg-gray-700 border border-gray-600 rounded-md px-3 py-2 text-gray-100 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" data-schema-key="cdf.other_charges_payment.aggregate.global_payee">
+                                    <option value="">Select global payee</option>
+                                    <option value="title-company">Title Company</option>
+                                    <option value="escrow-company">Escrow Company</option>
+                                    <option value="attorney">Attorney</option>
+                                    <option value="settlement-agent">Settlement Agent</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Transfer Content -->
+                    <div id="transfer-content" class="payment-content hidden">
+                        <div class="bg-gray-750 rounded-lg p-4">
+                            <h3 class="text-md font-medium text-white mb-4">Order Transfer</h3>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-300 mb-2">Transfer Type</label>
+                                    <select class="w-full bg-gray-700 border border-gray-600 rounded-md px-3 py-2 text-gray-100 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" data-schema-key="cdf.other_charges_payment.transfer.type">
+                                        <option value="">Select transfer type</option>
+                                        <option value="wire">Wire Transfer</option>
+                                        <option value="ach">ACH Transfer</option>
+                                        <option value="check">Cashier's Check</option>
+                                    </select>
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-300 mb-2">Processing Fee</label>
+                                    <input type="text" inputmode="decimal" class="w-full bg-gray-700 border border-gray-600 rounded-md px-3 py-2 text-gray-100 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="0.00" data-schema-key="cdf.other_charges_payment.transfer.processing_fee">
+                                </div>
+                                
+                                <div class="md:col-span-2">
+                                    <label class="block text-sm font-medium text-gray-300 mb-2">Transfer Instructions</label>
+                                    <textarea class="w-full bg-gray-700 border border-gray-600 rounded-md px-3 py-2 text-gray-100 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" rows="4" placeholder="Transfer instructions" data-schema-key="cdf.other_charges_payment.transfer.instructions"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Holdback Content -->
+                    <div id="holdback-content" class="payment-content hidden">
+                        <div class="bg-gray-750 rounded-lg p-4">
+                            <h3 class="text-md font-medium text-white mb-4">Escrow Information</h3>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-300 mb-2">Holdback Reason</label>
+                                    <select class="w-full bg-gray-700 border border-gray-600 rounded-md px-3 py-2 text-gray-100 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" data-schema-key="cdf.other_charges_payment.holdback.reason">
+                                        <option value="">Select reason</option>
+                                        <option value="repairs">Repairs</option>
+                                        <option value="title-issues">Title Issues</option>
+                                        <option value="survey">Survey</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-300 mb-2">Release Date</label>
+                                    <input type="date" class="w-full bg-gray-700 border border-gray-600 rounded-md px-3 py-2 text-gray-100 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" data-schema-key="cdf.other_charges_payment.holdback.release_date">
+                                </div>
+                                
+                                <div class="md:col-span-2">
+                                    <label class="block text-sm font-medium text-gray-300 mb-2">Release Conditions</label>
+                                    <textarea class="w-full bg-gray-700 border border-gray-600 rounded-md px-3 py-2 text-gray-100 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" rows="4" placeholder="Conditions for release of holdback funds" data-schema-key="cdf.other_charges_payment.holdback.release_conditions"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Toggle switch functionality
+        document.querySelectorAll('input[type="checkbox"]:not(.sr-only)').forEach(checkbox => {
+            // Skip checkboxes that are already handled or disabled
+            if (checkbox.disabled) return;
+            
+            checkbox.addEventListener('change', function() {
+                const toggle = this.closest('label')?.querySelector('.dot');
+                if (toggle) {
+                    if (this.checked) {
+                        toggle.style.transform = 'translateX(1.5rem)';
+                        toggle.closest('.relative').querySelector('.block').classList.remove('bg-gray-600');
+                        toggle.closest('.relative').querySelector('.block').classList.add('bg-blue-600');
+                    } else {
+                        toggle.style.transform = 'translateX(0)';
+                        toggle.closest('.relative').querySelector('.block').classList.remove('bg-blue-600');
+                        toggle.closest('.relative').querySelector('.block').classList.add('bg-gray-600');
+                    }
+                }
+            });
+        });
+        
+        // Payment tab switching functionality
+        function switchPaymentTab(paymentType) {
+            // Update tab appearance
+            document.querySelectorAll('.payment-tab').forEach(tab => {
+                tab.classList.remove('border-blue-500', 'text-blue-400');
+                tab.classList.add('border-transparent', 'text-gray-400');
+            });
+            
+            document.querySelector(`[data-payment-type="${paymentType}"]`).classList.remove('border-transparent', 'text-gray-400');
+            document.querySelector(`[data-payment-type="${paymentType}"]`).classList.add('border-blue-500', 'text-blue-400');
+            
+            switchPaymentTypeContent(paymentType);
+        }
+        
+        function switchPaymentTypeContent(paymentType) {
+            // Hide all payment content sections
+            document.querySelectorAll('.payment-content').forEach(content => {
+                content.classList.add('hidden');
+            });
+            
+            // Show/hide standard payment fields based on payment type
+            const standardFields = document.getElementById('standard-payment-fields');
+            if (paymentType === 'aggregate') {
+                // Hide standard payment fields for aggregate
+                if (standardFields) standardFields.style.display = 'none';
+            } else {
+                // Show standard payment fields for other types
+                if (standardFields) standardFields.style.display = 'grid';
+            }
+            
+            // Show specific content for the selected payment type
+            const contentId = paymentType + '-content';
+            const targetContent = document.getElementById(contentId);
+            if (targetContent) {
+                targetContent.classList.remove('hidden');
+            }
+        }
+        
+        // Add click event listeners to payment tabs
+        document.querySelectorAll('.payment-tab').forEach(tab => {
+            tab.addEventListener('click', function(e) {
+                e.preventDefault();
+                const paymentType = this.getAttribute('data-payment-type');
+                switchPaymentTab(paymentType);
+            });
+        });
+        
+        // Initialize payment content on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            switchPaymentTypeContent('check');
+        });
+    </script>
+</body>
+</html>

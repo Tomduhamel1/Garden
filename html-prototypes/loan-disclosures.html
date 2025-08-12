@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Disclosures - Real Estate Closing</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        .radio-option {
+            position: relative;
+        }
+        .radio-option input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+        }
+        .radio-option input[type="radio"] + label::before {
+            content: '';
+            position: absolute;
+            left: -24px;
+            top: 2px;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #6b7280;
+            border-radius: 50%;
+            background: #374151;
+        }
+        .radio-option input[type="radio"]:checked + label::before {
+            border-color: #3b82f6;
+        }
+        .radio-option input[type="radio"]:checked + label::after {
+            content: '';
+            position: absolute;
+            left: -20px;
+            top: 6px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #3b82f6;
+        }
+        .checkbox-option {
+            position: relative;
+        }
+        .checkbox-option input[type="checkbox"] {
+            position: absolute;
+            opacity: 0;
+        }
+        .checkbox-option input[type="checkbox"] + label::before {
+            content: '';
+            position: absolute;
+            left: -24px;
+            top: 2px;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #6b7280;
+            border-radius: 3px;
+            background: #374151;
+        }
+        .checkbox-option input[type="checkbox"]:checked + label::before {
+            border-color: #3b82f6;
+            background: #3b82f6;
+        }
+        .checkbox-option input[type="checkbox"]:checked + label::after {
+            content: '✓';
+            position: absolute;
+            left: -21px;
+            top: 0px;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white">
+    <div class="flex h-screen">
+        <!-- Left Sidebar -->
+        <section class="w-72 bg-gray-800 border-r border-gray-600">
+            <div class="p-5 text-gray-400 text-center border-b border-gray-600">
+                <div class="text-xs">Navigation Sidebar</div>
+                <div class="text-xs mt-1">Loan Disclosures is active</div>
+            </div>
+        </section>
+
+        <!-- Main Content -->
+        <section class="flex-1 bg-gray-900 overflow-y-auto">
+            <!-- Page Header -->
+            <section class="py-8 px-10 pb-5 border-b border-gray-600 flex items-center justify-between">
+                <div class="flex items-center gap-4">
+                    <i class="fa fa-file-text text-gray-400 text-xl"></i>
+                    <h2 class="text-2xl font-semibold text-white">Loan Disclosures</h2>
+                </div>
+            </section>
+
+            <!-- Form Content -->
+            <section class="px-10 py-8">
+                <form class="space-y-8">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <!-- Left Column -->
+                        <div class="space-y-8">
+                            <!-- Assumption Section -->
+                            <section>
+                                <h4 class="text-lg font-semibold text-white mb-4">Assumption</h4>
+                                <div class="bg-gray-800 border border-gray-600 rounded-lg p-6">
+                                    <div class="space-y-4">
+                                        <p class="text-gray-300 text-sm">
+                                            If you sell or transfer this property to another person, your lender
+                                        </p>
+                                        <div class="space-y-3">
+                                            <div class="radio-option">
+                                                <input type="radio" 
+                                                       id="assumption-yes" 
+                                                       name="assumption" 
+                                                       value="yes" 
+                                                       data-schema-key="cdf.loans.0.loan_disclosures.assumption">
+                                                <label for="assumption-yes" class="text-white text-sm cursor-pointer pl-6 relative">
+                                                    will allow assumption
+                                                </label>
+                                            </div>
+                                            <div class="radio-option">
+                                                <input type="radio" 
+                                                       id="assumption-no" 
+                                                       name="assumption" 
+                                                       value="no" 
+                                                       data-schema-key="cdf.loans.0.loan_disclosures.assumption">
+                                                <label for="assumption-no" class="text-white text-sm cursor-pointer pl-6 relative">
+                                                    will not allow assumption
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <!-- Demand Feature Section -->
+                            <section>
+                                <h4 class="text-lg font-semibold text-white mb-4">Demand Feature</h4>
+                                <div class="bg-gray-800 border border-gray-600 rounded-lg p-6">
+                                    <div class="space-y-4">
+                                        <p class="text-gray-300 text-sm">Your loan</p>
+                                        <div class="space-y-3">
+                                            <div class="radio-option">
+                                                <input type="radio" 
+                                                       id="demand-yes" 
+                                                       name="demand_feature" 
+                                                       value="yes" 
+                                                       data-schema-key="cdf.loans.0.loan_disclosures.demand_feature">
+                                                <label for="demand-yes" class="text-white text-sm cursor-pointer pl-6 relative">
+                                                    has a demand feature
+                                                </label>
+                                            </div>
+                                            <div class="radio-option">
+                                                <input type="radio" 
+                                                       id="demand-no" 
+                                                       name="demand_feature" 
+                                                       value="no" 
+                                                       data-schema-key="cdf.loans.0.loan_disclosures.demand_feature">
+                                                <label for="demand-no" class="text-white text-sm cursor-pointer pl-6 relative">
+                                                    no demand feature
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <!-- Late Payment Section -->
+                            <section>
+                                <h4 class="text-lg font-semibold text-white mb-4">Late Payment</h4>
+                                <div class="bg-gray-800 border border-gray-600 rounded-lg p-6">
+                                    <div class="flex items-center gap-2 text-gray-300 text-sm flex-wrap">
+                                        <span>If your payment is more than</span>
+                                        <input type="text" 
+                                               class="w-16 px-2 py-1 bg-gray-700 border border-gray-500 rounded text-white text-sm text-center focus:outline-none focus:border-blue-500" 
+                                               data-schema-key="cdf.loans.0.penalty_grace_period_days">
+                                        <span>days late</span>
+                                        <span>your lender will charge a late fee of</span>
+                                        <input type="text" 
+                                               inputmode="decimal"
+                                               class="w-24 px-2 py-1 bg-gray-700 border border-gray-500 rounded text-white text-sm text-center focus:outline-none focus:border-blue-500" 
+                                               data-schema-key="cdf.loans.0.late_penalty_amount">
+                                    </div>
+                                </div>
+                            </section>
+
+                            <!-- Negative Amortization Section -->
+                            <section>
+                                <h4 class="text-lg font-semibold text-white mb-4">Negative Amortization</h4>
+                                <div class="bg-gray-800 border border-gray-600 rounded-lg p-6">
+                                    <div class="space-y-4">
+                                        <p class="text-gray-300 text-sm">Under your loan terms, you</p>
+                                        <div class="space-y-3">
+                                            <div class="radio-option">
+                                                <input type="radio" 
+                                                       id="negative-yes" 
+                                                       name="negative_amortization" 
+                                                       value="yes" 
+                                                       data-schema-key="cdf.loans.0.loan_disclosures.negative_amortization">
+                                                <label for="negative-yes" class="text-white text-sm cursor-pointer pl-6 relative">
+                                                    have negative amortization as a feature
+                                                </label>
+                                            </div>
+                                            <div class="radio-option">
+                                                <input type="radio" 
+                                                       id="negative-maybe" 
+                                                       name="negative_amortization" 
+                                                       value="maybe" 
+                                                       data-schema-key="cdf.loans.0.loan_disclosures.negative_amortization">
+                                                <label for="negative-maybe" class="text-white text-sm cursor-pointer pl-6 relative">
+                                                    may have negative amortization
+                                                </label>
+                                            </div>
+                                            <div class="radio-option">
+                                                <input type="radio" 
+                                                       id="negative-no" 
+                                                       name="negative_amortization" 
+                                                       value="no" 
+                                                       data-schema-key="cdf.loans.0.loan_disclosures.negative_amortization">
+                                                <label for="negative-no" class="text-white text-sm cursor-pointer pl-6 relative">
+                                                    not a feature of loan
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+
+                        <!-- Right Column -->
+                        <div class="space-y-8">
+                            <!-- Partial Payments Section -->
+                            <section>
+                                <h4 class="text-lg font-semibold text-white mb-4">Partial Payments</h4>
+                                <div class="bg-gray-800 border border-gray-600 rounded-lg p-6">
+                                    <div class="space-y-4">
+                                        <p class="text-gray-300 text-sm">Your lender</p>
+                                        <div class="space-y-3">
+                                            <div class="checkbox-option">
+                                                <input type="checkbox" 
+                                                       id="partial-accept" 
+                                                       data-schema-key="cdf.loans.0.loan_disclosures.partial_payments_may_accept">
+                                                <label for="partial-accept" class="text-white text-sm cursor-pointer pl-6 relative">
+                                                    may accept partial payments
+                                                </label>
+                                            </div>
+                                            <div class="checkbox-option">
+                                                <input type="checkbox" 
+                                                       id="partial-hold" 
+                                                       data-schema-key="cdf.loans.0.loan_disclosures.partial_payments_may_hold">
+                                                <label for="partial-hold" class="text-white text-sm cursor-pointer pl-6 relative">
+                                                    may hold them in a separate account
+                                                </label>
+                                            </div>
+                                            <div class="checkbox-option">
+                                                <input type="checkbox" 
+                                                       id="partial-not-accept" 
+                                                       data-schema-key="cdf.loans.0.loan_disclosures.partial_payments_does_not_accept">
+                                                <label for="partial-not-accept" class="text-white text-sm cursor-pointer pl-6 relative">
+                                                    does not accept any partial payments.
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <!-- Escrow Account Section -->
+                            <section>
+                                <h4 class="text-lg font-semibold text-white mb-4">Escrow Account</h4>
+                                <div class="bg-gray-800 border border-gray-600 rounded-lg p-6">
+                                    <div class="space-y-6">
+                                        <div class="space-y-4">
+                                            <p class="text-gray-300 text-sm">For now, your loan</p>
+                                            <div class="space-y-3">
+                                                <div class="radio-option">
+                                                    <input type="radio" 
+                                                           id="escrow-yes" 
+                                                           name="escrow_account" 
+                                                           value="yes" 
+                                                           data-schema-key="cdf.loans.0.loan_disclosures.escrow_account">
+                                                    <label for="escrow-yes" class="text-white text-sm cursor-pointer pl-6 relative">
+                                                        has escrow
+                                                    </label>
+                                                </div>
+                                                <div class="radio-option">
+                                                    <input type="radio" 
+                                                           id="escrow-no" 
+                                                           name="escrow_account" 
+                                                           value="no" 
+                                                           data-schema-key="cdf.loans.0.loan_disclosures.escrow_account">
+                                                    <label for="escrow-no" class="text-white text-sm cursor-pointer pl-6 relative">
+                                                        will not have escrow
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="space-y-4">
+                                            <p class="text-gray-300 text-sm">Because</p>
+                                            <div class="space-y-3">
+                                                <div class="radio-option">
+                                                    <input type="radio" 
+                                                           id="no-escrow-declined" 
+                                                           name="no_escrow_reason" 
+                                                           value="declined" 
+                                                           data-schema-key="cdf.loans.0.loan_disclosures.no_escrow_reason">
+                                                    <label for="no-escrow-declined" class="text-white text-sm cursor-pointer pl-6 relative">
+                                                        escrow was declined
+                                                    </label>
+                                                </div>
+                                                <div class="radio-option">
+                                                    <input type="radio" 
+                                                           id="no-escrow-not-offered" 
+                                                           name="no_escrow_reason" 
+                                                           value="not_offered" 
+                                                           data-schema-key="cdf.loans.0.loan_disclosures.no_escrow_reason">
+                                                    <label for="no-escrow-not-offered" class="text-white text-sm cursor-pointer pl-6 relative">
+                                                        lender does not offer escrow
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <hr class="border-gray-600">
+
+                                        <div class="grid grid-cols-1 gap-4">
+                                            <div>
+                                                <label class="block text-sm font-medium text-gray-300 mb-2">
+                                                    Estimated property costs over year 1
+                                                </label>
+                                                <input type="text" 
+                                                       inputmode="decimal"
+                                                       class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
+                                                       data-schema-key="cdf.loans.0.loan_disclosures.estimated_property_costs_over_year_1">
+                                            </div>
+                                            <div>
+                                                <label class="block text-sm font-medium text-gray-300 mb-2">
+                                                    Escrow waiver fee
+                                                </label>
+                                                <input type="text" 
+                                                       inputmode="decimal"
+                                                       class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
+                                                       data-schema-key="cdf.loans.0.loan_disclosures.escrow_waiver_fee">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </form>
+            </section>
+        </section>
+
+        <!-- Right Rail -->
+        <section class="w-64 bg-gray-800 border-l border-gray-600 p-5">
+            <section class="mb-5 p-4 bg-gray-700 rounded">
+                <h4 class="text-white text-sm mb-2.5">Chat</h4>
+                <p class="text-gray-400 text-xs">Chat functionality</p>
+            </section>
+
+            <section class="mb-5 p-4 bg-gray-700 rounded">
+                <h4 class="text-white text-sm mb-2.5">Tasks</h4>
+                <p class="text-gray-400 text-xs">No tasks assigned</p>
+            </section>
+
+            <section class="mb-5 p-4 bg-gray-700 rounded">
+                <h4 class="text-white text-sm mb-2.5">Notes</h4>
+                <p class="text-gray-400 text-xs">No notes added</p>
+            </section>
+        </section>
+    </div>
+</body>
+</html>

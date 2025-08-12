@@ -1,0 +1,26 @@
+* V1 - Internal 
+    * Create a new transaction file
+        * From scratch
+        * Via OCR of closing disclosure (“CD”) pdf that extracts transaction info
+        * Using some presets (fees, purchase, refi, people, etc.)
+    * Save file and track file changes
+    * Edit file
+        * Using schema and UI/UX similar to Qualia with some changes
+        * With the option of filling out the CD directly in the CD viewer (bi-directional with the GUI)
+    * Perform calculations
+        * Totals, summations, taxes, etc.
+        * Ledger: receipts, disbursements
+    * Retrieve title and recording fees from API and add to file
+    * Create checks
+        * Populate checks with payees and amounts 
+        * Make them printable
+        * Keep track of them
+    * Output final CD as PDF in format/design that conforms exactly to standard
+    * Output final HUD as PDF in format/design that conforms exactly to standard
+* V2 - Enterprise
+    * All of the above, but as multi-tenant product
+    * Infrastructure for administering such a product
+    * Features that let customers choose to have elements of their file done by us
+    * Marketplace feature that lets 3rd parties integrate with us and offer to perform various tasks related to completing a file
+* V3 - Enterprise Plus
+    * All of the above, plus new features TBD

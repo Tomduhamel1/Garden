@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Initial Escrow Payment at Closing - Real Estate Closing</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        .active-row {
+            background-color: rgba(59, 130, 246, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white">
+    <div class="flex h-screen">
+        <!-- Left Sidebar -->
+        <section class="w-72 bg-gray-800 border-r border-gray-600">
+            <div class="p-5 text-gray-400 text-center border-b border-gray-600">
+                <div class="text-xs">Navigation Sidebar</div>
+                <div class="text-xs mt-1">Initial Escrow Payment at Closing is active</div>
+            </div>
+        </section>
+
+        <!-- Main Content -->
+        <section class="flex-1 bg-gray-900 overflow-y-auto">
+            <!-- Page Header -->
+            <section class="py-8 px-10 pb-5 border-b border-gray-600 flex items-center justify-between">
+                <div class="flex items-center gap-4">
+                    <i class="fa fa-calculator text-gray-400 text-xl"></i>
+                    <h2 class="text-2xl font-semibold text-white">Initial Escrow Payment at Closing</h2>
+                    <span class="bg-green-600 px-2 py-1 rounded text-xs font-medium">G</span>
+                </div>
+            </section>
+
+            <!-- Form Content -->
+            <section class="px-10 py-8">
+                <!-- Line Management Buttons -->
+                <section class="flex justify-start gap-3 mb-6">
+                    <button type="button" class="bg-gray-600 border border-gray-500 rounded px-3 py-2 text-white text-sm hover:bg-gray-500 disabled:opacity-50" disabled>
+                        <i class="fa fa-minus mr-1"></i>
+                        Remove Last Line
+                    </button>
+                    <button type="button" class="bg-gray-600 border border-gray-500 rounded px-3 py-2 text-white text-sm hover:bg-gray-500">
+                        <i class="fa fa-plus mr-1"></i>
+                        Add Line
+                    </button>
+                </section>
+
+                <form class="space-y-8">
+                    <!-- Escrow Table -->
+                    <section>
+                        <table class="w-full bg-gray-800 border border-gray-600 rounded-lg overflow-hidden">
+                            <thead>
+                                <tr class="bg-gray-700">
+                                    <th class="w-12 py-3 px-4 text-center border-b border-gray-600"></th>
+                                    <th class="py-3 px-4 text-left border-b border-gray-600"></th>
+                                    <th class="py-3 px-4 text-center border-b border-gray-600"></th>
+                                    <th class="py-3 px-4 text-center border-b border-gray-600"></th>
+                                    <th class="py-3 px-4 text-center border-b border-gray-600" colspan="2">Paid by Borrower</th>
+                                    <th class="py-3 px-4 text-center border-b border-gray-600" colspan="2">Paid by Seller</th>
+                                    <th class="py-3 px-4 text-center border-b border-gray-600"></th>
+                                </tr>
+                                <tr class="bg-gray-700">
+                                    <th class="w-12 py-3 px-4 text-center text-sm text-gray-300 border-b border-gray-600"></th>
+                                    <th class="py-3 px-4 text-left text-sm text-gray-300 border-b border-gray-600">Description</th>
+                                    <th class="py-3 px-4 text-center text-sm text-gray-300 border-b border-gray-600">$ per Month</th>
+                                    <th class="py-3 px-4 text-center text-sm text-gray-300 border-b border-gray-600"># of Mo.</th>
+                                    <th class="py-3 px-4 text-center text-sm text-gray-300 border-b border-gray-600">At Closing</th>
+                                    <th class="py-3 px-4 text-center text-sm text-gray-300 border-b border-gray-600">Before Closing</th>
+                                    <th class="py-3 px-4 text-center text-sm text-gray-300 border-b border-gray-600">At Closing</th>
+                                    <th class="py-3 px-4 text-center text-sm text-gray-300 border-b border-gray-600">Before Closing</th>
+                                    <th class="py-3 px-4 text-center text-sm text-gray-300 border-b border-gray-600" rowspan="2">By Others</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Line 01 (Active) -->
+                                <tr class="border-b border-gray-600 hover:bg-gray-700/30 focus-within:bg-gray-700/30 active-row">
+                                    <td class="py-3 px-4 text-center text-sm text-gray-400">01</td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" class="w-full px-3 py-1.5 bg-gray-600 border border-gray-500 rounded text-gray-400 text-sm" data-schema-key="cdf.escrow_information.line_01.description" readonly>
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-center focus:outline-none focus:border-blue-500" data-schema-key="cdf.escrow_information.line_01.per_month_amount">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-center focus:outline-none focus:border-blue-500" data-schema-key="cdf.escrow_information.line_01.number_of_months">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" data-schema-key="cdf.escrow_information.line_01.borrower_amount">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" data-schema-key="cdf.escrow_information.line_01.before_borrower_amount">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" data-schema-key="cdf.escrow_information.line_01.seller_amount">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" data-schema-key="cdf.escrow_information.line_01.before_seller_amount">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" data-schema-key="cdf.escrow_information.line_01.paid_by_others_amount">
+                                    </td>
+                                </tr>
+                                <!-- Line 02 -->
+                                <tr class="border-b border-gray-600 hover:bg-gray-700/30 focus-within:bg-gray-700/30">
+                                    <td class="py-3 px-4 text-center text-sm text-gray-400">02</td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" class="w-full px-3 py-1.5 bg-gray-600 border border-gray-500 rounded text-gray-400 text-sm" data-schema-key="cdf.escrow_information.line_02.description" readonly>
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-center focus:outline-none focus:border-blue-500" data-schema-key="cdf.escrow_information.line_02.per_month_amount">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-center focus:outline-none focus:border-blue-500" data-schema-key="cdf.escrow_information.line_02.number_of_months">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" data-schema-key="cdf.escrow_information.line_02.borrower_amount">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" data-schema-key="cdf.escrow_information.line_02.before_borrower_amount">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" data-schema-key="cdf.escrow_information.line_02.seller_amount">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" data-schema-key="cdf.escrow_information.line_02.before_seller_amount">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" data-schema-key="cdf.escrow_information.line_02.paid_by_others_amount">
+                                    </td>
+                                </tr>
+                                <!-- Line 03 -->
+                                <tr class="border-b border-gray-600 hover:bg-gray-700/30 focus-within:bg-gray-700/30">
+                                    <td class="py-3 px-4 text-center text-sm text-gray-400">03</td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" class="w-full px-3 py-1.5 bg-gray-600 border border-gray-500 rounded text-gray-400 text-sm" data-schema-key="cdf.escrow_information.line_03.description" readonly>
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-center focus:outline-none focus:border-blue-500" data-schema-key="cdf.escrow_information.line_03.per_month_amount">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-center focus:outline-none focus:border-blue-500" data-schema-key="cdf.escrow_information.line_03.number_of_months">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" data-schema-key="cdf.escrow_information.line_03.borrower_amount">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" data-schema-key="cdf.escrow_information.line_03.before_borrower_amount">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" data-schema-key="cdf.escrow_information.line_03.seller_amount">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" data-schema-key="cdf.escrow_information.line_03.before_seller_amount">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" data-schema-key="cdf.escrow_information.line_03.paid_by_others_amount">
+                                    </td>
+                                </tr>
+                                <!-- Line 04 -->
+                                <tr class="border-b border-gray-600 hover:bg-gray-700/30 focus-within:bg-gray-700/30">
+                                    <td class="py-3 px-4 text-center text-sm text-gray-400">04</td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" data-schema-key="cdf.escrow_information.line_04.description">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-center focus:outline-none focus:border-blue-500" data-schema-key="cdf.escrow_information.line_04.per_month_amount">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-center focus:outline-none focus:border-blue-500" data-schema-key="cdf.escrow_information.line_04.number_of_months">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" data-schema-key="cdf.escrow_information.line_04.borrower_amount">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" data-schema-key="cdf.escrow_information.line_04.before_borrower_amount">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" data-schema-key="cdf.escrow_information.line_04.seller_amount">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" data-schema-key="cdf.escrow_information.line_04.before_seller_amount">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" data-schema-key="cdf.escrow_information.line_04.paid_by_others_amount">
+                                    </td>
+                                </tr>
+                                <!-- Line 05 -->
+                                <tr class="border-b border-gray-600 hover:bg-gray-700/30 focus-within:bg-gray-700/30">
+                                    <td class="py-3 px-4 text-center text-sm text-gray-400">05</td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" data-schema-key="cdf.escrow_information.line_05.description">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-center focus:outline-none focus:border-blue-500" data-schema-key="cdf.escrow_information.line_05.per_month_amount">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-center focus:outline-none focus:border-blue-500" data-schema-key="cdf.escrow_information.line_05.number_of_months">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" data-schema-key="cdf.escrow_information.line_05.borrower_amount">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" data-schema-key="cdf.escrow_information.line_05.before_borrower_amount">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" data-schema-key="cdf.escrow_information.line_05.seller_amount">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" data-schema-key="cdf.escrow_information.line_05.before_seller_amount">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" data-schema-key="cdf.escrow_information.line_05.paid_by_others_amount">
+                                    </td>
+                                </tr>
+                                <!-- Line 06 -->
+                                <tr class="border-b border-gray-600 hover:bg-gray-700/30 focus-within:bg-gray-700/30">
+                                    <td class="py-3 px-4 text-center text-sm text-gray-400">06</td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" data-schema-key="cdf.escrow_information.line_06.description">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-center focus:outline-none focus:border-blue-500" data-schema-key="cdf.escrow_information.line_06.per_month_amount">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-center focus:outline-none focus:border-blue-500" data-schema-key="cdf.escrow_information.line_06.number_of_months">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" data-schema-key="cdf.escrow_information.line_06.borrower_amount">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" data-schema-key="cdf.escrow_information.line_06.before_borrower_amount">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" data-schema-key="cdf.escrow_information.line_06.seller_amount">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" data-schema-key="cdf.escrow_information.line_06.before_seller_amount">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" data-schema-key="cdf.escrow_information.line_06.paid_by_others_amount">
+                                    </td>
+                                </tr>
+                                <!-- Line 07 -->
+                                <tr class="border-b border-gray-600 hover:bg-gray-700/30 focus-within:bg-gray-700/30">
+                                    <td class="py-3 px-4 text-center text-sm text-gray-400">07</td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" data-schema-key="cdf.escrow_information.line_07.description">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-center focus:outline-none focus:border-blue-500" data-schema-key="cdf.escrow_information.line_07.per_month_amount">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-center focus:outline-none focus:border-blue-500" data-schema-key="cdf.escrow_information.line_07.number_of_months">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" data-schema-key="cdf.escrow_information.line_07.borrower_amount">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" data-schema-key="cdf.escrow_information.line_07.before_borrower_amount">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" data-schema-key="cdf.escrow_information.line_07.seller_amount">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" data-schema-key="cdf.escrow_information.line_07.before_seller_amount">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" data-schema-key="cdf.escrow_information.line_07.paid_by_others_amount">
+                                    </td>
+                                </tr>
+                                <!-- Line 08 -->
+                                <tr class="border-b border-gray-600 hover:bg-gray-700/30 focus-within:bg-gray-700/30">
+                                    <td class="py-3 px-4 text-center text-sm text-gray-400">08</td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" class="w-full px-3 py-1.5 bg-gray-600 border border-gray-500 rounded text-gray-400 text-sm" data-schema-key="cdf.escrow_information.line_08.description" readonly>
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-1.5 bg-gray-600 border border-gray-500 rounded text-gray-400 text-sm text-center" data-schema-key="cdf.escrow_information.line_08.per_month_amount" readonly>
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" class="w-full px-3 py-1.5 bg-gray-600 border border-gray-500 rounded text-gray-400 text-sm text-center" data-schema-key="cdf.escrow_information.line_08.number_of_months" readonly>
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" data-schema-key="cdf.escrow_information.line_08.borrower_amount">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" data-schema-key="cdf.escrow_information.line_08.before_borrower_amount">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" data-schema-key="cdf.escrow_information.line_08.seller_amount">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" data-schema-key="cdf.escrow_information.line_08.before_seller_amount">
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <input type="text" inputmode="decimal" class="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" data-schema-key="cdf.escrow_information.line_08.paid_by_others_amount">
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr class="bg-gray-700">
+                                    <th class="py-3 px-4"></th>
+                                    <th class="py-3 px-4"></th>
+                                    <th class="py-3 px-4"></th>
+                                    <th class="py-3 px-4 text-right text-sm text-gray-300">Totals</th>
+                                    <th class="py-3 px-4 text-center text-sm text-white">$-500.00</th>
+                                    <th class="py-3 px-4 text-center text-sm text-white">$0.00</th>
+                                    <th class="py-3 px-4 text-center text-sm text-white">$0.00</th>
+                                    <th class="py-3 px-4 text-center text-sm text-white">$0.00</th>
+                                    <th class="py-3 px-4 text-center text-sm text-white">$0.00</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </section>
+
+                    <!-- Action Buttons -->
+                    <section class="flex justify-between items-center">
+                        <div class="flex gap-3">
+                            <button type="button" class="bg-gray-600 border border-gray-500 rounded px-4 py-2 text-white text-sm hover:bg-gray-500 flex items-center gap-2">
+                                <i class="fa fa-file-text-o"></i>
+                                Extract From CD
+                            </button>
+                            <button type="button" class="bg-gray-600 border border-gray-500 rounded px-4 py-2 text-white text-sm hover:bg-gray-500 disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                                Sort Lines
+                            </button>
+                        </div>
+                        <div class="flex gap-3">
+                            <button type="button" class="bg-gray-600 border border-gray-500 rounded px-4 py-2 text-white text-sm hover:bg-gray-500 disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                                Clear
+                            </button>
+                            <button type="button" class="bg-blue-600 border border-blue-600 rounded px-4 py-2 text-white text-sm hover:bg-blue-700">
+                                Add Contact
+                            </button>
+                        </div>
+                    </section>
+
+                    <!-- Payments Section -->
+                    <section>
+                        <h4 class="text-lg font-semibold text-white mb-4 flex items-center gap-3">
+                            Payments
+                            <span class="bg-green-600 px-3 py-1 rounded text-sm">Escrow Account</span>
+                        </h4>
+                        
+                        <!-- Payee Tabs -->
+                        <div class="bg-gray-800 border border-gray-600 rounded-lg overflow-hidden">
+                            <div class="bg-gray-700 px-6 py-3 flex items-center justify-between border-b border-gray-600">
+                                <div class="flex items-center gap-4">
+                                    <span class="text-white">New Payee</span>
+                                </div>
+                                <div class="flex gap-2">
+                                    <button type="button" class="text-gray-400 hover:text-white disabled:opacity-50" disabled>
+                                        <i class="fa fa-minus"></i>
+                                    </button>
+                                    <button type="button" class="text-gray-400 hover:text-white">
+                                        <i class="fa fa-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="p-6">
+                                <!-- Payment Type Toggle -->
+                                <div class="mb-6">
+                                    <div class="flex items-center justify-between mb-4">
+                                        <a href="#" class="text-blue-400 hover:text-blue-300 text-sm flex items-center gap-2">
+                                            <i class="fa fa-list"></i>
+                                            Itemize
+                                        </a>
+                                    </div>
+                                    
+                                    <div class="flex border-b border-gray-600">
+                                        <button type="button" class="payment-type-btn px-4 py-2 text-gray-400 hover:text-white border-b-2 border-transparent hover:border-gray-400" data-payment-type="check">Check</button>
+                                        <button type="button" class="payment-type-btn px-4 py-2 text-gray-400 hover:text-white border-b-2 border-transparent hover:border-gray-400" data-payment-type="wire">Wire</button>
+                                        <button type="button" class="payment-type-btn px-4 py-2 text-blue-400 border-b-2 border-blue-400" data-payment-type="net funded">Net Funded</button>
+                                        <button type="button" class="payment-type-btn px-4 py-2 text-gray-400 hover:text-white border-b-2 border-transparent hover:border-gray-400" data-payment-type="global payment">Aggregate</button>
+                                        <button type="button" class="payment-type-btn px-4 py-2 text-gray-400 hover:text-white border-b-2 border-transparent hover:border-gray-400" data-payment-type="order transfer">Transfer</button>
+                                        <button type="button" class="payment-type-btn px-4 py-2 text-gray-400 hover:text-white border-b-2 border-transparent hover:border-gray-400" data-payment-type="holdback">Holdback</button>
+                                    </div>
+                                    <input type="hidden" value="net funded" data-schema-key="cdf.escrow_information.payees.0.type">
+                                </div>
+                                
+                                <!-- Standard Payment Fields -->
+                                <div id="standard-payment-fields">
+                                    <h5 class="text-base font-semibold text-white mb-4">Payment</h5>
+                                    <div class="grid grid-cols-3 gap-4 mb-6">
+                                        <div>
+                                            <label class="block text-sm text-gray-300 mb-2">Name</label>
+                                            <input type="text" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" data-schema-key="cdf.escrow_information.payees.0.name_dep">
+                                        </div>
+                                        <div>
+                                            <label class="block text-sm text-gray-300 mb-2">
+                                                Payment Amount
+                                                <i class="fa fa-lock text-gray-500 ml-1"></i>
+                                            </label>
+                                            <input type="text" inputmode="decimal" class="w-full px-3 py-2.5 bg-gray-600 border border-gray-500 rounded text-gray-400 text-sm" data-schema-key="cdf.escrow_information.payees.0.payment_dep" readonly>
+                                        </div>
+                                        <div>
+                                            <label class="block text-sm text-gray-300 mb-2">Label</label>
+                                            <select class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none" data-schema-key="cdf.escrow_information.payees.0.label.payee_label_id">
+                                                <option value="insurance">Insurance</option>
+                                                <option value="lenders_policy">Lender's Policy</option>
+                                                <option value="owners_policy">Owner's Policy</option>
+                                                <option value="payoff">Payoff</option>
+                                                <option value="property_tax">Property Tax</option>
+                                                <option value="recording_fee">Recording Fee</option>
+                                                <option value="reimbursement">Reimbursement</option>
+                                                <option value="sales_tax">Sales Tax</option>
+                                                <option value="settlement_fee">Settlement Fee</option>
+                                                <option value="transfer_tax">Transfer Tax</option>
+                                                <option value="excluded">Excluded</option>
+                                                <option value="unclassified" selected>Unclassified</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Payment Type Specific Content -->
+                                <div id="payment-type-content">
+                                    <!-- Check Content -->
+                                    <div class="payment-content hidden" data-payment-type="check">
+                                        <h5 class="text-base font-semibold text-white mb-4">Mailing Address</h5>
+                                        <div class="grid grid-cols-2 gap-4 mb-4">
+                                            <div>
+                                                <label class="block text-sm text-gray-300 mb-2">Street Address 1</label>
+                                                <input type="text" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" data-schema-key="check_info.street_address">
+                                            </div>
+                                            <div>
+                                                <label class="block text-sm text-gray-300 mb-2">Street Address 2</label>
+                                                <input type="text" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" data-schema-key="check_info.street_address_2">
+                                            </div>
+                                        </div>
+                                        <div class="grid grid-cols-3 gap-4">
+                                            <div>
+                                                <label class="block text-sm text-gray-300 mb-2">City</label>
+                                                <input type="text" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" data-schema-key="check_info.city">
+                                            </div>
+                                            <div>
+                                                <label class="block text-sm text-gray-300 mb-2">State</label>
+                                                <input type="text" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" data-schema-key="check_info.state">
+                                            </div>
+                                            <div>
+                                                <label class="block text-sm text-gray-300 mb-2">Zip Code</label>
+                                                <input type="text" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" data-schema-key="check_info.zip_code">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Wire Content -->
+                                    <div class="payment-content hidden" data-payment-type="wire">
+                                        <h5 class="text-base font-semibold text-white mb-4">Wire Instructions</h5>
+                                        <div class="grid grid-cols-3 gap-4 mb-4">
+                                            <div>
+                                                <label class="block text-sm text-gray-300 mb-2">Routing #</label>
+                                                <input type="text" inputmode="numeric" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" data-schema-key="wire_info.routing_number">
+                                            </div>
+                                            <div>
+                                                <label class="block text-sm text-gray-300 mb-2">Bank Name</label>
+                                                <input type="text" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" data-schema-key="wire_info.bank_name">
+                                            </div>
+                                            <div>
+                                                <label class="block text-sm text-gray-300 mb-2">Account #</label>
+                                                <input type="text" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" data-schema-key="wire_info.account_number">
+                                            </div>
+                                        </div>
+                                        <div class="grid grid-cols-2 gap-4">
+                                            <div>
+                                                <label class="block text-sm text-gray-300 mb-2">Name on Account</label>
+                                                <input type="text" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" data-schema-key="wire_info.account_name">
+                                            </div>
+                                            <div>
+                                                <label class="block text-sm text-gray-300 mb-2">Further Credit To</label>
+                                                <input type="text" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" data-schema-key="wire_info.further_credit_to">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Net Funded Content (Active) -->
+                                    <div class="payment-content" data-payment-type="net funded">
+                                        <!-- Net Funded has no additional fields -->
+                                    </div>
+                                    
+                                    <!-- Aggregate Content -->
+                                    <div class="payment-content hidden" data-payment-type="global payment">
+                                        <h5 class="text-base font-semibold text-white mb-4">Aggregate Payee</h5>
+                                        <div class="grid grid-cols-2 gap-4">
+                                            <div>
+                                                <label class="block text-sm text-gray-300 mb-2">Payee</label>
+                                                <select class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none" data-schema-key="global_payee_id">
+                                                    <option value="">Select Payee</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Transfer Content -->
+                                    <div class="payment-content hidden" data-payment-type="order transfer">
+                                        <h5 class="text-base font-semibold text-white mb-4">Order Transfer</h5>
+                                        <div class="grid grid-cols-2 gap-4">
+                                            <div>
+                                                <label class="block text-sm text-gray-300 mb-2">Order</label>
+                                                <select class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none" data-schema-key="transfer_order_id">
+                                                    <option value="">Select Order</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Holdback Content -->
+                                    <div class="payment-content hidden" data-payment-type="holdback">
+                                        <h5 class="text-base font-semibold text-white mb-4">Escrow Information</h5>
+                                        <div class="space-y-4">
+                                            <div>
+                                                <label class="block text-sm text-gray-300 mb-2">Reason for Escrow</label>
+                                                <input type="text" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" data-schema-key="escrow_reason">
+                                            </div>
+                                            <div>
+                                                <label class="block text-sm text-gray-300 mb-2">Conditions for Release</label>
+                                                <textarea rows="3" class="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 resize-none" data-schema-key="release_conditions"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </form>
+            </section>
+        </section>
+
+        <!-- Right Rail -->
+        <section class="w-64 bg-gray-800 border-l border-gray-600 p-5">
+            <section class="mb-5 p-4 bg-gray-700 rounded">
+                <h4 class="text-white text-sm mb-2.5">Chat</h4>
+                <p class="text-gray-400 text-xs">Chat functionality</p>
+            </section>
+
+            <section class="mb-5 p-4 bg-gray-700 rounded">
+                <h4 class="text-white text-sm mb-2.5">Tasks</h4>
+                <p class="text-gray-400 text-xs">No tasks assigned</p>
+            </section>
+
+            <section class="mb-5 p-4 bg-gray-700 rounded">
+                <h4 class="text-white text-sm mb-2.5">Notes</h4>
+                <p class="text-gray-400 text-xs">No notes added</p>
+            </section>
+        </section>
+    </div>
+
+    <script>
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set Net Funded as default active
+            const netFundedBtn = document.querySelector('[data-payment-type="net funded"]');
+            const netFundedContent = document.querySelector('.payment-content[data-payment-type="net funded"]');
+            if (netFundedContent) {
+                netFundedContent.classList.remove('hidden');
+            }
+        });
+
+        // Row highlighting functionality
+        document.querySelectorAll('tbody tr').forEach(row => {
+            const inputs = row.querySelectorAll('input');
+            inputs.forEach(input => {
+                input.addEventListener('focus', function() {
+                    // Remove active class from all rows
+                    document.querySelectorAll('tbody tr').forEach(r => r.classList.remove('active-row'));
+                    // Add active class to current row
+                    row.classList.add('active-row');
+                });
+            });
+        });
+
+        // Payment type switching
+        function switchPaymentType(paymentType) {
+            // Update button states
+            document.querySelectorAll('.payment-type-btn').forEach(btn => {
+                btn.classList.remove('text-blue-400', 'border-blue-400');
+                btn.classList.add('text-gray-400', 'border-transparent');
+            });
+            
+            const activeBtn = document.querySelector(`[data-payment-type="${paymentType}"]`);
+            if (activeBtn) {
+                activeBtn.classList.remove('text-gray-400', 'border-transparent');
+                activeBtn.classList.add('text-blue-400', 'border-blue-400');
+            }
+            
+            // Update hidden input
+            const hiddenInput = document.querySelector('[data-schema-key$="type"]');
+            if (hiddenInput) {
+                hiddenInput.value = paymentType;
+            }
+            
+            // Switch content
+            switchPaymentTypeContent(paymentType);
+        }
+
+        function switchPaymentTypeContent(paymentType) {
+            // Hide all payment content sections
+            document.querySelectorAll('.payment-content').forEach(content => {
+                content.classList.add('hidden');
+            });
+            
+            // Show selected payment content
+            const selectedContent = document.querySelector(`.payment-content[data-payment-type="${paymentType}"]`);
+            if (selectedContent) {
+                selectedContent.classList.remove('hidden');
+            }
+            
+            // Get standard fields element
+            const standardFields = document.getElementById('standard-payment-fields');
+            
+            // Show/hide standard payment fields based on payment type
+            if (paymentType === 'global payment') {
+                // Hide standard payment fields for aggregate
+                if (standardFields) {
+                    standardFields.style.display = 'none';
+                }
+            } else {
+                // Show standard payment fields for all other types
+                if (standardFields) {
+                    standardFields.style.display = 'block';
+                }
+            }
+        }
+
+        // Add click handlers to payment type buttons
+        document.querySelectorAll('.payment-type-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const paymentType = this.getAttribute('data-payment-type');
+                switchPaymentType(paymentType);
+            });
+        });
+    </script>
+</body>
+</html>

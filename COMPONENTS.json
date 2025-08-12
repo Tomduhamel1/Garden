@@ -1,0 +1,438 @@
+{
+  "lastUpdated": "2025-01-12T14:00:00-08:00",
+  "totalComponents": 35,
+  "componentsComplete": 0,
+  "componentsInProgress": 0,
+  "totalFields": 1150,
+  "fieldsImplemented": 0,
+  
+  "priorityOrder": [
+    "basic-info",
+    "loan-terms",
+    "origination-charges",
+    "did-not-shop-for",
+    "did-shop-for",
+    "taxes-and-fees",
+    "prepaids",
+    "escrow",
+    "other-charges",
+    "cash-to-close"
+  ],
+  
+  "components": {
+    "basic-info": {
+      "htmlFile": "html-prototypes/basic-info.html",
+      "reactFile": "frontend/src/components/sections/BasicInfo.tsx",
+      "status": "NOT_STARTED",
+      "priority": 1,
+      "complexity": "LOW",
+      "estimatedHours": 2,
+      "actualHours": null,
+      "fields": {
+        "total": 25,
+        "implemented": 0,
+        "list": [
+          "estimated_closing_date",
+          "contract_date",
+          "funding_date",
+          "disbursement_date",
+          "purchase_price",
+          "loan_amount",
+          "cash_only",
+          "heloc",
+          "construction_loan",
+          "transaction_type",
+          "representing",
+          "order_number",
+          "file_number"
+        ]
+      },
+      "calculations": [],
+      "validations": ["dates", "amounts"],
+      "dependencies": [],
+      "tests": {
+        "written": false,
+        "passing": false,
+        "coverage": 0
+      },
+      "notes": "Starting point - simplest component"
+    },
+    
+    "loan-terms": {
+      "htmlFile": "html-prototypes/loan-terms.html",
+      "reactFile": "frontend/src/components/sections/LoanTerms.tsx",
+      "status": "NOT_STARTED",
+      "priority": 2,
+      "complexity": "MEDIUM",
+      "estimatedHours": 3,
+      "fields": {
+        "total": 45,
+        "implemented": 0,
+        "schemaKeys": [
+          "cdf.loans.0.loan_type",
+          "cdf.loans.0.loan_purpose",
+          "cdf.loans.0.loan_product",
+          "cdf.loans.0.initial_loan_amount",
+          "cdf.loans.0.interest_rate",
+          "cdf.loans.0.monthly_principal_and_interest",
+          "cdf.loans.0.has_prepayment_penalty",
+          "cdf.loans.0.has_balloon_payment",
+          "cdf.loans.0.balloon_payment_description.0"
+        ]
+      },
+      "calculations": ["monthly_payment"],
+      "validations": ["loan_amount", "interest_rate"],
+      "dependencies": ["basic-info"],
+      "tests": {
+        "written": false,
+        "passing": false,
+        "coverage": 0
+      }
+    },
+    
+    "origination-charges": {
+      "htmlFile": "html-prototypes/origination-charges.html",
+      "reactFile": "frontend/src/components/sections/SectionA.tsx",
+      "status": "NOT_STARTED",
+      "priority": 3,
+      "complexity": "HIGH",
+      "estimatedHours": 4,
+      "fields": {
+        "total": 64,
+        "implemented": 0,
+        "lineItems": 8,
+        "fieldsPerLine": 8,
+        "schemaPattern": "cdf.origination_charges.line_[01-08].*"
+      },
+      "calculations": ["section_total", "line_totals"],
+      "validations": ["amounts", "required_fields"],
+      "dependencies": ["loan-terms"],
+      "features": ["dynamic_line_items", "payee_selection"],
+      "tests": {
+        "written": false,
+        "passing": false,
+        "coverage": 0
+      }
+    },
+    
+    "did-not-shop-for": {
+      "htmlFile": "html-prototypes/did-not-shop-for.html",
+      "reactFile": "frontend/src/components/sections/SectionB.tsx",
+      "status": "NOT_STARTED",
+      "priority": 4,
+      "complexity": "HIGH",
+      "estimatedHours": 4,
+      "fields": {
+        "total": 64,
+        "implemented": 0,
+        "lineItems": 8,
+        "schemaPattern": "cdf.services_borrower_did_not_shop_for.line_[01-08].*"
+      },
+      "calculations": ["section_total"],
+      "dependencies": ["origination-charges"]
+    },
+    
+    "did-shop-for": {
+      "htmlFile": "html-prototypes/did-shop-for.html",
+      "reactFile": "frontend/src/components/sections/SectionC.tsx",
+      "status": "NOT_STARTED",
+      "priority": 5,
+      "complexity": "HIGH",
+      "estimatedHours": 4,
+      "fields": {
+        "total": 64,
+        "implemented": 0,
+        "lineItems": 8,
+        "schemaPattern": "cdf.services_borrower_did_shop_for.line_[01-08].*"
+      },
+      "calculations": ["section_total"],
+      "dependencies": ["did-not-shop-for"]
+    },
+    
+    "taxes-and-fees": {
+      "htmlFile": "html-prototypes/taxes-and-fees.html",
+      "reactFile": "frontend/src/components/sections/SectionE.tsx",
+      "status": "NOT_STARTED",
+      "priority": 6,
+      "complexity": "MEDIUM",
+      "estimatedHours": 3,
+      "fields": {
+        "total": 32,
+        "implemented": 0,
+        "lineItems": 4,
+        "schemaPattern": "cdf.taxes_and_government_fees.line_[01-04].*"
+      },
+      "calculations": ["section_total", "borrower_seller_split"],
+      "dependencies": []
+    },
+    
+    "prepaids": {
+      "htmlFile": "html-prototypes/prepaids.html",
+      "reactFile": "frontend/src/components/sections/SectionF.tsx",
+      "status": "NOT_STARTED",
+      "priority": 7,
+      "complexity": "HIGH",
+      "estimatedHours": 5,
+      "fields": {
+        "total": 40,
+        "implemented": 0,
+        "lineItems": 5,
+        "schemaPattern": "cdf.prepaid_item_information.line_[01-05].*"
+      },
+      "calculations": ["per_diem", "date_ranges", "section_total"],
+      "features": ["date_calculations"],
+      "dependencies": []
+    },
+    
+    "escrow": {
+      "htmlFile": "html-prototypes/escrow.html",
+      "reactFile": "frontend/src/components/sections/SectionG.tsx",
+      "status": "NOT_STARTED",
+      "priority": 8,
+      "complexity": "HIGH",
+      "estimatedHours": 5,
+      "fields": {
+        "total": 64,
+        "implemented": 0,
+        "lineItems": 8,
+        "schemaPattern": "cdf.escrow_information.line_[01-08].*"
+      },
+      "calculations": ["monthly_escrow", "aggregate_adjustment", "section_total"],
+      "dependencies": ["prepaids"]
+    },
+    
+    "other-charges": {
+      "htmlFile": "html-prototypes/other-charges.html",
+      "reactFile": "frontend/src/components/sections/SectionH.tsx",
+      "status": "NOT_STARTED",
+      "priority": 9,
+      "complexity": "MEDIUM",
+      "estimatedHours": 3,
+      "fields": {
+        "total": 64,
+        "implemented": 0,
+        "arrayItems": 8,
+        "schemaPattern": "cdf.other_charges.[0-7].*"
+      },
+      "calculations": ["section_total"],
+      "dependencies": []
+    },
+    
+    "lender-credits": {
+      "htmlFile": "html-prototypes/lender-credits.html",
+      "reactFile": "frontend/src/components/sections/SectionJ.tsx",
+      "status": "NOT_STARTED",
+      "priority": 10,
+      "complexity": "LOW",
+      "estimatedHours": 2,
+      "fields": {
+        "total": 11,
+        "implemented": 0,
+        "schemaPattern": "cdf.total_closing_costs.lender_credits.*"
+      },
+      "calculations": ["total_lender_credits"],
+      "dependencies": ["other-charges"]
+    },
+    
+    "cash-to-close": {
+      "htmlFile": "html-prototypes/cash-to-close.html",
+      "reactFile": "frontend/src/components/sections/CashToClose.tsx",
+      "status": "NOT_STARTED",
+      "priority": 10,
+      "complexity": "HIGH",
+      "estimatedHours": 4,
+      "fields": {
+        "total": 20,
+        "implemented": 0,
+        "schemaPattern": "cdf.purchase_cash_to_close.*"
+      },
+      "calculations": ["final_cash_to_close", "all_reconciliations"],
+      "dependencies": ["ALL_SECTIONS"],
+      "notes": "Must be done after all other sections"
+    },
+    
+    "debits-credits": {
+      "htmlFile": "html-prototypes/debits-credits.html",
+      "reactFile": "frontend/src/components/sections/SectionKM.tsx",
+      "status": "NOT_STARTED",
+      "priority": 11,
+      "complexity": "HIGH",
+      "estimatedHours": 6,
+      "fields": {
+        "total": 96,
+        "implemented": 0,
+        "borrowerCredits": 17,
+        "borrowerDebits": 15,
+        "schemaPattern": "cdf.borrower_credit_information.line_[01-17].*"
+      },
+      "calculations": ["credit_debit_balance"],
+      "dependencies": []
+    },
+    
+    "debits-credits-ln": {
+      "htmlFile": "html-prototypes/debits-credits-ln.html",
+      "reactFile": "frontend/src/components/sections/SectionLN.tsx",
+      "status": "NOT_STARTED",
+      "priority": 12,
+      "complexity": "HIGH",
+      "estimatedHours": 5,
+      "fields": {
+        "total": 42,
+        "implemented": 0,
+        "sellerCredits": 5,
+        "sellerDebits": 9,
+        "schemaPattern": "cdf.seller_credit_information.line_[01-05].*"
+      },
+      "calculations": ["seller_proceeds"],
+      "dependencies": []
+    },
+    
+    "contacts": {
+      "htmlFile": "html-prototypes/contacts.html",
+      "reactFile": "frontend/src/components/contacts/ContactsManager.tsx",
+      "status": "NOT_STARTED",
+      "priority": 13,
+      "complexity": "HIGH",
+      "estimatedHours": 8,
+      "fields": {
+        "total": 100,
+        "implemented": 0,
+        "borrowerFields": 25,
+        "sellerFields": 30,
+        "schemaPattern": "contacts.borrowers.[0-3].*"
+      },
+      "features": ["multiple_borrowers", "address_validation"],
+      "dependencies": []
+    },
+    
+    "properties": {
+      "htmlFile": "html-prototypes/properties.html",
+      "reactFile": "frontend/src/components/property/PropertyInfo.tsx",
+      "status": "NOT_STARTED",
+      "priority": 14,
+      "complexity": "MEDIUM",
+      "estimatedHours": 4,
+      "fields": {
+        "total": 50,
+        "implemented": 0,
+        "schemaPattern": "properties.0.*"
+      },
+      "features": ["tax_prorations", "hoa_info"],
+      "dependencies": []
+    },
+    
+    "payoffs": {
+      "htmlFile": "html-prototypes/payoffs.html",
+      "reactFile": "frontend/src/components/payoffs/PayoffsManager.tsx",
+      "status": "NOT_STARTED",
+      "priority": 15,
+      "complexity": "MEDIUM",
+      "estimatedHours": 4,
+      "fields": {
+        "total": 32,
+        "implemented": 0,
+        "maxPayoffs": 4,
+        "schemaPattern": "payoffs.[0-3].*"
+      },
+      "calculations": ["per_diem_interest", "total_payoffs"],
+      "dependencies": []
+    },
+    
+    "loan": {
+      "htmlFile": "html-prototypes/loan.html",
+      "reactFile": "frontend/src/components/loan/LoanDetails.tsx",
+      "status": "NOT_STARTED",
+      "priority": 16,
+      "complexity": "HIGH",
+      "estimatedHours": 5,
+      "fields": {
+        "total": 45,
+        "implemented": 0,
+        "schemaPattern": "cdf.loans.0.*"
+      },
+      "calculations": ["payment_schedule"],
+      "dependencies": ["loan-terms"]
+    },
+    
+    "projected-payments": {
+      "htmlFile": "html-prototypes/projected-payments.html",
+      "reactFile": "frontend/src/components/disclosures/ProjectedPayments.tsx",
+      "status": "NOT_STARTED",
+      "priority": 17,
+      "complexity": "HIGH",
+      "estimatedHours": 5,
+      "fields": {
+        "total": 30,
+        "implemented": 0
+      },
+      "calculations": ["payment_changes", "escrow_changes"],
+      "dependencies": ["loan", "escrow"]
+    },
+    
+    "loan-calculations": {
+      "htmlFile": "html-prototypes/loan-calculations.html",
+      "reactFile": "frontend/src/components/calculations/LoanCalculations.tsx",
+      "status": "NOT_STARTED",
+      "priority": 18,
+      "complexity": "HIGH",
+      "estimatedHours": 6,
+      "fields": {
+        "total": 5,
+        "implemented": 0,
+        "schemaPattern": "cdf.loan_calculations.*"
+      },
+      "calculations": ["APR", "TIP", "finance_charge", "amount_financed"],
+      "dependencies": ["loan", "all_sections"],
+      "notes": "Complex financial calculations"
+    },
+    
+    "proceeds-borrower": {
+      "htmlFile": "html-prototypes/proceeds-borrower.html",
+      "reactFile": "frontend/src/components/proceeds/BorrowerProceeds.tsx",
+      "status": "NOT_STARTED",
+      "priority": 19,
+      "complexity": "MEDIUM",
+      "estimatedHours": 3,
+      "fields": {
+        "total": 20,
+        "implemented": 0,
+        "schemaPattern": "contacts.borrower_payees.[0-3].*"
+      },
+      "features": ["payment_method_selection"],
+      "dependencies": ["cash-to-close"]
+    },
+    
+    "proceeds-seller": {
+      "htmlFile": "html-prototypes/proceeds-seller.html",
+      "reactFile": "frontend/src/components/proceeds/SellerProceeds.tsx",
+      "status": "NOT_STARTED",
+      "priority": 20,
+      "complexity": "MEDIUM",
+      "estimatedHours": 3,
+      "fields": {
+        "total": 20,
+        "implemented": 0,
+        "schemaPattern": "contacts.seller_payees.[0-3].*"
+      },
+      "features": ["wire_instructions", "check_printing"],
+      "dependencies": ["debits-credits-ln"]
+    }
+  },
+  
+  "conversionStats": {
+    "totalEstimatedHours": 110,
+    "actualHoursSpent": 0,
+    "averageFieldsPerComponent": 33,
+    "averageComplexity": "HIGH",
+    "blockedComponents": 0,
+    "componentsWithTests": 0
+  },
+  
+  "codePatterns": {
+    "stateManagement": null,
+    "formLibrary": null,
+    "validationLibrary": null,
+    "componentStructure": null,
+    "testingFramework": "vitest"
+  }
+}
