@@ -1,12 +1,12 @@
 # Garden Development Progress Tracker 🌱
 
-**Last Updated**: 2025-01-12 14:00 PST
+**Last Updated**: 2025-08-14 14:50 PST
 **Current Phase**: Week 1 - Foundation
-**Overall Progress**: 5% Complete
+**Overall Progress**: 30% Complete
 
 ## 📊 High-Level Metrics
 - **HTML Components Converted**: 0/35 (0%)
-- **API Endpoints Complete**: 0/25 (0%)
+- **API Endpoints Complete**: 12/25 (48%)
 - **Calculations Implemented**: 0/50 (0%)
 - **Tests Written**: 0/500 (0%)
 - **Tests Passing**: 0/0 (0%)
@@ -22,51 +22,55 @@
   - [x] Qualia schema extraction (schema/qualia-schema.md)
 - [x] Tracking system design
   - [x] PROGRESS.md creation (this file)
-  - [ ] STATUS.json implementation
-  - [ ] COMPONENTS.json registry
-  - [ ] verify-progress.js script
-  - [ ] Session management tools
+  - [x] STATUS.json implementation
+  - [x] COMPONENTS.json registry
+  - [x] verify-progress.js script
+  - [x] Session management tools
 
 ### 🚧 In Progress Tasks
-- [ ] Database Setup
-  - [ ] Install PostgreSQL locally
-  - [ ] Create 'garden' database
-  - [ ] Create orders table with JSONB columns
-  - [ ] Test connection
-  - [ ] Create indexes for JSONB fields
+- [x] Database Setup ✅ COMPLETE
+  - [x] Install PostgreSQL locally
+  - [x] Create 'garden' database
+  - [x] Create orders table with JSONB columns
+  - [x] Test connection
+  - [x] Create indexes for JSONB fields
 
 ### 📋 Pending Tasks - Week 1
 
 #### Backend Foundation
-- [ ] Sequelize Setup
-  - [ ] Install dependencies (sequelize, pg, pg-hstore)
-  - [ ] Configure database connection
-  - [ ] Create Order model with JSONB fields
-  - [ ] Create User model
-  - [ ] Test model creation
+- [x] Sequelize Setup ✅ COMPLETE
+  - [x] Install dependencies (sequelize, pg, pg-hstore)
+  - [x] Configure database connection
+  - [x] Create Order model with JSONB fields
+  - [x] Create User model
+  - [x] Test model creation
 
-- [ ] API Structure
-  - [ ] Set up Express server
-  - [ ] Configure middleware (cors, helmet, morgan)
-  - [ ] Create folder structure
-  - [ ] Set up route handlers
+- [x] API Structure ✅ COMPLETE
+  - [x] Set up Express server
+  - [x] Configure middleware (cors, helmet, morgan)
+  - [x] Create folder structure
+  - [x] Set up route handlers
 
-- [ ] Authentication System
-  - [ ] Install JWT dependencies
-  - [ ] Create auth middleware
-  - [ ] Implement login endpoint
-  - [ ] Implement register endpoint
-  - [ ] Implement token refresh
-  - [ ] Add protected route testing
+- [x] Authentication System ✅ COMPLETE
+  - [x] Install JWT dependencies (jsonwebtoken, bcryptjs)
+  - [x] Create auth middleware
+  - [x] Implement login endpoint
+  - [x] Implement register endpoint
+  - [x] Implement me endpoint
+  - [x] Implement change-password endpoint
+  - [x] Add protected route testing
 
-- [ ] Order CRUD API
-  - [ ] POST /api/orders - Create order
-  - [ ] GET /api/orders/:id - Get single order
-  - [ ] PUT /api/orders/:id - Update order
-  - [ ] DELETE /api/orders/:id - Delete order
-  - [ ] GET /api/orders - List orders with pagination
+- [x] Order CRUD API ✅ COMPLETE
+  - [x] POST /api/orders - Create order
+  - [x] GET /api/orders/:id - Get single order
+  - [x] PUT /api/orders/:id - Update order
+  - [x] DELETE /api/orders/:id - Delete order
+  - [x] GET /api/orders - List orders with pagination
+  - [x] PATCH /api/orders/:id/status - Update status
+  - [x] POST /api/orders/:id/lock - Lock order
+  - [x] POST /api/orders/:id/unlock - Unlock order
 
-#### Frontend Foundation
+#### Frontend Foundation ⏳ NEXT PRIORITY
 - [ ] React App Structure
   - [ ] Clean up default Vite template
   - [ ] Set up routing (React Router)

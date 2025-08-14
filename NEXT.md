@@ -1,43 +1,52 @@
 # Next Immediate Tasks 🎯
 
-**Last Updated**: 2025-01-12 14:15 PST
-**Current Context**: Tracking system implementation complete
+**Last Updated**: 2025-08-14 14:45 PST
+**Current Context**: Backend complete (30% total progress)
+
+## 🔴 WORKFLOW COMMANDS (IMPORTANT!)
+
+### In Claude Code, you type:
+- **`continue garden`** - Start/resume work (Claude reads all context)
+- **`save progress`** - Save state before ending session
+
+### Claude's Response to "continue garden":
+1. Reads all tracking files
+2. Shows current status
+3. Asks: "Should we continue with [specific task]?"
+
+### Claude's Response to "save progress":
+1. Updates NEXT.md, HANDOFF.md, STATUS.json
+2. Documents any incomplete work
+3. Confirms what will happen next session
+
+## 🚧 IN PROGRESS
+- ✅ Backend API complete (auth + orders CRUD)
+- ✅ PostgreSQL database with JSONB columns
+- ✅ All migrations run
+- ⏳ Ready to start frontend
 
 ## 🚨 IMMEDIATE (Next 1-2 Hours)
 
-### 1. ✅ Test Progress Verification
-```bash
-node verify-progress.js
-```
-- Confirm all tracking files are detected
-- Review the verification report
-- Fix any discrepancies found
+### 1. Set Up React App Structure
+**Tasks**:
+- Clean up Vite template boilerplate
+- Install React Router and Zustand
+- Create folder structure (components, pages, hooks, utils)
+- Set up routing
 
-### 2. 🔧 Set Up PostgreSQL Database
-**File**: backend/config/database.js (CREATE)
-```javascript
-// Need to:
-// 1. Install PostgreSQL locally or use Docker
-// 2. Create 'garden' database
-// 3. Configure Sequelize connection
-```
+### 2. Create AppShell Layout Component  
+**File**: frontend/src/components/AppShell.tsx
+- Three-column layout matching Qualia
+- Left sidebar (w-72)
+- Main content area (flex-1)
+- Right rail (w-64)
+- Dark theme (bg-gray-900)
 
-**Commands**:
-```bash
-cd backend
-npm install sequelize pg pg-hstore
-npx sequelize-cli init
-```
-
-### 3. 📊 Create Order Model with JSONB
-**File**: backend/models/order.js (CREATE)
-```javascript
-// JSONB columns needed:
-// - cdf_data (all CDF namespace)
-// - contacts_data (all contacts)
-// - properties_data (property info)
-// - payoffs_data (existing loans)
-```
+### 3. Convert basic-info.html to React
+**File**: frontend/src/components/BasicInfo.tsx
+- Simplest component to start with
+- Form fields with proper state management
+- Connect to backend API
 
 ## 📋 NEXT SESSION (Next 3-4 Hours)
 

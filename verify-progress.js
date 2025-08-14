@@ -88,27 +88,42 @@ class ProgressVerifier {
   // Check database connection (PostgreSQL)
   async checkDatabase() {
     const check = {
-      connected: false,
-      tables: [],
-      hasJSONB: false,
+      postgresInstalled: false,
+      gardenDatabaseExists: false,
+      tablesCreated: false,
+      hasOrderModel: false,
+      hasJSONBColumns: false,
       error: null
     };
 
     try {
-      // Check if PostgreSQL is running
-      execSync('pg_isready', { stdio: 'ignore' });
-      check.connected = true;
+      // Check if PostgreSQL is installed
+      execSync('which psql', { stdio: 'ignore' });
+      check.postgresInstalled = true;
       
-      // Try to connect and list tables
-      // This would need actual connection string from .env
-      // For now, we just check if the config exists
+      // Check if garden database exists
+      try {
+        const dbList = execSync('psql -U postgres -lqt 2>/dev/null || psql -lqt 2>/dev/null', { encoding: 'utf8' });
+        check.gardenDatabaseExists = dbList.includes('garden');
+      } catch {
+        check.gardenDatabaseExists = false;
+      }
+      
+      // Check for Order model with JSONB
+      if (this.fileExists('backend/models/order.js')) {
+        const orderModel = fs.readFileSync('backend/models/order.js', 'utf8');
+        check.hasOrderModel = true;
+        check.hasJSONBColumns = orderModel.includes('JSONB') || orderModel.includes('jsonb');
+      }
+      
+      // Check if config exists and is for PostgreSQL
       if (this.fileExists('backend/config/config.json')) {
         const config = require(path.join(process.cwd(), 'backend/config/config.json'));
         check.hasConfig = true;
-        check.configuredEnvironments = Object.keys(config);
+        check.configuredForPostgres = config.development?.dialect === 'postgres';
       }
     } catch (error) {
-      check.error = 'PostgreSQL not running or not installed';
+      check.error = 'PostgreSQL not installed or not accessible';
     }
 
     return check;
@@ -120,7 +135,13 @@ class ProgressVerifier {
       structure: {},
       dependencies: {},
       endpoints: [],
-      models: []
+      models: [],
+      implementation: {
+        hasAuth: false,
+        hasOrderCRUD: false,
+        hasCalculations: false,
+        hasValidation: false
+      }
     };
 
     // Check folder structure
@@ -152,11 +173,26 @@ class ProgressVerifier {
     // List models
     if (check.structure.modelsExists) {
       check.models = this.listFiles('backend/models', '\\.js$');
+      // Check for our actual Order model
+      check.implementation.hasOrderModel = check.models.includes('order.js');
     }
 
     // Check for API route files
     if (this.dirExists('backend/src/routes')) {
       check.endpoints = this.listFiles('backend/src/routes', '\\.js$');
+      check.implementation.hasAuth = check.endpoints.includes('auth.js');
+      check.implementation.hasOrderCRUD = check.endpoints.includes('orders.js');
+    }
+
+    // Check if auth middleware exists
+    if (this.fileExists('backend/src/middleware/auth.js')) {
+      check.implementation.hasAuthMiddleware = true;
+    }
+
+    // Check for calculations
+    if (this.dirExists('backend/src/calculations')) {
+      const calcs = this.listFiles('backend/src/calculations', '\\.js$');
+      check.implementation.hasCalculations = calcs.length > 0;
     }
 
     return check;
@@ -291,34 +327,68 @@ class ProgressVerifier {
     const backend = this.results.checks.backend;
     const frontend = this.results.checks.frontend;
     const tracking = this.results.checks.tracking;
+    const db = this.results.checks.database;
+
+    // Check ACTUAL implementation, not just folder existence
+    const hasRealBackend = !!(
+      backend?.implementation?.hasOrderModel &&
+      backend?.implementation?.hasAuth &&
+      backend?.implementation?.hasOrderCRUD
+    );
+
+    const hasRealDatabase = !!(
+      db?.gardenDatabaseExists &&
+      db?.hasOrderModel &&
+      db?.hasJSONBColumns
+    );
+
+    const hasRealFrontend = (frontend?.components?.length || 0) > 0;
 
     this.results.summary = {
-      backendReady: !!(backend?.structure?.srcExists && backend?.structure?.packageJsonExists),
-      frontendReady: !!(frontend?.structure?.srcExists && frontend?.structure?.packageJsonExists),
-      databaseReady: !!this.results.checks.database?.connected,
+      backendReady: hasRealBackend,
+      frontendReady: hasRealFrontend,
+      databaseReady: hasRealDatabase,
       trackingComplete: Object.values(tracking || {}).filter(v => v).length >= 5,
       htmlPrototypesCount: frontend?.htmlPrototypes?.length || 0,
       componentsConverted: frontend?.components?.length || 0,
       modelsCreated: backend?.models?.length || 0,
       gitClean: this.results.checks.git?.uncommittedChanges === 0,
-      overallReadiness: 'NOT_STARTED' // Will be calculated
+      overallReadiness: 'NOT_STARTED', // Will be calculated
+      implementationStatus: {
+        database: hasRealDatabase ? 'COMPLETE' : 'NOT_STARTED',
+        authentication: backend?.implementation?.hasAuth ? 'COMPLETE' : 'NOT_STARTED',
+        orderAPI: backend?.implementation?.hasOrderCRUD ? 'COMPLETE' : 'NOT_STARTED',
+        calculations: backend?.implementation?.hasCalculations ? 'COMPLETE' : 'NOT_STARTED',
+        componentsConverted: `${frontend?.components?.length || 0}/${frontend?.htmlPrototypes?.length || 0}`
+      }
     };
 
-    // Calculate overall readiness
-    const readyCount = [
-      this.results.summary.backendReady,
-      this.results.summary.frontendReady,
-      this.results.summary.databaseReady,
-      this.results.summary.trackingComplete
+    // Calculate overall readiness based on REAL implementation
+    const implementedFeatures = [
+      hasRealDatabase,
+      backend?.implementation?.hasAuth,
+      backend?.implementation?.hasOrderCRUD,
+      hasRealFrontend
     ].filter(v => v).length;
 
-    if (readyCount === 4) {
+    if (implementedFeatures === 4) {
       this.results.summary.overallReadiness = 'READY';
-    } else if (readyCount >= 2) {
+    } else if (implementedFeatures >= 2) {
       this.results.summary.overallReadiness = 'IN_PROGRESS';
     } else {
       this.results.summary.overallReadiness = 'NOT_STARTED';
     }
+
+    // Calculate actual progress percentage
+    const totalTasks = 10; // Database, Auth, CRUD, Calcs, 6 main components
+    const completedTasks = [
+      hasRealDatabase,
+      backend?.implementation?.hasAuth,
+      backend?.implementation?.hasOrderCRUD,
+      backend?.implementation?.hasCalculations
+    ].filter(v => v).length;
+    
+    this.results.summary.actualProgress = Math.round((completedTasks / totalTasks) * 100);
   }
 
   // Print formatted results
@@ -361,7 +431,10 @@ class ProgressVerifier {
     console.log(`\n${colors.yellow}${colors.bright}🗄️  Database Status:${colors.reset}`);
     const db = this.results.checks.database;
     if (db) {
-      console.log(`  PostgreSQL: ${db.connected ? `${colors.green}Connected` : `${colors.red}Not Connected`}${colors.reset}`);
+      console.log(`  PostgreSQL Installed: ${db.postgresInstalled ? `${colors.green}Yes` : `${colors.red}No`}${colors.reset}`);
+      console.log(`  Garden Database: ${db.gardenDatabaseExists ? `${colors.green}Created` : `${colors.red}Not Created`}${colors.reset}`);
+      console.log(`  Order Model: ${db.hasOrderModel ? `${colors.green}Created` : `${colors.red}Not Created`}${colors.reset}`);
+      console.log(`  JSONB Columns: ${db.hasJSONBColumns ? `${colors.green}Configured` : `${colors.red}Not Configured`}${colors.reset}`);
       if (db.error) console.log(`  ${colors.red}Error: ${db.error}${colors.reset}`);
     }
 
@@ -394,11 +467,21 @@ class ProgressVerifier {
     console.log(`\n${colors.cyan}${colors.bright}📈 Summary:${colors.reset}`);
     const summary = this.results.summary;
     console.log(`  Overall Readiness: ${this.getReadinessColor(summary.overallReadiness)}`);
+    console.log(`  Actual Progress: ${summary.actualProgress || 0}%`);
     console.log(`  Components: ${summary.componentsConverted}/${summary.htmlPrototypesCount}`);
-    console.log(`  Backend: ${summary.backendReady ? `${colors.green}Ready` : `${colors.red}Not Ready`}${colors.reset}`);
-    console.log(`  Frontend: ${summary.frontendReady ? `${colors.green}Ready` : `${colors.red}Not Ready`}${colors.reset}`);
-    console.log(`  Database: ${summary.databaseReady ? `${colors.green}Ready` : `${colors.red}Not Ready`}${colors.reset}`);
+    console.log(`  Backend: ${summary.backendReady ? `${colors.green}Ready` : `${colors.red}Not Built`}${colors.reset}`);
+    console.log(`  Frontend: ${summary.frontendReady ? `${colors.green}Ready` : `${colors.red}Not Built`}${colors.reset}`);
+    console.log(`  Database: ${summary.databaseReady ? `${colors.green}Ready` : `${colors.red}Not Created`}${colors.reset}`);
     console.log(`  Tracking: ${summary.trackingComplete ? `${colors.green}Complete` : `${colors.yellow}Partial`}${colors.reset}`);
+    
+    if (summary.implementationStatus) {
+      console.log(`\n${colors.cyan}${colors.bright}📊 Implementation Status:${colors.reset}`);
+      console.log(`  Database Setup: ${summary.implementationStatus.database === 'COMPLETE' ? `${colors.green}✓` : `${colors.red}✗`}${colors.reset}`);
+      console.log(`  Authentication: ${summary.implementationStatus.authentication === 'COMPLETE' ? `${colors.green}✓` : `${colors.red}✗`}${colors.reset}`);
+      console.log(`  Order CRUD API: ${summary.implementationStatus.orderAPI === 'COMPLETE' ? `${colors.green}✓` : `${colors.red}✗`}${colors.reset}`);
+      console.log(`  Calculations: ${summary.implementationStatus.calculations === 'COMPLETE' ? `${colors.green}✓` : `${colors.red}✗`}${colors.reset}`);
+      console.log(`  Components: ${summary.implementationStatus.componentsConverted}`);
+    }
 
     console.log(`\n${colors.cyan}${colors.bright}═══════════════════════════════════════════${colors.reset}\n`);
   }

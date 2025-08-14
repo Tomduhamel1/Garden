@@ -2,6 +2,25 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## 🔴 WORKFLOW COMMANDS
+
+When user types these EXACT phrases, follow the protocol:
+
+### `continue garden`
+1. Read this file (CLAUDE.md) to understand project
+2. Run `node verify-progress.js` internally to check actual state
+3. Read NEXT.md to see IN PROGRESS and immediate tasks
+4. Read HANDOFF.md for session notes
+5. Give status summary with percentages
+6. Ask: "Should we continue with [specific task from NEXT.md]?"
+
+### `save progress`
+1. Update NEXT.md with current work in IN PROGRESS section
+2. Update HANDOFF.md with what was accomplished
+3. Update STATUS.json with current metrics
+4. Document any incomplete work clearly
+5. Respond: "Progress saved. Next session will continue with [specific task]"
+
 ## Project Overview
 
 Garden is a comprehensive real estate closing management system (Qualia competitor) - a full-stack application with React TypeScript frontend and Node.js/Express backend using Sequelize ORM with PostgreSQL database. The project includes extensive HTML prototypes that define the UI patterns and layout structure.
