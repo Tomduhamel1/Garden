@@ -19,7 +19,9 @@ When user types these EXACT phrases, follow the protocol:
 2. Update HANDOFF.md with what was accomplished
 3. Update STATUS.json with current metrics
 4. Document any incomplete work clearly
-5. Respond: "Progress saved. Next session will continue with [specific task]"
+5. Auto-commit all changes with descriptive message
+6. Auto-push to GitHub
+7. Respond: "Progress saved and pushed to GitHub. Next session will continue with [specific task]"
 
 ## Project Overview
 
