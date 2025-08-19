@@ -21,6 +21,11 @@ import ProjectedPayments from '../components/orders/ProjectedPayments';
 import LoanCalculations from '../components/orders/LoanCalculations';
 import LoanDisclosures from '../components/orders/LoanDisclosures';
 import { ClosingDisclosure } from '../components/orders/ClosingDisclosure';
+import SettlementStatement from '../components/orders/SettlementStatement';
+import DebitsCredits from '../components/orders/DebitsCredits';
+import Documents from '../components/orders/Documents';
+import Accounting from '../components/orders/Accounting';
+import Properties from '../components/orders/Properties';
 import Login from '../pages/Login';
 
 const AppRoutes = () => {
@@ -48,6 +53,11 @@ const AppRoutes = () => {
         <Route path="loan-calculations" element={<LoanCalculations />} />
         <Route path="loan-disclosures" element={<LoanDisclosures />} />
         <Route path="closing-disclosure" element={<ClosingDisclosure />} />
+        <Route path="settlement-statement" element={<SettlementStatement />} />
+        <Route path="debits-credits" element={<DebitsCredits />} />
+        <Route path="documents" element={<Documents />} />
+        <Route path="accounting" element={<Accounting />} />
+        <Route path="properties" element={<Properties />} />
         {/* Additional routes will be added here as components are created */}
       </Route>
       <Route path="/dashboard" element={<Dashboard />} />
