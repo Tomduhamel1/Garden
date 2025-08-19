@@ -1,13 +1,13 @@
 {
-  "lastUpdated": "2025-08-19T20:35:00-08:00",
+  "lastUpdated": "2025-08-19T21:00:00-08:00",
   "currentPhase": "Week1-Foundation",
   "phaseStarted": "2025-01-12T14:00:00-08:00",
   "phaseDeadline": "2025-01-17T18:00:00-08:00",
-  "overallProgress": 60,
+  "overallProgress": 70,
   
   "metrics": {
     "htmlComponentsTotal": 35,
-    "htmlComponentsConverted": 10,
+    "htmlComponentsConverted": 15,
     "apiEndpointsTotal": 25,
     "apiEndpointsComplete": 12,
     "calculationsTotal": 50,
@@ -61,7 +61,12 @@
     "DidShopFor",
     "DidNotShopFor",
     "OtherCharges",
-    "TaxesAndFees"
+    "TaxesAndFees",
+    "Prepaids",
+    "Escrow",
+    "Payoffs",
+    "ProceedsBorrower",
+    "ProceedsSeller"
   ],
   
   "apiEndpointsCompleted": [
