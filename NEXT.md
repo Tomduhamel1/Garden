@@ -41,7 +41,10 @@
 - ✅ Payoffs component (4-tab payoff management with lender search/create)
 - ✅ ProceedsBorrower component (borrower payment processing with full address forms)
 - ✅ ProceedsSeller component (seller payment processing with state dropdown)
-- ⏳ Need to convert remaining 19 HTML prototypes to React
+- ✅ CashToClose component (cash to close calculations with comparisons)
+- ✅ LoanTerms component (loan terms with issue dates and balloon payment toggle)
+- ✅ ProjectedPayments component (payment projections with toggles and tax/insurance)
+- ⏳ Need to convert remaining 16 HTML prototypes to React
 
 ## 🚨 IMMEDIATE (Next 1-2 Hours)
 
@@ -63,13 +66,19 @@
 - ✅ proceeds-borrower.html → src/components/orders/ProceedsBorrower.tsx (COMPLETED)
 - ✅ proceeds-seller.html → src/components/orders/ProceedsSeller.tsx (COMPLETED)
 
-### 4. Convert Fourth Batch HTML Prototypes
+### 4. Convert Fourth Batch HTML Prototypes ✅ PARTIALLY COMPLETE
+**Completed in this session**:
+- ✅ cash-to-close.html → src/components/orders/CashToClose.tsx
+- ✅ loan-terms.html → src/components/orders/LoanTerms.tsx  
+- ✅ projected-payments.html → src/components/orders/ProjectedPayments.tsx
+
+### 5. Convert Fifth Batch HTML Prototypes
 **IMMEDIATE Next files to convert (in order)**:
-- closing-costs-summary.html → src/components/orders/ClosingCostsSummary.tsx (NEXT)
-- loan-terms.html → src/components/orders/LoanTerms.tsx
-- loan-payments.html → src/components/orders/LoanPayments.tsx
-- loan-calculations.html → src/components/orders/LoanCalculations.tsx
+- loan-calculations.html → src/components/orders/LoanCalculations.tsx (NEXT)
 - loan-disclosures.html → src/components/orders/LoanDisclosures.tsx
+- closing-disclosure.html → src/components/orders/ClosingDisclosure.tsx
+- settlement-statement.html → src/components/orders/SettlementStatement.tsx
+- debits-credits.html → src/components/orders/DebitsCredits.tsx
 
 **Important**: Each component MUST:
 - Match HTML prototype EXACTLY (all fields, sections, layout)

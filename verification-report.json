@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-08-19T20:42:14.237Z",
+  "timestamp": "2025-08-19T21:53:37.076Z",
   "checks": {
     "tracking": {
       "progressMd": true,
@@ -73,9 +73,14 @@
         "Contacts.tsx",
         "DidNotShopFor.tsx",
         "DidShopFor.tsx",
+        "Escrow.tsx",
         "Loan.tsx",
         "OriginationCharges.tsx",
         "OtherCharges.tsx",
+        "Payoffs.tsx",
+        "Prepaids.tsx",
+        "ProceedsBorrower.tsx",
+        "ProceedsSeller.tsx",
         "TaxesAndFees.tsx"
       ],
       "routes": [],
@@ -130,7 +135,7 @@
       "isRepo": true,
       "branch": "main",
       "uncommittedChanges": 0,
-      "lastCommit": "8ef3182 - SESSION_END: Added OtherCharges and TaxesAndFees components, fixed tracking system (75 seconds ago)"
+      "lastCommit": "746afea - SESSION_END: Completed third batch of HTML prototype conversions (68 seconds ago)"
     }
   },
   "discrepancies": [],
@@ -141,7 +146,7 @@
     "databaseReady": true,
     "trackingComplete": true,
     "htmlPrototypesCount": 34,
-    "componentsConverted": 10,
+    "componentsConverted": 15,
     "modelsCreated": 3,
     "gitClean": true,
     "overallReadiness": "READY",
@@ -150,7 +155,7 @@
       "authentication": "COMPLETE",
       "orderAPI": "COMPLETE",
       "calculations": "NOT_STARTED",
-      "componentsConverted": "10/34"
+      "componentsConverted": "15/34"
     },
     "actualProgress": 30
   }

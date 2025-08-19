@@ -1,13 +1,13 @@
 {
-  "lastUpdated": "2025-08-19T21:00:00-08:00",
+  "lastUpdated": "2025-08-19T21:57:00-08:00",
   "currentPhase": "Week1-Foundation",
   "phaseStarted": "2025-01-12T14:00:00-08:00",
   "phaseDeadline": "2025-01-17T18:00:00-08:00",
-  "overallProgress": 70,
+  "overallProgress": 76,
   
   "metrics": {
     "htmlComponentsTotal": 35,
-    "htmlComponentsConverted": 15,
+    "htmlComponentsConverted": 18,
     "apiEndpointsTotal": 25,
     "apiEndpointsComplete": 12,
     "calculationsTotal": 50,
@@ -66,7 +66,10 @@
     "Escrow",
     "Payoffs",
     "ProceedsBorrower",
-    "ProceedsSeller"
+    "ProceedsSeller",
+    "CashToClose",
+    "LoanTerms",
+    "ProjectedPayments"
   ],
   
   "apiEndpointsCompleted": [
@@ -246,6 +249,20 @@
       ],
       "filesCreated": 2,
       "linesOfCode": 850
+    },
+    {
+      "date": "2025-08-19",
+      "startTime": "21:53:00-08:00",
+      "endTime": "21:57:00-08:00",
+      "tasksCompleted": [
+        "CashToClose component - cash to close calculations with comparisons",
+        "LoanTerms component - loan terms with balloon payment toggle",
+        "ProjectedPayments component - payment projections with toggles",
+        "Updated all routes to include new components",
+        "18/34 components now complete (53% of frontend)"
+      ],
+      "filesCreated": 3,
+      "linesOfCode": 950
     }
   ],
   

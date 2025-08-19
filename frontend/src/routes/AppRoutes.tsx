@@ -10,6 +10,14 @@ import DidShopFor from '../components/orders/DidShopFor';
 import DidNotShopFor from '../components/orders/DidNotShopFor';
 import OtherCharges from '../components/orders/OtherCharges';
 import TaxesAndFees from '../components/orders/TaxesAndFees';
+import Prepaids from '../components/orders/Prepaids';
+import Escrow from '../components/orders/Escrow';
+import Payoffs from '../components/orders/Payoffs';
+import ProceedsBorrower from '../components/orders/ProceedsBorrower';
+import ProceedsSeller from '../components/orders/ProceedsSeller';
+import CashToClose from '../components/orders/CashToClose';
+import LoanTerms from '../components/orders/LoanTerms';
+import ProjectedPayments from '../components/orders/ProjectedPayments';
 import Login from '../pages/Login';
 
 const AppRoutes = () => {
@@ -26,6 +34,14 @@ const AppRoutes = () => {
         <Route path="did-not-shop-for" element={<DidNotShopFor />} />
         <Route path="other-charges" element={<OtherCharges />} />
         <Route path="taxes-and-fees" element={<TaxesAndFees />} />
+        <Route path="prepaids" element={<Prepaids />} />
+        <Route path="escrow" element={<Escrow />} />
+        <Route path="payoffs" element={<Payoffs />} />
+        <Route path="proceeds-borrower" element={<ProceedsBorrower />} />
+        <Route path="proceeds-seller" element={<ProceedsSeller />} />
+        <Route path="cash-to-close" element={<CashToClose />} />
+        <Route path="loan-terms" element={<LoanTerms />} />
+        <Route path="projected-payments" element={<ProjectedPayments />} />
         {/* Additional routes will be added here as components are created */}
       </Route>
       <Route path="/dashboard" element={<Dashboard />} />
