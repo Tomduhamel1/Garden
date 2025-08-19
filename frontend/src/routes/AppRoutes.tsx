@@ -18,6 +18,9 @@ import ProceedsSeller from '../components/orders/ProceedsSeller';
 import CashToClose from '../components/orders/CashToClose';
 import LoanTerms from '../components/orders/LoanTerms';
 import ProjectedPayments from '../components/orders/ProjectedPayments';
+import LoanCalculations from '../components/orders/LoanCalculations';
+import LoanDisclosures from '../components/orders/LoanDisclosures';
+import { ClosingDisclosure } from '../components/orders/ClosingDisclosure';
 import Login from '../pages/Login';
 
 const AppRoutes = () => {
@@ -42,6 +45,9 @@ const AppRoutes = () => {
         <Route path="cash-to-close" element={<CashToClose />} />
         <Route path="loan-terms" element={<LoanTerms />} />
         <Route path="projected-payments" element={<ProjectedPayments />} />
+        <Route path="loan-calculations" element={<LoanCalculations />} />
+        <Route path="loan-disclosures" element={<LoanDisclosures />} />
+        <Route path="closing-disclosure" element={<ClosingDisclosure />} />
         {/* Additional routes will be added here as components are created */}
       </Route>
       <Route path="/dashboard" element={<Dashboard />} />

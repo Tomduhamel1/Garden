@@ -1,7 +1,7 @@
 # Next Immediate Tasks 🎯
 
-**Last Updated**: 2025-08-19 21:00 PST  
-**Current Context**: Backend complete, 15 React components completed (AppShell, BasicInfo, Contacts, Loan, OriginationCharges, DidShopFor, DidNotShopFor, OtherCharges, TaxesAndFees, Prepaids, Escrow, Payoffs, ProceedsBorrower, ProceedsSeller)
+**Last Updated**: 2025-08-19 23:02 PST  
+**Current Context**: Backend complete, 21 React components completed (60% of HTML prototypes converted)
 
 ## 🔴 WORKFLOW COMMANDS (IMPORTANT!)
 
@@ -44,7 +44,10 @@
 - ✅ CashToClose component (cash to close calculations with comparisons)
 - ✅ LoanTerms component (loan terms with issue dates and balloon payment toggle)
 - ✅ ProjectedPayments component (payment projections with toggles and tax/insurance)
-- ⏳ Need to convert remaining 16 HTML prototypes to React
+- ✅ LoanCalculations component (APR and TIP calculations with toggles)
+- ✅ LoanDisclosures component (full disclosures with collapsible sections)
+- ✅ ClosingDisclosure component (6-page document viewer with navigation)
+- ⏳ Need to convert remaining 13 HTML prototypes to React
 
 ## 🚨 IMMEDIATE (Next 1-2 Hours)
 
@@ -72,12 +75,14 @@
 - ✅ loan-terms.html → src/components/orders/LoanTerms.tsx  
 - ✅ projected-payments.html → src/components/orders/ProjectedPayments.tsx
 
-### 5. Convert Fifth Batch HTML Prototypes
+### 5. Convert Fifth Batch HTML Prototypes ✅ PARTIALLY COMPLETE
+**Completed in this session**:
+- ✅ loan-calculations.html → src/components/orders/LoanCalculations.tsx
+- ✅ loan-disclosures.html → src/components/orders/LoanDisclosures.tsx
+- ✅ closing-disclosure.html → src/components/orders/ClosingDisclosure.tsx (6-page document viewer)
+
 **IMMEDIATE Next files to convert (in order)**:
-- loan-calculations.html → src/components/orders/LoanCalculations.tsx (NEXT)
-- loan-disclosures.html → src/components/orders/LoanDisclosures.tsx
-- closing-disclosure.html → src/components/orders/ClosingDisclosure.tsx
-- settlement-statement.html → src/components/orders/SettlementStatement.tsx
+- settlement-statement.html → src/components/orders/SettlementStatement.tsx (NEXT)
 - debits-credits.html → src/components/orders/DebitsCredits.tsx
 
 **Important**: Each component MUST:

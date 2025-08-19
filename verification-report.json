@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-08-19T21:53:37.076Z",
+  "timestamp": "2025-08-19T23:02:39.520Z",
   "checks": {
     "tracking": {
       "progressMd": true,
@@ -70,17 +70,23 @@
         "AppShell.tsx",
         "AppShell.tsx",
         "BasicInfo.tsx",
+        "CashToClose.tsx",
+        "ClosingDisclosure.tsx",
         "Contacts.tsx",
         "DidNotShopFor.tsx",
         "DidShopFor.tsx",
         "Escrow.tsx",
         "Loan.tsx",
+        "LoanCalculations.tsx",
+        "LoanDisclosures.tsx",
+        "LoanTerms.tsx",
         "OriginationCharges.tsx",
         "OtherCharges.tsx",
         "Payoffs.tsx",
         "Prepaids.tsx",
         "ProceedsBorrower.tsx",
         "ProceedsSeller.tsx",
+        "ProjectedPayments.tsx",
         "TaxesAndFees.tsx"
       ],
       "routes": [],
@@ -134,8 +140,8 @@
     "git": {
       "isRepo": true,
       "branch": "main",
-      "uncommittedChanges": 0,
-      "lastCommit": "746afea - SESSION_END: Completed third batch of HTML prototype conversions (68 seconds ago)"
+      "uncommittedChanges": 6,
+      "lastCommit": "a58e13b - SESSION_END: Added 3 more React components (18/34 complete, 53% frontend) (44 minutes ago)"
     }
   },
   "discrepancies": [],
@@ -146,16 +152,16 @@
     "databaseReady": true,
     "trackingComplete": true,
     "htmlPrototypesCount": 34,
-    "componentsConverted": 15,
+    "componentsConverted": 21,
     "modelsCreated": 3,
-    "gitClean": true,
+    "gitClean": false,
     "overallReadiness": "READY",
     "implementationStatus": {
       "database": "COMPLETE",
       "authentication": "COMPLETE",
       "orderAPI": "COMPLETE",
       "calculations": "NOT_STARTED",
-      "componentsConverted": "15/34"
+      "componentsConverted": "21/34"
     },
     "actualProgress": 30
   }
