@@ -1,0 +1,384 @@
+Garden Schema Implementation Specification
+Version 1.0
+Last Updated: January 2025
+
+EXECUTIVE SUMMARY
+
+Garden implements a comprehensive real estate closing management system with over 1,150 fields supporting federal UCD compliance and title/escrow operations. The schema combines MISMO UCD v2.0 standards with industry-specific extensions for complete transaction management.
+
+TECHNICAL SPECIFICATIONS
+
+Data Architecture:
+- Total fields: 1,150+ (fully expanded)
+- Mapping patterns: 178 (UCD to Qualia)
+- Unique schema keys: 123
+- UI prototype pages: 35+
+
+Core Components:
+
+1. Database Design
+Primary Storage: PostgreSQL with JSONB columns
+- cdf_data: Closing Disclosure Form namespace
+- contacts_data: Party information arrays
+- properties_data: Property and tax records
+- payoffs_data: Existing loan payoffs
+
+Performance Optimization:
+- Indexed JSON paths for common queries
+- Extracted fields for direct SQL access
+- Lazy loading for section data
+- Cached calculation results
+
+2. Data Type Standards
+
+Currency: DECIMAL(15,2) - 2 decimal places, max 15 digits
+Rate: DECIMAL(8,5) - 5 decimal places for percentages
+Text: VARCHAR(255) - 255 character default limit
+Date: DATE - ISO 8601 format (YYYY-MM-DD)
+Boolean: BOOLEAN - true/false enumeration
+
+SCHEMA STRUCTURE
+
+Section A-H: Closing Costs
+
+Origination Charges (Section A):
+- 8 line items maximum
+- Fields per line: description, paid_by_borrower, paid_by_seller, paid_by_others, paid_before_closing, payee_name, is_optional, not_required
+- Path: cdf.origination_charges.line_01 through line_08
+
+Services (Sections B-C):
+- Cannot Shop: 8 line items
+- Can Shop: 8 line items
+- Identical field structure to Section A
+
+Government & Escrow (Sections E-G):
+- Taxes: 4 line items
+- Prepaids: 5 line items
+- Initial Escrow: 8 line items
+
+Section K-N: Credits and Debits
+
+Borrower Transactions:
+- Credits: 17 line items maximum
+- Debits: 15 line items maximum
+- Fields: description, amount, type
+
+Seller Transactions:
+- Credits: 5 line items maximum
+- Debits: 9 line items maximum
+- Identical structure to borrower sections
+
+ENTITY MANAGEMENT
+
+Contact Arrays:
+Borrowers: Maximum 4, Path: contacts.borrowers[0] through contacts.borrowers[3]
+Sellers: Maximum 4, Path: contacts.sellers[0] through contacts.sellers[3]
+Borrower Payees: Maximum 4, Path: contacts.borrower_payees[0] through contacts.borrower_payees[3]
+Seller Payees: Maximum 4, Path: contacts.seller_payees[0] through contacts.seller_payees[3]
+Lenders: Maximum 3, Path: contacts.lenders[0] through contacts.lenders[2]
+Title Companies: Maximum 2, Path: contacts.title_companies[0] through contacts.title_companies[1]
+Listing Agencies: Maximum 2, Path: contacts.listing_agencies[0] through contacts.listing_agencies[1]
+Selling Agencies: Maximum 2, Path: contacts.selling_agencies[0] through contacts.selling_agencies[1]
+
+Contact Record Structure:
+- type: person or company
+- first_name: string
+- middle_name: string
+- last_name: string
+- suffix: string
+- company_name: string
+- gender: Male, Female, or Other
+- marital_status: Single, Married, Divorced, or Widowed
+- SSN: string (encrypted)
+- date_of_birth: date
+- email: string
+- cell_phone: string
+- home_phone: string
+- work_phone: string
+- current_address.address_1: string
+- current_address.address_2: string
+- current_address.city: string
+- current_address.state: string (2-char)
+- current_address.zipcode: string (5 or 9 digit)
+- on_title: boolean
+- ownership_percentage: decimal
+- vesting_type: string
+- power_of_attorney.has: boolean
+- power_of_attorney.agent_name: string
+- power_of_attorney.relationship: string
+
+PROPERTY INFORMATION
+
+Single property per transaction with multiple tax records:
+- address_line_1: string
+- address_line_2: string
+- address_city: string
+- address_county: string
+- address_state: string
+- address_zip: string
+- legal_description: text
+- apn: string
+- lot: string
+- block: string
+
+Tax Information (up to 3 records):
+- annual_amount: decimal
+- proration.daily_amount: decimal
+- proration.start_date: date
+- proration.end_date: date
+- proration.through_date: date
+- proration.credit_buyer: decimal
+- proration.debit_seller: decimal
+- first_installment.amount: decimal
+- first_installment.due_date: date
+- first_installment.paid: boolean
+- second_installment.amount: decimal
+- second_installment.due_date: date
+- second_installment.paid: boolean
+
+HOA Information:
+- name: string
+- monthly_dues: decimal
+- special_assessment: decimal
+- transfer_fee: decimal
+
+LOAN INFORMATION
+
+Primary loan with comprehensive terms:
+- initial_loan_amount: decimal
+- loan_type: Conventional, FHA, VA, USDA, or Other
+- loan_purpose: Purchase, Refinance, or Construction
+- loan_product: Fixed Rate, ARM, Step Rate, or Other
+- loan_number: string
+- loan_term_years: integer
+- loan_term_months: integer
+- interest_rate: decimal
+- interest_type: fixed or adjustable
+- has_prepayment_penalty: boolean
+- has_balloon_payment: boolean
+- balloon_payment_description: array
+- interest_only: boolean
+- is_heloc: boolean
+- is_construction_loan: boolean
+- is_MERS: boolean
+- generating_mortgage_docs: boolean
+- monthly_principal_and_interest: decimal
+- first_payment_date: date
+- last_payment_date: date
+- penalty_grace_period_days: integer
+- late_penalty_amount: decimal
+- late_penalty_type: percent or dollar
+- mortgage_insurance_case_number: string
+
+PAYOFF MANAGEMENT
+
+Supports 4 existing loans/liens:
+- lender_name: string
+- loan_number: string
+- payoff_amount: decimal
+- good_through_date: date
+- per_diem: decimal
+- recording_fee: decimal
+- reconveyance_fee: decimal
+- wire_fee: decimal
+- statement_requested: boolean
+- statement_received: boolean
+- payoff_ordered: boolean
+- payoff_received: boolean
+
+CALCULATION ENGINE
+
+Core Calculations:
+
+Section Totals:
+- Section A: Sum of origination charges
+- Section B: Sum of services (cannot shop)
+- Section C: Sum of services (can shop)
+- Section D: Total loan costs (A + B + C)
+- Section E: Taxes and government fees
+- Section F: Prepaids
+- Section G: Initial escrow at closing
+- Section H: Other charges
+- Section J: Total closing costs (D + E + F + G + H)
+
+Cash to Close Formula:
+Purchase Price
+minus Loan Amount
+plus Total Closing Costs
+minus Earnest Money Deposit
+minus Seller Credits
+plus/minus Adjustments
+equals Cash to Close
+
+APR Components:
+- Finance charge calculation
+- Payment schedule analysis
+- Amortization schedule
+- Prepaid finance charges
+
+TIP (Total Interest Percentage):
+Total Interest Paid divided by Loan Amount times 100
+
+API SPECIFICATION
+
+RESTful Endpoints:
+POST   /api/orders                    Create order
+GET    /api/orders/:id                Retrieve order
+PUT    /api/orders/:id                Update order
+DELETE /api/orders/:id                Delete order
+GET    /api/orders/:id/cdf            Get CDF data
+POST   /api/orders/:id/calculate      Execute calculations
+GET    /api/orders/:id/validate       Validate compliance
+POST   /api/orders/:id/generate-cd    Generate disclosure
+GET    /api/orders/:id/export-ucd     Export UCD format
+POST   /api/orders/:id/import-ucd     Import UCD data
+
+Response Format:
+{
+  "success": true,
+  "data": {
+    "id": "uuid",
+    "order_number": "string",
+    "cdf": {},
+    "contacts": {},
+    "properties": [],
+    "payoffs": [],
+    "calculations": {}
+  },
+  "errors": [],
+  "warnings": []
+}
+
+VALIDATION REQUIREMENTS
+
+Transaction Type Rules:
+
+Purchase Requirements:
+- purchase_price (mandatory)
+- loans[0].initial_loan_amount (unless cash)
+- contacts.borrowers[0] (mandatory)
+- contacts.sellers[0] (mandatory)
+- properties[0] (mandatory)
+
+Refinance Requirements:
+- loans[0].initial_loan_amount (mandatory)
+- contacts.borrowers[0] (mandatory)
+- payoffs[0] (mandatory)
+- properties[0] (mandatory)
+
+Field Dependencies:
+- Balloon payment requires description
+- HELOC typically requires interest-only
+- Section totals must equal specified amounts
+- Borrower credits/debits must balance
+- Seller credits/debits must balance
+
+Compliance Checks:
+- TRID disclosure requirements
+- State-specific regulations
+- GSE delivery standards
+- CFPB calculation rules
+
+IMPLEMENTATION PHASES
+
+Phase 1: Core Infrastructure
+- Database schema creation
+- Basic CRUD operations
+- Primary entity management
+- Initial validation rules
+
+Phase 2: Calculation Engine
+- Section calculations
+- Cash to close computation
+- APR/TIP calculations
+- Proration logic
+
+Phase 3: Compliance Features
+- TRID validation
+- UCD import/export
+- State-specific rules
+- Audit trail implementation
+
+Phase 4: Advanced Features
+- Document generation
+- Workflow automation
+- Third-party integrations
+- Reporting dashboard
+
+PERFORMANCE METRICS
+
+System Requirements:
+- Response time: less than 200ms for reads
+- Calculation time: less than 500ms for full order
+- Maximum payload: 500KB per order
+- Concurrent users: 100+
+- Database size: 10GB initial capacity
+
+Optimization Strategies:
+- JSON field indexing
+- Query result caching
+- Batch update processing
+- Asynchronous calculations
+- CDN for static assets
+
+SECURITY SPECIFICATIONS
+
+Data Protection:
+- AES-256 encryption at rest
+- TLS 1.3 for transmission
+- SSN field masking
+- PII access controls
+- Session management
+
+Compliance Standards:
+- SOC 2 Type II
+- PCI DSS (if processing payments)
+- State privacy regulations
+- CFPB data requirements
+- GSE security standards
+
+TESTING REQUIREMENTS
+
+Unit Testing:
+- Individual calculation functions
+- Validation rule enforcement
+- Data type conversions
+- Array limit checks
+
+Integration Testing:
+- Complete transaction flows
+- API endpoint validation
+- Database operations
+- External service calls
+
+End-to-End Testing:
+- Purchase transaction workflow
+- Refinance transaction workflow
+- Multi-party scenarios
+- Maximum data scenarios
+
+Performance Testing:
+- Load testing (100+ concurrent)
+- Stress testing (peak loads)
+- Endurance testing (24-hour runs)
+- Spike testing (sudden increases)
+
+FIELD DISTRIBUTION
+
+Component               Base Fields    Array Expansion    Total Fields
+CDF Sections A-H        8              56 lines x 8       448
+CDF Sections K-N        4              46 lines x 3       138
+Borrowers               25             4 instances        100
+Sellers                 30             4 instances        120
+Payoffs                 8              4 instances        32
+Payees                  5              8 instances        40
+Service Providers       6              10 instances       60
+Properties              20             3 tax records      50
+Loans                   45             1 instance         45
+Calculations            20             1 instance         20
+Metadata                30             1 instance         30
+Miscellaneous           67             Various            67
+Total                   264            -                  1,150
+
+Document Version: 1.0
+Status: Production Ready

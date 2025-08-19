@@ -236,9 +236,27 @@ class ProgressVerifier {
       } catch {}
     }
 
-    // List components
+    // List components - recursively check all subdirectories
     if (check.structure.componentsExists) {
-      check.components = this.listFiles('frontend/src/components', '\\.(tsx|jsx)$');
+      const getAllComponentFiles = (dir) => {
+        let files = [];
+        try {
+          const entries = fs.readdirSync(path.join(process.cwd(), dir));
+          entries.forEach(entry => {
+            const fullPath = path.join(dir, entry);
+            const stat = fs.statSync(path.join(process.cwd(), fullPath));
+            if (stat.isDirectory()) {
+              files = files.concat(getAllComponentFiles(fullPath));
+            } else if (entry.match(/\.(tsx|jsx)$/)) {
+              files.push(entry);
+            }
+          });
+        } catch (error) {
+          // Directory doesn't exist or can't be read
+        }
+        return files;
+      };
+      check.components = getAllComponentFiles('frontend/src/components');
     }
 
     // Count HTML prototypes
@@ -299,12 +317,31 @@ class ProgressVerifier {
       const status = JSON.parse(fs.readFileSync('STATUS.json', 'utf8'));
       const components = JSON.parse(fs.readFileSync('COMPONENTS.json', 'utf8'));
 
-      // Check component conversions
-      const actualComponents = this.listFiles('frontend/src/components', '\\.(tsx|jsx)$');
+      // Check component conversions - need to recursively check subdirectories
+      const getAllComponents = (dir) => {
+        let files = [];
+        try {
+          const entries = fs.readdirSync(path.join(process.cwd(), dir));
+          entries.forEach(entry => {
+            const fullPath = path.join(dir, entry);
+            const stat = fs.statSync(path.join(process.cwd(), fullPath));
+            if (stat.isDirectory()) {
+              files = files.concat(getAllComponents(fullPath));
+            } else if (entry.match(/\.(tsx|jsx)$/)) {
+              files.push(entry.replace(/\.(tsx|jsx)$/, ''));
+            }
+          });
+        } catch (error) {
+          // Directory doesn't exist or can't be read
+        }
+        return files;
+      };
+      
+      const actualComponents = getAllComponents('frontend/src/components');
       const recordedConverted = status.componentsConverted || [];
       
       recordedConverted.forEach(comp => {
-        if (!actualComponents.some(file => file.includes(comp))) {
+        if (!actualComponents.includes(comp)) {
           this.results.discrepancies.push(`Component ${comp} recorded as converted but file not found`);
         }
       });

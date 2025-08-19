@@ -1,0 +1,355 @@
+import React, { useState } from 'react';
+
+interface LoanProps {
+  orderId: string;
+}
+
+const Loan: React.FC<LoanProps> = ({ orderId }) => {
+  const [fundingType, setFundingType] = useState<'net' | 'gross'>('net');
+  const [latePenaltyType, setLatePenaltyType] = useState<'percent' | 'dollar'>('percent');
+  const [interestOnly, setInterestOnly] = useState(false);
+  const [isHeloc, setIsHeloc] = useState(false);
+  const [isConstructionLoan, setIsConstructionLoan] = useState(false);
+  const [isMERS, setIsMERS] = useState(false);
+  const [generatingMortgageDocs, setGeneratingMortgageDocs] = useState(false);
+
+  const ToggleSwitch = ({ 
+    checked, 
+    onChange, 
+    label 
+  }: { 
+    checked: boolean; 
+    onChange: (checked: boolean) => void; 
+    label: string;
+  }) => (
+    <label className="flex items-center cursor-pointer">
+      <input 
+        type="checkbox" 
+        className="sr-only"
+        checked={checked}
+        onChange={(e) => onChange(e.target.checked)}
+      />
+      <div className="relative">
+        <div className={`block w-14 h-8 rounded-full ${checked ? 'bg-blue-600' : 'bg-gray-600'}`}></div>
+        <div 
+          className="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition-transform"
+          style={{ transform: checked ? 'translateX(1.5rem)' : 'translateX(0)' }}
+        ></div>
+      </div>
+      <span className="ml-3 text-gray-300">{label}</span>
+    </label>
+  );
+
+  return (
+    <>
+      {/* Main Content */}
+      <section className="flex-1 bg-gray-900 overflow-y-auto">
+        {/* Page Header */}
+        <section className="py-8 px-10 pb-5 border-b border-gray-600 flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <i className="fa fa-university text-gray-400 text-xl"></i>
+            <h2 className="text-2xl font-semibold text-white">Loan</h2>
+          </div>
+          <button className="bg-gray-600 border border-gray-500 rounded px-3 py-2 text-white text-sm hover:bg-gray-500">
+            <i className="fa fa-plus mr-2"></i>
+            Add Loan
+          </button>
+        </section>
+
+        {/* Loan Form */}
+        <section className="px-10 py-8">
+          <form className="space-y-8">
+            <div className="grid grid-cols-2 gap-10">
+              {/* Left Column */}
+              <div className="space-y-8">
+                {/* Loan Section */}
+                <section>
+                  <h3 className="text-base font-semibold text-white mb-5 pb-2 border-b border-gray-600">Loan</h3>
+                  <div className="grid grid-cols-2 gap-5">
+                    <div>
+                      <label className="block text-sm text-gray-300 mb-2">Loan Amount</label>
+                      <input 
+                        type="text" 
+                        inputMode="decimal" 
+                        className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
+                        data-schema-key="cdf.loans.0.initial_loan_amount"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm text-gray-300 mb-2">Funding Type</label>
+                      <div className="flex bg-gray-700 border border-gray-500 rounded overflow-hidden">
+                        <button 
+                          type="button" 
+                          className={`flex-1 px-4 py-2.5 text-sm font-medium ${
+                            fundingType === 'net' 
+                              ? 'bg-blue-600 text-white' 
+                              : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                          }`}
+                          onClick={() => setFundingType('net')}
+                        >
+                          Net
+                        </button>
+                        <button 
+                          type="button" 
+                          className={`flex-1 px-4 py-2.5 text-sm font-medium ${
+                            fundingType === 'gross' 
+                              ? 'bg-blue-600 text-white' 
+                              : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                          }`}
+                          onClick={() => setFundingType('gross')}
+                        >
+                          Gross
+                        </button>
+                      </div>
+                      <input type="hidden" data-schema-key="cdf.loans.0.funding_type" value={fundingType} />
+                    </div>
+                  </div>
+                </section>
+
+                {/* Term & Dates Section */}
+                <section>
+                  <h3 className="text-base font-semibold text-white mb-5 pb-2 border-b border-gray-600">Term & Dates</h3>
+                  <div className="grid grid-cols-2 gap-5 mb-5">
+                    <div className="relative">
+                      <label className="block text-sm text-gray-300 mb-2">Loan Term</label>
+                      <div className="flex">
+                        <input 
+                          type="text" 
+                          inputMode="numeric" 
+                          className="flex-1 px-3 py-2.5 bg-gray-700 border border-gray-500 rounded-l text-white text-sm focus:outline-none focus:border-blue-500" 
+                          data-schema-key="cdf.loans.0.loan_term_years"
+                        />
+                        <div className="bg-gray-600 border border-gray-500 border-l-0 px-3 py-2.5 rounded-r text-sm text-gray-300">yr.</div>
+                      </div>
+                    </div>
+                    <div className="relative">
+                      <label className="block text-sm text-gray-300 mb-2">&nbsp;</label>
+                      <div className="flex">
+                        <div className="bg-gray-600 border border-gray-500 border-r-0 px-3 py-2.5 rounded-l text-sm text-gray-300">and</div>
+                        <input 
+                          type="text" 
+                          inputMode="numeric" 
+                          className="flex-1 px-3 py-2.5 bg-gray-700 border border-gray-500 text-white text-sm focus:outline-none focus:border-blue-500" 
+                          data-schema-key="cdf.loans.0.loan_term_months"
+                        />
+                        <div className="bg-gray-600 border border-gray-500 border-l-0 px-3 py-2.5 rounded-r text-sm text-gray-300">mo.</div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="grid grid-cols-2 gap-5 mb-5">
+                    <div>
+                      <label className="block text-sm text-gray-300 mb-2">First Payment Date</label>
+                      <div className="relative">
+                        <i className="fa fa-calendar absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                        <input 
+                          type="text" 
+                          inputMode="numeric" 
+                          className="w-full pl-9 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
+                          data-schema-key="cdf.loans.0.first_payment_date"
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <label className="block text-sm text-gray-300 mb-2">Last Payment Date</label>
+                      <div className="relative">
+                        <i className="fa fa-calendar absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                        <input 
+                          type="text" 
+                          inputMode="numeric" 
+                          className="w-full pl-9 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
+                          data-schema-key="cdf.loans.0.last_payment_date"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm text-gray-300 mb-2">Mortgage Commitment Date</label>
+                    <div className="relative">
+                      <i className="fa fa-calendar absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                      <input 
+                        type="text" 
+                        inputMode="numeric" 
+                        className="w-full pl-9 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
+                        data-schema-key="cdf.loans.0.mortgage_commitment_date"
+                      />
+                    </div>
+                  </div>
+                </section>
+              </div>
+
+              {/* Right Column */}
+              <div className="space-y-8">
+                {/* Disclosures & Tracking Section */}
+                <section>
+                  <h3 className="text-base font-semibold text-white mb-5 pb-2 border-b border-gray-600">Disclosures & Tracking</h3>
+                  <div className="space-y-5">
+                    <div>
+                      <label className="block text-sm text-gray-300 mb-2">Loan ID #</label>
+                      <input 
+                        type="text" 
+                        maxLength={30} 
+                        className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
+                        data-schema-key="cdf.loans.0.loan_number"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm text-gray-300 mb-2">Mortgage Ins. Case #</label>
+                      <input 
+                        type="text" 
+                        maxLength={30} 
+                        className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
+                        data-schema-key="cdf.loans.0.mortgage_insurance_case_number"
+                      />
+                    </div>
+                  </div>
+                </section>
+
+                {/* Late Penalty Section */}
+                <section>
+                  <h3 className="text-base font-semibold text-white mb-5 pb-2 border-b border-gray-600">Late Penalty</h3>
+                  <div className="grid grid-cols-3 gap-5 mb-5">
+                    <div>
+                      <label className="block text-sm text-gray-300 mb-2">Grace Period Days</label>
+                      <input 
+                        type="text" 
+                        className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
+                        data-schema-key="cdf.loans.0.penalty_grace_period_days"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm text-gray-300 mb-2">Late Penalty Amount</label>
+                      <input 
+                        type="text" 
+                        inputMode="decimal" 
+                        className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
+                        data-schema-key="cdf.loans.0.late_penalty_amount"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm text-gray-300 mb-2">Late Penalty Type</label>
+                      <div className="flex bg-gray-700 border border-gray-500 rounded overflow-hidden">
+                        <button 
+                          type="button" 
+                          className={`flex-1 px-4 py-2.5 text-sm font-medium ${
+                            latePenaltyType === 'percent' 
+                              ? 'bg-blue-600 text-white' 
+                              : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                          }`}
+                          onClick={() => setLatePenaltyType('percent')}
+                        >
+                          %
+                        </button>
+                        <button 
+                          type="button" 
+                          className={`flex-1 px-4 py-2.5 text-sm font-medium ${
+                            latePenaltyType === 'dollar' 
+                              ? 'bg-blue-600 text-white' 
+                              : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                          }`}
+                          onClick={() => setLatePenaltyType('dollar')}
+                        >
+                          $
+                        </button>
+                      </div>
+                      <input type="hidden" data-schema-key="cdf.loans.0.late_penalty_type" value={latePenaltyType === 'percent' ? '%' : '$'} />
+                    </div>
+                  </div>
+                </section>
+
+                {/* Interest Section */}
+                <section>
+                  <h3 className="text-base font-semibold text-white mb-5 pb-2 border-b border-gray-600">Interest</h3>
+                  
+                  <div className="mb-5">
+                    <ToggleSwitch 
+                      checked={interestOnly}
+                      onChange={setInterestOnly}
+                      label="Interest Only"
+                    />
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-5">
+                    <div>
+                      <label className="block text-sm text-gray-300 mb-2">Interest Rate</label>
+                      <input 
+                        type="text" 
+                        className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
+                        data-schema-key="cdf.loans.0.interest_rate"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm text-gray-300 mb-2">Interest Type</label>
+                      <select 
+                        className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none" 
+                        data-schema-key="cdf.loans.0.interest_type"
+                        defaultValue="Fixed"
+                      >
+                        <option value="Fixed">Fixed</option>
+                        <option value="Variable">Variable</option>
+                      </select>
+                    </div>
+                  </div>
+                </section>
+              </div>
+            </div>
+
+            {/* Bottom Section - Checkboxes */}
+            <section className="border-t border-gray-600 pt-8">
+              <div className="grid grid-cols-2 gap-8">
+                <div className="space-y-4">
+                  <ToggleSwitch 
+                    checked={isHeloc}
+                    onChange={setIsHeloc}
+                    label="HELOC"
+                  />
+                  
+                  <ToggleSwitch 
+                    checked={isConstructionLoan}
+                    onChange={setIsConstructionLoan}
+                    label="Construction Loan"
+                  />
+                </div>
+                
+                <div className="space-y-4">
+                  <ToggleSwitch 
+                    checked={isMERS}
+                    onChange={setIsMERS}
+                    label="MERS"
+                  />
+                  
+                  <ToggleSwitch 
+                    checked={generatingMortgageDocs}
+                    onChange={setGeneratingMortgageDocs}
+                    label="Generating Mortgage Docs"
+                  />
+                </div>
+              </div>
+            </section>
+          </form>
+        </section>
+      </section>
+
+      {/* Right Rail */}
+      <section className="w-64 bg-gray-800 border-l border-gray-600 p-5">
+        <section className="mb-5 p-4 bg-gray-700 rounded">
+          <h4 className="text-white text-sm mb-2.5">Chat</h4>
+          <p className="text-gray-400 text-xs">Chat functionality</p>
+        </section>
+
+        <section className="mb-5 p-4 bg-gray-700 rounded">
+          <h4 className="text-white text-sm mb-2.5">Tasks</h4>
+          <p className="text-gray-400 text-xs">No tasks assigned</p>
+        </section>
+
+        <section className="mb-5 p-4 bg-gray-700 rounded">
+          <h4 className="text-white text-sm mb-2.5">Notes</h4>
+          <p className="text-gray-400 text-xs">No notes added</p>
+        </section>
+      </section>
+    </>
+  );
+};
+
+export default Loan;

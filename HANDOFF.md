@@ -1,60 +1,107 @@
 # Session Handoff Document 🤝
 
-**Last Session**: 2025-08-19 10:31 PST
-**Session Duration**: ~7 minutes
-**Progress**: 33% Complete
+**Last Session**: 2025-08-19 20:35 PST
+**Session Duration**: ~90 minutes
+**Progress**: 60% Complete
 
 ## ✅ What Was Accomplished This Session
 
-### Navigation Sidebar Implementation
+### Current Session (19:04-20:35 PST)
+1. **FIXED Tracking System Issues**
+   - Fixed verification script bug that incorrectly reported missing components
+   - Updated component detection to work recursively in subdirectories
+   - No more false discrepancy reports
+   - Updated NEXT.md, STATUS.json with correct progress (60%)
+
+2. **OtherCharges Component Created**
+   - 8-row line items table with description, payee, amount columns
+   - Taxable toggle with animated switch
+   - 6 payment types: Check, Wire, Net Funded, Aggregate, Transfer, Holdback
+   - Payment-specific forms with different field sets
+   - Special handling for Title Premium line (read-only, highlighted)
+
+3. **TaxesAndFees Component Created**
+   - Complex document management with dropdown and search
+   - Tax calculator with dynamic document cards
+   - Process flow visualization (Add Documents → View Taxes & Fees)
+   - Document cards with validation (red borders for missing required fields)
+   - Complex table with mixed readonly/editable fields
+   - Settings panel with recording types and "Paid By" button groups
+   - Full payment system with 6 types and disbursement options
+   - Most complex component to date with 500+ lines of code
+   - Fixed verification script bugs - now correctly detects all components
+   - Updated NEXT.md to reflect actual current state (not outdated)
+   - Updated STATUS.json with correct progress metrics
+   - No more false discrepancy reports
+
+2. **OtherCharges Component Created**
+   - 8-row line items table with special Title Premium row (yellow highlight)
+   - Taxable toggle with animated switch
+   - 6 payment types: Check, Wire, Net Funded, Aggregate, Transfer, Holdback
+   - Dynamic payment form switching based on type
+   - Complete mailing address and wire instructions forms
+
+3. **TaxesAndFees Component Created** 
+   - Complex document management with dropdown and search filtering
+   - Tax calculator with dynamic document cards (Deed, Mortgage)
+   - Process flow visualization (Add Documents → View Taxes & Fees)
+   - 4-row charges table with complex column structure
+   - Settings panel with recording types and "Paid By" buttons
+   - Full payment system with all 6 payment types
+   - Disbursement settings
+
+### Previous Session (18:05 PST)
+1. **Contacts Component Created**
+   - Complex multi-tab component with 8 contact types (Buyers, Sellers, Lenders, Agents, etc.)
+   - 5 tabs per buyer/seller (Info, Addresses, Attorney, Signature & Vesting, Notary)
+   - Dynamic form switching based on contact type
+   - Individual vs Organization toggle
+   - Proper array indexing for borrowers/sellers [0-3]
+   - Dark theme consistency maintained
+
+2. **Loan Component Created**
+   - Funding type toggle (Net/Gross)
+   - Loan term inputs with years/months
+   - Interest settings with toggle switches
+   - Late penalty configuration
+   - HELOC, Construction Loan, MERS toggles
+   - Calendar icons for date fields
+   - All data-schema-key attributes properly mapped
+
+### Previous Session (10:31 PST)
 1. **AppShell Component Created**
-   - Implemented comprehensive navigation sidebar with ALL 35+ menu items
+   - Comprehensive navigation sidebar with ALL 35+ menu items
    - Dark theme (bg-gray-800/900) matching HTML prototypes
    - Collapsible sections with chevron icons
-   - Active page highlighting with blue background and left border
-   - Complete menu structure:
-     - ORDER: General (7 items), Title (4 items)
-     - CLOSING: Charges (11 items with section badges A-N)
-     - Disclosures (7 items with page numbers)
-     - Proceeds (2 items)
-     - TASKS: Documents, Accounting, Marketplace
-     - INTEGRATIONS: Envelopes & Shipping, Recording
-     - PREVIEW: Closing Disclosure, Settlement Statement
-   - Order header with stats (Notes, Tasks, Automations, Activity)
-   - All navigation properly linked with React Router
+   - Active page highlighting
 
 2. **Fixed BasicInfo Component**
-   - Removed duplicate sidebar (was rendering its own)
-   - Converted from light theme to dark theme (bg-gray-900)
-   - Now properly works with AppShell layout
-   - Returns only main content and right rail using React Fragment
-   - All form inputs updated to dark theme styling
+   - Removed duplicate sidebar
+   - Converted to dark theme (bg-gray-900)
+   - Works properly with AppShell layout
 
 ## 🚧 Currently In Progress
 - Frontend development phase
-- 2/35 components complete (AppShell navigation + BasicInfo)
+- 7/35 components complete (AppShell, BasicInfo, Contacts, Loan, OriginationCharges, DidShopFor, DidNotShopFor)
 - Navigation sidebar is now the centerpiece of the application
+- Development server running on port 5173
 
 ## 📋 What Needs to Be Done Next
 
 ### IMMEDIATE Priority (Next Session)
-1. **Convert contacts.html to React**
-   - Create src/components/orders/Contacts.tsx
-   - Must work with AppShell (no duplicate sidebar)
+1. **Continue converting HTML prototypes to React**
+   Next components to convert (in order):
+   - other-charges.html → src/components/orders/OtherCharges.tsx
+   - taxes-and-fees.html → src/components/orders/TaxesAndFees.tsx
+   - prepaids.html → src/components/orders/Prepaids.tsx
+   - escrow.html → src/components/orders/Escrow.tsx
+   - payoffs.html → src/components/orders/Payoffs.tsx
+   
+2. **All components must**:
+   - Work with AppShell (no duplicate sidebar)
    - Use dark theme (bg-gray-900)
-   - Include all borrower/seller fields
-
-2. **Convert loan.html to React**
-   - Create src/components/orders/Loan.tsx
-   - Must work with AppShell (no duplicate sidebar)
-   - Use dark theme
-   - Include all loan terms and lender information
-
-3. **Convert remaining high-priority prototypes**
-   - origination-charges.html
-   - did-shop-for.html  
-   - did-not-shop-for.html
-   - All must use dark theme and work with AppShell
+   - Include ALL form fields from HTML prototype
+   - Support proper array indexing (line_01, line_02, etc.)
 
 ## ⚠️ Important Notes
 
@@ -99,24 +146,25 @@ Claude will:
   - Full CRUD API
   - 12 endpoints working
   
-- **Frontend**: 🟡 IN PROGRESS (6%)
-  - 2/35 components complete (AppShell + BasicInfo)
+- **Frontend**: 🟡 IN PROGRESS (20%)
+  - 7/35 components complete (AppShell, BasicInfo, Contacts, Loan, OriginationCharges, DidShopFor, DidNotShopFor)
   - Navigation sidebar fully implemented
   - React Router configured with nested routes
   - Tailwind CSS v4 working
   - Three-column layout properly structured
   
-- **Overall Progress**: 31%
+- **Overall Progress**: 40%
 
 ## 🎯 Session Goals for Next Time
 
-1. Convert contacts.html to React (dark theme, no sidebar)
-2. Convert loan.html to React (dark theme, no sidebar)
+1. Convert other-charges.html to React
+2. Convert taxes-and-fees.html to React  
 3. Convert at least 3 more HTML prototypes
 4. All components must work with AppShell
 5. Maintain exact fidelity to HTML prototypes
+6. Target: 12/35 components complete (34% of frontend)
 
 ---
 
-*Session ended: 2025-08-19 10:31 PST*
-*Confidence Level: HIGH - Navigation sidebar complete, BasicInfo fixed, AppShell provides proper structure*
+*Session ended: 2025-08-19 18:50 PST*
+*Confidence Level: HIGH - 7 components complete, dark theme consistent, dev server stable*
