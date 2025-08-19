@@ -9,12 +9,13 @@ const AppRoutes = () => {
   return (
     <Routes>
       <Route path="/login" element={<Login />} />
-      <Route path="/orders/:id/basic-info" element={<BasicInfo />} />
-      <Route path="/" element={<AppShell />}>
-        <Route index element={<Navigate to="/dashboard" replace />} />
-        <Route path="dashboard" element={<Dashboard />} />
-        <Route path="orders" element={<OrderList />} />
+      <Route path="/" element={<Navigate to="/orders/1/basic-info" replace />} />
+      <Route path="/orders/:orderId" element={<AppShell />}>
+        <Route path="basic-info" element={<BasicInfo />} />
+        {/* Additional routes will be added here as components are created */}
       </Route>
+      <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/orders" element={<OrderList />} />
     </Routes>
   );
 };

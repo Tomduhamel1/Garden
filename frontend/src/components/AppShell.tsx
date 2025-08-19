@@ -99,8 +99,8 @@ export default function AppShell() {
                 to={`/orders/${orderId}/basic-info`}
                 className={`flex items-center justify-between py-3 pl-8 pr-5 text-xs transition-all ${
                   isActive(`/orders/${orderId}/basic-info`) 
-                    ? 'text-white bg-blue-600 border-l-4 border-l-blue-400' 
-                    : 'text-gray-300 border-l-4 border-l-transparent hover:bg-gray-700 hover:text-white'
+                    ? 'text-white bg-blue-600 border-l-3 border-l-blue-400' 
+                    : 'text-gray-300 border-l-3 border-l-transparent hover:bg-gray-700 hover:text-white'
                 }`}
               >
                 Basic Info
@@ -109,8 +109,8 @@ export default function AppShell() {
                 to={`/orders/${orderId}/properties`}
                 className={`flex items-center justify-between py-3 pl-8 pr-5 text-xs transition-all ${
                   isActive(`/orders/${orderId}/properties`) 
-                    ? 'text-white bg-blue-600 border-l-4 border-l-blue-400' 
-                    : 'text-gray-300 border-l-4 border-l-transparent hover:bg-gray-700 hover:text-white'
+                    ? 'text-white bg-blue-600 border-l-3 border-l-blue-400' 
+                    : 'text-gray-300 border-l-3 border-l-transparent hover:bg-gray-700 hover:text-white'
                 }`}
               >
                 Properties
@@ -119,8 +119,8 @@ export default function AppShell() {
                 to={`/orders/${orderId}/contacts`}
                 className={`flex items-center justify-between py-3 pl-8 pr-5 text-xs transition-all ${
                   isActive(`/orders/${orderId}/contacts`) 
-                    ? 'text-white bg-blue-600 border-l-4 border-l-blue-400' 
-                    : 'text-gray-300 border-l-4 border-l-transparent hover:bg-gray-700 hover:text-white'
+                    ? 'text-white bg-blue-600 border-l-3 border-l-blue-400' 
+                    : 'text-gray-300 border-l-3 border-l-transparent hover:bg-gray-700 hover:text-white'
                 }`}
               >
                 Contacts
@@ -129,8 +129,8 @@ export default function AppShell() {
                 to={`/orders/${orderId}/loan`}
                 className={`flex items-center justify-between py-3 pl-8 pr-5 text-xs transition-all ${
                   isActive(`/orders/${orderId}/loan`) 
-                    ? 'text-white bg-blue-600 border-l-4 border-l-blue-400' 
-                    : 'text-gray-300 border-l-4 border-l-transparent hover:bg-gray-700 hover:text-white'
+                    ? 'text-white bg-blue-600 border-l-3 border-l-blue-400' 
+                    : 'text-gray-300 border-l-3 border-l-transparent hover:bg-gray-700 hover:text-white'
                 }`}
               >
                 Loan
@@ -139,8 +139,8 @@ export default function AppShell() {
                 to={`/orders/${orderId}/earnest-commissions`}
                 className={`flex items-center justify-between py-3 pl-8 pr-5 text-xs transition-all ${
                   isActive(`/orders/${orderId}/earnest-commissions`) 
-                    ? 'text-white bg-blue-600 border-l-4 border-l-blue-400' 
-                    : 'text-gray-300 border-l-4 border-l-transparent hover:bg-gray-700 hover:text-white'
+                    ? 'text-white bg-blue-600 border-l-3 border-l-blue-400' 
+                    : 'text-gray-300 border-l-3 border-l-transparent hover:bg-gray-700 hover:text-white'
                 }`}
               >
                 Earnest & Commissions
@@ -149,8 +149,8 @@ export default function AppShell() {
                 to={`/orders/${orderId}/taxes-prorations`}
                 className={`flex items-center justify-between py-3 pl-8 pr-5 text-xs transition-all ${
                   isActive(`/orders/${orderId}/taxes-prorations`) 
-                    ? 'text-white bg-blue-600 border-l-4 border-l-blue-400' 
-                    : 'text-gray-300 border-l-4 border-l-transparent hover:bg-gray-700 hover:text-white'
+                    ? 'text-white bg-blue-600 border-l-3 border-l-blue-400' 
+                    : 'text-gray-300 border-l-3 border-l-transparent hover:bg-gray-700 hover:text-white'
                 }`}
               >
                 Taxes & Prorations
@@ -159,8 +159,8 @@ export default function AppShell() {
                 to={`/orders/${orderId}/payoffs`}
                 className={`flex items-center justify-between py-3 pl-8 pr-5 text-xs transition-all ${
                   isActive(`/orders/${orderId}/payoffs`) 
-                    ? 'text-white bg-blue-600 border-l-4 border-l-blue-400' 
-                    : 'text-gray-300 border-l-4 border-l-transparent hover:bg-gray-700 hover:text-white'
+                    ? 'text-white bg-blue-600 border-l-3 border-l-blue-400' 
+                    : 'text-gray-300 border-l-3 border-l-transparent hover:bg-gray-700 hover:text-white'
                 }`}
               >
                 Payoffs
@@ -184,8 +184,8 @@ export default function AppShell() {
                 to={`/orders/${orderId}/cpl`}
                 className={`flex items-center justify-between py-3 pl-8 pr-5 text-xs transition-all ${
                   isActive(`/orders/${orderId}/cpl`) 
-                    ? 'text-white bg-blue-600 border-l-4 border-l-blue-400' 
-                    : 'text-gray-300 border-l-4 border-l-transparent hover:bg-gray-700 hover:text-white'
+                    ? 'text-white bg-blue-600 border-l-3 border-l-blue-400' 
+                    : 'text-gray-300 border-l-3 border-l-transparent hover:bg-gray-700 hover:text-white'
                 }`}
               >
                 CPL
@@ -194,8 +194,8 @@ export default function AppShell() {
                 to={`/orders/${orderId}/policy-info-rates`}
                 className={`flex items-center justify-between py-3 pl-8 pr-5 text-xs transition-all ${
                   isActive(`/orders/${orderId}/policy-info-rates`) 
-                    ? 'text-white bg-blue-600 border-l-4 border-l-blue-400' 
-                    : 'text-gray-300 border-l-4 border-l-transparent hover:bg-gray-700 hover:text-white'
+                    ? 'text-white bg-blue-600 border-l-3 border-l-blue-400' 
+                    : 'text-gray-300 border-l-3 border-l-transparent hover:bg-gray-700 hover:text-white'
                 }`}
               >
                 Policy Info & Rates
@@ -205,8 +205,8 @@ export default function AppShell() {
                 to={`/orders/${orderId}/commitment`}
                 className={`flex items-center justify-between py-3 pl-8 pr-5 text-xs transition-all ${
                   isActive(`/orders/${orderId}/commitment`) 
-                    ? 'text-white bg-blue-600 border-l-4 border-l-blue-400' 
-                    : 'text-gray-300 border-l-4 border-l-transparent hover:bg-gray-700 hover:text-white'
+                    ? 'text-white bg-blue-600 border-l-3 border-l-blue-400' 
+                    : 'text-gray-300 border-l-3 border-l-transparent hover:bg-gray-700 hover:text-white'
                 }`}
               >
                 Commitment
@@ -215,8 +215,8 @@ export default function AppShell() {
                 to={`/orders/${orderId}/final-policy`}
                 className={`flex items-center justify-between py-3 pl-8 pr-5 text-xs transition-all ${
                   isActive(`/orders/${orderId}/final-policy`) 
-                    ? 'text-white bg-blue-600 border-l-4 border-l-blue-400' 
-                    : 'text-gray-300 border-l-4 border-l-transparent hover:bg-gray-700 hover:text-white'
+                    ? 'text-white bg-blue-600 border-l-3 border-l-blue-400' 
+                    : 'text-gray-300 border-l-3 border-l-transparent hover:bg-gray-700 hover:text-white'
                 }`}
               >
                 Final Policy
@@ -245,8 +245,8 @@ export default function AppShell() {
                 to={`/orders/${orderId}/origination-charges`}
                 className={`flex items-center justify-between py-3 pl-8 pr-5 text-xs transition-all ${
                   isActive(`/orders/${orderId}/origination-charges`) 
-                    ? 'text-white bg-blue-600 border-l-4 border-l-blue-400' 
-                    : 'text-gray-300 border-l-4 border-l-transparent hover:bg-gray-700 hover:text-white'
+                    ? 'text-white bg-blue-600 border-l-3 border-l-blue-400' 
+                    : 'text-gray-300 border-l-3 border-l-transparent hover:bg-gray-700 hover:text-white'
                 }`}
               >
                 Origination Charges
@@ -256,8 +256,8 @@ export default function AppShell() {
                 to={`/orders/${orderId}/did-not-shop-for`}
                 className={`flex items-center justify-between py-3 pl-8 pr-5 text-xs transition-all ${
                   isActive(`/orders/${orderId}/did-not-shop-for`) 
-                    ? 'text-white bg-blue-600 border-l-4 border-l-blue-400' 
-                    : 'text-gray-300 border-l-4 border-l-transparent hover:bg-gray-700 hover:text-white'
+                    ? 'text-white bg-blue-600 border-l-3 border-l-blue-400' 
+                    : 'text-gray-300 border-l-3 border-l-transparent hover:bg-gray-700 hover:text-white'
                 }`}
               >
                 Did Not Shop For
@@ -267,8 +267,8 @@ export default function AppShell() {
                 to={`/orders/${orderId}/did-shop-for`}
                 className={`flex items-center justify-between py-3 pl-8 pr-5 text-xs transition-all ${
                   isActive(`/orders/${orderId}/did-shop-for`) 
-                    ? 'text-white bg-blue-600 border-l-4 border-l-blue-400' 
-                    : 'text-gray-300 border-l-4 border-l-transparent hover:bg-gray-700 hover:text-white'
+                    ? 'text-white bg-blue-600 border-l-3 border-l-blue-400' 
+                    : 'text-gray-300 border-l-3 border-l-transparent hover:bg-gray-700 hover:text-white'
                 }`}
               >
                 Did Shop For
@@ -278,8 +278,8 @@ export default function AppShell() {
                 to={`/orders/${orderId}/taxes-fees`}
                 className={`flex items-center justify-between py-3 pl-8 pr-5 text-xs transition-all ${
                   isActive(`/orders/${orderId}/taxes-fees`) 
-                    ? 'text-white bg-blue-600 border-l-4 border-l-blue-400' 
-                    : 'text-gray-300 border-l-4 border-l-transparent hover:bg-gray-700 hover:text-white'
+                    ? 'text-white bg-blue-600 border-l-3 border-l-blue-400' 
+                    : 'text-gray-300 border-l-3 border-l-transparent hover:bg-gray-700 hover:text-white'
                 }`}
               >
                 Taxes & Fees
@@ -289,8 +289,8 @@ export default function AppShell() {
                 to={`/orders/${orderId}/prepaids`}
                 className={`flex items-center justify-between py-3 pl-8 pr-5 text-xs transition-all ${
                   isActive(`/orders/${orderId}/prepaids`) 
-                    ? 'text-white bg-blue-600 border-l-4 border-l-blue-400' 
-                    : 'text-gray-300 border-l-4 border-l-transparent hover:bg-gray-700 hover:text-white'
+                    ? 'text-white bg-blue-600 border-l-3 border-l-blue-400' 
+                    : 'text-gray-300 border-l-3 border-l-transparent hover:bg-gray-700 hover:text-white'
                 }`}
               >
                 Prepaids
@@ -300,8 +300,8 @@ export default function AppShell() {
                 to={`/orders/${orderId}/escrow`}
                 className={`flex items-center justify-between py-3 pl-8 pr-5 text-xs transition-all ${
                   isActive(`/orders/${orderId}/escrow`) 
-                    ? 'text-white bg-blue-600 border-l-4 border-l-blue-400' 
-                    : 'text-gray-300 border-l-4 border-l-transparent hover:bg-gray-700 hover:text-white'
+                    ? 'text-white bg-blue-600 border-l-3 border-l-blue-400' 
+                    : 'text-gray-300 border-l-3 border-l-transparent hover:bg-gray-700 hover:text-white'
                 }`}
               >
                 Escrow
@@ -311,8 +311,8 @@ export default function AppShell() {
                 to={`/orders/${orderId}/other-charges`}
                 className={`flex items-center justify-between py-3 pl-8 pr-5 text-xs transition-all ${
                   isActive(`/orders/${orderId}/other-charges`) 
-                    ? 'text-white bg-blue-600 border-l-4 border-l-blue-400' 
-                    : 'text-gray-300 border-l-4 border-l-transparent hover:bg-gray-700 hover:text-white'
+                    ? 'text-white bg-blue-600 border-l-3 border-l-blue-400' 
+                    : 'text-gray-300 border-l-3 border-l-transparent hover:bg-gray-700 hover:text-white'
                 }`}
               >
                 Other Charges
@@ -322,8 +322,8 @@ export default function AppShell() {
                 to={`/orders/${orderId}/lender-credits`}
                 className={`flex items-center justify-between py-3 pl-8 pr-5 text-xs transition-all ${
                   isActive(`/orders/${orderId}/lender-credits`) 
-                    ? 'text-white bg-blue-600 border-l-4 border-l-blue-400' 
-                    : 'text-gray-300 border-l-4 border-l-transparent hover:bg-gray-700 hover:text-white'
+                    ? 'text-white bg-blue-600 border-l-3 border-l-blue-400' 
+                    : 'text-gray-300 border-l-3 border-l-transparent hover:bg-gray-700 hover:text-white'
                 }`}
               >
                 Lender Credits
@@ -333,8 +333,8 @@ export default function AppShell() {
                 to={`/orders/${orderId}/debits-credits-km`}
                 className={`flex items-center justify-between py-3 pl-8 pr-5 text-xs transition-all ${
                   isActive(`/orders/${orderId}/debits-credits-km`) 
-                    ? 'text-white bg-blue-600 border-l-4 border-l-blue-400' 
-                    : 'text-gray-300 border-l-4 border-l-transparent hover:bg-gray-700 hover:text-white'
+                    ? 'text-white bg-blue-600 border-l-3 border-l-blue-400' 
+                    : 'text-gray-300 border-l-3 border-l-transparent hover:bg-gray-700 hover:text-white'
                 }`}
               >
                 Debits/Credits
@@ -344,8 +344,8 @@ export default function AppShell() {
                 to={`/orders/${orderId}/debits-credits-ln`}
                 className={`flex items-center justify-between py-3 pl-8 pr-5 text-xs transition-all ${
                   isActive(`/orders/${orderId}/debits-credits-ln`) 
-                    ? 'text-white bg-blue-600 border-l-4 border-l-blue-400' 
-                    : 'text-gray-300 border-l-4 border-l-transparent hover:bg-gray-700 hover:text-white'
+                    ? 'text-white bg-blue-600 border-l-3 border-l-blue-400' 
+                    : 'text-gray-300 border-l-3 border-l-transparent hover:bg-gray-700 hover:text-white'
                 }`}
               >
                 Debits/Credits
@@ -370,8 +370,8 @@ export default function AppShell() {
                 to={`/orders/${orderId}/loan-terms`}
                 className={`flex items-center justify-between py-3 pl-8 pr-5 text-xs transition-all ${
                   isActive(`/orders/${orderId}/loan-terms`) 
-                    ? 'text-white bg-blue-600 border-l-4 border-l-blue-400' 
-                    : 'text-gray-300 border-l-4 border-l-transparent hover:bg-gray-700 hover:text-white'
+                    ? 'text-white bg-blue-600 border-l-3 border-l-blue-400' 
+                    : 'text-gray-300 border-l-3 border-l-transparent hover:bg-gray-700 hover:text-white'
                 }`}
               >
                 Loan Terms
@@ -381,8 +381,8 @@ export default function AppShell() {
                 to={`/orders/${orderId}/projected-payments`}
                 className={`flex items-center justify-between py-3 pl-8 pr-5 text-xs transition-all ${
                   isActive(`/orders/${orderId}/projected-payments`) 
-                    ? 'text-white bg-blue-600 border-l-4 border-l-blue-400' 
-                    : 'text-gray-300 border-l-4 border-l-transparent hover:bg-gray-700 hover:text-white'
+                    ? 'text-white bg-blue-600 border-l-3 border-l-blue-400' 
+                    : 'text-gray-300 border-l-3 border-l-transparent hover:bg-gray-700 hover:text-white'
                 }`}
               >
                 Projected Payments
@@ -392,8 +392,8 @@ export default function AppShell() {
                 to={`/orders/${orderId}/cash-to-close`}
                 className={`flex items-center justify-between py-3 pl-8 pr-5 text-xs transition-all ${
                   isActive(`/orders/${orderId}/cash-to-close`) 
-                    ? 'text-white bg-blue-600 border-l-4 border-l-blue-400' 
-                    : 'text-gray-300 border-l-4 border-l-transparent hover:bg-gray-700 hover:text-white'
+                    ? 'text-white bg-blue-600 border-l-3 border-l-blue-400' 
+                    : 'text-gray-300 border-l-3 border-l-transparent hover:bg-gray-700 hover:text-white'
                 }`}
               >
                 Cash to Close
@@ -403,8 +403,8 @@ export default function AppShell() {
                 to={`/orders/${orderId}/loan-disclosures`}
                 className={`flex items-center justify-between py-3 pl-8 pr-5 text-xs transition-all ${
                   isActive(`/orders/${orderId}/loan-disclosures`) 
-                    ? 'text-white bg-blue-600 border-l-4 border-l-blue-400' 
-                    : 'text-gray-300 border-l-4 border-l-transparent hover:bg-gray-700 hover:text-white'
+                    ? 'text-white bg-blue-600 border-l-3 border-l-blue-400' 
+                    : 'text-gray-300 border-l-3 border-l-transparent hover:bg-gray-700 hover:text-white'
                 }`}
               >
                 Loan Disclosures
@@ -414,8 +414,8 @@ export default function AppShell() {
                 to={`/orders/${orderId}/ap-table`}
                 className={`flex items-center justify-between py-3 pl-8 pr-5 text-xs transition-all ${
                   isActive(`/orders/${orderId}/ap-table`) 
-                    ? 'text-white bg-blue-600 border-l-4 border-l-blue-400' 
-                    : 'text-gray-300 border-l-4 border-l-transparent hover:bg-gray-700 hover:text-white'
+                    ? 'text-white bg-blue-600 border-l-3 border-l-blue-400' 
+                    : 'text-gray-300 border-l-3 border-l-transparent hover:bg-gray-700 hover:text-white'
                 }`}
               >
                 AP Table
@@ -425,8 +425,8 @@ export default function AppShell() {
                 to={`/orders/${orderId}/air-table`}
                 className={`flex items-center justify-between py-3 pl-8 pr-5 text-xs transition-all ${
                   isActive(`/orders/${orderId}/air-table`) 
-                    ? 'text-white bg-blue-600 border-l-4 border-l-blue-400' 
-                    : 'text-gray-300 border-l-4 border-l-transparent hover:bg-gray-700 hover:text-white'
+                    ? 'text-white bg-blue-600 border-l-3 border-l-blue-400' 
+                    : 'text-gray-300 border-l-3 border-l-transparent hover:bg-gray-700 hover:text-white'
                 }`}
               >
                 AIR Table
@@ -436,8 +436,8 @@ export default function AppShell() {
                 to={`/orders/${orderId}/loan-calculations`}
                 className={`flex items-center justify-between py-3 pl-8 pr-5 text-xs transition-all ${
                   isActive(`/orders/${orderId}/loan-calculations`) 
-                    ? 'text-white bg-blue-600 border-l-4 border-l-blue-400' 
-                    : 'text-gray-300 border-l-4 border-l-transparent hover:bg-gray-700 hover:text-white'
+                    ? 'text-white bg-blue-600 border-l-3 border-l-blue-400' 
+                    : 'text-gray-300 border-l-3 border-l-transparent hover:bg-gray-700 hover:text-white'
                 }`}
               >
                 Loan Calculations
@@ -462,8 +462,8 @@ export default function AppShell() {
                 to={`/orders/${orderId}/proceeds-borrower`}
                 className={`flex items-center justify-between py-3 pl-8 pr-5 text-xs transition-all ${
                   isActive(`/orders/${orderId}/proceeds-borrower`) 
-                    ? 'text-white bg-blue-600 border-l-4 border-l-blue-400' 
-                    : 'text-gray-300 border-l-4 border-l-transparent hover:bg-gray-700 hover:text-white'
+                    ? 'text-white bg-blue-600 border-l-3 border-l-blue-400' 
+                    : 'text-gray-300 border-l-3 border-l-transparent hover:bg-gray-700 hover:text-white'
                 }`}
               >
                 Borrower
@@ -472,8 +472,8 @@ export default function AppShell() {
                 to={`/orders/${orderId}/proceeds-seller`}
                 className={`flex items-center justify-between py-3 pl-8 pr-5 text-xs transition-all ${
                   isActive(`/orders/${orderId}/proceeds-seller`) 
-                    ? 'text-white bg-blue-600 border-l-4 border-l-blue-400' 
-                    : 'text-gray-300 border-l-4 border-l-transparent hover:bg-gray-700 hover:text-white'
+                    ? 'text-white bg-blue-600 border-l-3 border-l-blue-400' 
+                    : 'text-gray-300 border-l-3 border-l-transparent hover:bg-gray-700 hover:text-white'
                 }`}
               >
                 Seller
@@ -492,8 +492,8 @@ export default function AppShell() {
             to={`/orders/${orderId}/documents`}
             className={`flex items-center justify-between py-4 px-5 text-xs transition-all ${
               isActive(`/orders/${orderId}/documents`) 
-                ? 'text-white bg-blue-600 border-l-4 border-l-blue-400' 
-                : 'text-gray-300 border-l-4 border-l-transparent hover:bg-gray-700 hover:text-white'
+                ? 'text-white bg-blue-600 border-l-3 border-l-blue-400' 
+                : 'text-gray-300 border-l-3 border-l-transparent hover:bg-gray-700 hover:text-white'
             }`}
           >
             <span><i className="fa fa-file-text mr-3 text-base w-5 text-center"></i>Documents</span>
@@ -502,8 +502,8 @@ export default function AppShell() {
             to={`/orders/${orderId}/accounting`}
             className={`flex items-center justify-between py-4 px-5 text-xs transition-all ${
               isActive(`/orders/${orderId}/accounting`) 
-                ? 'text-white bg-blue-600 border-l-4 border-l-blue-400' 
-                : 'text-gray-300 border-l-4 border-l-transparent hover:bg-gray-700 hover:text-white'
+                ? 'text-white bg-blue-600 border-l-3 border-l-blue-400' 
+                : 'text-gray-300 border-l-3 border-l-transparent hover:bg-gray-700 hover:text-white'
             }`}
           >
             <span><i className="fa fa-balance-scale mr-3 text-base w-5 text-center"></i>Accounting</span>
@@ -513,8 +513,8 @@ export default function AppShell() {
             to={`/orders/${orderId}/marketplace`}
             className={`flex items-center justify-between py-4 px-5 text-xs transition-all ${
               isActive(`/orders/${orderId}/marketplace`) 
-                ? 'text-white bg-green-600 border-l-4 border-l-green-400' 
-                : 'text-gray-300 border-l-4 border-l-transparent hover:bg-gray-700 hover:text-white'
+                ? 'text-white bg-green-600 border-l-3 border-l-green-400' 
+                : 'text-gray-300 border-l-3 border-l-transparent hover:bg-gray-700 hover:text-white'
             }`}
           >
             <span><i className="fa fa-shopping-cart mr-3 text-base w-5 text-center"></i>Marketplace</span>
@@ -531,8 +531,8 @@ export default function AppShell() {
             to={`/orders/${orderId}/envelopes-shipping`}
             className={`flex items-center justify-between py-4 px-5 text-xs transition-all ${
               isActive(`/orders/${orderId}/envelopes-shipping`) 
-                ? 'text-white bg-blue-600 border-l-4 border-l-blue-400' 
-                : 'text-gray-300 border-l-4 border-l-transparent hover:bg-gray-700 hover:text-white'
+                ? 'text-white bg-blue-600 border-l-3 border-l-blue-400' 
+                : 'text-gray-300 border-l-3 border-l-transparent hover:bg-gray-700 hover:text-white'
             }`}
           >
             <span><i className="fa fa-envelope mr-3 text-base w-5 text-center"></i>Envelopes & Shipping</span>
@@ -541,8 +541,8 @@ export default function AppShell() {
             to={`/orders/${orderId}/recording`}
             className={`flex items-center justify-between py-4 px-5 text-xs transition-all ${
               isActive(`/orders/${orderId}/recording`) 
-                ? 'text-white bg-blue-600 border-l-4 border-l-blue-400' 
-                : 'text-gray-300 border-l-4 border-l-transparent hover:bg-gray-700 hover:text-white'
+                ? 'text-white bg-blue-600 border-l-3 border-l-blue-400' 
+                : 'text-gray-300 border-l-3 border-l-transparent hover:bg-gray-700 hover:text-white'
             }`}
           >
             <span><i className="fa fa-university mr-3 text-base w-5 text-center"></i>Recording</span>
@@ -559,8 +559,8 @@ export default function AppShell() {
             to={`/orders/${orderId}/closing-disclosure`}
             className={`flex items-center justify-between py-4 px-5 text-xs transition-all ${
               isActive(`/orders/${orderId}/closing-disclosure`) 
-                ? 'text-white bg-blue-600 border-l-4 border-l-blue-400' 
-                : 'text-gray-300 border-l-4 border-l-transparent hover:bg-gray-700 hover:text-white'
+                ? 'text-white bg-blue-600 border-l-3 border-l-blue-400' 
+                : 'text-gray-300 border-l-3 border-l-transparent hover:bg-gray-700 hover:text-white'
             }`}
           >
             <span><i className="fa fa-eye mr-3 text-base w-5 text-center"></i>Closing Disclosure</span>
@@ -569,8 +569,8 @@ export default function AppShell() {
             to={`/orders/${orderId}/settlement-statement`}
             className={`flex items-center justify-between py-4 px-5 text-xs transition-all ${
               isActive(`/orders/${orderId}/settlement-statement`) 
-                ? 'text-white bg-blue-600 border-l-4 border-l-blue-400' 
-                : 'text-gray-300 border-l-4 border-l-transparent hover:bg-gray-700 hover:text-white'
+                ? 'text-white bg-blue-600 border-l-3 border-l-blue-400' 
+                : 'text-gray-300 border-l-3 border-l-transparent hover:bg-gray-700 hover:text-white'
             }`}
           >
             <span><i className="fa fa-file mr-3 text-base w-5 text-center"></i>Settlement Statement</span>
