@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-08-19T23:07:14.602Z",
+  "timestamp": "2025-08-19T23:38:17.735Z",
   "checks": {
     "tracking": {
       "progressMd": true,
@@ -69,12 +69,15 @@
       "components": [
         "AppShell.tsx",
         "AppShell.tsx",
+        "Accounting.tsx",
         "BasicInfo.tsx",
         "CashToClose.tsx",
         "ClosingDisclosure.tsx",
         "Contacts.tsx",
+        "DebitsCredits.tsx",
         "DidNotShopFor.tsx",
         "DidShopFor.tsx",
+        "Documents.tsx",
         "Escrow.tsx",
         "Loan.tsx",
         "LoanCalculations.tsx",
@@ -87,6 +90,8 @@
         "ProceedsBorrower.tsx",
         "ProceedsSeller.tsx",
         "ProjectedPayments.tsx",
+        "Properties.tsx",
+        "SettlementStatement.tsx",
         "TaxesAndFees.tsx"
       ],
       "routes": [],
@@ -141,7 +146,7 @@
       "isRepo": true,
       "branch": "main",
       "uncommittedChanges": 0,
-      "lastCommit": "c4bac81 - SESSION_END: Completed 6 more React components including ClosingDisclosure (21/34 complete, 60% frontend) (2 minutes ago)"
+      "lastCommit": "0206f1e - SESSION_END: Added 6 more React components reaching 76% frontend completion (82 seconds ago)"
     }
   },
   "discrepancies": [],
@@ -152,7 +157,7 @@
     "databaseReady": true,
     "trackingComplete": true,
     "htmlPrototypesCount": 34,
-    "componentsConverted": 21,
+    "componentsConverted": 26,
     "modelsCreated": 3,
     "gitClean": true,
     "overallReadiness": "READY",
@@ -161,7 +166,7 @@
       "authentication": "COMPLETE",
       "orderAPI": "COMPLETE",
       "calculations": "NOT_STARTED",
-      "componentsConverted": "21/34"
+      "componentsConverted": "26/34"
     },
     "actualProgress": 30
   }

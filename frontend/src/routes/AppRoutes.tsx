@@ -26,6 +26,14 @@ import DebitsCredits from '../components/orders/DebitsCredits';
 import Documents from '../components/orders/Documents';
 import Accounting from '../components/orders/Accounting';
 import Properties from '../components/orders/Properties';
+import EarnestCommissions from '../components/orders/EarnestCommissions';
+import LenderCredits from '../components/orders/LenderCredits';
+import TaxesProrations from '../components/orders/TaxesProrations';
+import AirTable from '../components/orders/AirTable';
+import Marketplace from '../components/orders/Marketplace';
+import ContactsSellerInfo from '../components/orders/ContactsSellerInfo';
+import DebitsCreditsFn from '../components/orders/DebitsCreditsFn';
+import NoApTable from '../components/orders/NoApTable';
 import Login from '../pages/Login';
 
 const AppRoutes = () => {
@@ -58,7 +66,17 @@ const AppRoutes = () => {
         <Route path="documents" element={<Documents />} />
         <Route path="accounting" element={<Accounting />} />
         <Route path="properties" element={<Properties />} />
-        {/* Additional routes will be added here as components are created */}
+        <Route path="earnest-commissions" element={<EarnestCommissions />} />
+        <Route path="lender-credits" element={<LenderCredits />} />
+        <Route path="taxes-prorations" element={<TaxesProrations />} />
+        <Route path="air-table" element={<AirTable />} />
+        <Route path="marketplace" element={<Marketplace />} />
+        <Route path="contacts-seller-info" element={<ContactsSellerInfo />} />
+        <Route path="debits-credits-ln" element={<DebitsCreditsFn />} />
+        <Route path="no-ap-table" element={<NoApTable />} />
+        {/* Route aliases for AppShell menu compatibility */}
+        <Route path="taxes-fees" element={<TaxesAndFees />} />
+        <Route path="debits-credits-km" element={<DebitsCredits />} />
       </Route>
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/orders" element={<OrderList />} />
