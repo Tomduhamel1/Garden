@@ -38,11 +38,47 @@ export default function AppShell() {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <div className="flex h-screen bg-gray-900 text-white">
-      {/* Left Sidebar */}
-      <section className="w-72 bg-gray-800 border-r border-gray-600 overflow-y-auto">
-        {/* Dashboard Header */}
-        <section className="p-5 border-b border-gray-600 bg-gray-700">
+    <div className="flex flex-col h-screen bg-gray-900 text-white">
+      {/* Top Navigation Bar */}
+      <header className="bg-gray-800 border-b border-gray-600 px-6 py-3 flex items-center justify-between">
+        <div className="flex items-center gap-6">
+          <Link to="/dashboard" className="flex items-center gap-2 text-white hover:text-blue-400 transition-colors">
+            <i className="fas fa-th-large"></i>
+            <span className="font-semibold">Garden</span>
+          </Link>
+          <nav className="flex items-center gap-4">
+            <Link to="/dashboard" className="px-3 py-1 text-sm hover:text-blue-400 transition-colors">
+              Dashboard
+            </Link>
+            <Link to="/orders/1/basic-info" className="px-3 py-1 text-sm hover:text-blue-400 transition-colors">
+              Orders
+            </Link>
+            <Link to="/contacts" className="px-3 py-1 text-sm text-gray-400 hover:text-blue-400 transition-colors">
+              Contacts
+            </Link>
+            <Link to="/reports" className="px-3 py-1 text-sm text-gray-400 hover:text-blue-400 transition-colors">
+              Reports
+            </Link>
+          </nav>
+        </div>
+        <div className="flex items-center gap-4">
+          <button className="text-gray-400 hover:text-white">
+            <i className="fas fa-search"></i>
+          </button>
+          <button className="text-gray-400 hover:text-white">
+            <i className="fas fa-bell"></i>
+          </button>
+          <button className="text-gray-400 hover:text-white">
+            <i className="fas fa-user-circle text-xl"></i>
+          </button>
+        </div>
+      </header>
+      
+      <div className="flex flex-1 overflow-hidden">
+        {/* Left Sidebar */}
+        <section className="w-72 bg-gray-800 border-r border-gray-600 overflow-y-auto">
+          {/* Dashboard Header */}
+          <section className="p-5 border-b border-gray-600 bg-gray-700">
           <div className="flex items-center gap-3 mb-4">
             <i className="fa fa-map-marker text-gray-400 text-base"></i>
             <div>
@@ -581,5 +617,6 @@ export default function AppShell() {
       {/* Main Content Area + Right Rail (handled by child components) */}
       <Outlet />
     </div>
+  </div>
   );
 }

@@ -1,6 +1,6 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import AppShell from '../components/layout/AppShell';
-import Dashboard from '../pages/Dashboard';
+import Dashboard from '../components/Dashboard';
 import OrderList from '../pages/OrderList';
 import BasicInfo from '../components/orders/BasicInfo';
 import Contacts from '../components/orders/Contacts';
