@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
+import { useAuth } from '../../contexts/AuthContext';
 
 interface NavItem {
   label: string;
@@ -19,6 +20,7 @@ interface NavSection {
 export default function AppShell() {
   const location = useLocation();
   const orderId = location.pathname.split('/')[2] || '1';
+  const { user, logout } = useAuth();
   
   const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({
     general: true,
@@ -68,9 +70,26 @@ export default function AppShell() {
           <button className="text-gray-400 hover:text-white">
             <i className="fas fa-bell"></i>
           </button>
-          <button className="text-gray-400 hover:text-white">
-            <i className="fas fa-user-circle text-xl"></i>
-          </button>
+          <div className="relative group">
+            <button className="flex items-center gap-2 text-gray-400 hover:text-white">
+              <i className="fas fa-user-circle text-xl"></i>
+              <span className="text-sm">{user?.firstName || 'User'}</span>
+              <i className="fas fa-chevron-down text-xs"></i>
+            </button>
+            <div className="absolute right-0 top-full mt-2 w-48 bg-gray-800 border border-gray-600 rounded shadow-lg hidden group-hover:block">
+              <div className="p-3 border-b border-gray-600">
+                <div className="text-sm font-medium text-white">{user?.firstName} {user?.lastName}</div>
+                <div className="text-xs text-gray-400">{user?.email}</div>
+              </div>
+              <button
+                onClick={logout}
+                className="w-full text-left px-3 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white"
+              >
+                <i className="fas fa-sign-out-alt mr-2"></i>
+                Sign Out
+              </button>
+            </div>
+          </div>
         </div>
       </header>
       

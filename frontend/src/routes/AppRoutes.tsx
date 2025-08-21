@@ -1,4 +1,5 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
+import ProtectedRoute from '../components/auth/ProtectedRoute';
 import AppShell from '../components/layout/AppShell';
 import Dashboard from '../components/Dashboard';
 import OrderList from '../pages/OrderList';
@@ -48,7 +49,11 @@ const AppRoutes = () => {
     <Routes>
       <Route path="/login" element={<Login />} />
       <Route path="/" element={<Navigate to="/orders/1/basic-info" replace />} />
-      <Route path="/orders/:orderId" element={<AppShell />}>
+      <Route path="/orders/:orderId" element={
+        <ProtectedRoute>
+          <AppShell />
+        </ProtectedRoute>
+      }>
         <Route path="basic-info" element={<BasicInfo />} />
         <Route path="contacts" element={<Contacts orderId="1" />} />
         <Route path="loan" element={<Loan orderId="1" />} />
@@ -92,8 +97,16 @@ const AppRoutes = () => {
         <Route path="taxes-fees" element={<TaxesAndFees />} />
         <Route path="debits-credits-km" element={<DebitsCredits />} />
       </Route>
-      <Route path="/dashboard" element={<Dashboard />} />
-      <Route path="/orders" element={<OrderList />} />
+      <Route path="/dashboard" element={
+        <ProtectedRoute>
+          <Dashboard />
+        </ProtectedRoute>
+      } />
+      <Route path="/orders" element={
+        <ProtectedRoute>
+          <OrderList />
+        </ProtectedRoute>
+      } />
     </Routes>
   );
 };
