@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-08-21T05:35:52.183Z",
+  "timestamp": "2025-08-21T20:24:37.089Z",
   "checks": {
     "tracking": {
       "progressMd": true,
@@ -72,9 +72,11 @@
         "AppShell.tsx",
         "Accounting.tsx",
         "AirTable.tsx",
+        "ApTable.tsx",
         "BasicInfo.tsx",
         "CashToClose.tsx",
         "ClosingDisclosure.tsx",
+        "Commitment.tsx",
         "Contacts.tsx",
         "ContactsSellerInfo.tsx",
         "Cpl.tsx",
@@ -84,7 +86,9 @@
         "DidShopFor.tsx",
         "Documents.tsx",
         "EarnestCommissions.tsx",
+        "EnvelopesShipping.tsx",
         "Escrow.tsx",
+        "FinalPolicy.tsx",
         "LenderCredits.tsx",
         "Loan.tsx",
         "LoanCalculations.tsx",
@@ -101,6 +105,7 @@
         "ProceedsSeller.tsx",
         "ProjectedPayments.tsx",
         "Properties.tsx",
+        "Recording.tsx",
         "SettlementStatement.tsx",
         "TaxesAndFees.tsx",
         "TaxesProrations.tsx"
@@ -157,7 +162,7 @@
       "isRepo": true,
       "branch": "main",
       "uncommittedChanges": 0,
-      "lastCommit": "b291f0c - SESSION_END: Added 2 additional menu components (Cpl + PolicyInfoRates) (45 seconds ago)"
+      "lastCommit": "5578d5f - SESSION_END: Added 5 more React components (41 total, 95% frontend complete) (4 minutes ago)"
     }
   },
   "discrepancies": [],
@@ -168,7 +173,7 @@
     "databaseReady": true,
     "trackingComplete": true,
     "htmlPrototypesCount": 34,
-    "componentsConverted": 37,
+    "componentsConverted": 42,
     "modelsCreated": 3,
     "gitClean": true,
     "overallReadiness": "READY",
@@ -177,7 +182,7 @@
       "authentication": "COMPLETE",
       "orderAPI": "COMPLETE",
       "calculations": "NOT_STARTED",
-      "componentsConverted": "37/34"
+      "componentsConverted": "42/34"
     },
     "actualProgress": 30
   }

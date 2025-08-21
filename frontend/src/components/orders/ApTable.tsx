@@ -6,7 +6,7 @@ const ApTable: React.FC = () => {
 
   return (
     <>
-      {/* Main Content */>
+      {/* Main Content */}
       <section className="flex-1 bg-gray-900 overflow-y-auto">
         {/* Page Header */}
         <div className="p-6 border-b border-gray-600">
