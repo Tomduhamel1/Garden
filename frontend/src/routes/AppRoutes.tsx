@@ -34,6 +34,8 @@ import Marketplace from '../components/orders/Marketplace';
 import ContactsSellerInfo from '../components/orders/ContactsSellerInfo';
 import DebitsCreditsFn from '../components/orders/DebitsCreditsFn';
 import NoApTable from '../components/orders/NoApTable';
+import Cpl from '../components/orders/Cpl';
+import PolicyInfoRates from '../components/orders/PolicyInfoRates';
 import Login from '../pages/Login';
 
 const AppRoutes = () => {
@@ -74,6 +76,8 @@ const AppRoutes = () => {
         <Route path="contacts-seller-info" element={<ContactsSellerInfo />} />
         <Route path="debits-credits-ln" element={<DebitsCreditsFn />} />
         <Route path="no-ap-table" element={<NoApTable />} />
+        <Route path="cpl" element={<Cpl />} />
+        <Route path="policy-info-rates" element={<PolicyInfoRates />} />
         {/* Route aliases for AppShell menu compatibility */}
         <Route path="taxes-fees" element={<TaxesAndFees />} />
         <Route path="debits-credits-km" element={<DebitsCredits />} />

@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2025-08-21T00:10:00-08:00",
+  "lastUpdated": "2025-08-21T05:17:00-08:00",
   "currentPhase": "Week1-Foundation",
   "phaseStarted": "2025-01-12T14:00:00-08:00",
   "phaseDeadline": "2025-01-17T18:00:00-08:00",
@@ -7,7 +7,7 @@
   
   "metrics": {
     "htmlComponentsTotal": 34,
-    "htmlComponentsConverted": 35,
+    "htmlComponentsConverted": 36,
     "apiEndpointsTotal": 25,
     "apiEndpointsComplete": 12,
     "calculationsTotal": 50,
@@ -87,7 +87,9 @@
     "ContactsSellerInfo",
     "DebitsCreditsFn",
     "NoApTable",
-    "Dashboard"
+    "Dashboard",
+    "Cpl",
+    "PolicyInfoRates"
   ],
   
   "apiEndpointsCompleted": [
@@ -157,6 +159,8 @@
     "frontend/src/components/orders/DebitsCreditsFn.tsx",
     "frontend/src/components/orders/NoApTable.tsx",
     "frontend/src/components/Dashboard.tsx",
+    "frontend/src/components/orders/Cpl.tsx",
+    "frontend/src/components/orders/PolicyInfoRates.tsx",
     "frontend/src/pages/OrderList.tsx",
     "frontend/src/pages/OrderDetail.tsx",
     "frontend/src/pages/Login.tsx",
@@ -374,13 +378,32 @@
       ],
       "filesCreated": 1,
       "linesOfCode": 900
+    },
+    {
+      "date": "2025-08-21",
+      "startTime": "05:00:00-08:00",
+      "endTime": "05:17:00-08:00",
+      "tasksCompleted": [
+        "Created Cpl.tsx component from user-provided cpl.html",
+        "Closing Protection Letter management with underwriter selection",
+        "CPL creation form with protected party and type selection",
+        "Created PolicyInfoRates.tsx component from policy-info-rates.html",
+        "Full policy management with Owner's/Lender's policy tabs",
+        "Interactive disclosed/actual rate views in right rail",
+        "Policy info forms, endorsements, and premium management",
+        "Both components added to AppRoutes.tsx with proper routing",
+        "2/9 additional menu components complete"
+      ],
+      "filesCreated": 2,
+      "linesOfCode": 1200
     }
   ],
   
   "nextPriorities": [
+    "Complete remaining 7 menu components from user-provided HTML",
+    "Convert: commitment.html, final-policy.html, ap-table.html, envelopes-shipping.html, recording.html + 2 more",
     "Authentication integration - connect login to backend JWT",
     "Data integration - connect Dashboard and forms to backend API",
-    "Implement data integration (connect forms to backend API)",
     "Add loading states and error handling",
     "Implement calculations for all financial components"
   ],
