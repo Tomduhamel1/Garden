@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-08-21T05:16:32.433Z",
+  "timestamp": "2025-08-21T05:35:52.183Z",
   "checks": {
     "tracking": {
       "progressMd": true,
@@ -77,6 +77,7 @@
         "ClosingDisclosure.tsx",
         "Contacts.tsx",
         "ContactsSellerInfo.tsx",
+        "Cpl.tsx",
         "DebitsCredits.tsx",
         "DebitsCreditsFn.tsx",
         "DidNotShopFor.tsx",
@@ -94,6 +95,7 @@
         "OriginationCharges.tsx",
         "OtherCharges.tsx",
         "Payoffs.tsx",
+        "PolicyInfoRates.tsx",
         "Prepaids.tsx",
         "ProceedsBorrower.tsx",
         "ProceedsSeller.tsx",
@@ -155,7 +157,7 @@
       "isRepo": true,
       "branch": "main",
       "uncommittedChanges": 0,
-      "lastCommit": "1040068 - SESSION_END: Dashboard component added, app-level navigation complete (88 seconds ago)"
+      "lastCommit": "b291f0c - SESSION_END: Added 2 additional menu components (Cpl + PolicyInfoRates) (45 seconds ago)"
     }
   },
   "discrepancies": [],
@@ -166,7 +168,7 @@
     "databaseReady": true,
     "trackingComplete": true,
     "htmlPrototypesCount": 34,
-    "componentsConverted": 35,
+    "componentsConverted": 37,
     "modelsCreated": 3,
     "gitClean": true,
     "overallReadiness": "READY",
@@ -175,7 +177,7 @@
       "authentication": "COMPLETE",
       "orderAPI": "COMPLETE",
       "calculations": "NOT_STARTED",
-      "componentsConverted": "35/34"
+      "componentsConverted": "37/34"
     },
     "actualProgress": 30
   }

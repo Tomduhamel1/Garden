@@ -34,8 +34,8 @@
 - ✅ All components integrated with AppRoutes.tsx
 - ✅ Route aliases added for menu compatibility
 - ✅ Development server stable and functional
-- ✅ **2 additional menu components created: Cpl.tsx + PolicyInfoRates.tsx**
-- ⏳ **Creating remaining 7 menu components from user-provided HTML**
+- ✅ **6 additional menu components created: Cpl, PolicyInfoRates, Commitment, FinalPolicy, ApTable, EnvelopesShipping, Recording**
+- ⏳ **Creating remaining 2 menu components from user-provided HTML**
 
 ## 🎉 MAJOR MILESTONE ACHIEVED
 
@@ -49,22 +49,25 @@
 ## 🚨 IMMEDIATE (Next 1-2 Hours)
 
 ### 1. 🎯 Complete Remaining Menu Pages
-**9 pages still need components created:**
+**7 pages completed, 2 remaining:**
 
 **Title Section (4 pages):**
 - ✅ cpl.html → src/components/orders/Cpl.tsx
 - ✅ policy-info-rates.html → src/components/orders/PolicyInfoRates.tsx  
-- ⏳ commitment.html → src/components/orders/Commitment.tsx
-- ⏳ final-policy.html → src/components/orders/FinalPolicy.tsx
+- ✅ commitment.html → src/components/orders/Commitment.tsx
+- ✅ final-policy.html → src/components/orders/FinalPolicy.tsx
 
 **Disclosures Section (1 page):**
-- ap-table.html → src/components/orders/ApTable.tsx (when AP exists)
+- ✅ ap-table.html → src/components/orders/ApTable.tsx
 
 **Production Section (2 pages):**
-- envelopes-shipping.html → src/components/orders/EnvelopesShipping.tsx
-- recording.html → src/components/orders/Recording.tsx
+- ✅ envelopes-shipping.html → src/components/orders/EnvelopesShipping.tsx
+- ✅ recording.html → src/components/orders/Recording.tsx (with Add Recorded Document modal)
 
-**Status**: Need to check if HTML prototypes exist for these pages. If not, create placeholder components.
+**Remaining (2 pages):**
+- ⏳ Need to identify which 2 menu items still need components
+
+**Status**: 7/9 additional menu components created. Need to identify the 2 remaining.
 
 ### 2. 🔧 Testing & Polish
 - Test all 34 existing components in browser
@@ -124,11 +127,11 @@
 4. Run: `node verify-progress.js`
 
 ### Continue From:
-- ✅ Created Cpl.tsx component from user HTML
-- ✅ Created PolicyInfoRates.tsx component from user HTML  
-- ⏳ Continue creating remaining 7 components from user-provided HTML
-- User is providing HTML files one by one for conversion
-- Next: await commitment.html, final-policy.html, ap-table.html, envelopes-shipping.html, recording.html + 2 more
+- ✅ Created all 7 identified additional menu components
+- ✅ Added "Add Recorded Document" modal to Recording component
+- ✅ Fixed width collapsing issue in FinalPolicy, ApTable, EnvelopesShipping, and Recording components
+- Components now use React Fragments instead of wrapper divs for proper AppShell integration
+- Next: Identify and create the 2 remaining menu components
 
 ## 🎯 Week 1 Goals Reminder
 

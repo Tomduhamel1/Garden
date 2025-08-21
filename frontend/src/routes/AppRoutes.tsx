@@ -36,6 +36,11 @@ import DebitsCreditsFn from '../components/orders/DebitsCreditsFn';
 import NoApTable from '../components/orders/NoApTable';
 import Cpl from '../components/orders/Cpl';
 import PolicyInfoRates from '../components/orders/PolicyInfoRates';
+import Commitment from '../components/orders/Commitment';
+import FinalPolicy from '../components/orders/FinalPolicy';
+import ApTable from '../components/orders/ApTable';
+import EnvelopesShipping from '../components/orders/EnvelopesShipping';
+import Recording from '../components/orders/Recording';
 import Login from '../pages/Login';
 
 const AppRoutes = () => {
@@ -78,6 +83,11 @@ const AppRoutes = () => {
         <Route path="no-ap-table" element={<NoApTable />} />
         <Route path="cpl" element={<Cpl />} />
         <Route path="policy-info-rates" element={<PolicyInfoRates />} />
+        <Route path="commitment" element={<Commitment />} />
+        <Route path="final-policy" element={<FinalPolicy />} />
+        <Route path="ap-table" element={<ApTable />} />
+        <Route path="envelopes-shipping" element={<EnvelopesShipping />} />
+        <Route path="recording" element={<Recording />} />
         {/* Route aliases for AppShell menu compatibility */}
         <Route path="taxes-fees" element={<TaxesAndFees />} />
         <Route path="debits-credits-km" element={<DebitsCredits />} />
