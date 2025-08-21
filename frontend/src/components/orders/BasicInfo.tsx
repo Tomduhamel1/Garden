@@ -1,6 +1,12 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import orderService, { Order } from '../../services/orderService';
 
 const BasicInfo = () => {
+  const { orderId } = useParams<{ orderId: string }>();
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
+  const [order, setOrder] = useState<Order | null>(null);
   const [formData, setFormData] = useState({
     estimatedClosingDate: '',
     contractDate: '',
@@ -34,6 +40,32 @@ const BasicInfo = () => {
     closingZipcode: '',
   });
 
+  useEffect(() => {
+    if (orderId) {
+      fetchOrder();
+    }
+  }, [orderId]);
+
+  const fetchOrder = async () => {
+    try {
+      setLoading(true);
+      const data = await orderService.getOrder(orderId!);
+      setOrder(data);
+      
+      // Update form data with order data
+      if (data.cdfData) {
+        setFormData(prev => ({
+          ...prev,
+          ...data.cdfData
+        }));
+      }
+    } catch (err) {
+      console.error('Error fetching order:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target;
     if (type === 'checkbox') {
@@ -49,18 +81,66 @@ const BasicInfo = () => {
     }
   };
 
+  const handleSave = async () => {
+    if (!orderId || !order) return;
+    
+    try {
+      setSaving(true);
+      await orderService.updateOrder(orderId, {
+        cdfData: { ...order.cdfData, ...formData }
+      });
+      alert('Order saved successfully!');
+    } catch (err) {
+      console.error('Error saving order:', err);
+      alert('Failed to save order');
+    } finally {
+      setSaving(false);
+    }
+  };
+
   return (
     <>
       {/* Main Content */}
       <section className="flex-1 bg-gray-900 overflow-y-auto min-w-0">
         {/* Page Header */}
-        <section className="py-8 px-10 pb-5 border-b border-gray-600 flex items-center gap-4">
-          <i className="fa fa-home text-gray-400 text-xl"></i>
-          <h2 className="text-2xl font-semibold text-white">Basic Info</h2>
+        <section className="py-8 px-10 pb-5 border-b border-gray-600 flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <i className="fa fa-home text-gray-400 text-xl"></i>
+            <h2 className="text-2xl font-semibold text-white">Basic Info</h2>
+            {orderId && <span className="text-gray-400">Order #{orderId}</span>}
+          </div>
+          {!loading && (
+            <button
+              onClick={handleSave}
+              disabled={saving}
+              className="bg-blue-600 hover:bg-blue-700 disabled:bg-gray-600 text-white px-6 py-2 rounded font-medium flex items-center gap-2"
+            >
+              {saving ? (
+                <>
+                  <i className="fas fa-spinner fa-spin"></i>
+                  Saving...
+                </>
+              ) : (
+                <>
+                  <i className="fas fa-save"></i>
+                  Save Changes
+                </>
+              )}
+            </button>
+          )}
         </section>
 
-        {/* Form Container */}
-        <section className="p-10">
+        {/* Loading State */}
+        {loading ? (
+          <div className="flex items-center justify-center py-20">
+            <div className="text-center">
+              <i className="fas fa-spinner fa-spin text-4xl text-gray-400 mb-4"></i>
+              <p className="text-gray-400">Loading order data...</p>
+            </div>
+          </div>
+        ) : (
+          /* Form Container */
+          <section className="p-10">
           <form className="grid grid-cols-2 gap-16 max-w-none">
             {/* Left Column */}
             <section className="space-y-8">
@@ -607,6 +687,8 @@ const BasicInfo = () => {
             Add Note
           </button>
         </div>
+      </section>
+        )}
       </section>
     </>
   );

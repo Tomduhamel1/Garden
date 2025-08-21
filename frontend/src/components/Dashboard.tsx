@@ -1,23 +1,58 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import orderService, { Order } from '../services/orderService';
 
 const Dashboard: React.FC = () => {
   const [activeTab, setActiveTab] = useState('orders');
   const [currentStep, setCurrentStep] = useState(1);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [orders, setOrders] = useState<Order[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const navigate = useNavigate();
   const totalSteps = 5;
+
+  useEffect(() => {
+    fetchOrders();
+  }, []);
+
+  const fetchOrders = async () => {
+    try {
+      setLoading(true);
+      const data = await orderService.getOrders();
+      setOrders(data);
+      setError(null);
+    } catch (err: any) {
+      setError(err.response?.data?.message || 'Failed to fetch orders');
+      console.error('Error fetching orders:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const showStep = (step: number) => {
     setCurrentStep(step);
   };
 
-  const handleNextStep = () => {
+  const handleNextStep = async () => {
     if (currentStep < totalSteps) {
       setCurrentStep(currentStep + 1);
     } else {
-      alert('Order created!');
-      setIsModalOpen(false);
-      setCurrentStep(1);
+      try {
+        const newOrder = await orderService.createOrder({
+          status: 'open',
+          cdfData: {},
+          contactsData: {},
+          propertiesData: {},
+          payoffsData: {}
+        });
+        setIsModalOpen(false);
+        setCurrentStep(1);
+        await fetchOrders();
+        navigate(`/orders/${newOrder.id}/basic-info`);
+      } catch (err: any) {
+        alert('Failed to create order: ' + (err.response?.data?.message || err.message));
+      }
     }
   };
 
@@ -129,127 +164,95 @@ const Dashboard: React.FC = () => {
 
             {/* Orders Table */}
             <div className="overflow-x-auto">
-              <table className="w-full bg-gray-800 border border-gray-600 rounded">
-                <thead>
-                  <tr className="bg-gray-700 border-b border-gray-600">
-                    <th className="px-4 py-3 text-left text-white font-medium border-r border-gray-600">
-                      <div className="flex items-center gap-2 cursor-pointer">
-                        Order #
-                        <i className="fas fa-sort-down text-xs"></i>
-                      </div>
-                    </th>
-                    <th className="px-4 py-3 text-left text-white font-medium border-r border-gray-600">Address</th>
-                    <th className="px-4 py-3 text-left text-white font-medium border-r border-gray-600">Buyer</th>
-                    <th className="px-4 py-3 text-left text-white font-medium border-r border-gray-600">Seller</th>
-                    <th className="px-4 py-3 text-left text-white font-medium border-r border-gray-600">Lender</th>
-                    <th className="px-4 py-3 text-left text-white font-medium border-r border-gray-600">Transaction Type</th>
-                    <th className="px-4 py-3 text-left text-white font-medium border-r border-gray-600">Closing Date</th>
-                    <th className="px-4 py-3 text-left text-white font-medium">Active Milestone</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr className="border-b border-gray-600 hover:bg-gray-750 cursor-pointer">
-                    <td className="px-4 py-3 border-r border-gray-600">deb test train</td>
-                    <td className="px-4 py-3 border-r border-gray-600">108 Virginia Drive, Sumter, SC</td>
-                    <td className="px-4 py-3 border-r border-gray-600">deb & jamie test</td>
-                    <td className="px-4 py-3 border-r border-gray-600">john doe</td>
-                    <td className="px-4 py-3 border-r border-gray-600">Allied First</td>
-                    <td className="px-4 py-3 border-r border-gray-600">Purchase</td>
-                    <td className="px-4 py-3 border-r border-gray-600">Oct 27, 2022</td>
-                    <td className="px-4 py-3">Order Opening</td>
-                  </tr>
-                  <tr className="border-b border-gray-600 hover:bg-gray-750 cursor-pointer">
-                    <td className="px-4 py-3 border-r border-gray-600">WickedSmtNotary</td>
-                    <td className="px-4 py-3 border-r border-gray-600 text-gray-500">-</td>
-                    <td className="px-4 py-3 border-r border-gray-600 text-gray-500">-</td>
-                    <td className="px-4 py-3 border-r border-gray-600 text-gray-500">-</td>
-                    <td className="px-4 py-3 border-r border-gray-600 text-gray-500">-</td>
-                    <td className="px-4 py-3 border-r border-gray-600">Project File</td>
-                    <td className="px-4 py-3 border-r border-gray-600 text-gray-500">-</td>
-                    <td className="px-4 py-3 text-gray-500">-</td>
-                  </tr>
-                  <tr className="border-b border-gray-600 hover:bg-gray-750 cursor-pointer">
-                    <td className="px-4 py-3 border-r border-gray-600">TomTestHUD</td>
-                    <td className="px-4 py-3 border-r border-gray-600">Tom Test HUD, Warwick, RI</td>
-                    <td className="px-4 py-3 border-r border-gray-600">Tom Test HUD</td>
-                    <td className="px-4 py-3 border-r border-gray-600 text-gray-500">-</td>
-                    <td className="px-4 py-3 border-r border-gray-600 text-gray-500">-</td>
-                    <td className="px-4 py-3 border-r border-gray-600">Purchase</td>
-                    <td className="px-4 py-3 border-r border-gray-600 text-gray-500">-</td>
-                    <td className="px-4 py-3">Order Opening</td>
-                  </tr>
-                  <tr className="border-b border-gray-600 hover:bg-gray-750 cursor-pointer">
-                    <td className="px-4 py-3 border-r border-gray-600">TomTestCD</td>
-                    <td className="px-4 py-3 border-r border-gray-600">123 TEST TOM FILE CD, Warwick, RI</td>
-                    <td className="px-4 py-3 border-r border-gray-600">Tom TEST TOM TEST</td>
-                    <td className="px-4 py-3 border-r border-gray-600 text-gray-500">-</td>
-                    <td className="px-4 py-3 border-r border-gray-600 text-gray-500">-</td>
-                    <td className="px-4 py-3 border-r border-gray-600">Purchase</td>
-                    <td className="px-4 py-3 border-r border-gray-600">Mar 21, 2025</td>
-                    <td className="px-4 py-3">Order Opening</td>
-                  </tr>
-                  <tr className="border-b border-gray-600 hover:bg-gray-750 cursor-pointer">
-                    <td className="px-4 py-3 border-r border-gray-600">Tax Certs NAN</td>
-                    <td className="px-4 py-3 border-r border-gray-600 text-gray-500">-</td>
-                    <td className="px-4 py-3 border-r border-gray-600 text-gray-500">-</td>
-                    <td className="px-4 py-3 border-r border-gray-600 text-gray-500">-</td>
-                    <td className="px-4 py-3 border-r border-gray-600 text-gray-500">-</td>
-                    <td className="px-4 py-3 border-r border-gray-600">Project File</td>
-                    <td className="px-4 py-3 border-r border-gray-600 text-gray-500">-</td>
-                    <td className="px-4 py-3 text-gray-500">-</td>
-                  </tr>
-                  <tr className="border-b border-gray-600 hover:bg-gray-750 cursor-pointer">
-                    <td className="px-4 py-3 border-r border-gray-600">TEST TEST 1</td>
-                    <td className="px-4 py-3 border-r border-gray-600">NE 66th LN, Williston, FL</td>
-                    <td className="px-4 py-3 border-r border-gray-600">TBD</td>
-                    <td className="px-4 py-3 border-r border-gray-600">TBD</td>
-                    <td className="px-4 py-3 border-r border-gray-600">Test Lender</td>
-                    <td className="px-4 py-3 border-r border-gray-600">Purchase</td>
-                    <td className="px-4 py-3 border-r border-gray-600">Mar 31, 2025</td>
-                    <td className="px-4 py-3">Title</td>
-                  </tr>
-                  <tr className="border-b border-gray-600 hover:bg-gray-750 cursor-pointer">
-                    <td className="px-4 py-3 border-r border-gray-600">STEVEFUNDING</td>
-                    <td className="px-4 py-3 border-r border-gray-600 text-gray-500">-</td>
-                    <td className="px-4 py-3 border-r border-gray-600 text-gray-500">-</td>
-                    <td className="px-4 py-3 border-r border-gray-600 text-gray-500">-</td>
-                    <td className="px-4 py-3 border-r border-gray-600 text-gray-500">-</td>
-                    <td className="px-4 py-3 border-r border-gray-600">Project File</td>
-                    <td className="px-4 py-3 border-r border-gray-600 text-gray-500">-</td>
-                    <td className="px-4 py-3 text-gray-500">-</td>
-                  </tr>
-                  <tr className="border-b border-gray-600 hover:bg-gray-750 cursor-pointer">
-                    <td className="px-4 py-3 border-r border-gray-600">Reconveyance</td>
-                    <td className="px-4 py-3 border-r border-gray-600">123 main street te, Newport, RI</td>
-                    <td className="px-4 py-3 border-r border-gray-600 text-gray-500">-</td>
-                    <td className="px-4 py-3 border-r border-gray-600 text-gray-500">-</td>
-                    <td className="px-4 py-3 border-r border-gray-600">Shoreham Bank</td>
-                    <td className="px-4 py-3 border-r border-gray-600">Title-1 Trustee</td>
-                    <td className="px-4 py-3 border-r border-gray-600 text-gray-500">-</td>
-                    <td className="px-4 py-3">Post-Closing</td>
-                  </tr>
-                  <tr className="border-b border-gray-600 hover:bg-gray-750 cursor-pointer">
-                    <td className="px-4 py-3 border-r border-gray-600">Pre-40-FL</td>
-                    <td className="px-4 py-3 border-r border-gray-600">4100 West Firewood Loop, Citrus Springs, FL</td>
-                    <td className="px-4 py-3 border-r border-gray-600">TBD</td>
-                    <td className="px-4 py-3 border-r border-gray-600 text-gray-500">-</td>
-                    <td className="px-4 py-3 border-r border-gray-600">TBD</td>
-                    <td className="px-4 py-3 border-r border-gray-600">Refinance</td>
-                    <td className="px-4 py-3 border-r border-gray-600 text-gray-500">-</td>
-                    <td className="px-4 py-3">Order Opening</td>
-                  </tr>
-                  <tr className="border-b border-gray-600 hover:bg-gray-750 cursor-pointer">
-                    <td className="px-4 py-3 border-r border-gray-600">Pre-39-FL</td>
-                    <td className="px-4 py-3 border-r border-gray-600">3577 North Pine Valley Loop, Lecanto, FL</td>
-                    <td className="px-4 py-3 border-r border-gray-600">tbd tbd</td>
-                    <td className="px-4 py-3 border-r border-gray-600">Jose Ramirez</td>
-                    <td className="px-4 py-3 border-r border-gray-600 text-gray-500">-</td>
-                    <td className="px-4 py-3 border-r border-gray-600">Purchase</td>
-                    <td className="px-4 py-3 border-r border-gray-600">Mar 7, 2025</td>
-                    <td className="px-4 py-3">Order Opening</td>
-                  </tr>
-                </tbody>
-              </table>
+              {loading ? (
+                <div className="text-center py-8 text-gray-400">
+                  <i className="fas fa-spinner fa-spin text-2xl mb-2"></i>
+                  <p>Loading orders...</p>
+                </div>
+              ) : error ? (
+                <div className="text-center py-8">
+                  <div className="text-red-500 mb-2">
+                    <i className="fas fa-exclamation-triangle text-2xl"></i>
+                  </div>
+                  <p className="text-red-400">{error}</p>
+                  <button 
+                    onClick={fetchOrders}
+                    className="mt-4 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded"
+                  >
+                    Retry
+                  </button>
+                </div>
+              ) : (
+                <table className="w-full bg-gray-800 border border-gray-600 rounded">
+                  <thead>
+                    <tr className="bg-gray-700 border-b border-gray-600">
+                      <th className="px-4 py-3 text-left text-white font-medium border-r border-gray-600">
+                        <div className="flex items-center gap-2 cursor-pointer">
+                          Order #
+                          <i className="fas fa-sort-down text-xs"></i>
+                        </div>
+                      </th>
+                      <th className="px-4 py-3 text-left text-white font-medium border-r border-gray-600">Address</th>
+                      <th className="px-4 py-3 text-left text-white font-medium border-r border-gray-600">Buyer</th>
+                      <th className="px-4 py-3 text-left text-white font-medium border-r border-gray-600">Seller</th>
+                      <th className="px-4 py-3 text-left text-white font-medium border-r border-gray-600">Lender</th>
+                      <th className="px-4 py-3 text-left text-white font-medium border-r border-gray-600">Transaction Type</th>
+                      <th className="px-4 py-3 text-left text-white font-medium border-r border-gray-600">Closing Date</th>
+                      <th className="px-4 py-3 text-left text-white font-medium">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {orders.length === 0 ? (
+                      <tr>
+                        <td colSpan={8} className="px-4 py-8 text-center text-gray-400">
+                          No orders found. Click "Create Order" to add a new order.
+                        </td>
+                      </tr>
+                    ) : (
+                      orders.map((order) => (
+                        <tr 
+                          key={order.id} 
+                          className="border-b border-gray-600 hover:bg-gray-750 cursor-pointer"
+                          onClick={() => navigate(`/orders/${order.id}/basic-info`)}
+                        >
+                          <td className="px-4 py-3 border-r border-gray-600">
+                            {order.orderNumber}
+                          </td>
+                          <td className="px-4 py-3 border-r border-gray-600">
+                            {order.propertyAddress || <span className="text-gray-500">-</span>}
+                          </td>
+                          <td className="px-4 py-3 border-r border-gray-600">
+                            {order.contactsData?.borrower_name || <span className="text-gray-500">-</span>}
+                          </td>
+                          <td className="px-4 py-3 border-r border-gray-600">
+                            {order.contactsData?.seller_name || <span className="text-gray-500">-</span>}
+                          </td>
+                          <td className="px-4 py-3 border-r border-gray-600">
+                            {order.cdfData?.lender_name || <span className="text-gray-500">-</span>}
+                          </td>
+                          <td className="px-4 py-3 border-r border-gray-600">
+                            {order.cdfData?.transaction_type || 'Purchase'}
+                          </td>
+                          <td className="px-4 py-3 border-r border-gray-600">
+                            {order.closingDate 
+                              ? new Date(order.closingDate).toLocaleDateString() 
+                              : <span className="text-gray-500">-</span>}
+                          </td>
+                          <td className="px-4 py-3">
+                            <span className={`px-2 py-1 rounded text-xs ${
+                              order.status === 'open' ? 'bg-green-600' : 
+                              order.status === 'closed' ? 'bg-gray-600' : 
+                              'bg-yellow-600'
+                            }`}>
+                              {order.status || 'Open'}
+                            </span>
+                          </td>
+                        </tr>
+                      ))
+                    )}
+                  </tbody>
+                </table>
+              )}
             </div>
 
             {/* Pagination */}
