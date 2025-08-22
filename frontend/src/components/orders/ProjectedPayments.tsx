@@ -38,9 +38,9 @@ const ProjectedPayments: React.FC = () => {
           )}
           
           {!loading && (
-          <>
-          {/* Add/Remove Column Buttons */
-          <section className="flex justify-end gap-3 mb-6">
+            <>
+                        {/* Add/Remove Column Buttons */}
+              <section className="flex justify-end gap-3 mb-6">
             <button type="button" className="bg-gray-600 border border-gray-500 rounded px-3 py-2 text-white text-sm hover:bg-gray-500 disabled:opacity-50" disabled>
               <i className="fa fa-minus mr-1"></i>
               Remove Column
@@ -49,9 +49,9 @@ const ProjectedPayments: React.FC = () => {
               <i className="fa fa-plus mr-1"></i>
               Add Column
             </button>
-          </section>
+              </section>
 
-          <form className="space-y-8">
+              <form className="space-y-8">
             {/* Payments Section */}
             <section>
               <h4 className="text-lg font-semibold text-white mb-4">Payments</h4>

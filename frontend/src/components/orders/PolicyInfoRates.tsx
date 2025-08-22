@@ -274,6 +274,7 @@ const PolicyInfoRates: React.FC = () => {
           </div>
           </>
         )}
+        </div>
       </section>
 
       {/* Right Rail */}
