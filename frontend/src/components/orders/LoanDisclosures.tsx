@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { useOrderData } from '../../hooks/useOrderData';
 
 const LoanDisclosures: React.FC = () => {
+  const { loading, saving, handleInputChange, getValue, saveOrderData } = useOrderData();
   const [assumption, setAssumption] = useState('');
   const [demandFeature, setDemandFeature] = useState('');
   const [latePaymentDays, setLatePaymentDays] = useState('');
@@ -21,13 +23,34 @@ const LoanDisclosures: React.FC = () => {
       {/* Main Content */}
       <section className="flex-1 bg-gray-900 overflow-y-auto min-w-0">
         {/* Page Header */}
-        <section className="py-8 px-10 pb-5 border-b border-gray-600 flex items-center gap-4">
-          <i className="fa fa-file-contract text-gray-400 text-xl"></i>
-          <h2 className="text-2xl font-semibold text-white">Loan Disclosures</h2>
+        <section className="py-8 px-10 pb-5 border-b border-gray-600 flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <i className="fa fa-file-contract text-gray-400 text-xl"></i>
+            <h2 className="text-2xl font-semibold text-white">Loan Disclosures</h2>
+          </div>
+          <button
+            onClick={saveOrderData}
+            disabled={saving}
+            className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+          >
+            {saving ? (
+              <>
+                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                Saving...
+              </>
+            ) : (
+              'Save'
+            )}
+          </button>
         </section>
         
         {/* Form Container */}
         <section className="px-10 py-8">
+          {loading ? (
+            <div className="flex items-center justify-center py-8">
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+            </div>
+          ) : (
           <form className="space-y-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Left Column */}
@@ -45,8 +68,8 @@ const LoanDisclosures: React.FC = () => {
                       type="radio"
                       name="assumption"
                       value="yes"
-                      checked={assumption === 'yes'}
-                      onChange={(e) => setAssumption(e.target.value)}
+                      checked={getValue('cdf.loans.0.loan_disclosures.assumption') === 'yes' || assumption === 'yes'}
+                      onChange={(e) => handleInputChange('cdf.loans.0.loan_disclosures.assumption', e.target.value)}
                       className="text-blue-500"
                       data-schema-key="cdf.loans.0.loan_disclosures.assumption"
                     />
@@ -110,16 +133,16 @@ const LoanDisclosures: React.FC = () => {
                   <span>If your payment is more than</span>
                   <input
                     type="text"
-                    value={latePaymentDays}
-                    onChange={(e) => setLatePaymentDays(e.target.value)}
+                    value={getValue('cdf.loans.0.penalty_grace_period_days') || latePaymentDays}
+                    onChange={(e) => handleInputChange('cdf.loans.0.penalty_grace_period_days', e.target.value)}
                     className="w-16 px-2 py-1 bg-gray-700 text-white rounded border border-gray-600 text-center focus:outline-none focus:border-blue-500"
                     data-schema-key="cdf.loans.0.penalty_grace_period_days"
                   />
                   <span>days late, your lender will charge a late fee of</span>
                   <input
                     type="text"
-                    value={latePenaltyAmount}
-                    onChange={(e) => setLatePenaltyAmount(e.target.value)}
+                    value={getValue('cdf.loans.0.late_penalty_amount') || latePenaltyAmount}
+                    onChange={(e) => handleInputChange('cdf.loans.0.late_penalty_amount', e.target.value)}
                     className="w-24 px-2 py-1 bg-gray-700 text-white rounded border border-gray-600 text-center focus:outline-none focus:border-blue-500"
                     data-schema-key="cdf.loans.0.late_penalty_amount"
                   />
@@ -289,8 +312,8 @@ const LoanDisclosures: React.FC = () => {
                     </label>
                     <input
                       type="text"
-                      value={estimatedPropertyCosts}
-                      onChange={(e) => setEstimatedPropertyCosts(e.target.value)}
+                      value={getValue('cdf.loans.0.loan_disclosures.estimated_property_costs_over_year_1') || estimatedPropertyCosts}
+                      onChange={(e) => handleInputChange('cdf.loans.0.loan_disclosures.estimated_property_costs_over_year_1', e.target.value)}
                       className="w-full px-3 py-1.5 bg-gray-700 text-white rounded border border-gray-600 focus:outline-none focus:border-blue-500"
                       data-schema-key="cdf.loans.0.loan_disclosures.estimated_property_costs_over_year_1"
                     />
@@ -313,6 +336,7 @@ const LoanDisclosures: React.FC = () => {
           </div>
         </div>
       </form>
+          )}
         </section>
       </section>
     </>

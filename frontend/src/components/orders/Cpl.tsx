@@ -1,20 +1,45 @@
 import React from 'react';
+import { useOrderData } from '../../hooks/useOrderData';
 
 const Cpl: React.FC = () => {
+  const { loading, saving, handleInputChange, getValue, saveOrderData } = useOrderData();
+
   return (
     <>
       {/* Main Content */}
       <section className="flex-1 bg-gray-900 overflow-y-auto">
         <div className="p-6">
           {/* Header */}
-          <div className="flex items-center mb-6 pb-4 border-b border-gray-700">
-            <i className="fas fa-file-contract text-2xl text-gray-400 mr-3"></i>
-            <div>
-              <h2 className="text-2xl font-bold text-white">Closing Protection Letter</h2>
-              <span className="text-sm text-blue-400">Title</span>
+          <div className="flex items-center justify-between mb-6 pb-4 border-b border-gray-700">
+            <div className="flex items-center">
+              <i className="fas fa-file-contract text-2xl text-gray-400 mr-3"></i>
+              <div>
+                <h2 className="text-2xl font-bold text-white">Closing Protection Letter</h2>
+                <span className="text-sm text-blue-400">Title</span>
+              </div>
             </div>
+            <button
+              onClick={saveOrderData}
+              disabled={saving}
+              className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+            >
+              {saving ? (
+                <>
+                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                  Saving...
+                </>
+              ) : (
+                'Save'
+              )}
+            </button>
           </div>
 
+          {loading ? (
+            <div className="flex items-center justify-center py-8">
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+            </div>
+          ) : (
+          <>
           {/* Underwriter Selection */}
           <div className="bg-gray-800 rounded-lg p-4 mb-6">
             <div className="grid grid-cols-2 gap-4">
@@ -113,6 +138,8 @@ const Cpl: React.FC = () => {
             </h3>
           </div>
         </div>
+        </>
+        )}
       </section>
 
       {/* Right Rail */}

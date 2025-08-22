@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { useOrderData } from '../../hooks/useOrderData';
 
 const EnvelopesShipping: React.FC = () => {
+  const { loading, saving, handleInputChange, getValue, saveOrderData } = useOrderData();
   const { orderId } = useParams<{ orderId: string }>();
   const [activeTab, setActiveTab] = useState('shipping_labels');
   const [activeEnvelopeTab, setActiveEnvelopeTab] = useState('order');
@@ -41,12 +43,33 @@ const EnvelopesShipping: React.FC = () => {
       <section className="flex-1 bg-gray-900 overflow-y-auto">
         {/* Page Header */}
         <div className="p-6 border-b border-gray-600">
-          <h2 className="text-2xl font-semibold flex items-center">
-            <i className="fas fa-envelope mr-3 text-blue-400"></i>
-            Mailing
-          </h2>
+          <div className="flex items-center justify-between">
+            <h2 className="text-2xl font-semibold flex items-center">
+              <i className="fas fa-envelope mr-3 text-blue-400"></i>
+              Mailing
+            </h2>
+            <button
+              onClick={saveOrderData}
+              disabled={saving}
+              className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+            >
+              {saving ? (
+                <>
+                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                  Saving...
+                </>
+              ) : (
+                'Save'
+              )}
+            </button>
+          </div>
         </div>
 
+        {loading ? (
+          <div className="flex items-center justify-center py-8">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+          </div>
+        ) : (
         <div className="flex">
           {/* Content Area */}
           <div className="flex-1 p-6">
@@ -709,6 +732,7 @@ const EnvelopesShipping: React.FC = () => {
             </div>
           </div>
         </div>
+        )}
       </section>
 
       {/* Right Rail */}

@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { useOrderData } from '../../hooks/useOrderData';
 
 const Recording: React.FC = () => {
+  const { loading, saving, handleInputChange, getValue, saveOrderData } = useOrderData();
   const { orderId } = useParams<{ orderId: string }>();
   const [activeTab, setActiveTab] = useState('recorded_documents');
   const [showModal, setShowModal] = useState(false);
@@ -17,7 +19,22 @@ const Recording: React.FC = () => {
               <i className="fas fa-university mr-3 text-blue-400"></i>
               Recording
             </h2>
-            <button 
+            <div className="flex gap-2">
+              <button
+                onClick={saveOrderData}
+                disabled={saving}
+                className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+              >
+                {saving ? (
+                  <>
+                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                    Saving...
+                  </>
+                ) : (
+                  'Save'
+                )}
+              </button>
+              <button 
               onClick={() => setShowModal(true)}
               className="bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded transition-colors"
             >
@@ -54,6 +71,12 @@ const Recording: React.FC = () => {
 
         {/* Content Area */}
         <div className="p-6">
+          {loading ? (
+            <div className="flex items-center justify-center py-8">
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+            </div>
+          ) : (
+          <>
           {activeTab === 'recorded_documents' && (
             <div className="bg-gray-800 border border-gray-600 rounded-md p-12 text-center">
               <i className="fas fa-university text-5xl text-gray-400 mb-4"></i>
@@ -152,6 +175,8 @@ const Recording: React.FC = () => {
                 </div>
               </div>
             </div>
+          )}
+          </>
           )}
         </div>
       </section>

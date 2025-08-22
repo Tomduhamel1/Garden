@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useOrderData } from '../../hooks/useOrderData';
 
 interface MarketplaceProps {}
 
@@ -13,6 +14,7 @@ interface ServiceCard {
 }
 
 const Marketplace: React.FC<MarketplaceProps> = () => {
+  const { loading, saving, handleInputChange, getValue, saveOrderData } = useOrderData();
   const [searchTerm, setSearchTerm] = useState('');
 
   const featuredServices: ServiceCard[] = [
@@ -113,14 +115,35 @@ const Marketplace: React.FC<MarketplaceProps> = () => {
       <section className="flex-1 bg-gray-900 overflow-y-auto">
         {/* Page Header */}
         <section className="py-8 px-10 pb-5 border-b border-gray-600">
-          <div className="flex items-center gap-4">
-            <i className="fa fa-shopping-cart text-gray-400 text-xl"></i>
-            <h2 className="text-2xl font-semibold text-white">Marketplace</h2>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <i className="fa fa-shopping-cart text-gray-400 text-xl"></i>
+              <h2 className="text-2xl font-semibold text-white">Marketplace</h2>
+            </div>
+            <button
+              onClick={saveOrderData}
+              disabled={saving}
+              className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+            >
+              {saving ? (
+                <>
+                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                  Saving...
+                </>
+              ) : (
+                'Save'
+              )}
+            </button>
           </div>
         </section>
 
         {/* Search Section */}
         <section className="px-10 py-8">
+          {loading ? (
+            <div className="flex items-center justify-center py-8">
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+            </div>
+          ) : (
           <div className="text-center mb-8">
             <h3 className="text-xl font-semibold text-white mb-4">Explore our marketplace of closing services</h3>
             <div className="max-w-md mx-auto relative">
@@ -245,6 +268,8 @@ const Marketplace: React.FC<MarketplaceProps> = () => {
               ))}
             </div>
           </section>
+          </>
+          )}
         </section>
       </section>
 

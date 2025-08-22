@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useOrderData } from '../../hooks/useOrderData';
 
 const styles = `
   .document-viewer {
@@ -183,6 +184,7 @@ const styles = `
 `;
 
 const SettlementStatement: React.FC = () => {
+  const { loading, saving, handleInputChange, getValue, saveOrderData } = useOrderData();
   const [statementType, setStatementType] = useState('standard');
   const [viewType, setViewType] = useState('combined');
   const [acknowledgementType, setAcknowledgementType] = useState('with_ack');
@@ -291,6 +293,18 @@ const SettlementStatement: React.FC = () => {
               </div>
             </div>
             <div className="flex items-center gap-2">
+              <button
+                onClick={saveOrderData}
+                disabled={saving}
+                className="px-3 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+                title="Save Data"
+              >
+                {saving ? (
+                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                ) : (
+                  <i className="fa fa-save"></i>
+                )}
+              </button>
               <button 
                 type="button" 
                 className="p-2 bg-gray-700 hover:bg-gray-600 text-white rounded" 
@@ -335,6 +349,12 @@ const SettlementStatement: React.FC = () => {
 
         {/* Document Viewer */}
         <section className="document-viewer">
+          {loading ? (
+            <div className="flex items-center justify-center py-16">
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white"></div>
+            </div>
+          ) : (
+          <>
           {/* Page 1 */}
           <div className="document-page" data-page="1" style={{ transform: `scale(${zoomLevel})`, transformOrigin: 'top center', marginBottom: `${20 * zoomLevel}px` }}>
             {/* Page Header */}
@@ -765,6 +785,8 @@ const SettlementStatement: React.FC = () => {
               </div>
             </div>
           </div>
+          </>
+          )}
         </section>
       </section>
 

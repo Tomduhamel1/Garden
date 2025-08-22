@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { useOrderData } from '../../hooks/useOrderData';
 
 interface NoApTableProps {}
 
 const NoApTable: React.FC<NoApTableProps> = () => {
+  const { loading, saving, handleInputChange, getValue, saveOrderData } = useOrderData();
   const [hasApTable, setHasApTable] = useState(false);
 
   const handleAddApTable = () => {
@@ -19,10 +21,29 @@ const NoApTable: React.FC<NoApTableProps> = () => {
             <i className="fa fa-table text-gray-400 text-xl"></i>
             <h2 className="text-2xl font-semibold text-white">No AP Table</h2>
           </div>
+          <button
+            onClick={saveOrderData}
+            disabled={saving}
+            className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+          >
+            {saving ? (
+              <>
+                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                Saving...
+              </>
+            ) : (
+              'Save'
+            )}
+          </button>
         </section>
 
         {/* Form Content */}
         <section className="px-10 py-8">
+          {loading ? (
+            <div className="flex items-center justify-center py-8">
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+            </div>
+          ) : (
           <form className="space-y-8">
             {!hasApTable ? (
               /* Empty State Section */
@@ -75,6 +96,7 @@ const NoApTable: React.FC<NoApTableProps> = () => {
               </section>
             )}
           </form>
+          )}
         </section>
       </section>
 

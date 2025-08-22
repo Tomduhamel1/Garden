@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { useOrderData } from '../../hooks/useOrderData';
 
 interface TaxesProrationsProps {}
 
 const TaxesProrations: React.FC<TaxesProrationsProps> = () => {
+  const { loading, saving, handleInputChange, getValue, saveOrderData } = useOrderData();
   const [activeTab, setActiveTab] = useState(0);
   
   // City/Town Taxes State
@@ -103,6 +105,20 @@ const TaxesProrations: React.FC<TaxesProrationsProps> = () => {
             <h2 className="text-2xl font-semibold text-white">Taxes & Prorations</h2>
           </div>
           <div className="flex gap-2">
+            <button
+              onClick={saveOrderData}
+              disabled={saving}
+              className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+            >
+              {saving ? (
+                <>
+                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                  Saving...
+                </>
+              ) : (
+                'Save'
+              )}
+            </button>
             <button className="bg-gray-600 border border-gray-500 rounded px-3 py-2 text-white text-sm hover:bg-gray-500" title="Settings">
               <i className="fa fa-cog mr-1"></i>
               Settings
@@ -156,6 +172,11 @@ const TaxesProrations: React.FC<TaxesProrationsProps> = () => {
 
           {/* Tab Content */}
           <section className="tab-content pb-10">
+            {loading ? (
+              <div className="flex items-center justify-center py-8">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+              </div>
+            ) : (
             <form className="space-y-8">
               <div className="grid grid-cols-2 gap-10">
                 {/* Left Column */}
@@ -171,8 +192,8 @@ const TaxesProrations: React.FC<TaxesProrationsProps> = () => {
                           inputMode="decimal" 
                           className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                           data-schema-key={`properties.0.tax_information.${activeTab}.annual_amount`}
-                          value={data.annual_amount}
-                          onChange={(e) => handleChange('annual_amount', e.target.value)}
+                          value={getValue(`properties.0.tax_information.${activeTab}.annual_amount`) || data.annual_amount}
+                          onChange={(e) => handleInputChange(`properties.0.tax_information.${activeTab}.annual_amount`, e.target.value)}
                         />
                       </div>
                       <div>
@@ -202,8 +223,8 @@ const TaxesProrations: React.FC<TaxesProrationsProps> = () => {
                             inputMode="numeric" 
                             className="w-full pl-9 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                             data-schema-key={`properties.0.tax_information.${activeTab}.paid_thru`}
-                            value={data.paid_thru}
-                            onChange={(e) => handleChange('paid_thru', e.target.value)}
+                            value={getValue(`properties.0.tax_information.${activeTab}.paid_thru`) || data.paid_thru}
+                            onChange={(e) => handleInputChange(`properties.0.tax_information.${activeTab}.paid_thru`, e.target.value)}
                           />
                         </div>
                       </div>
@@ -397,6 +418,7 @@ const TaxesProrations: React.FC<TaxesProrationsProps> = () => {
                 </div>
               </div>
             </form>
+            )}
           </section>
         </section>
       </section>

@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { useOrderData } from '../../hooks/useOrderData';
 
 const Commitment: React.FC = () => {
+  const { loading, saving, handleInputChange, getValue, saveOrderData } = useOrderData();
   const { orderId } = useParams<{ orderId: string }>();
   const [activeTab, setActiveTab] = useState('schedule_a');
 
@@ -10,11 +12,33 @@ const Commitment: React.FC = () => {
       {/* Main Content */}
       <section className="flex-1 bg-gray-900 overflow-y-auto">
         <div className="p-6">
-          <div className="flex items-center mb-6">
-            <i className="fas fa-certificate text-blue-500 text-2xl mr-3"></i>
-            <h2 className="text-xl font-semibold text-white">Commitment</h2>
+          <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center">
+              <i className="fas fa-certificate text-blue-500 text-2xl mr-3"></i>
+              <h2 className="text-xl font-semibold text-white">Commitment</h2>
+            </div>
+            <button
+              onClick={saveOrderData}
+              disabled={saving}
+              className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+            >
+              {saving ? (
+                <>
+                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                  Saving...
+                </>
+              ) : (
+                'Save'
+              )}
+            </button>
           </div>
 
+          {loading ? (
+            <div className="flex items-center justify-center py-8">
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+            </div>
+          ) : (
+          <>
           {/* Underwriter/Agent Options */}
           <div className="bg-gray-800 rounded-lg p-4 mb-6">
             <div className="flex space-x-6">
@@ -974,6 +998,8 @@ const Commitment: React.FC = () => {
                 </table>
               </div>
             </div>
+          )}
+          </>
           )}
         </div>
       </section>

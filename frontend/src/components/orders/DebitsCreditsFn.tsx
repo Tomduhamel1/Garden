@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useOrderData } from '../../hooks/useOrderData';
 
 interface DebitsCreditsFnProps {}
 
@@ -9,6 +10,7 @@ interface LineItem {
 }
 
 const DebitsCreditsFn: React.FC<DebitsCreditsFnProps> = () => {
+  const { loading, saving, handleInputChange, getValue, saveOrderData } = useOrderData();
   const [borrowerCredits, setBorrowerCredits] = useState<LineItem[]>(
     Array.from({ length: 17 }, (_, i) => ({
       statement_text: '',
@@ -56,10 +58,30 @@ const DebitsCreditsFn: React.FC<DebitsCreditsFnProps> = () => {
             <h2 className="text-2xl font-semibold text-white">Credits / Debits</h2>
             <span className="bg-green-600 px-2 py-1 rounded text-xs font-medium">L/N</span>
           </div>
+          <button
+            onClick={saveOrderData}
+            disabled={saving}
+            className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+          >
+            {saving ? (
+              <>
+                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                Saving...
+              </>
+            ) : (
+              'Save'
+            )}
+          </button>
         </section>
 
         {/* Form Content */}
         <section className="px-10 py-8">
+          {loading ? (
+            <div className="flex items-center justify-center py-8">
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+            </div>
+          ) : (
+          <>
           {/* Line Management Buttons */}
           <section className="flex justify-start gap-3 mb-6">
             <button 
@@ -194,7 +216,8 @@ const DebitsCreditsFn: React.FC<DebitsCreditsFnProps> = () => {
               </form>
             </div>
           </div>
-        </section>
+        </>
+        )}
       </section>
 
       {/* Right Rail */}

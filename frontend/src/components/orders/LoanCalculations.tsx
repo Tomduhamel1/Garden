@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { useOrderData } from '../../hooks/useOrderData';
 
 const LoanCalculations: React.FC = () => {
+  const { loading, saving, handleInputChange, getValue, saveOrderData } = useOrderData();
   const [liabilityAfterForeclosure, setLiabilityAfterForeclosure] = useState('');
   const [calculations, setCalculations] = useState({
     totalOfPayments: '',
@@ -12,11 +14,32 @@ const LoanCalculations: React.FC = () => {
 
   return (
     <>
-      <h2 className="flex items-center gap-2 text-2xl font-bold mb-6 border-b border-gray-700 pb-4">
-        <i className="fas fa-file-contract"></i>
-        <span>Loan Calculations</span>
-      </h2>
+      <div className="flex items-center justify-between mb-6 border-b border-gray-700 pb-4">
+        <h2 className="flex items-center gap-2 text-2xl font-bold">
+          <i className="fas fa-file-contract"></i>
+          <span>Loan Calculations</span>
+        </h2>
+        <button
+          onClick={saveOrderData}
+          disabled={saving}
+          className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+        >
+          {saving ? (
+            <>
+              <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+              Saving...
+            </>
+          ) : (
+            'Save'
+          )}
+        </button>
+      </div>
 
+      {loading ? (
+        <div className="flex items-center justify-center py-8">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+        </div>
+      ) : (
       <form className="space-y-6">
         {/* Liability After Foreclosure */}
         <div>
@@ -31,8 +54,8 @@ const LoanCalculations: React.FC = () => {
                   type="radio"
                   name="liability_after_foreclosure"
                   value="protect"
-                  checked={liabilityAfterForeclosure === 'protect'}
-                  onChange={(e) => setLiabilityAfterForeclosure(e.target.value)}
+                  checked={getValue('cdf.loans.0.other_disclosures.liability_after_foreclosure') === 'protect' || liabilityAfterForeclosure === 'protect'}
+                  onChange={(e) => handleInputChange('cdf.loans.0.other_disclosures.liability_after_foreclosure', e.target.value)}
                   className="text-blue-500"
                   data-schema-key="cdf.loans.0.other_disclosures.liability_after_foreclosure"
                 />
@@ -64,8 +87,8 @@ const LoanCalculations: React.FC = () => {
                 <td className="p-3">
                   <input
                     type="text"
-                    value={calculations.totalOfPayments}
-                    onChange={(e) => setCalculations({...calculations, totalOfPayments: e.target.value})}
+                    value={getValue('cdf.loan_calculations.total_of_payments') || calculations.totalOfPayments}
+                    onChange={(e) => handleInputChange('cdf.loan_calculations.total_of_payments', e.target.value)}
                     className="w-full px-3 py-1.5 bg-gray-700 text-white rounded border border-gray-600 focus:outline-none focus:border-blue-500"
                     data-schema-key="cdf.loan_calculations.total_of_payments"
                   />
@@ -77,8 +100,8 @@ const LoanCalculations: React.FC = () => {
                 <td className="p-3">
                   <input
                     type="text"
-                    value={calculations.financeCharges}
-                    onChange={(e) => setCalculations({...calculations, financeCharges: e.target.value})}
+                    value={getValue('cdf.loan_calculations.finance_charge') || calculations.financeCharges}
+                    onChange={(e) => handleInputChange('cdf.loan_calculations.finance_charge', e.target.value)}
                     className="w-full px-3 py-1.5 bg-gray-700 text-white rounded border border-gray-600 focus:outline-none focus:border-blue-500"
                     data-schema-key="cdf.loan_calculations.finance_charge"
                   />
@@ -90,8 +113,8 @@ const LoanCalculations: React.FC = () => {
                 <td className="p-3">
                   <input
                     type="text"
-                    value={calculations.amountFinanced}
-                    onChange={(e) => setCalculations({...calculations, amountFinanced: e.target.value})}
+                    value={getValue('cdf.loan_calculations.amount_financed') || calculations.amountFinanced}
+                    onChange={(e) => handleInputChange('cdf.loan_calculations.amount_financed', e.target.value)}
                     className="w-full px-3 py-1.5 bg-gray-700 text-white rounded border border-gray-600 focus:outline-none focus:border-blue-500"
                     data-schema-key="cdf.loan_calculations.amount_financed"
                   />
@@ -127,6 +150,7 @@ const LoanCalculations: React.FC = () => {
           </table>
         </div>
       </form>
+      )}
     </>
   );
 };

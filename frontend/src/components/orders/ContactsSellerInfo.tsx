@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { useOrderData } from '../../hooks/useOrderData';
 
 interface ContactsSellerInfoProps {}
 
 const ContactsSellerInfo: React.FC<ContactsSellerInfoProps> = () => {
+  const { loading, saving, handleInputChange: hookHandleInputChange, getValue, saveOrderData } = useOrderData();
   const [activeTab, setActiveTab] = useState(0);
   const [sellerType, setSellerType] = useState('individual');
   const [sellerData, setSellerData] = useState({
@@ -48,6 +50,20 @@ const ContactsSellerInfo: React.FC<ContactsSellerInfoProps> = () => {
               <i className="fa fa-users text-gray-400 text-xl"></i>
               <h2 className="text-2xl font-semibold">Contacts</h2>
             </div>
+            <button
+              onClick={saveOrderData}
+              disabled={saving}
+              className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+            >
+              {saving ? (
+                <>
+                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                  Saving...
+                </>
+              ) : (
+                'Save'
+              )}
+            </button>
             <div className="flex gap-2">
               <button className="bg-gray-600 border border-gray-500 rounded px-3 py-2 text-white text-sm hover:bg-gray-500">
                 <i className="fa fa-plus mr-1"></i>
@@ -99,6 +115,12 @@ const ContactsSellerInfo: React.FC<ContactsSellerInfoProps> = () => {
 
           {/* Tab Content */}
           <section className="tab-content">
+            {loading ? (
+              <div className="flex items-center justify-center py-8">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+              </div>
+            ) : (
+            <>
             {activeTab === 0 && (
               <form className="space-y-8">
                 {/* Search Existing Sellers */}
@@ -227,6 +249,8 @@ const ContactsSellerInfo: React.FC<ContactsSellerInfoProps> = () => {
                 <h3 className="text-lg mb-2">{tabs[activeTab]} Content</h3>
                 <p className="text-sm">This tab would contain {tabs[activeTab].toLowerCase()} specific fields for the seller</p>
               </div>
+            )}
+            </>
             )}
           </section>
         </section>

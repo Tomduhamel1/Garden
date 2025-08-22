@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
+import { useOrderData } from '../../hooks/useOrderData';
 
 interface EarnestCommissionsProps {}
 
 const EarnestCommissions: React.FC<EarnestCommissionsProps> = () => {
+  const { loading, saving, handleInputChange, getValue, saveOrderData } = useOrderData();
+
   const [earnestData, setEarnestData] = useState({
     earnest_amount: '',
     earnest_held_by: 'Settlement Agency',
@@ -101,10 +104,29 @@ const EarnestCommissions: React.FC<EarnestCommissionsProps> = () => {
             <i className="fa fa-money text-gray-400 text-xl"></i>
             <h2 className="text-2xl font-semibold text-white">Earnest & Commissions</h2>
           </div>
+          <button
+            onClick={saveOrderData}
+            disabled={saving}
+            className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+          >
+            {saving ? (
+              <>
+                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                Saving...
+              </>
+            ) : (
+              'Save'
+            )}
+          </button>
         </section>
 
         {/* Form Content */}
         <section className="px-10 py-8">
+          {loading ? (
+            <div className="flex items-center justify-center py-8">
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+            </div>
+          ) : (
           <form className="space-y-8">
             {/* Earnest Section */}
             <section>
@@ -116,8 +138,8 @@ const EarnestCommissions: React.FC<EarnestCommissionsProps> = () => {
                     type="text" 
                     className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                     data-schema-key="earnest_amount"
-                    value={earnestData.earnest_amount}
-                    onChange={(e) => setEarnestData({ ...earnestData, earnest_amount: e.target.value })}
+                    value={getValue('earnest_amount') || earnestData.earnest_amount}
+                    onChange={(e) => handleInputChange('earnest_amount', e.target.value)}
                   />
                 </div>
                 <div>
@@ -125,8 +147,8 @@ const EarnestCommissions: React.FC<EarnestCommissionsProps> = () => {
                   <select 
                     className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none"
                     data-schema-key="earnest_held_by"
-                    value={earnestData.earnest_held_by}
-                    onChange={(e) => setEarnestData({ ...earnestData, earnest_held_by: e.target.value })}
+                    value={getValue('earnest_held_by') || earnestData.earnest_held_by}
+                    onChange={(e) => handleInputChange('earnest_held_by', e.target.value)}
                   >
                     <option value="None">None</option>
                     <option value="Listing Agent">Listing Agent</option>
@@ -197,8 +219,8 @@ const EarnestCommissions: React.FC<EarnestCommissionsProps> = () => {
                         type="text" 
                         className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                         data-schema-key="listing_commission_base_amount"
-                        value={listingCommission.commission_base_amount}
-                        onChange={(e) => handleListingInputChange('commission_base_amount', e.target.value)}
+                        value={getValue('listing_commission_base_amount') || listingCommission.commission_base_amount}
+                        onChange={(e) => handleInputChange('listing_commission_base_amount', e.target.value)}
                       />
                     </div>
                     <div className="flex items-center justify-center w-8 h-10 bg-gray-600 rounded text-gray-300 text-lg">×</div>
@@ -209,8 +231,8 @@ const EarnestCommissions: React.FC<EarnestCommissionsProps> = () => {
                         inputMode="decimal" 
                         className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                         data-schema-key="listing_percentage"
-                        value={listingCommission.percentage}
-                        onChange={(e) => handleListingInputChange('percentage', e.target.value)}
+                        value={getValue('listing_percentage') || listingCommission.percentage}
+                        onChange={(e) => handleInputChange('listing_percentage', e.target.value)}
                       />
                     </div>
                   </div>
@@ -376,6 +398,7 @@ const EarnestCommissions: React.FC<EarnestCommissionsProps> = () => {
               </div>
             </section>
           </form>
+          )}
         </section>
       </section>
 

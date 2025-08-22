@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-08-22T18:30:59.999Z",
+  "timestamp": "2025-08-22T19:58:58.008Z",
   "checks": {
     "tracking": {
       "progressMd": true,
@@ -87,6 +87,7 @@
         "DidNotShopFor.tsx",
         "DidShopFor.tsx",
         "Documents.tsx",
+        "Documents_broken.tsx",
         "EarnestCommissions.tsx",
         "EnvelopesShipping.tsx",
         "Escrow.tsx",
@@ -165,7 +166,7 @@
       "isRepo": true,
       "branch": "main",
       "uncommittedChanges": 0,
-      "lastCommit": "f87122f - SESSION_END: Wired 4 additional components - 20% schema wiring complete (39 minutes ago)"
+      "lastCommit": "0692662 - SESSION_END: Component wiring accelerated to 48% complete (21/44 components) (6 minutes ago)"
     }
   },
   "discrepancies": [],
@@ -176,7 +177,7 @@
     "databaseReady": true,
     "trackingComplete": true,
     "htmlPrototypesCount": 34,
-    "componentsConverted": 45,
+    "componentsConverted": 46,
     "modelsCreated": 3,
     "gitClean": true,
     "overallReadiness": "READY",
@@ -185,7 +186,7 @@
       "authentication": "COMPLETE",
       "orderAPI": "COMPLETE",
       "calculations": "NOT_STARTED",
-      "componentsConverted": "45/34"
+      "componentsConverted": "46/34"
     },
     "actualProgress": 30
   }

@@ -197,10 +197,8 @@ const DebitsCredits: React.FC = () => {
               </form>
             </div>
           </div>
-        </section>
-          </>
-          )}
-        </section>
+        </>
+        )}
       </section>
 
       {/* Right Rail */}

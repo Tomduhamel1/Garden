@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useOrderData } from '../../hooks/useOrderData';
 
 interface LedgerEntry {
   id: string;
@@ -30,6 +31,7 @@ interface Disbursement {
 }
 
 const Accounting: React.FC = () => {
+  const { loading, saving, handleInputChange, getValue, saveOrderData } = useOrderData();
   const [activeTab, setActiveTab] = useState<'ledger' | 'receipts' | 'disbursements'>('ledger');
   const [selectedDisbursements, setSelectedDisbursements] = useState<string[]>([]);
 
@@ -107,6 +109,20 @@ const Accounting: React.FC = () => {
               <h2 className="text-2xl font-semibold text-white">Accounting</h2>
             </div>
             <div className="flex items-center gap-2">
+              <button
+                onClick={saveOrderData}
+                disabled={saving}
+                className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+              >
+                {saving ? (
+                  <>
+                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                    Saving...
+                  </>
+                ) : (
+                  'Save'
+                )}
+              </button>
               <button 
                 type="button" 
                 className="p-2 bg-gray-700 hover:bg-gray-600 text-white text-sm rounded" 
@@ -165,6 +181,12 @@ const Accounting: React.FC = () => {
 
         {/* Tab Content */}
         <section className="px-10 py-6">
+          {loading ? (
+            <div className="flex items-center justify-center py-8">
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+            </div>
+          ) : (
+          <>
           {/* Ledger Tab */}
           {activeTab === 'ledger' && (
             <div>
@@ -368,6 +390,8 @@ const Accounting: React.FC = () => {
                 </div>
               )}
             </div>
+          )}
+          </>
           )}
         </section>
       </section>

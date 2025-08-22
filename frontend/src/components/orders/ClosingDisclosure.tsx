@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useOrderData } from '../../hooks/useOrderData';
 
 const documentStyles = `
   .document-viewer {
@@ -120,6 +121,7 @@ const documentStyles = `
 `;
 
 export function ClosingDisclosure() {
+  const { loading, saving, handleInputChange, getValue, saveOrderData } = useOrderData();
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = 6;
 
@@ -832,6 +834,23 @@ export function ClosingDisclosure() {
         {/* Actions */}
         <div className="space-y-3">
           <button
+            onClick={saveOrderData}
+            disabled={saving}
+            className="w-full px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+          >
+            {saving ? (
+              <>
+                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                Saving...
+              </>
+            ) : (
+              <>
+                <i className="fa fa-save"></i>
+                Save Data
+              </>
+            )}
+          </button>
+          <button
             onClick={handlePrint}
             className="w-full px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors"
           >
@@ -893,7 +912,13 @@ export function ClosingDisclosure() {
 
           {/* Document Pages */}
           <div id="document-container">
-            {pages[currentPage - 1]()}
+            {loading ? (
+              <div className="flex items-center justify-center py-16">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white"></div>
+              </div>
+            ) : (
+              pages[currentPage - 1]()
+            )}
           </div>
         </div>
       </section>
