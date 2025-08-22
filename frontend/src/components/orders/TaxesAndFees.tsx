@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useOrderData } from '../../hooks/useOrderData';
 
 interface Document {
   id: string;
@@ -12,6 +13,7 @@ interface PaymentType {
 }
 
 const TaxesAndFees: React.FC = () => {
+  const { loading, saving, handleInputChange, handleSave, getValue } = useOrderData();
   const [activeRow, setActiveRow] = useState<number>(1);
   const [activePaymentType, setActivePaymentType] = useState('check');
   const [showDocumentDropdown, setShowDocumentDropdown] = useState(false);
@@ -111,6 +113,8 @@ const TaxesAndFees: React.FC = () => {
             }`}
             readOnly={lineNumber === 1}
             data-schema-key={`cdf.taxes_and_government_fees.${lineKey}.borrower_amount`}
+            value={getValue(`cdf.taxes_and_government_fees.${lineKey}.borrower_amount`)}
+            onChange={handleInputChange}
             onFocus={() => setActiveRow(lineNumber)}
           />
         </td>
@@ -120,6 +124,8 @@ const TaxesAndFees: React.FC = () => {
             inputMode="decimal"
             className="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500"
             data-schema-key={`cdf.taxes_and_government_fees.${lineKey}.before_borrower_amount`}
+            value={getValue(`cdf.taxes_and_government_fees.${lineKey}.before_borrower_amount`)}
+            onChange={handleInputChange}
             onFocus={() => setActiveRow(lineNumber)}
           />
         </td>
@@ -371,6 +377,17 @@ const TaxesAndFees: React.FC = () => {
     doc.toLowerCase().includes(documentSearch.toLowerCase())
   );
 
+  if (loading) {
+    return (
+      <section className="flex-1 bg-gray-900 overflow-y-auto flex items-center justify-center">
+        <div className="text-gray-400 text-center">
+          <i className="fa fa-spinner fa-spin text-4xl"></i>
+          <p className="mt-4">Loading...</p>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <>
       {/* Main Content */}
@@ -381,6 +398,17 @@ const TaxesAndFees: React.FC = () => {
             <i className="fa fa-university text-gray-400 text-xl"></i>
             <h2 className="text-2xl font-semibold text-white">Taxes and Other Government Fees</h2>
             <span className="bg-green-600 px-2 py-1 rounded text-xs font-medium">E</span>
+          </div>
+          <div className="flex gap-3">
+            <button 
+              type="button"
+              onClick={handleSave}
+              disabled={saving}
+              className="bg-green-600 border border-green-500 rounded px-3 py-2 text-white text-sm hover:bg-green-700 disabled:bg-gray-600 disabled:border-gray-500"
+            >
+              <i className={`fa ${saving ? 'fa-spinner fa-spin' : 'fa-save'} mr-2`}></i>
+              {saving ? 'Saving...' : 'Save'}
+            </button>
           </div>
         </section>
 

@@ -44,7 +44,11 @@
 - ✅ **Created useOrderData hook for component wiring**
 - ✅ **OriginationCharges component fully wired with save/load**
 - ✅ **Contacts component partially wired (names, emails)**
-- 🚧 **Wiring remaining 39/44 components to schema (11% complete)**
+- ✅ **DidNotShopFor component fully wired (Section B)**
+- ✅ **DidShopFor component fully wired (Section C)**
+- ✅ **TaxesAndFees component fully wired (Section E)**
+- ✅ **Prepaids component fully wired (Section F)**
+- 🚧 **Wiring remaining 35/44 components to schema (20% complete)**
 
 ## 🎉 MAJOR MILESTONE ACHIEVED
 
@@ -58,13 +62,13 @@
 
 ## 🚨 IMMEDIATE (Next Session)
 
-### 1. 📋 Continue Wiring Schema Fields to UI (39 components remaining)
+### 1. 📋 Continue Wiring Schema Fields to UI (35 components remaining)
 **PRIORITY ORDER for MVP functionality:**
 - ✅ Wire Section A (Origination Charges) - COMPLETE
-- Wire Section B (Services Cannot Shop) - DidNotShopFor.tsx
-- Wire Section C (Services Can Shop) - DidShopFor.tsx  
-- Wire Section E (Taxes & Gov Fees) - TaxesAndGovFees.tsx
-- Wire Section F (Prepaids) - Prepaids.tsx
+- ✅ Wire Section B (Services Cannot Shop) - DidNotShopFor.tsx - COMPLETE
+- ✅ Wire Section C (Services Can Shop) - DidShopFor.tsx - COMPLETE
+- ✅ Wire Section E (Taxes & Gov Fees) - TaxesAndFees.tsx - COMPLETE
+- ✅ Wire Section F (Prepaids) - Prepaids.tsx - COMPLETE
 - Wire Section G (Escrow) - InitialEscrow.tsx
 - Wire Section H (Other Charges) - Other.tsx
 - ✅ Wire Contacts component (borrowers, sellers, lenders) - PARTIAL

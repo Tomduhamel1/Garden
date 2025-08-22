@@ -1,6 +1,8 @@
 import { useState } from 'react';
+import { useOrderData } from '../../hooks/useOrderData';
 
 export default function Prepaids() {
+  const { loading, saving, handleInputChange, handleSave, getValue } = useOrderData();
   const [activeRow, setActiveRow] = useState(1);
   const [paymentType, setPaymentType] = useState('check');
   const [activeLineForSettings, setActiveLineForSettings] = useState(1);
@@ -224,6 +226,8 @@ export default function Prepaids() {
                 : 'bg-gray-700 text-white focus:outline-none focus:border-blue-500'
             }`}
             data-schema-key={`cdf.prepaid_item_information.line_${lineNumberPadded}.description`}
+            value={getValue(`cdf.prepaid_item_information.line_${lineNumberPadded}.description`)}
+            onChange={handleInputChange}
             onFocus={() => handleRowFocus(lineNumber)}
             readOnly={isReadOnlyDescription}
           />
@@ -237,6 +241,8 @@ export default function Prepaids() {
                 : 'bg-gray-700 text-white focus:outline-none focus:border-blue-500'
             }`}
             data-schema-key={`cdf.prepaid_item_information.line_${lineNumberPadded}.payee_name`}
+            value={getValue(`cdf.prepaid_item_information.line_${lineNumberPadded}.payee_name`)}
+            onChange={handleInputChange}
             onFocus={() => handleRowFocus(lineNumber)}
             readOnly={isReadOnlyPayee}
           />
@@ -247,6 +253,8 @@ export default function Prepaids() {
             inputMode="decimal"
             className="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500"
             data-schema-key={`cdf.prepaid_item_information.line_${lineNumberPadded}.borrower_amount`}
+            value={getValue(`cdf.prepaid_item_information.line_${lineNumberPadded}.borrower_amount`)}
+            onChange={handleInputChange}
             onFocus={() => handleRowFocus(lineNumber)}
           />
         </td>
@@ -256,6 +264,8 @@ export default function Prepaids() {
             inputMode="decimal"
             className="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500"
             data-schema-key={`cdf.prepaid_item_information.line_${lineNumberPadded}.before_borrower_amount`}
+            value={getValue(`cdf.prepaid_item_information.line_${lineNumberPadded}.before_borrower_amount`)}
+            onChange={handleInputChange}
             onFocus={() => handleRowFocus(lineNumber)}
           />
         </td>
@@ -290,6 +300,17 @@ export default function Prepaids() {
     );
   };
 
+  if (loading) {
+    return (
+      <section className="flex-1 bg-gray-900 overflow-y-auto flex items-center justify-center">
+        <div className="text-gray-400 text-center">
+          <i className="fa fa-spinner fa-spin text-4xl"></i>
+          <p className="mt-4">Loading...</p>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <>
       {/* Main Content */}
@@ -300,6 +321,17 @@ export default function Prepaids() {
             <i className="fa fa-shield text-gray-400 text-xl"></i>
             <h2 className="text-2xl font-semibold text-white">Prepaids</h2>
             <span className="bg-green-600 px-2 py-1 rounded text-xs font-medium">F</span>
+          </div>
+          <div className="flex gap-3">
+            <button 
+              type="button"
+              onClick={handleSave}
+              disabled={saving}
+              className="bg-green-600 border border-green-500 rounded px-3 py-2 text-white text-sm hover:bg-green-700 disabled:bg-gray-600 disabled:border-gray-500"
+            >
+              <i className={`fa ${saving ? 'fa-spinner fa-spin' : 'fa-save'} mr-2`}></i>
+              {saving ? 'Saving...' : 'Save'}
+            </button>
           </div>
         </section>
 

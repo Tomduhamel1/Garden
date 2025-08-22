@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { useOrderData } from '../../hooks/useOrderData';
 
 export default function DidShopFor() {
+  const { loading, saving, handleInputChange, handleSave, getValue } = useOrderData();
   const [activeRow, setActiveRow] = useState<number>(1);
   const [taxableToggle, setTaxableToggle] = useState(false);
   const [activePaymentType, setActivePaymentType] = useState('net funded');
@@ -47,6 +49,8 @@ export default function DidShopFor() {
               type="text"
               className={`w-full px-3 py-1.5 ${isCalculatedRow ? 'bg-gray-600 text-gray-400' : 'bg-gray-700 text-white'} border border-gray-500 rounded text-sm focus:outline-none focus:border-blue-500`}
               data-schema-key={`cdf.services_borrower_did_shop_for.line_${paddedNumber}.description`}
+              value={getValue(`cdf.services_borrower_did_shop_for.line_${paddedNumber}.description`)}
+              onChange={handleInputChange}
               onFocus={() => setActiveRow(lineNumber)}
               readOnly={isCalculatedRow}
             />
@@ -58,6 +62,8 @@ export default function DidShopFor() {
               type="text"
               className={`w-full px-3 py-1.5 ${isCalculatedRow ? 'bg-gray-600 text-gray-400' : 'bg-gray-700 text-white'} border border-gray-500 rounded text-sm focus:outline-none focus:border-blue-500`}
               data-schema-key={`cdf.services_borrower_did_shop_for.line_${paddedNumber}.payee_name`}
+              value={getValue(`cdf.services_borrower_did_shop_for.line_${paddedNumber}.payee_name`)}
+              onChange={handleInputChange}
               onFocus={() => setActiveRow(lineNumber)}
               readOnly={isCalculatedRow}
             />
@@ -69,6 +75,8 @@ export default function DidShopFor() {
             inputMode="decimal"
             className={`w-full px-3 py-1.5 ${isCalculatedRow ? 'bg-gray-600 text-gray-400' : 'bg-gray-700 text-white'} border border-gray-500 rounded text-sm text-right focus:outline-none focus:border-blue-500`}
             data-schema-key={`cdf.services_borrower_did_shop_for.line_${paddedNumber}.borrower_amount`}
+            value={getValue(`cdf.services_borrower_did_shop_for.line_${paddedNumber}.borrower_amount`)}
+            onChange={handleInputChange}
             onFocus={() => setActiveRow(lineNumber)}
             readOnly={isCalculatedRow}
           />
@@ -79,6 +87,8 @@ export default function DidShopFor() {
             inputMode="decimal"
             className={`w-full px-3 py-1.5 ${isCalculatedRow ? 'bg-gray-600 text-gray-400' : 'bg-gray-700 text-white'} border border-gray-500 rounded text-sm text-right focus:outline-none focus:border-blue-500`}
             data-schema-key={`cdf.services_borrower_did_shop_for.line_${paddedNumber}.before_borrower_amount`}
+            value={getValue(`cdf.services_borrower_did_shop_for.line_${paddedNumber}.before_borrower_amount`)}
+            onChange={handleInputChange}
             onFocus={() => setActiveRow(lineNumber)}
             readOnly={isCalculatedRow}
           />
@@ -89,6 +99,8 @@ export default function DidShopFor() {
             inputMode="decimal"
             className={`w-full px-3 py-1.5 ${isCalculatedRow ? 'bg-gray-600 text-gray-400' : 'bg-gray-700 text-white'} border border-gray-500 rounded text-sm text-right focus:outline-none focus:border-blue-500`}
             data-schema-key={`cdf.services_borrower_did_shop_for.line_${paddedNumber}.seller_amount`}
+            value={getValue(`cdf.services_borrower_did_shop_for.line_${paddedNumber}.seller_amount`)}
+            onChange={handleInputChange}
             onFocus={() => setActiveRow(lineNumber)}
             readOnly={isCalculatedRow}
           />
@@ -99,6 +111,8 @@ export default function DidShopFor() {
             inputMode="decimal"
             className={`w-full px-3 py-1.5 ${isCalculatedRow ? 'bg-gray-600 text-gray-400' : 'bg-gray-700 text-white'} border border-gray-500 rounded text-sm text-right focus:outline-none focus:border-blue-500`}
             data-schema-key={`cdf.services_borrower_did_shop_for.line_${paddedNumber}.before_seller_amount`}
+            value={getValue(`cdf.services_borrower_did_shop_for.line_${paddedNumber}.before_seller_amount`)}
+            onChange={handleInputChange}
             onFocus={() => setActiveRow(lineNumber)}
             readOnly={isCalculatedRow}
           />
@@ -109,6 +123,8 @@ export default function DidShopFor() {
             inputMode="decimal"
             className={`w-full px-3 py-1.5 ${isCalculatedRow ? 'bg-gray-600 text-gray-400' : 'bg-gray-700 text-white'} border border-gray-500 rounded text-sm text-right focus:outline-none focus:border-blue-500`}
             data-schema-key={`cdf.services_borrower_did_shop_for.line_${paddedNumber}.paid_by_others_amount`}
+            value={getValue(`cdf.services_borrower_did_shop_for.line_${paddedNumber}.paid_by_others_amount`)}
+            onChange={handleInputChange}
             onFocus={() => setActiveRow(lineNumber)}
             readOnly={isCalculatedRow}
           />
@@ -308,6 +324,17 @@ export default function DidShopFor() {
     }
   };
 
+  if (loading) {
+    return (
+      <section className="flex-1 bg-gray-900 overflow-y-auto flex items-center justify-center">
+        <div className="text-gray-400 text-center">
+          <i className="fa fa-spinner fa-spin text-4xl"></i>
+          <p className="mt-4">Loading...</p>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <>
       <section className="flex-1 bg-gray-900 overflow-y-auto">
@@ -315,6 +342,18 @@ export default function DidShopFor() {
           <div className="flex items-center gap-4">
             <i className="fa fa-search text-gray-400 text-xl"></i>
             <h2 className="text-2xl font-semibold text-white">Services Borrower Did Shop For</h2>
+            <span className="bg-blue-600 text-white px-2 py-1 rounded text-xs font-medium">C</span>
+          </div>
+          <div className="flex gap-3">
+            <button 
+              type="button"
+              onClick={handleSave}
+              disabled={saving}
+              className="bg-green-600 border border-green-500 rounded px-3 py-2 text-white text-sm hover:bg-green-700 disabled:bg-gray-600 disabled:border-gray-500"
+            >
+              <i className={`fa ${saving ? 'fa-spinner fa-spin' : 'fa-save'} mr-2`}></i>
+              {saving ? 'Saving...' : 'Save'}
+            </button>
           </div>
         </section>
 
