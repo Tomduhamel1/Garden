@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { useOrderData } from '../../hooks/useOrderData';
 
 interface LoanProps {
-  orderId: string;
+  orderId?: string;
 }
 
 const Loan: React.FC<LoanProps> = ({ orderId }) => {
+  const { loading, saving, getValue, handleInputChange, handleSave } = useOrderData();
   const [fundingType, setFundingType] = useState<'net' | 'gross'>('net');
   const [latePenaltyType, setLatePenaltyType] = useState<'percent' | 'dollar'>('percent');
   const [interestOnly, setInterestOnly] = useState(false);
@@ -50,14 +52,32 @@ const Loan: React.FC<LoanProps> = ({ orderId }) => {
             <i className="fa fa-university text-gray-400 text-xl"></i>
             <h2 className="text-2xl font-semibold text-white">Loan</h2>
           </div>
-          <button className="bg-gray-600 border border-gray-500 rounded px-3 py-2 text-white text-sm hover:bg-gray-500">
-            <i className="fa fa-plus mr-2"></i>
-            Add Loan
-          </button>
+          <div className="flex gap-3">
+            <button
+              onClick={handleSave}
+              disabled={loading || saving}
+              className="bg-blue-600 hover:bg-blue-700 disabled:bg-gray-600 px-4 py-2 rounded text-white text-sm flex items-center gap-2"
+            >
+              {saving && <i className="fa fa-spinner fa-spin"></i>}
+              {saving ? 'Saving...' : 'Save'}
+            </button>
+            <button className="bg-gray-600 border border-gray-500 rounded px-3 py-2 text-white text-sm hover:bg-gray-500">
+              <i className="fa fa-plus mr-2"></i>
+              Add Loan
+            </button>
+          </div>
         </section>
 
         {/* Loan Form */}
         <section className="px-10 py-8">
+          {loading && (
+            <div className="flex items-center justify-center py-8">
+              <i className="fa fa-spinner fa-spin text-2xl text-gray-400"></i>
+              <span className="ml-3 text-gray-400">Loading...</span>
+            </div>
+          )}
+          
+          {!loading && (
           <form className="space-y-8">
             <div className="grid grid-cols-2 gap-10">
               {/* Left Column */}
@@ -71,6 +91,8 @@ const Loan: React.FC<LoanProps> = ({ orderId }) => {
                       <input 
                         type="text" 
                         inputMode="decimal" 
+                        value={getValue('cdf.loans.0.initial_loan_amount')}
+                        onChange={handleInputChange}
                         className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
                         data-schema-key="cdf.loans.0.initial_loan_amount"
                       />
@@ -116,6 +138,8 @@ const Loan: React.FC<LoanProps> = ({ orderId }) => {
                         <input 
                           type="text" 
                           inputMode="numeric" 
+                          value={getValue('cdf.loans.0.loan_term_years')}
+                          onChange={handleInputChange}
                           className="flex-1 px-3 py-2.5 bg-gray-700 border border-gray-500 rounded-l text-white text-sm focus:outline-none focus:border-blue-500" 
                           data-schema-key="cdf.loans.0.loan_term_years"
                         />
@@ -129,6 +153,8 @@ const Loan: React.FC<LoanProps> = ({ orderId }) => {
                         <input 
                           type="text" 
                           inputMode="numeric" 
+                          value={getValue('cdf.loans.0.loan_term_months')}
+                          onChange={handleInputChange}
                           className="flex-1 px-3 py-2.5 bg-gray-700 border border-gray-500 text-white text-sm focus:outline-none focus:border-blue-500" 
                           data-schema-key="cdf.loans.0.loan_term_months"
                         />
@@ -145,6 +171,8 @@ const Loan: React.FC<LoanProps> = ({ orderId }) => {
                         <input 
                           type="text" 
                           inputMode="numeric" 
+                          value={getValue('cdf.loans.0.first_payment_date')}
+                          onChange={handleInputChange}
                           className="w-full pl-9 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
                           data-schema-key="cdf.loans.0.first_payment_date"
                         />
@@ -275,6 +303,8 @@ const Loan: React.FC<LoanProps> = ({ orderId }) => {
                       <label className="block text-sm text-gray-300 mb-2">Interest Rate</label>
                       <input 
                         type="text" 
+                        value={getValue('cdf.loans.0.interest_rate')}
+                        onChange={handleInputChange}
                         className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
                         data-schema-key="cdf.loans.0.interest_rate"
                       />
@@ -282,9 +312,10 @@ const Loan: React.FC<LoanProps> = ({ orderId }) => {
                     <div>
                       <label className="block text-sm text-gray-300 mb-2">Interest Type</label>
                       <select 
+                        value={getValue('cdf.loans.0.interest_type')}
+                        onChange={handleInputChange}
                         className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none" 
                         data-schema-key="cdf.loans.0.interest_type"
-                        defaultValue="Fixed"
                       >
                         <option value="Fixed">Fixed</option>
                         <option value="Variable">Variable</option>
@@ -328,6 +359,7 @@ const Loan: React.FC<LoanProps> = ({ orderId }) => {
               </div>
             </section>
           </form>
+          )}
         </section>
       </section>
 

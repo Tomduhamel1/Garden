@@ -1,6 +1,8 @@
 import React from 'react';
+import { useOrderData } from '../../hooks/useOrderData';
 
 const CashToClose: React.FC = () => {
+  const { loading, saving, getValue, handleInputChange, handleSave } = useOrderData();
   return (
     <>
       {/* Main Content */}
@@ -11,10 +13,26 @@ const CashToClose: React.FC = () => {
             <i className="fa fa-money text-gray-400 text-xl"></i>
             <h2 className="text-2xl font-semibold text-white">Cash to Close</h2>
           </div>
+          <button
+            onClick={handleSave}
+            disabled={loading || saving}
+            className="bg-blue-600 hover:bg-blue-700 disabled:bg-gray-600 px-4 py-2 rounded text-white text-sm flex items-center gap-2"
+          >
+            {saving && <i className="fa fa-spinner fa-spin"></i>}
+            {saving ? 'Saving...' : 'Save'}
+          </button>
         </section>
 
         {/* Form Content */}
         <section className="px-10 py-8">
+          {loading && (
+            <div className="flex items-center justify-center py-8">
+              <i className="fa fa-spinner fa-spin text-2xl text-gray-400"></i>
+              <span className="ml-3 text-gray-400">Loading...</span>
+            </div>
+          )}
+          
+          {!loading && (
           <form className="space-y-8">
             {/* Cash to Close Table */}
             <section>
@@ -45,6 +63,8 @@ const CashToClose: React.FC = () => {
                           type="text" 
                           inputMode="decimal"
                           className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" 
+                          value={getValue('cdf.purchase_cash_to_close.total_closing_costs.estimate') || ''}
+                          onChange={handleInputChange}
                           data-schema-key="cdf.purchase_cash_to_close.total_closing_costs.estimate"
                         />
                       </td>
@@ -53,6 +73,8 @@ const CashToClose: React.FC = () => {
                           type="text" 
                           inputMode="decimal"
                           className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" 
+                          value={getValue('cdf.purchase_cash_to_close.total_closing_costs.final_amount') || ''}
+                          onChange={handleInputChange}
                           data-schema-key="cdf.purchase_cash_to_close.total_closing_costs.final_amount"
                         />
                       </td>
@@ -60,6 +82,8 @@ const CashToClose: React.FC = () => {
                         <div className="relative">
                           <select 
                             className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none" 
+                            value={getValue('cdf.purchase_cash_to_close.total_closing_costs.changed') || 'No'}
+                            onChange={handleInputChange}
                             data-schema-key="cdf.purchase_cash_to_close.total_closing_costs.changed"
                           >
                             <option value="No" selected>No</option>
@@ -171,6 +195,8 @@ const CashToClose: React.FC = () => {
                           type="text" 
                           inputMode="decimal"
                           className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" 
+                          value={getValue('cdf.purchase_cash_to_close.down_payment_from_borrower.estimate') || ''}
+                          onChange={handleInputChange}
                           data-schema-key="cdf.purchase_cash_to_close.down_payment_from_borrower.estimate"
                         />
                       </td>
@@ -179,6 +205,8 @@ const CashToClose: React.FC = () => {
                           type="text" 
                           inputMode="decimal"
                           className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" 
+                          value={getValue('cdf.purchase_cash_to_close.down_payment_from_borrower.final_amount') || ''}
+                          onChange={handleInputChange}
                           data-schema-key="cdf.purchase_cash_to_close.down_payment_from_borrower.final_amount"
                         />
                       </td>
@@ -393,6 +421,7 @@ const CashToClose: React.FC = () => {
               </div>
             </section>
           </form>
+          )}
         </section>
       </section>
 

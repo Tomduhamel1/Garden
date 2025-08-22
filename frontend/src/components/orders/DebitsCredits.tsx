@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { useOrderData } from '../../hooks/useOrderData';
 
 const DebitsCredits: React.FC = () => {
+  const { loading, saving, getValue, handleInputChange, handleSave } = useOrderData();
   const [borrowerDebits, setBorrowerDebits] = useState(Array(15).fill({ statementText: '', amount: '' }));
   const [sellerCredits, setSellerCredits] = useState(Array(17).fill({ statementText: '', amount: '' }));
 
@@ -35,10 +37,27 @@ const DebitsCredits: React.FC = () => {
             <h2 className="text-2xl font-semibold text-white">Credits / Debits</h2>
             <span className="bg-green-600 px-2 py-1 rounded text-xs font-medium">K/M</span>
           </div>
+          <button
+            onClick={handleSave}
+            disabled={loading || saving}
+            className="bg-blue-600 hover:bg-blue-700 disabled:bg-gray-600 px-4 py-2 rounded text-white text-sm flex items-center gap-2"
+          >
+            {saving && <i className="fa fa-spinner fa-spin"></i>}
+            {saving ? 'Saving...' : 'Save'}
+          </button>
         </section>
 
         {/* Form Content */}
         <section className="px-10 py-8">
+          {loading && (
+            <div className="flex items-center justify-center py-8">
+              <i className="fa fa-spinner fa-spin text-2xl text-gray-400"></i>
+              <span className="ml-3 text-gray-400">Loading...</span>
+            </div>
+          )}
+          
+          {!loading && (
+          <>
           {/* Line Management Buttons */}
           <section className="flex justify-start gap-3 mb-6">
             <button 
@@ -91,8 +110,8 @@ const DebitsCredits: React.FC = () => {
                               type="text" 
                               className={`w-full px-3 py-1.5 ${isReadOnly ? 'bg-gray-600 text-gray-400' : 'bg-gray-700 text-white focus:outline-none focus:border-blue-500'} border border-gray-500 rounded text-sm`}
                               readOnly={isReadOnly}
-                              value={borrowerDebits[index].statementText}
-                              onChange={(e) => handleBorrowerDebitChange(index, 'statementText', e.target.value)}
+                              value={getValue(`cdf.borrower_debit_information.line_${lineNum}.statement_text`) || ''}
+                              onChange={handleInputChange}
                               data-schema-key={`cdf.borrower_debit_information.line_${lineNum}.statement_text`}
                             />
                           </td>
@@ -102,8 +121,8 @@ const DebitsCredits: React.FC = () => {
                               inputMode="decimal" 
                               className={`w-full px-3 py-1.5 ${isReadOnly ? 'bg-gray-600 text-gray-400' : 'bg-gray-700 text-white focus:outline-none focus:border-blue-500'} border border-gray-500 rounded text-sm text-right`}
                               readOnly={isReadOnly}
-                              value={borrowerDebits[index].amount}
-                              onChange={(e) => handleBorrowerDebitChange(index, 'amount', e.target.value)}
+                              value={getValue(`cdf.borrower_debit_information.line_${lineNum}.amount`) || ''}
+                              onChange={handleInputChange}
                               data-schema-key={`cdf.borrower_debit_information.line_${lineNum}.amount`}
                             />
                           </td>
@@ -154,8 +173,8 @@ const DebitsCredits: React.FC = () => {
                               type="text" 
                               className={`w-full px-3 py-1.5 ${isReadOnly || hasLinkIcon ? 'bg-gray-600 text-gray-400' : 'bg-gray-700 text-white focus:outline-none focus:border-blue-500'} border border-gray-500 rounded text-sm`}
                               readOnly={isReadOnly || hasLinkIcon}
-                              value={sellerCredits[index].statementText}
-                              onChange={(e) => handleSellerCreditChange(index, 'statementText', e.target.value)}
+                              value={getValue(`cdf.seller_credit_information.line_${lineNum}.statement_text`) || ''}
+                              onChange={handleInputChange}
                               data-schema-key={`cdf.seller_credit_information.line_${lineNum}.statement_text`}
                             />
                           </td>
@@ -165,8 +184,8 @@ const DebitsCredits: React.FC = () => {
                               inputMode="decimal" 
                               className={`w-full px-3 py-1.5 ${isReadOnly ? 'bg-gray-600 text-gray-400' : 'bg-gray-700 text-white focus:outline-none focus:border-blue-500'} border border-gray-500 rounded text-sm text-right`}
                               readOnly={isReadOnly}
-                              value={sellerCredits[index].amount}
-                              onChange={(e) => handleSellerCreditChange(index, 'amount', e.target.value)}
+                              value={getValue(`cdf.seller_credit_information.line_${lineNum}.amount`) || ''}
+                              onChange={handleInputChange}
                               data-schema-key={`cdf.seller_credit_information.line_${lineNum}.amount`}
                             />
                           </td>
@@ -178,6 +197,9 @@ const DebitsCredits: React.FC = () => {
               </form>
             </div>
           </div>
+        </section>
+          </>
+          )}
         </section>
       </section>
 

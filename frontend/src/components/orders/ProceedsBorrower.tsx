@@ -1,6 +1,8 @@
 import { useState } from 'react';
+import { useOrderData } from '../../hooks/useOrderData';
 
 export default function ProceedsBorrower() {
+  const { loading, saving, getValue, handleInputChange, handleSave } = useOrderData();
   const [paymentType, setPaymentType] = useState('check');
 
   const handlePaymentTypeChange = (type: string) => {
@@ -25,6 +27,14 @@ export default function ProceedsBorrower() {
             <i className="fa fa-home text-gray-400 text-xl"></i>
             <h2 className="text-2xl font-semibold text-white">Proceeds for Borrower</h2>
           </div>
+          <button
+            onClick={handleSave}
+            disabled={loading || saving}
+            className="bg-blue-600 hover:bg-blue-700 disabled:bg-gray-600 px-4 py-2 rounded text-white text-sm flex items-center gap-2"
+          >
+            {saving && <i className="fa fa-spinner fa-spin"></i>}
+            {saving ? 'Saving...' : 'Save'}
+          </button>
         </section>
 
         {/* Form Content */}

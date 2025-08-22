@@ -1,13 +1,9 @@
 import React, { useState } from 'react';
+import { useOrderData } from '../../hooks/useOrderData';
 
 const Properties: React.FC = () => {
+  const { loading, saving, getValue, handleInputChange, handleSave } = useOrderData();
   const [activeTab, setActiveTab] = useState(0);
-  const [address, setAddress] = useState('');
-  const [unit, setUnit] = useState('');
-  const [city, setCity] = useState('');
-  const [county, setCounty] = useState('');
-  const [state, setState] = useState('');
-  const [zip, setZip] = useState('');
 
   const tabs = ['Property', 'Legal Description', 'Subdivision', 'Survey'];
 
@@ -21,14 +17,33 @@ const Properties: React.FC = () => {
             <i className="fa fa-map-marker text-gray-400 text-xl"></i>
             <h2 className="text-2xl font-semibold text-white">Properties</h2>
           </div>
-          <button className="bg-gray-600 border border-gray-500 rounded px-3 py-2 text-white text-sm hover:bg-gray-500">
-            <i className="fa fa-plus mr-2"></i>
-            Add Property
-          </button>
+          <div className="flex gap-3">
+            <button
+              onClick={handleSave}
+              disabled={loading || saving}
+              className="bg-blue-600 hover:bg-blue-700 disabled:bg-gray-600 px-4 py-2 rounded text-white text-sm flex items-center gap-2"
+            >
+              {saving && <i className="fa fa-spinner fa-spin"></i>}
+              {saving ? 'Saving...' : 'Save'}
+            </button>
+            <button className="bg-gray-600 border border-gray-500 rounded px-3 py-2 text-white text-sm hover:bg-gray-500">
+              <i className="fa fa-plus mr-2"></i>
+              Add Property
+            </button>
+          </div>
         </section>
 
         {/* Tab Container */}
         <section className="px-10">
+          {loading && (
+            <div className="flex items-center justify-center py-8">
+              <i className="fa fa-spinner fa-spin text-2xl text-gray-400"></i>
+              <span className="ml-3 text-gray-400">Loading...</span>
+            </div>
+          )}
+          
+          {!loading && (
+          <>
           {/* Tab Menu */}
           <div className="flex border-b-2 border-gray-600 mb-8">
             {tabs.map((tab, index) => (
@@ -63,8 +78,9 @@ const Properties: React.FC = () => {
                           type="text" 
                           className="w-full pl-9 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
                           placeholder="Search address..."
-                          value={address}
-                          onChange={(e) => setAddress(e.target.value)}
+                          value={getValue('properties.0.address')}
+                          onChange={handleInputChange}
+                          data-schema-key="properties.0.address"
                         />
                       </div>
                     </div>
@@ -73,8 +89,9 @@ const Properties: React.FC = () => {
                       <input 
                         type="text" 
                         className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
-                        value={unit}
-                        onChange={(e) => setUnit(e.target.value)}
+                        value={getValue('properties.0.unit')}
+                        onChange={handleInputChange}
+                        data-schema-key="properties.0.unit"
                       />
                     </div>
                   </div>
@@ -85,8 +102,9 @@ const Properties: React.FC = () => {
                       <input 
                         type="text" 
                         className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
-                        value={city}
-                        onChange={(e) => setCity(e.target.value)}
+                        value={getValue('properties.0.city')}
+                        onChange={handleInputChange}
+                        data-schema-key="properties.0.city"
                       />
                     </div>
                     <div className="flex-1">
@@ -94,13 +112,18 @@ const Properties: React.FC = () => {
                       <input 
                         type="text" 
                         className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
-                        value={county}
-                        onChange={(e) => setCounty(e.target.value)}
+                        value={getValue('properties.0.county')}
+                        onChange={handleInputChange}
+                        data-schema-key="properties.0.county"
                       />
                     </div>
                     <div className="flex-1">
                       <label className="block text-sm font-medium text-gray-300 mb-2">State</label>
-                      <select className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500">
+                      <select 
+                        value={getValue('properties.0.state')}
+                        onChange={handleInputChange}
+                        data-schema-key="properties.0.state"
+                        className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500">
                         <option value="">Select State</option>
                         <option value="CA">California</option>
                         <option value="NY">New York</option>
@@ -113,8 +136,9 @@ const Properties: React.FC = () => {
                       <input 
                         type="text" 
                         className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
-                        value={zip}
-                        onChange={(e) => setZip(e.target.value)}
+                        value={getValue('properties.0.zip')}
+                        onChange={handleInputChange}
+                        data-schema-key="properties.0.zip"
                       />
                     </div>
                   </div>
@@ -127,7 +151,11 @@ const Properties: React.FC = () => {
                   <div className="flex gap-5 mb-5">
                     <div className="flex-1">
                       <label className="block text-sm font-medium text-gray-300 mb-2">Property Type</label>
-                      <select className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500">
+                      <select 
+                        value={getValue('properties.0.property_type')}
+                        onChange={handleInputChange}
+                        data-schema-key="properties.0.property_type"
+                        className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500">
                         <option value="">Select Type</option>
                         <option value="single-family">Single Family</option>
                         <option value="condo">Condominium</option>
@@ -223,6 +251,8 @@ const Properties: React.FC = () => {
                 </div>
               </div>
             </section>
+          )}
+          </>
           )}
         </section>
       </section>

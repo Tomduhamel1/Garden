@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { useOrderData } from '../../hooks/useOrderData';
 
 interface LenderCreditsProps {}
 
 const LenderCredits: React.FC<LenderCreditsProps> = () => {
+  const { loading, saving, getValue, handleInputChange, handleSave } = useOrderData();
   const [lenderCreditsData, setLenderCreditsData] = useState({
     // Closing Cost Subtotals (read-only)
     subtotals: {

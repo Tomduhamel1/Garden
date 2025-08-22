@@ -1,68 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import orderService from '../../services/orderService';
-import { type OrderData } from '../../types/schema';
-import { getFieldValue, setFieldValue, initializeOrderDefaults } from '../../utils/schemaDefaults';
+import React, { useState } from 'react';
+import { useOrderData } from '../../hooks/useOrderData';
 
 const LoanTerms: React.FC = () => {
-  const { orderId } = useParams<{ orderId: string }>();
-  const [loading, setLoading] = useState(true);
-  const [saving, setSaving] = useState(false);
-  const [orderData, setOrderData] = useState<OrderData | null>(null);
+  const { loading, saving, getValue, handleInputChange, handleSave } = useOrderData();
   const [hasBalloonPayment, setHasBalloonPayment] = useState('no');
   
-  useEffect(() => {
-    if (orderId) {
-      fetchOrder();
-    }
-  }, [orderId]);
-  
-  const fetchOrder = async () => {
-    try {
-      setLoading(true);
-      const data = await orderService.getOrder(orderId!);
-      const initialized = initializeOrderDefaults(data as Partial<OrderData>);
-      setOrderData(initialized);
-    } catch (err) {
-      console.error('Error fetching order:', err);
-    } finally {
-      setLoading(false);
-    }
-  };
-  
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value, type } = e.target;
-    const fieldPath = e.target.getAttribute('data-schema-key') || name;
-    
-    if (!orderData) return;
-    
-    const newOrderData = { ...orderData };
-    const fieldValue = type === 'checkbox' 
-      ? (e.target as HTMLInputElement).checked
-      : type === 'number' 
-      ? parseFloat(value) || 0
-      : value;
-    
-    setFieldValue(newOrderData, fieldPath, fieldValue);
-    setOrderData(newOrderData);
-  };
-  
-  const handleSave = async () => {
-    if (!orderId || !orderData) return;
-    
-    try {
-      setSaving(true);
-      await orderService.updateOrder(orderId, orderData);
-      alert('Loan terms saved successfully!');
-    } catch (err) {
-      console.error('Error saving order:', err);
-      alert('Failed to save loan terms');
-    } finally {
-      setSaving(false);
-    }
-  };
-  
-  if (loading || !orderData) {
+  if (loading) {
     return (
       <section className="flex-1 bg-gray-900 overflow-y-auto">
         <div className="flex items-center justify-center py-20">
@@ -125,7 +68,7 @@ const LoanTerms: React.FC = () => {
                             type="date" 
                             className="w-full pl-10 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
                             data-schema-key="cdfData.transaction_information.borrower_statement_issued_date"
-                            value={getFieldValue(orderData, 'cdfData.transaction_information.borrower_statement_issued_date') || ''}
+                            value={getValue('cdfData.transaction_information.borrower_statement_issued_date') || ''}
                             onChange={handleInputChange}
                           />
                         </div>
@@ -142,7 +85,7 @@ const LoanTerms: React.FC = () => {
                             type="date" 
                             className="w-full pl-10 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
                             data-schema-key="cdfData.transaction_information.seller_statement_issued_date"
-                            value={getFieldValue(orderData, 'cdfData.transaction_information.seller_statement_issued_date') || ''}
+                            value={getValue('cdfData.transaction_information.seller_statement_issued_date') || ''}
                             onChange={handleInputChange}
                           />
                         </div>
@@ -166,7 +109,7 @@ const LoanTerms: React.FC = () => {
                       <select 
                         className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none" 
                         data-schema-key="cdfData.loans.0.loan_type"
-                        value={getFieldValue(orderData, 'cdfData.loans.0.loan_type') || 'Conventional'}
+                        value={getValue('cdfData.loans.0.loan_type') || 'Conventional'}
                         onChange={handleInputChange}
                       >
                         <option value="Conventional Insured">Conventional Insured</option>
@@ -186,7 +129,7 @@ const LoanTerms: React.FC = () => {
                       <select 
                         className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none" 
                         data-schema-key="cdfData.loans.0.loan_purpose"
-                        value={getFieldValue(orderData, 'cdfData.loans.0.loan_purpose') || 'Purchase'}
+                        value={getValue('cdfData.loans.0.loan_purpose') || 'Purchase'}
                         onChange={handleInputChange}
                       >
                         <option value="Purchase">Purchase</option>

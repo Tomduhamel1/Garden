@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useOrderData } from '../../hooks/useOrderData';
 
 interface PaymentType {
   value: string;
@@ -6,6 +7,7 @@ interface PaymentType {
 }
 
 const OtherCharges: React.FC = () => {
+  const { loading, saving, getValue, handleInputChange, handleSave } = useOrderData();
   const [taxableToggle, setTaxableToggle] = useState(false);
   const [activePaymentType, setActivePaymentType] = useState('check');
 
@@ -33,22 +35,24 @@ const OtherCharges: React.FC = () => {
         <td className="py-3 px-4">
           <input 
             type="text" 
+            value={getValue(`cdf.other_charges.line_${lineNumber.toString().padStart(2, '0')}.description`)}
+            onChange={handleInputChange}
             className={`w-full bg-transparent border-none outline-none focus:ring-0 ${isSpecialLine ? 'text-gray-400' : 'text-gray-100'}`}
             placeholder="Description"
-            defaultValue={isSpecialLine ? "Title Premium" : undefined}
             readOnly={isSpecialLine}
-            data-schema-key={`cdf.other_charges.${lineIndex}.description`}
+            data-schema-key={`cdf.other_charges.line_${lineNumber.toString().padStart(2, '0')}.description`}
           />
         </td>
         <td className="py-3 px-4 text-right">
           <input 
             type="text" 
             inputMode="decimal"
+            value={getValue(`cdf.other_charges.line_${lineNumber.toString().padStart(2, '0')}.amount`)}
+            onChange={handleInputChange}
             className={`w-full bg-transparent border-none outline-none focus:ring-0 text-right ${isSpecialLine ? 'text-gray-400' : 'text-gray-100'}`}
             placeholder="0.00"
-            defaultValue={isSpecialLine ? "850.00" : undefined}
             readOnly={isSpecialLine}
-            data-schema-key={`cdf.other_charges.${lineIndex}.amount`}
+            data-schema-key={`cdf.other_charges.line_${lineNumber.toString().padStart(2, '0')}.amount`}
           />
         </td>
         <td className="py-3 px-4 text-center">
@@ -255,10 +259,27 @@ const OtherCharges: React.FC = () => {
       <section className="flex-1 bg-gray-900 overflow-y-auto">
         <div className="p-6">
           <div className="max-w-6xl mx-auto">
-            <header className="mb-6">
+            <header className="mb-6 flex items-center justify-between">
               <h1 className="text-2xl font-bold text-white">Other Charges</h1>
+              <button
+                onClick={handleSave}
+                disabled={loading || saving}
+                className="bg-blue-600 hover:bg-blue-700 disabled:bg-gray-600 px-4 py-2 rounded text-white text-sm flex items-center gap-2"
+              >
+                {saving && <i className="fa fa-spinner fa-spin"></i>}
+                {saving ? 'Saving...' : 'Save'}
+              </button>
             </header>
             
+            {loading && (
+              <div className="flex items-center justify-center py-8">
+                <i className="fa fa-spinner fa-spin text-2xl text-gray-400"></i>
+                <span className="ml-3 text-gray-400">Loading...</span>
+              </div>
+            )}
+            
+            {!loading && (
+            <>
             {/* Line Items Section */}
             <section className="bg-gray-800 rounded-lg p-6 mb-6">
               <div className="flex justify-between items-center mb-4">
@@ -344,6 +365,8 @@ const OtherCharges: React.FC = () => {
                     <input 
                       type="text" 
                       inputMode="decimal"
+                      value={getValue('cdf.other_charges_payment.amount')}
+                      onChange={handleInputChange}
                       className="w-full bg-gray-700 border border-gray-600 rounded-md px-3 py-2 text-gray-100 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                       placeholder="0.00"
                       data-schema-key="cdf.other_charges_payment.amount"
@@ -353,6 +376,8 @@ const OtherCharges: React.FC = () => {
                   <div>
                     <label className="block text-sm font-medium text-gray-300 mb-2">Payee</label>
                     <select 
+                      value={getValue('cdf.other_charges_payment.payee')}
+                      onChange={handleInputChange}
                       className="w-full bg-gray-700 border border-gray-600 rounded-md px-3 py-2 text-gray-100 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                       data-schema-key="cdf.other_charges_payment.payee"
                     >
@@ -389,6 +414,8 @@ const OtherCharges: React.FC = () => {
               {/* Payment Type Specific Content */}
               {renderPaymentContent()}
             </section>
+            </>
+          )}
           </div>
         </div>
       </section>

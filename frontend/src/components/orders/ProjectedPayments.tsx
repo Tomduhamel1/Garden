@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { useOrderData } from '../../hooks/useOrderData';
 
 const ProjectedPayments: React.FC = () => {
+  const { loading, saving, getValue, handleInputChange, handleSave } = useOrderData();
   const [includesPropertyTaxes, setIncludesPropertyTaxes] = useState(false);
   const [includesHomeownersInsurance, setIncludesHomeownersInsurance] = useState(false);
   const [includesOther, setIncludesOther] = useState(false);
@@ -16,11 +18,28 @@ const ProjectedPayments: React.FC = () => {
             <i className="fa fa-calculator text-gray-400 text-xl"></i>
             <h2 className="text-2xl font-semibold text-white">Projected Payments</h2>
           </div>
+          <button
+            onClick={handleSave}
+            disabled={loading || saving}
+            className="bg-blue-600 hover:bg-blue-700 disabled:bg-gray-600 px-4 py-2 rounded text-white text-sm flex items-center gap-2"
+          >
+            {saving && <i className="fa fa-spinner fa-spin"></i>}
+            {saving ? 'Saving...' : 'Save'}
+          </button>
         </section>
 
         {/* Form Content */}
         <section className="px-10 py-8">
-          {/* Add/Remove Column Buttons */}
+          {loading && (
+            <div className="flex items-center justify-center py-8">
+              <i className="fa fa-spinner fa-spin text-2xl text-gray-400"></i>
+              <span className="ml-3 text-gray-400">Loading...</span>
+            </div>
+          )}
+          
+          {!loading && (
+          <>
+          {/* Add/Remove Column Buttons */
           <section className="flex justify-end gap-3 mb-6">
             <button type="button" className="bg-gray-600 border border-gray-500 rounded px-3 py-2 text-white text-sm hover:bg-gray-500 disabled:opacity-50" disabled>
               <i className="fa fa-minus mr-1"></i>
@@ -54,12 +73,16 @@ const ProjectedPayments: React.FC = () => {
                             <input 
                               type="text" 
                               className="w-16 px-2 py-1 bg-gray-700 border border-gray-500 rounded text-white text-sm text-center focus:outline-none focus:border-blue-500" 
+                              value={getValue('cdf.loans.0.payment_projections.0.start_year') || ''}
+                              onChange={handleInputChange}
                               data-schema-key="cdf.loans.0.payment_projections.0.start_year"
                             />
                             <span className="text-gray-300">-</span>
                             <input 
                               type="text" 
                               className="w-16 px-2 py-1 bg-gray-700 border border-gray-500 rounded text-white text-sm text-center focus:outline-none focus:border-blue-500" 
+                              value={getValue('cdf.loans.0.payment_projections.0.end_year') || ''}
+                              onChange={handleInputChange}
                               data-schema-key="cdf.loans.0.payment_projections.0.end_year"
                             />
                           </div>
@@ -90,6 +113,8 @@ const ProjectedPayments: React.FC = () => {
                             inputMode="decimal"
                             placeholder="Amount"
                             className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
+                            value={getValue('cdf.loans.0.payment_projections.0.principal_and_interest') || ''}
+                            onChange={handleInputChange}
                             data-schema-key="cdf.loans.0.payment_projections.0.principal_and_interest"
                           />
                         </td>
@@ -132,6 +157,8 @@ const ProjectedPayments: React.FC = () => {
                           <input 
                             type="text" 
                             className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
+                            value={getValue('cdf.loans.0.payment_projections.0.mortgage_insurance') || ''}
+                            onChange={handleInputChange}
                             data-schema-key="cdf.loans.0.payment_projections.0.mortgage_insurance"
                           />
                         </td>
@@ -146,6 +173,8 @@ const ProjectedPayments: React.FC = () => {
                           <input 
                             type="text" 
                             className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
+                            value={getValue('cdf.loans.0.payment_projections.0.estimated_escrow') || ''}
+                            onChange={handleInputChange}
                             data-schema-key="cdf.loans.0.payment_projections.0.estimated_escrow"
                           />
                         </td>
@@ -281,6 +310,8 @@ const ProjectedPayments: React.FC = () => {
               </div>
             </section>
           </form>
+          </>
+          )}
         </section>
       </section>
 

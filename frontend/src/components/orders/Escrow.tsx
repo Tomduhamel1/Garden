@@ -1,6 +1,8 @@
 import { useState } from 'react';
+import { useOrderData } from '../../hooks/useOrderData';
 
 export default function Escrow() {
+  const { loading, saving, getValue, handleInputChange, handleSave } = useOrderData();
   const [activeRow, setActiveRow] = useState(1);
   const [paymentType, setPaymentType] = useState('net funded');
 
@@ -23,16 +25,20 @@ export default function Escrow() {
                 <label className="block text-sm text-gray-300 mb-2">Street Address 1</label>
                 <input
                   type="text"
+                  value={getValue('cdf.escrow_information.payees.0.check_info.street_address')}
+                  onChange={handleInputChange}
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
-                  data-schema-key="check_info.street_address"
+                  data-schema-key="cdf.escrow_information.payees.0.check_info.street_address"
                 />
               </div>
               <div>
                 <label className="block text-sm text-gray-300 mb-2">Street Address 2</label>
                 <input
                   type="text"
+                  value={getValue('cdf.escrow_information.payees.0.check_info.street_address_2')}
+                  onChange={handleInputChange}
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
-                  data-schema-key="check_info.street_address_2"
+                  data-schema-key="cdf.escrow_information.payees.0.check_info.street_address_2"
                 />
               </div>
             </div>
@@ -41,24 +47,30 @@ export default function Escrow() {
                 <label className="block text-sm text-gray-300 mb-2">City</label>
                 <input
                   type="text"
+                  value={getValue('cdf.escrow_information.payees.0.check_info.city')}
+                  onChange={handleInputChange}
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
-                  data-schema-key="check_info.city"
+                  data-schema-key="cdf.escrow_information.payees.0.check_info.city"
                 />
               </div>
               <div>
                 <label className="block text-sm text-gray-300 mb-2">State</label>
                 <input
                   type="text"
+                  value={getValue('cdf.escrow_information.payees.0.check_info.state')}
+                  onChange={handleInputChange}
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
-                  data-schema-key="check_info.state"
+                  data-schema-key="cdf.escrow_information.payees.0.check_info.state"
                 />
               </div>
               <div>
                 <label className="block text-sm text-gray-300 mb-2">Zip Code</label>
                 <input
                   type="text"
+                  value={getValue('cdf.escrow_information.payees.0.check_info.zip_code')}
+                  onChange={handleInputChange}
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
-                  data-schema-key="check_info.zip_code"
+                  data-schema-key="cdf.escrow_information.payees.0.check_info.zip_code"
                 />
               </div>
             </div>
@@ -75,24 +87,30 @@ export default function Escrow() {
                 <input
                   type="text"
                   inputMode="numeric"
+                  value={getValue('cdf.escrow_information.payees.0.wire_info.routing_number')}
+                  onChange={handleInputChange}
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
-                  data-schema-key="wire_info.routing_number"
+                  data-schema-key="cdf.escrow_information.payees.0.wire_info.routing_number"
                 />
               </div>
               <div>
                 <label className="block text-sm text-gray-300 mb-2">Bank Name</label>
                 <input
                   type="text"
+                  value={getValue('cdf.escrow_information.payees.0.wire_info.bank_name')}
+                  onChange={handleInputChange}
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
-                  data-schema-key="wire_info.bank_name"
+                  data-schema-key="cdf.escrow_information.payees.0.wire_info.bank_name"
                 />
               </div>
               <div>
                 <label className="block text-sm text-gray-300 mb-2">Account #</label>
                 <input
                   type="text"
+                  value={getValue('cdf.escrow_information.payees.0.wire_info.account_number')}
+                  onChange={handleInputChange}
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
-                  data-schema-key="wire_info.account_number"
+                  data-schema-key="cdf.escrow_information.payees.0.wire_info.account_number"
                 />
               </div>
             </div>
@@ -101,8 +119,10 @@ export default function Escrow() {
                 <label className="block text-sm text-gray-300 mb-2">Name on Account</label>
                 <input
                   type="text"
+                  value={getValue('cdf.escrow_information.payees.0.wire_info.account_name')}
+                  onChange={handleInputChange}
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
-                  data-schema-key="wire_info.account_name"
+                  data-schema-key="cdf.escrow_information.payees.0.wire_info.account_name"
                 />
               </div>
               <div>
@@ -206,6 +226,8 @@ export default function Escrow() {
         <td className="py-3 px-4">
           <input
             type="text"
+            value={getValue(`cdf.escrow_information.line_${lineNumberPadded}.description`)}
+            onChange={handleInputChange}
             className={`w-full px-3 py-1.5 border border-gray-500 rounded text-sm ${
               isReadOnlyDescription
                 ? 'bg-gray-600 text-gray-400'
@@ -220,6 +242,8 @@ export default function Escrow() {
           <input
             type="text"
             inputMode="decimal"
+            value={getValue(`cdf.escrow_information.line_${lineNumberPadded}.per_month_amount`)}
+            onChange={handleInputChange}
             className={`w-full px-3 py-1.5 border border-gray-500 rounded text-sm text-center ${
               isLine08ReadOnly
                 ? 'bg-gray-600 text-gray-400'
@@ -247,6 +271,8 @@ export default function Escrow() {
           <input
             type="text"
             inputMode="decimal"
+            value={getValue(`cdf.escrow_information.line_${lineNumberPadded}.borrower_amount`)}
+            onChange={handleInputChange}
             className="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500"
             data-schema-key={`cdf.escrow_information.line_${lineNumberPadded}.borrower_amount`}
             onFocus={() => handleRowFocus(lineNumber)}
@@ -265,6 +291,8 @@ export default function Escrow() {
           <input
             type="text"
             inputMode="decimal"
+            value={getValue(`cdf.escrow_information.line_${lineNumberPadded}.seller_amount`)}
+            onChange={handleInputChange}
             className="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500"
             data-schema-key={`cdf.escrow_information.line_${lineNumberPadded}.seller_amount`}
             onFocus={() => handleRowFocus(lineNumber)}
@@ -303,12 +331,29 @@ export default function Escrow() {
             <h2 className="text-2xl font-semibold text-white">Initial Escrow Payment at Closing</h2>
             <span className="bg-green-600 px-2 py-1 rounded text-xs font-medium">G</span>
           </div>
+          <button
+            onClick={handleSave}
+            disabled={loading || saving}
+            className="bg-blue-600 hover:bg-blue-700 disabled:bg-gray-600 px-4 py-2 rounded text-white text-sm flex items-center gap-2"
+          >
+            {saving && <i className="fa fa-spinner fa-spin"></i>}
+            {saving ? 'Saving...' : 'Save'}
+          </button>
         </section>
 
         {/* Form Content */}
         <section className="px-10 py-8">
-          {/* Line Management Buttons */}
-          <section className="flex justify-start gap-3 mb-6">
+          {loading && (
+            <div className="flex items-center justify-center py-8">
+              <i className="fa fa-spinner fa-spin text-2xl text-gray-400"></i>
+              <span className="ml-3 text-gray-400">Loading...</span>
+            </div>
+          )}
+          
+          {!loading && (
+            <>
+            {/* Line Management Buttons */}
+            <section className="flex justify-start gap-3 mb-6">
             <button
               type="button"
               className="bg-gray-600 border border-gray-500 rounded px-3 py-2 text-white text-sm hover:bg-gray-500 disabled:opacity-50"
@@ -534,6 +579,8 @@ export default function Escrow() {
                           <label className="block text-sm text-gray-300 mb-2">Name</label>
                           <input
                             type="text"
+                            value={getValue('cdf.escrow_information.payees.0.name_dep')}
+                            onChange={handleInputChange}
                             className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                             data-schema-key="cdf.escrow_information.payees.0.name_dep"
                           />
@@ -546,6 +593,8 @@ export default function Escrow() {
                           <input
                             type="text"
                             inputMode="decimal"
+                            value={getValue('cdf.escrow_information.payees.0.payment_dep')}
+                            onChange={handleInputChange}
                             className="w-full px-3 py-2.5 bg-gray-600 border border-gray-500 rounded text-gray-400 text-sm"
                             data-schema-key="cdf.escrow_information.payees.0.payment_dep"
                             readOnly
@@ -554,6 +603,8 @@ export default function Escrow() {
                         <div>
                           <label className="block text-sm text-gray-300 mb-2">Label</label>
                           <select
+                            value={getValue('cdf.escrow_information.payees.0.label.payee_label_id')}
+                            onChange={handleInputChange}
                             className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none"
                             data-schema-key="cdf.escrow_information.payees.0.label.payee_label_id"
                           >
@@ -583,6 +634,8 @@ export default function Escrow() {
               </div>
             </section>
           </form>
+            </>
+          )}
         </section>
       </section>
 

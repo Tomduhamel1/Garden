@@ -1,6 +1,8 @@
 import { useState } from 'react';
+import { useOrderData } from '../../hooks/useOrderData';
 
 export default function Payoffs() {
+  const { loading, saving, getValue, handleInputChange, handleSave } = useOrderData();
   const [activeTab, setActiveTab] = useState(0);
 
   const handleTabChange = (tabIndex: number) => {
@@ -51,6 +53,8 @@ export default function Payoffs() {
                     <input
                       type="text"
                       className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
+                      value={getValue(`payoffs.${payoffIndex}.lender_name`) || ''}
+                      onChange={handleInputChange}
                       data-schema-key={`payoffs.${payoffIndex}.lender_name`}
                     />
                   </div>
@@ -60,6 +64,8 @@ export default function Payoffs() {
                     <input
                       type="text"
                       className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
+                      value={getValue(`payoffs.${payoffIndex}.loan_number`) || ''}
+                      onChange={handleInputChange}
                       data-schema-key={`payoffs.${payoffIndex}.loan_number`}
                     />
                   </div>
@@ -70,6 +76,8 @@ export default function Payoffs() {
                       type="text"
                       inputMode="decimal"
                       className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
+                      value={getValue(`payoffs.${payoffIndex}.payoff_amount`) || ''}
+                      onChange={handleInputChange}
                       data-schema-key={`payoffs.${payoffIndex}.payoff_amount`}
                     />
                   </div>
@@ -79,8 +87,10 @@ export default function Payoffs() {
                     <div className="relative">
                       <i className="fa fa-calendar absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
                       <input
-                        type="text"
+                        type="date"
                         className="w-full pl-9 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
+                        value={getValue(`payoffs.${payoffIndex}.good_through_date`) || ''}
+                        onChange={handleInputChange}
                         data-schema-key={`payoffs.${payoffIndex}.good_through_date`}
                       />
                     </div>
@@ -114,6 +124,14 @@ export default function Payoffs() {
             <h2 className="text-2xl font-semibold text-white">Mortgage Payoffs</h2>
           </div>
           <div className="flex gap-3">
+            <button
+              onClick={handleSave}
+              disabled={loading || saving}
+              className="bg-blue-600 hover:bg-blue-700 disabled:bg-gray-600 px-4 py-2 rounded text-white text-sm flex items-center gap-2"
+            >
+              {saving && <i className="fa fa-spinner fa-spin"></i>}
+              {saving ? 'Saving...' : 'Save'}
+            </button>
             <button className="bg-gray-600 border border-gray-500 rounded px-3 py-2 text-white text-sm hover:bg-gray-500">
               <i className="fa fa-minus mr-2"></i>
               Remove
@@ -127,7 +145,16 @@ export default function Payoffs() {
 
         {/* Tab Container */}
         <section className="px-10">
-          {/* Tab Menu */}
+          {loading && (
+            <div className="flex items-center justify-center py-8">
+              <i className="fa fa-spinner fa-spin text-2xl text-gray-400"></i>
+              <span className="ml-3 text-gray-400">Loading...</span>
+            </div>
+          )}
+          
+          {!loading && (
+          <>
+          {/* Tab Menu */
           <div className="flex border-b-2 border-gray-600 mb-8">
             {tabNames.map((tabName, index) => (
               <button
@@ -153,6 +180,8 @@ export default function Payoffs() {
               {renderPayoffTab(index)}
             </div>
           ))}
+          </>
+          )}
         </section>
       </section>
 
