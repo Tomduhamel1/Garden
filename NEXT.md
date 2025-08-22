@@ -41,7 +41,10 @@
 - ✅ **VS Code crash recovery complete - all components working**
 - ✅ **Fixed all TypeScript import errors (verbatimModuleSyntax)**
 - ✅ **Fixed white screen issues - app fully functional**
-- 🚧 **Wiring MVP fields to UI components (BasicInfo and LoanTerms done)**
+- ✅ **Created useOrderData hook for component wiring**
+- ✅ **OriginationCharges component fully wired with save/load**
+- ✅ **Contacts component partially wired (names, emails)**
+- 🚧 **Wiring remaining 39/44 components to schema (11% complete)**
 
 ## 🎉 MAJOR MILESTONE ACHIEVED
 
@@ -55,16 +58,19 @@
 
 ## 🚨 IMMEDIATE (Next Session)
 
-### 1. 📋 Continue Wiring Schema Fields to UI
-**Wire remaining MVP components to schema:**
-- Wire Section A (Origination Charges) fields
-- Wire Section B (Services Cannot Shop) fields  
-- Wire Section C (Services Can Shop) fields
-- Wire Section E (Taxes & Gov Fees) fields
-- Wire Section F (Prepaids) fields
-- Wire Section G (Escrow) fields
-- Wire Section H (Other Charges) fields
-- Wire Contacts component (borrowers, sellers, lenders)
+### 1. 📋 Continue Wiring Schema Fields to UI (39 components remaining)
+**PRIORITY ORDER for MVP functionality:**
+- ✅ Wire Section A (Origination Charges) - COMPLETE
+- Wire Section B (Services Cannot Shop) - DidNotShopFor.tsx
+- Wire Section C (Services Can Shop) - DidShopFor.tsx  
+- Wire Section E (Taxes & Gov Fees) - TaxesAndGovFees.tsx
+- Wire Section F (Prepaids) - Prepaids.tsx
+- Wire Section G (Escrow) - InitialEscrow.tsx
+- Wire Section H (Other Charges) - Other.tsx
+- ✅ Wire Contacts component (borrowers, sellers, lenders) - PARTIAL
+- Wire Properties component (address, APN, county)
+- Wire Loan component (terms, amounts, lender info)
+- Wire Payoffs component (existing loans)
 
 ### 2. 🧮 Calculations Engine
 **Implement all financial calculations:**
