@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useOrderData } from '../../hooks/useOrderData';
+import { calculateLoan, formatCurrency, formatPercentage, parseCurrency } from '../../utils/calculations';
 
 interface LoanProps {
   orderId?: string;
@@ -14,6 +15,23 @@ const Loan: React.FC<LoanProps> = ({ orderId }) => {
   const [isConstructionLoan, setIsConstructionLoan] = useState(false);
   const [isMERS, setIsMERS] = useState(false);
   const [generatingMortgageDocs, setGeneratingMortgageDocs] = useState(false);
+  const [loanCalculation, setLoanCalculation] = useState<any>(null);
+
+  // Calculate loan details when inputs change
+  useEffect(() => {
+    const loanAmount = parseCurrency(getValue('cdf.loans.0.initial_loan_amount') || '0');
+    const interestRate = parseFloat(getValue('cdf.loans.0.interest_rate') || '0');
+    const termYears = parseInt(getValue('cdf.loans.0.loan_term_years') || '0');
+    const termMonths = parseInt(getValue('cdf.loans.0.loan_term_months') || '0');
+    
+    if (loanAmount > 0 && interestRate > 0 && (termYears > 0 || termMonths > 0)) {
+      const totalMonths = (termYears * 12) + termMonths;
+      const calculation = calculateLoan(loanAmount, interestRate, totalMonths, {
+        includeAmortization: false
+      });
+      setLoanCalculation(calculation);
+    }
+  }, [getValue]);
 
   const ToggleSwitch = ({ 
     checked, 
@@ -358,6 +376,42 @@ const Loan: React.FC<LoanProps> = ({ orderId }) => {
                 </div>
               </div>
             </section>
+            
+            {/* Loan Calculations Display */}
+            {loanCalculation && (
+              <section className="border-t border-gray-600 pt-8">
+                <h3 className="text-base font-semibold text-white mb-5 pb-2 border-b border-gray-600">
+                  <i className="fa fa-calculator mr-2 text-blue-500"></i>
+                  Loan Calculations
+                </h3>
+                <div className="grid grid-cols-3 gap-6">
+                  <div className="bg-gray-800 p-4 rounded">
+                    <label className="block text-sm text-gray-400 mb-1">Monthly Payment</label>
+                    <div className="text-xl font-semibold text-white">{formatCurrency(loanCalculation.monthlyPayment)}</div>
+                  </div>
+                  <div className="bg-gray-800 p-4 rounded">
+                    <label className="block text-sm text-gray-400 mb-1">Total Interest</label>
+                    <div className="text-xl font-semibold text-white">{formatCurrency(loanCalculation.totalInterest)}</div>
+                  </div>
+                  <div className="bg-gray-800 p-4 rounded">
+                    <label className="block text-sm text-gray-400 mb-1">Total Payments</label>
+                    <div className="text-xl font-semibold text-white">{formatCurrency(loanCalculation.totalPayments)}</div>
+                  </div>
+                  <div className="bg-gray-800 p-4 rounded">
+                    <label className="block text-sm text-gray-400 mb-1">APR</label>
+                    <div className="text-xl font-semibold text-white">{formatPercentage(loanCalculation.apr)}</div>
+                  </div>
+                  <div className="bg-gray-800 p-4 rounded">
+                    <label className="block text-sm text-gray-400 mb-1">Principal</label>
+                    <div className="text-xl font-semibold text-white">{formatCurrency(loanCalculation.principal)}</div>
+                  </div>
+                  <div className="bg-gray-800 p-4 rounded">
+                    <label className="block text-sm text-gray-400 mb-1">Interest Rate</label>
+                    <div className="text-xl font-semibold text-white">{formatPercentage(loanCalculation.interest)}</div>
+                  </div>
+                </div>
+              </section>
+            )}
           </form>
           )}
         </section>

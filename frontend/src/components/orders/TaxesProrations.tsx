@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useOrderData } from '../../hooks/useOrderData';
+import { calculateTaxProration, formatCurrency, parseCurrency } from '../../utils/calculations';
 
 interface TaxesProrationsProps {}
 
 const TaxesProrations: React.FC<TaxesProrationsProps> = () => {
-  const { loading, saving, handleInputChange, getValue, saveOrderData } = useOrderData();
+  const { loading, saving, handleInputChange, getValue, handleSave } = useOrderData();
   const [activeTab, setActiveTab] = useState(0);
+  const [cityTaxProration, setCityTaxProration] = useState<any>(null);
+  const [countyTaxProration, setCountyTaxProration] = useState<any>(null);
   
   // City/Town Taxes State
   const [cityTaxData, setCityTaxData] = useState({
@@ -57,6 +60,56 @@ const TaxesProrations: React.FC<TaxesProrationsProps> = () => {
     payment_seller: '',
     payment_paid_outside: ''
   });
+
+  // Calculate city tax proration when inputs change
+  useEffect(() => {
+    const annualAmount = parseCurrency(cityTaxData.annual_amount || '0');
+    const closingDate = getValue('cdf.closing_information.closing_date');
+    
+    if (annualAmount > 0 && closingDate) {
+      const proration = calculateTaxProration(
+        annualAmount,
+        new Date(closingDate),
+        new Date().getFullYear(),
+        cityTaxData.paid_thru ? new Date(cityTaxData.paid_thru) : undefined
+      );
+      setCityTaxProration(proration);
+      
+      // Update the form data with calculated values
+      setCityTaxData(prev => ({
+        ...prev,
+        proration_days: String(proration.daysOwed),
+        proration_amount: formatCurrency(proration.prorationAmount),
+        payment_borrower: formatCurrency(proration.buyerDebit),
+        payment_seller: formatCurrency(proration.sellerCredit)
+      }));
+    }
+  }, [cityTaxData.annual_amount, cityTaxData.paid_thru, getValue]);
+
+  // Calculate county tax proration when inputs change
+  useEffect(() => {
+    const annualAmount = parseCurrency(countyTaxData.annual_amount || '0');
+    const closingDate = getValue('cdf.closing_information.closing_date');
+    
+    if (annualAmount > 0 && closingDate) {
+      const proration = calculateTaxProration(
+        annualAmount,
+        new Date(closingDate),
+        new Date().getFullYear(),
+        countyTaxData.paid_thru ? new Date(countyTaxData.paid_thru) : undefined
+      );
+      setCountyTaxProration(proration);
+      
+      // Update the form data with calculated values
+      setCountyTaxData(prev => ({
+        ...prev,
+        proration_days: String(proration.daysOwed),
+        proration_amount: formatCurrency(proration.prorationAmount),
+        payment_borrower: formatCurrency(proration.buyerDebit),
+        payment_seller: formatCurrency(proration.sellerCredit)
+      }));
+    }
+  }, [countyTaxData.annual_amount, countyTaxData.paid_thru, getValue]);
 
   const handleTabClick = (tabIndex: number) => {
     setActiveTab(tabIndex);

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import CalculationSummary from '../components/widgets/CalculationSummary';
 
 interface Order {
   id: string;
@@ -129,6 +130,11 @@ const Dashboard: React.FC = () => {
       {/* Tab Content */}
       {activeTab === 'orders' && (
         <section className="p-6">
+          {/* Calculation Summary Widget */}
+          <div className="mb-6">
+            <CalculationSummary compact={true} />
+          </div>
+
           <div className="flex items-center justify-between mb-6">
             <h3 className="text-xl font-semibold text-white">Orders</h3>
             <div className="hidden bg-blue-100 border border-blue-300 text-blue-800 px-4 py-2 rounded text-sm">
