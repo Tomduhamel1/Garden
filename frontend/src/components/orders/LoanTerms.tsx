@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import orderService from '../../services/orderService';
-import type { OrderData } from '../../types/schema';
+import { type OrderData } from '../../types/schema';
 import { getFieldValue, setFieldValue, initializeOrderDefaults } from '../../utils/schemaDefaults';
 
 const LoanTerms: React.FC = () => {
@@ -9,6 +9,7 @@ const LoanTerms: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [orderData, setOrderData] = useState<OrderData | null>(null);
+  const [hasBalloonPayment, setHasBalloonPayment] = useState('no');
   
   useEffect(() => {
     if (orderId) {
@@ -20,7 +21,7 @@ const LoanTerms: React.FC = () => {
     try {
       setLoading(true);
       const data = await orderService.getOrder(orderId!);
-      const initialized = initializeOrderDefaults(data);
+      const initialized = initializeOrderDefaults(data as Partial<OrderData>);
       setOrderData(initialized);
     } catch (err) {
       console.error('Error fetching order:', err);

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import orderService, { Order } from '../services/orderService';
+import orderService from '../services/orderService';
+import type { Order } from '../services/orderService';
 
 const Dashboard: React.FC = () => {
   const [activeTab, setActiveTab] = useState('orders');
@@ -40,7 +41,7 @@ const Dashboard: React.FC = () => {
     } else {
       try {
         const newOrder = await orderService.createOrder({
-          status: 'open',
+          status: 'draft',
           cdfData: {},
           contactsData: {},
           propertiesData: {},
@@ -240,11 +241,11 @@ const Dashboard: React.FC = () => {
                           </td>
                           <td className="px-4 py-3">
                             <span className={`px-2 py-1 rounded text-xs ${
-                              order.status === 'open' ? 'bg-green-600' : 
+                              order.status === 'draft' ? 'bg-green-600' : 
                               order.status === 'closed' ? 'bg-gray-600' : 
                               'bg-yellow-600'
                             }`}>
-                              {order.status || 'Open'}
+                              {order.status || 'Draft'}
                             </span>
                           </td>
                         </tr>

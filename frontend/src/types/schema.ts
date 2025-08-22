@@ -594,4 +594,4 @@ export type FieldPath =
 // EXPORT DEFAULT ORDER TYPE
 // ============================================================================
 
-export default OrderData;
+// Export is already done with the interface declaration above

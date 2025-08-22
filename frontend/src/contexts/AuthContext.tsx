@@ -1,5 +1,5 @@
-import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { createContext, useContext, useState, useEffect } from 'react';
+import type { ReactNode } from 'react';
 import { authAPI } from '../services/api';
 
 interface User {
@@ -36,7 +36,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<User | null>(null);
   const [token, setToken] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
-  const navigate = useNavigate();
 
   useEffect(() => {
     // Check for existing token on mount
@@ -63,7 +62,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
       setToken(token);
       setUser(user);
       
-      navigate('/');
+      // Navigation should be handled by the component that calls login
     } catch (error: any) {
       throw new Error(error.response?.data?.message || 'Login failed');
     }
@@ -74,7 +73,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
     localStorage.removeItem('user');
     setToken(null);
     setUser(null);
-    navigate('/login');
+    // Navigation should be handled by the component that calls logout
   };
 
   const value = {

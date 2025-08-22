@@ -7,7 +7,7 @@ export interface Order {
   contactsData: any;
   propertiesData: any;
   payoffsData: any;
-  status: string;
+  status: 'draft' | 'pending' | 'in_review' | 'approved' | 'closing' | 'closed' | 'cancelled';
   closingDate?: string | null;
   propertyAddress?: string | null;
   createdAt: string;
@@ -25,7 +25,7 @@ export interface CreateOrderDto {
   contactsData?: any;
   propertiesData?: any;
   payoffsData?: any;
-  status?: string;
+  status?: 'draft' | 'pending' | 'in_review' | 'approved' | 'closing' | 'closed' | 'cancelled';
 }
 
 export interface UpdateOrderDto extends CreateOrderDto {}

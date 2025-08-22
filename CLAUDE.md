@@ -204,3 +204,38 @@ Use PostgreSQL JSONB columns for flexible array storage:
 - `contacts_data` - All contacts with arrays
 - `properties_data` - Property and tax information
 - `payoffs_data` - Existing loan payoffs
+
+## 🔥 KNOWN ISSUES & SOLUTIONS
+
+### VS Code Crash Recovery
+If VS Code crashes during development:
+1. Files may be truncated/corrupted - check with `git status` and `git diff`
+2. BasicInfo.tsx commonly affected - restore with `git checkout HEAD -- frontend/src/components/orders/BasicInfo.tsx`
+3. Rebuild after recovery: `cd frontend && npm run build`
+
+### White Screen / App Not Loading
+**Symptom**: Blank page at http://localhost:5173/
+**ALWAYS CHECK BROWSER CONSOLE FIRST!** Common errors:
+
+1. **"does not provide an export named 'Order'"**
+   - Fix: Change `import { Order }` to `import type { Order }`
+   - Affected files: Dashboard.tsx, components using Order type
+
+2. **"useNavigate() may be used only in Router"**
+   - AuthContext.tsx must not call useNavigate() at component level
+   - Remove navigate calls from AuthContext, handle in components instead
+
+3. **TypeScript verbatimModuleSyntax errors**
+   - Use `import type { TypeName }` for type-only imports
+   - Regular imports for values: `import SomeValue from`
+
+### Authentication & Routing
+- All routes except /login require authentication
+- First visit: http://localhost:5173/login
+- Orders use UUIDs, not numeric IDs (check database for actual IDs)
+- Example order ID: `b09b0775-9318-454a-ada9-77f0c2147e18` (not `1`)
+
+### Database Access
+- PostgreSQL user: `macbook` (not `postgres`)
+- Check orders: `psql -U macbook -d garden -c "SELECT id, order_number FROM orders;"`
+- Backend runs on port 3002 (not 3001)
