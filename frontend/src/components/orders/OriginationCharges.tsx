@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import { useOrderData } from '../../hooks/useOrderData';
 
 export default function OriginationCharges() {
+  const { orderData, loading, saving, handleInputChange, handleSave, getValue } = useOrderData();
   const [activeRow, setActiveRow] = useState<number | null>(6);
   const [activePaymentType, setActivePaymentType] = useState('wire');
   const [payeeTabs] = useState(['New Payee']);
@@ -71,6 +73,8 @@ export default function OriginationCharges() {
             type="text"
             className="w-full px-3 py-2 bg-transparent text-white focus:outline-none focus:bg-blue-900/10"
             data-schema-key={`cdf.origination_charges.${prefix}.description`}
+            value={getValue(`cdf.origination_charges.${prefix}.description`)}
+            onChange={handleInputChange}
             onFocus={() => setActiveRow(lineNumber)}
             readOnly={lineNumber === 1}
           />
@@ -80,51 +84,63 @@ export default function OriginationCharges() {
             type="text"
             className="w-full px-3 py-2 bg-transparent text-white focus:outline-none focus:bg-blue-900/10"
             data-schema-key={`cdf.origination_charges.${prefix}.payee_name`}
+            value={getValue(`cdf.origination_charges.${prefix}.payee_name`)}
+            onChange={handleInputChange}
             onFocus={() => setActiveRow(lineNumber)}
           />
         </td>
         <td className="border-r border-gray-600">
           <input
-            type="text"
+            type="number"
             className="w-full px-3 py-2 bg-transparent text-white text-right focus:outline-none focus:bg-blue-900/10"
             inputMode="decimal"
             data-schema-key={`cdf.origination_charges.${prefix}.borrower_amount`}
+            value={getValue(`cdf.origination_charges.${prefix}.borrower_amount`)}
+            onChange={handleInputChange}
             onFocus={() => setActiveRow(lineNumber)}
           />
         </td>
         <td className="border-r border-gray-600">
           <input
-            type="text"
+            type="number"
             className="w-full px-3 py-2 bg-transparent text-white text-right focus:outline-none focus:bg-blue-900/10"
             inputMode="decimal"
             data-schema-key={`cdf.origination_charges.${prefix}.before_borrower_amount`}
+            value={getValue(`cdf.origination_charges.${prefix}.before_borrower_amount`)}
+            onChange={handleInputChange}
             onFocus={() => setActiveRow(lineNumber)}
           />
         </td>
         <td className="border-r border-gray-600">
           <input
-            type="text"
+            type="number"
             className="w-full px-3 py-2 bg-transparent text-white text-right focus:outline-none focus:bg-blue-900/10"
             inputMode="decimal"
             data-schema-key={`cdf.origination_charges.${prefix}.seller_amount`}
+            value={getValue(`cdf.origination_charges.${prefix}.seller_amount`)}
+            onChange={handleInputChange}
             onFocus={() => setActiveRow(lineNumber)}
           />
         </td>
         <td className="border-r border-gray-600">
           <input
-            type="text"
+            type="number"
             className="w-full px-3 py-2 bg-transparent text-white text-right focus:outline-none focus:bg-blue-900/10"
             inputMode="decimal"
             data-schema-key={`cdf.origination_charges.${prefix}.before_seller_amount`}
+            value={getValue(`cdf.origination_charges.${prefix}.before_seller_amount`)}
+            onChange={handleInputChange}
             onFocus={() => setActiveRow(lineNumber)}
           />
         </td>
         <td>
           <input
-            type="text"
+            type="number"
             className="w-full px-3 py-2 bg-transparent text-white text-right focus:outline-none focus:bg-blue-900/10"
             inputMode="decimal"
             data-schema-key={`cdf.origination_charges.${prefix}.paid_by_others_amount`}
+            value={getValue(`cdf.origination_charges.${prefix}.paid_by_others_amount`)}
+            onChange={handleInputChange}
             onFocus={() => setActiveRow(lineNumber)}
           />
         </td>
@@ -408,6 +424,17 @@ export default function OriginationCharges() {
     }
   };
 
+  if (loading) {
+    return (
+      <section className="flex-1 bg-gray-900 overflow-y-auto flex items-center justify-center">
+        <div className="text-gray-400">
+          <i className="fa fa-spinner fa-spin text-4xl"></i>
+          <p className="mt-4">Loading origination charges...</p>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <>
       <section className="flex-1 bg-gray-900 overflow-y-auto">
@@ -418,6 +445,15 @@ export default function OriginationCharges() {
             <span className="bg-green-600 text-white px-2 py-1 rounded text-xs font-medium">A</span>
           </div>
           <div className="flex gap-3">
+            <button 
+              type="button"
+              onClick={handleSave}
+              disabled={saving}
+              className="bg-green-600 border border-green-500 rounded px-3 py-2 text-white text-sm hover:bg-green-700 disabled:bg-gray-600 disabled:border-gray-500"
+            >
+              <i className={`fa ${saving ? 'fa-spinner fa-spin' : 'fa-save'} mr-2`}></i>
+              {saving ? 'Saving...' : 'Save'}
+            </button>
             <button className="bg-gray-600 border border-gray-500 rounded px-3 py-2 text-white text-sm hover:bg-gray-500" title="Remove Last Line">
               <i className="fa fa-minus mr-2"></i>
               Remove Line

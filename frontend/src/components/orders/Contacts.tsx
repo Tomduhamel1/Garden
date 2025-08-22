@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useOrderData } from '../../hooks/useOrderData';
 
 interface ContactsProps {
   orderId: string;
@@ -9,6 +10,7 @@ type TabType = 'info' | 'addresses' | 'attorney' | 'signature' | 'notary';
 type PersonType = 'individual' | 'organization';
 
 const Contacts: React.FC<ContactsProps> = ({ orderId }) => {
+  const { loading, saving, handleInputChange, handleSave, getValue } = useOrderData();
   const [activeContactType, setActiveContactType] = useState<ContactType>('buyers');
   const [activeTab, setActiveTab] = useState<TabType>('info');
   const [personType, setPersonType] = useState<PersonType>('individual');
@@ -32,9 +34,22 @@ const Contacts: React.FC<ContactsProps> = ({ orderId }) => {
   const showSellerForms = activeContactType === 'sellers';
   const showOtherForms = !showBorrowerForms && !showSellerForms;
 
-  // Sample data for testing
-  const borrowerName = "Tom TEST TOM TEST";
-  const sellerName = "John SELLER TEST";
+  // Get names from data
+  const borrowerName = getValue(`contactsData.borrowers.${activeBorrowerIndex}.name.first`) + ' ' + 
+                      getValue(`contactsData.borrowers.${activeBorrowerIndex}.name.last`) || "Borrower";
+  const sellerName = getValue(`contactsData.sellers.${activeSellerIndex}.name.first`) + ' ' +
+                     getValue(`contactsData.sellers.${activeSellerIndex}.name.last`) || "Seller";
+
+  if (loading) {
+    return (
+      <section className="flex-1 bg-gray-900 overflow-y-auto flex items-center justify-center">
+        <div className="text-gray-400">
+          <i className="fa fa-spinner fa-spin text-4xl"></i>
+          <p className="mt-4">Loading contacts...</p>
+        </div>
+      </section>
+    );
+  }
 
   const renderContactTabs = () => {
     // Only show tabs for buyers/sellers
@@ -140,7 +155,9 @@ const Contacts: React.FC<ContactsProps> = ({ orderId }) => {
                 <input 
                   type="text" 
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
-                  data-schema-key={`contacts.${prefix}.${index}.first_name`}
+                  data-schema-key={`contactsData.${prefix}[${index}].name.first`}
+                  value={getValue(`contactsData.${prefix}[${index}].name.first`)}
+                  onChange={handleInputChange}
                 />
               </div>
               <div>
@@ -148,7 +165,9 @@ const Contacts: React.FC<ContactsProps> = ({ orderId }) => {
                 <input 
                   type="text" 
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
-                  data-schema-key={`contacts.${prefix}.${index}.middle_name`}
+                  data-schema-key={`contactsData.${prefix}[${index}].name.middle`}
+                  value={getValue(`contactsData.${prefix}[${index}].name.middle`)}
+                  onChange={handleInputChange}
                 />
               </div>
               <div>
@@ -156,7 +175,9 @@ const Contacts: React.FC<ContactsProps> = ({ orderId }) => {
                 <input 
                   type="text" 
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
-                  data-schema-key={`contacts.${prefix}.${index}.last_name`}
+                  data-schema-key={`contactsData.${prefix}[${index}].name.last`}
+                  value={getValue(`contactsData.${prefix}[${index}].name.last`)}
+                  onChange={handleInputChange}
                 />
               </div>
               <div>
@@ -231,7 +252,9 @@ const Contacts: React.FC<ContactsProps> = ({ orderId }) => {
                 <input 
                   type="email" 
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
-                  data-schema-key={`contacts.${prefix}.${index}.email`}
+                  data-schema-key={`contactsData.${prefix}[${index}].email`}
+                  value={getValue(`contactsData.${prefix}[${index}].email`)}
+                  onChange={handleInputChange}
                 />
               </div>
               <div className="flex-1">
@@ -717,6 +740,15 @@ const Contacts: React.FC<ContactsProps> = ({ orderId }) => {
             <h2 className="text-2xl font-semibold">Contacts</h2>
           </div>
           <div className="flex gap-2">
+            <button 
+              type="button"
+              onClick={handleSave}
+              disabled={saving}
+              className="bg-green-600 border border-green-500 rounded px-3 py-2 text-white text-sm hover:bg-green-700 disabled:bg-gray-600 disabled:border-gray-500"
+            >
+              <i className={`fa ${saving ? 'fa-spinner fa-spin' : 'fa-save'} mr-1`}></i>
+              {saving ? 'Saving...' : 'Save'}
+            </button>
             <button className="bg-gray-600 border border-gray-500 rounded px-3 py-2 text-white text-sm hover:bg-gray-500">
               <i className="fa fa-plus mr-1"></i>
               <span>

@@ -28,7 +28,7 @@ const LenderCredits: React.FC<LenderCreditsProps> = () => {
     setLenderCreditsData(prev => ({
       ...prev,
       [section]: {
-        ...prev[section as keyof typeof prev],
+        ...(prev[section as keyof typeof prev] as Record<string, string>),
         [field]: value
       }
     }));
