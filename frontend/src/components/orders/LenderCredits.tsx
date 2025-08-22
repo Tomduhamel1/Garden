@@ -26,7 +26,7 @@ const LenderCredits: React.FC<LenderCreditsProps> = () => {
     amount_because_above_legal_limit: ''
   });
 
-  const handleInputChange = (section: string, field: string, value: string) => {
+  const handleLocalInputChange = (section: string, field: string, value: string) => {
     setLenderCreditsData(prev => ({
       ...prev,
       [section]: {

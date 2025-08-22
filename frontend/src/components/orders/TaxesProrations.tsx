@@ -62,7 +62,7 @@ const TaxesProrations: React.FC<TaxesProrationsProps> = () => {
     setActiveTab(tabIndex);
   };
 
-  const handleInputChange = (section: 'city' | 'county' | 'assessment', field: string, value: string) => {
+  const handleLocalInputChange = (section: 'city' | 'county' | 'assessment', field: string, value: string) => {
     const setters = {
       city: setCityTaxData,
       county: setCountyTaxData,
@@ -84,10 +84,10 @@ const TaxesProrations: React.FC<TaxesProrationsProps> = () => {
 
   const getCurrentSetter = () => {
     switch (activeTab) {
-      case 0: return (field: string, value: string) => handleInputChange('city', field, value);
-      case 1: return (field: string, value: string) => handleInputChange('county', field, value);
-      case 2: return (field: string, value: string) => handleInputChange('assessment', field, value);
-      default: return (field: string, value: string) => handleInputChange('city', field, value);
+      case 0: return (field: string, value: string) => handleLocalInputChange('city', field, value);
+      case 1: return (field: string, value: string) => handleLocalInputChange('county', field, value);
+      case 2: return (field: string, value: string) => handleLocalInputChange('assessment', field, value);
+      default: return (field: string, value: string) => handleLocalInputChange('city', field, value);
     }
   };
 
