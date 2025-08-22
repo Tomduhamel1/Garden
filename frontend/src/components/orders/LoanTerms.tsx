@@ -1,7 +1,78 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import orderService from '../../services/orderService';
+import type { OrderData } from '../../types/schema';
+import { getFieldValue, setFieldValue, initializeOrderDefaults } from '../../utils/schemaDefaults';
 
 const LoanTerms: React.FC = () => {
-  const [hasBalloonPayment, setHasBalloonPayment] = useState('yes');
+  const { orderId } = useParams<{ orderId: string }>();
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
+  const [orderData, setOrderData] = useState<OrderData | null>(null);
+  
+  useEffect(() => {
+    if (orderId) {
+      fetchOrder();
+    }
+  }, [orderId]);
+  
+  const fetchOrder = async () => {
+    try {
+      setLoading(true);
+      const data = await orderService.getOrder(orderId!);
+      const initialized = initializeOrderDefaults(data);
+      setOrderData(initialized);
+    } catch (err) {
+      console.error('Error fetching order:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
+  
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value, type } = e.target;
+    const fieldPath = e.target.getAttribute('data-schema-key') || name;
+    
+    if (!orderData) return;
+    
+    const newOrderData = { ...orderData };
+    const fieldValue = type === 'checkbox' 
+      ? (e.target as HTMLInputElement).checked
+      : type === 'number' 
+      ? parseFloat(value) || 0
+      : value;
+    
+    setFieldValue(newOrderData, fieldPath, fieldValue);
+    setOrderData(newOrderData);
+  };
+  
+  const handleSave = async () => {
+    if (!orderId || !orderData) return;
+    
+    try {
+      setSaving(true);
+      await orderService.updateOrder(orderId, orderData);
+      alert('Loan terms saved successfully!');
+    } catch (err) {
+      console.error('Error saving order:', err);
+      alert('Failed to save loan terms');
+    } finally {
+      setSaving(false);
+    }
+  };
+  
+  if (loading || !orderData) {
+    return (
+      <section className="flex-1 bg-gray-900 overflow-y-auto">
+        <div className="flex items-center justify-center py-20">
+          <div className="text-center">
+            <i className="fas fa-spinner fa-spin text-4xl text-gray-400 mb-4"></i>
+            <p className="text-gray-400">Loading loan terms...</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <>
@@ -13,6 +84,24 @@ const LoanTerms: React.FC = () => {
             <i className="fa fa-file-text-o text-gray-400 text-xl"></i>
             <h2 className="text-2xl font-semibold text-white">Loan Terms</h2>
           </div>
+          <button
+            type="button"
+            onClick={handleSave}
+            disabled={saving}
+            className="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50 flex items-center gap-2"
+          >
+            {saving ? (
+              <>
+                <i className="fas fa-spinner fa-spin"></i>
+                Saving...
+              </>
+            ) : (
+              <>
+                <i className="fas fa-save"></i>
+                Save Changes
+              </>
+            )}
+          </button>
         </section>
 
         {/* Form Content */}
@@ -32,11 +121,11 @@ const LoanTerms: React.FC = () => {
                         <div className="relative">
                           <i className="fa fa-calendar absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
                           <input 
-                            type="text" 
+                            type="date" 
                             className="w-full pl-10 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
-                            placeholder="Issued date"
-                            inputMode="numeric"
-                            data-schema-key="borrower_statement_issued_date"
+                            data-schema-key="cdfData.transaction_information.borrower_statement_issued_date"
+                            value={getFieldValue(orderData, 'cdfData.transaction_information.borrower_statement_issued_date') || ''}
+                            onChange={handleInputChange}
                           />
                         </div>
                       </td>
@@ -49,11 +138,11 @@ const LoanTerms: React.FC = () => {
                         <div className="relative">
                           <i className="fa fa-calendar absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
                           <input 
-                            type="text" 
+                            type="date" 
                             className="w-full pl-10 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
-                            placeholder="Issued date"
-                            inputMode="numeric"
-                            data-schema-key="seller_statement_issued_date"
+                            data-schema-key="cdfData.transaction_information.seller_statement_issued_date"
+                            value={getFieldValue(orderData, 'cdfData.transaction_information.seller_statement_issued_date') || ''}
+                            onChange={handleInputChange}
                           />
                         </div>
                       </td>
@@ -75,8 +164,9 @@ const LoanTerms: React.FC = () => {
                     <div className="relative">
                       <select 
                         className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none" 
-                        data-schema-key="cdf.loans.0.loan_type"
-                        defaultValue="Conventional Insured"
+                        data-schema-key="cdfData.loans.0.loan_type"
+                        value={getFieldValue(orderData, 'cdfData.loans.0.loan_type') || 'Conventional'}
+                        onChange={handleInputChange}
                       >
                         <option value="Conventional Insured">Conventional Insured</option>
                         <option value="Conventional Uninsured">Conventional Uninsured</option>
@@ -94,8 +184,9 @@ const LoanTerms: React.FC = () => {
                     <div className="relative">
                       <select 
                         className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none" 
-                        data-schema-key="cdf.loans.0.loan_purpose"
-                        defaultValue="Purchase"
+                        data-schema-key="cdfData.loans.0.loan_purpose"
+                        value={getFieldValue(orderData, 'cdfData.loans.0.loan_purpose') || 'Purchase'}
+                        onChange={handleInputChange}
                       >
                         <option value="Purchase">Purchase</option>
                         <option value="Refinance">Refinance</option>

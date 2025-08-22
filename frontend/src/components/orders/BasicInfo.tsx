@@ -1,44 +1,14 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import orderService, { Order } from '../../services/orderService';
+import type { OrderData } from '../../types/schema';
+import { getFieldValue, setFieldValue, initializeOrderDefaults } from '../../utils/schemaDefaults';
 
 const BasicInfo = () => {
   const { orderId } = useParams<{ orderId: string }>();
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
-  const [order, setOrder] = useState<Order | null>(null);
-  const [formData, setFormData] = useState({
-    estimatedClosingDate: '',
-    contractDate: '',
-    fundingDate: '',
-    disbursementDate: '',
-    purchasePrice: '',
-    loanAmount: '',
-    cashOnly: false,
-    heloc: false,
-    constructionLoan: false,
-    transactionType: 'Purchase',
-    representing: 'buyer',
-    sourceOfBusiness: '',
-    statusSummary: '',
-    eligible1099: false,
-    settlementAgency: 't3eQskRbLNgkJzx5E',
-    escrowOfficer: '',
-    orderOpener: '',
-    assistant: '',
-    closingManager: '',
-    funding: '',
-    postClosing: '',
-    salesRep: '',
-    authorizedSignatory: '',
-    fnteAttorney: '',
-    closingAddress: '',
-    closingApt: '',
-    closingCity: '',
-    closingCounty: '',
-    closingState: 'RI',
-    closingZipcode: '',
-  });
+  const [orderData, setOrderData] = useState<OrderData | null>(null);
 
   useEffect(() => {
     if (orderId) {
@@ -50,15 +20,9 @@ const BasicInfo = () => {
     try {
       setLoading(true);
       const data = await orderService.getOrder(orderId!);
-      setOrder(data);
-      
-      // Update form data with order data
-      if (data.cdfData) {
-        setFormData(prev => ({
-          ...prev,
-          ...data.cdfData
-        }));
-      }
+      // Initialize with defaults if needed
+      const initialized = initializeOrderDefaults(data);
+      setOrderData(initialized);
     } catch (err) {
       console.error('Error fetching order:', err);
     } finally {
@@ -68,27 +32,27 @@ const BasicInfo = () => {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target;
-    if (type === 'checkbox') {
-      setFormData(prev => ({
-        ...prev,
-        [name]: (e.target as HTMLInputElement).checked
-      }));
-    } else {
-      setFormData(prev => ({
-        ...prev,
-        [name]: value
-      }));
-    }
+    const fieldPath = e.target.getAttribute('data-schema-key') || name;
+    
+    if (!orderData) return;
+    
+    const newOrderData = { ...orderData };
+    const fieldValue = type === 'checkbox' 
+      ? (e.target as HTMLInputElement).checked
+      : type === 'number' 
+      ? parseFloat(value) || 0
+      : value;
+    
+    setFieldValue(newOrderData, fieldPath, fieldValue);
+    setOrderData(newOrderData);
   };
 
   const handleSave = async () => {
-    if (!orderId || !order) return;
+    if (!orderId || !orderData) return;
     
     try {
       setSaving(true);
-      await orderService.updateOrder(orderId, {
-        cdfData: { ...order.cdfData, ...formData }
-      });
+      await orderService.updateOrder(orderId, orderData);
       alert('Order saved successfully!');
     } catch (err) {
       console.error('Error saving order:', err);
@@ -131,7 +95,7 @@ const BasicInfo = () => {
         </section>
 
         {/* Loading State */}
-        {loading ? (
+        {loading || !orderData ? (
           <div className="flex items-center justify-center py-20">
             <div className="text-center">
               <i className="fas fa-spinner fa-spin text-4xl text-gray-400 mb-4"></i>
@@ -287,7 +251,8 @@ const BasicInfo = () => {
                     <input
                       type="checkbox"
                       name="heloc"
-                      checked={formData.heloc}
+                      data-schema-key="cdfData.loans.0.is_heloc"
+                      checked={getFieldValue(orderData, 'cdfData.loans.0.is_heloc') || false}
                       onChange={handleInputChange}
                       className="w-4 h-4 text-blue-500 bg-gray-700 border-gray-500 rounded focus:ring-blue-500 focus:ring-2"
                     />
@@ -297,7 +262,8 @@ const BasicInfo = () => {
                     <input
                       type="checkbox"
                       name="constructionLoan"
-                      checked={formData.constructionLoan}
+                      data-schema-key="cdfData.loans.0.is_construction_loan"
+                      checked={getFieldValue(orderData, 'cdfData.loans.0.is_construction_loan') || false}
                       onChange={handleInputChange}
                       className="w-4 h-4 text-blue-500 bg-gray-700 border-gray-500 rounded focus:ring-blue-500 focus:ring-2"
                     />
@@ -315,7 +281,8 @@ const BasicInfo = () => {
                     <label className="block text-sm font-medium text-gray-300 mb-2">Transaction Type</label>
                     <select
                       name="transactionType"
-                      value={formData.transactionType}
+                      data-schema-key="cdfData.loans.0.loan_purpose"
+                      value={getFieldValue(orderData, 'cdfData.loans.0.loan_purpose') || 'Purchase'}
                       onChange={handleInputChange}
                       className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                     >
@@ -328,7 +295,8 @@ const BasicInfo = () => {
                     <label className="block text-sm font-medium text-gray-300 mb-2">Representing</label>
                     <select
                       name="representing"
-                      value={formData.representing}
+                      data-schema-key="cdfData.transaction_information.representing"
+                      value={getFieldValue(orderData, 'cdfData.transaction_information.representing') || 'buyer'}
                       onChange={handleInputChange}
                       className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                     >
@@ -653,7 +621,7 @@ const BasicInfo = () => {
             </section>
           </form>
         </section>
-      </section>
+        )}
 
       {/* Right Rail */}
       <section className="w-64 bg-gray-800 border-l border-gray-600 flex-shrink-0">
@@ -688,7 +656,6 @@ const BasicInfo = () => {
           </button>
         </div>
       </section>
-        )}
       </section>
     </>
   );

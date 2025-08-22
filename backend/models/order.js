@@ -1,5 +1,10 @@
 'use strict';
 const { Model } = require('sequelize');
+const { 
+  initializeOrderDefaults, 
+  recalculateOrderTotals,
+  validateOrder 
+} = require('../utils/schemaHelpers');
 
 module.exports = (sequelize, DataTypes) => {
   class Order extends Model {
@@ -9,6 +14,18 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'userId',
         as: 'user'
       });
+    }
+    
+    // Instance method to validate order data
+    validate() {
+      return validateOrder(this.dataValues);
+    }
+    
+    // Instance method to recalculate totals
+    recalculateTotals() {
+      const updated = recalculateOrderTotals(this.dataValues);
+      this.calculationsData = updated.calculationsData;
+      return this.save();
     }
   }
   
@@ -123,6 +140,34 @@ module.exports = (sequelize, DataTypes) => {
     tableName: 'orders',
     timestamps: true,
     underscored: true,
+    hooks: {
+      beforeCreate: (order) => {
+        // Initialize all JSONB fields with proper schema structure
+        const initialized = initializeOrderDefaults(order.dataValues);
+        order.cdfData = initialized.cdfData;
+        order.contactsData = initialized.contactsData;
+        order.propertiesData = initialized.propertiesData;
+        order.payoffsData = initialized.payoffsData;
+        order.calculationsData = initialized.calculationsData;
+        order.documentsData = initialized.documentsData || {};
+        order.auditLog = initialized.auditLog || [];
+      },
+      beforeUpdate: (order) => {
+        // Recalculate totals before saving
+        const updated = recalculateOrderTotals(order.dataValues);
+        order.calculationsData = updated.calculationsData;
+        
+        // Add audit log entry
+        if (!order.auditLog) {
+          order.auditLog = [];
+        }
+        order.auditLog.push({
+          timestamp: new Date().toISOString(),
+          action: 'update',
+          user_id: order.updatedBy || 'system'
+        });
+      }
+    },
     indexes: [
       {
         unique: true,
