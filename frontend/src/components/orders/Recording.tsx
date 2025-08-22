@@ -42,6 +42,7 @@ const Recording: React.FC = () => {
             </button>
             </div>
           </div>
+        </div>
 
         {/* Tabs */}
         <div className="border-b border-gray-600">
