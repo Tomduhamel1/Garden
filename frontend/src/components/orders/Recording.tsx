@@ -40,8 +40,8 @@ const Recording: React.FC = () => {
             >
               Add Recorded Document
             </button>
+            </div>
           </div>
-        </div>
 
         {/* Tabs */}
         <div className="border-b border-gray-600">

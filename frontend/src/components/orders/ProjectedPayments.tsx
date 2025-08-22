@@ -309,8 +309,8 @@ const ProjectedPayments: React.FC = () => {
                 </table>
               </div>
             </section>
-          </form>
-          </>
+              </form>
+            </>
           )}
         </section>
       </section>

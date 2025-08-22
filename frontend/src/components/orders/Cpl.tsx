@@ -39,9 +39,9 @@ const Cpl: React.FC = () => {
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
             </div>
           ) : (
-          <>
-          {/* Underwriter Selection */}
-          <div className="bg-gray-800 rounded-lg p-4 mb-6">
+            <>
+              {/* Underwriter Selection */}
+              <div className="bg-gray-800 rounded-lg p-4 mb-6">
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-1">
@@ -137,9 +137,9 @@ const Cpl: React.FC = () => {
               No CPLs have been issued yet.
             </h3>
           </div>
+            </>
+          )}
         </div>
-        </>
-        )}
       </section>
 
       {/* Right Rail */}

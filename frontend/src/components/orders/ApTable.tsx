@@ -41,20 +41,18 @@ const ApTable: React.FC = () => {
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
             </div>
           ) : (
-          <>
-          <div className="bg-gray-800 border border-gray-600 rounded-md p-12 text-center">
-            <i className="fas fa-percentage text-5xl text-gray-400 mb-4"></i>
-            <h3 className="text-xl font-medium text-gray-300 mb-4">
-              This order does not include Adjustable Payments (AP) as a loan feature.
-            </h3>
-            <div className="my-6 border-t border-gray-600"></div>
-            <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-md transition-colors">
-              Add AP Table
-            </button>
-          </div>
+            <div className="bg-gray-800 border border-gray-600 rounded-md p-12 text-center">
+              <i className="fas fa-percentage text-5xl text-gray-400 mb-4"></i>
+              <h3 className="text-xl font-medium text-gray-300 mb-4">
+                This order does not include Adjustable Payments (AP) as a loan feature.
+              </h3>
+              <div className="my-6 border-t border-gray-600"></div>
+              <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-md transition-colors">
+                Add AP Table
+              </button>
+            </div>
+          )}
         </div>
-        </>
-        )}
       </section>
 
       {/* Right Rail */}

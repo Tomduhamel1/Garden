@@ -272,8 +272,7 @@ const PolicyInfoRates: React.FC = () => {
               </div>
             </div>
           </div>
-        </div>
-        </>
+          </>
         )}
       </section>
 

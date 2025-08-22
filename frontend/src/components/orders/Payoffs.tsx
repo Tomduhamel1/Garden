@@ -153,34 +153,34 @@ export default function Payoffs() {
           )}
           
           {!loading && (
-          <>
-          {/* Tab Menu */
-          <div className="flex border-b-2 border-gray-600 mb-8">
-            {tabNames.map((tabName, index) => (
-              <button
-                key={index}
-                className={`px-5 py-4 bg-transparent border-none text-sm cursor-pointer border-b-3 ${
-                  activeTab === index
-                    ? 'text-blue-400 border-b-blue-400 bg-gray-800'
-                    : 'text-gray-400 border-b-transparent hover:text-gray-300 hover:bg-gray-800'
-                }`}
-                onClick={() => handleTabChange(index)}
-              >
-                {tabName}
-              </button>
-            ))}
-          </div>
+            <>
+              {/* Tab Menu */}
+              <div className="flex border-b-2 border-gray-600 mb-8">
+                {tabNames.map((tabName, index) => (
+                  <button
+                    key={index}
+                    className={`px-5 py-4 bg-transparent border-none text-sm cursor-pointer border-b-3 ${
+                      activeTab === index
+                        ? 'text-blue-400 border-b-blue-400 bg-gray-800'
+                        : 'text-gray-400 border-b-transparent hover:text-gray-300 hover:bg-gray-800'
+                    }`}
+                    onClick={() => handleTabChange(index)}
+                  >
+                    {tabName}
+                  </button>
+                ))}
+              </div>
 
-          {/* Tab Content */}
-          {tabNames.map((_, index) => (
-            <div
-              key={index}
-              className={`tab-content ${activeTab === index ? '' : 'hidden'}`}
-            >
-              {renderPayoffTab(index)}
-            </div>
-          ))}
-          </>
+              {/* Tab Content */}
+              {tabNames.map((_, index) => (
+                <div
+                  key={index}
+                  className={`tab-content ${activeTab === index ? '' : 'hidden'}`}
+                >
+                  {renderPayoffTab(index)}
+                </div>
+              ))}
+            </>
           )}
         </section>
       </section>

@@ -144,7 +144,8 @@ const Marketplace: React.FC<MarketplaceProps> = () => {
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
             </div>
           ) : (
-          <div className="text-center mb-8">
+            <>
+              <div className="text-center mb-8">
             <h3 className="text-xl font-semibold text-white mb-4">Explore our marketplace of closing services</h3>
             <div className="max-w-md mx-auto relative">
               <input 
@@ -268,7 +269,7 @@ const Marketplace: React.FC<MarketplaceProps> = () => {
               ))}
             </div>
           </section>
-          </>
+            </>
           )}
         </section>
       </section>

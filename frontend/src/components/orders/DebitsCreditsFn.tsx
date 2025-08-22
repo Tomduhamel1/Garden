@@ -216,8 +216,9 @@ const DebitsCreditsFn: React.FC<DebitsCreditsFnProps> = () => {
               </form>
             </div>
           </div>
-        </>
-        )}
+          </>
+          )}
+        </section>
       </section>
 
       {/* Right Rail */}
