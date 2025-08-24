@@ -21,8 +21,10 @@ const BasicInfo = () => {
     try {
       setLoading(true);
       const data = await orderService.getOrder(orderId!);
+      console.log('Fetched order data:', data);
       // Initialize with defaults if needed
       const initialized = initializeOrderDefaults(data as Partial<OrderData>);
+      console.log('Initialized order data:', initialized);
       setOrderData(initialized);
     } catch (err) {
       console.error('Error fetching order:', err);
@@ -259,8 +261,8 @@ const BasicInfo = () => {
                       <input
                         type="text"
                         name="propertyAddress"
-                        data-schema-key="propertiesData.properties.0.address_line_1"
-                        value={getFieldValue(orderData, 'propertiesData.properties.0.address_line_1') || ''}
+                        data-schema-key="propertiesData.properties.0.address"
+                        value={getFieldValue(orderData, 'propertiesData.properties.0.address') || ''}
                         onChange={handleInputChange}
                         className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                         placeholder="Property address"
@@ -273,8 +275,8 @@ const BasicInfo = () => {
                         <input
                           type="text"
                           name="propertyCity"
-                          data-schema-key="propertiesData.properties.0.address_city"
-                          value={getFieldValue(orderData, 'propertiesData.properties.0.address_city') || ''}
+                          data-schema-key="propertiesData.properties.0.city"
+                          value={getFieldValue(orderData, 'propertiesData.properties.0.city') || ''}
                           onChange={handleInputChange}
                           className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                           placeholder="City"
@@ -285,8 +287,8 @@ const BasicInfo = () => {
                         <input
                           type="text"
                           name="propertyState"
-                          data-schema-key="propertiesData.properties.0.address_state"
-                          value={getFieldValue(orderData, 'propertiesData.properties.0.address_state') || ''}
+                          data-schema-key="propertiesData.properties.0.state"
+                          value={getFieldValue(orderData, 'propertiesData.properties.0.state') || ''}
                           onChange={handleInputChange}
                           className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                           placeholder="State"

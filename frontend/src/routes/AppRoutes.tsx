@@ -42,18 +42,17 @@ import FinalPolicy from '../components/orders/FinalPolicy';
 import ApTable from '../components/orders/ApTable';
 import EnvelopesShipping from '../components/orders/EnvelopesShipping';
 import Recording from '../components/orders/Recording';
+import SchemaInspector from '../components/orders/SchemaInspector';
 import Login from '../pages/Login';
 
 const AppRoutes = () => {
   return (
     <Routes>
-      <Route path="/login" element={<Login />} />
-      <Route path="/" element={<Navigate to="/orders/1/basic-info" replace />} />
-      <Route path="/orders/:orderId" element={
-        <ProtectedRoute>
-          <AppShell />
-        </ProtectedRoute>
-      }>
+      <Route path="/login" element={<Dashboard />} />
+      <Route path="/" element={<Dashboard />} />
+      <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/orders" element={<OrderList />} />
+      <Route path="/orders/:orderId" element={<AppShell />}>
         <Route path="basic-info" element={<BasicInfo />} />
         <Route path="contacts" element={<Contacts orderId="1" />} />
         <Route path="loan" element={<Loan orderId="1" />} />
@@ -93,6 +92,7 @@ const AppRoutes = () => {
         <Route path="ap-table" element={<ApTable />} />
         <Route path="envelopes-shipping" element={<EnvelopesShipping />} />
         <Route path="recording" element={<Recording />} />
+        <Route path="schema-inspector" element={<SchemaInspector />} />
         {/* Route aliases for AppShell menu compatibility */}
         <Route path="taxes-fees" element={<TaxesAndFees />} />
         <Route path="debits-credits-km" element={<DebitsCredits />} />

@@ -602,6 +602,17 @@ export default function AppShell() {
           >
             <span><i className="fa fa-university mr-3 text-base w-5 text-center"></i>Recording</span>
           </Link>
+          <Link 
+            to={`/orders/${orderId}/schema-inspector`}
+            className={`flex items-center justify-between py-4 px-5 text-xs transition-all ${
+              isActive(`/orders/${orderId}/schema-inspector`) 
+                ? 'text-white bg-blue-600 border-l-4 border-l-blue-400' 
+                : 'text-gray-300 border-l-4 border-l-transparent hover:bg-gray-700 hover:text-white'
+            }`}
+          >
+            <span><i className="fa fa-code mr-3 text-base w-5 text-center"></i>Schema Inspector</span>
+            <span className="bg-orange-500 text-white px-2 py-0.5 rounded-full text-xs font-semibold">DEV</span>
+          </Link>
         </section>
 
         {/* PREVIEW Section Header */}

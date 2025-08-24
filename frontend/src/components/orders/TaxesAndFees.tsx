@@ -82,7 +82,7 @@ const TaxesAndFees: React.FC = () => {
               lineNumber === 1 ? 'bg-gray-600 text-gray-400' : 'bg-gray-700 text-white'
             }`}
             readOnly={lineNumber === 1}
-            data-schema-key={`cdf.taxes_and_government_fees.${lineKey}.description`}
+            data-schema-key={`cdfData.taxes_and_government_fees.${lineKey}.description`}
             onFocus={() => setActiveRow(lineNumber)}
           />
         </td>
@@ -91,7 +91,7 @@ const TaxesAndFees: React.FC = () => {
             <input 
               type="text" 
               className="w-full pl-3 pr-8 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
-              data-schema-key={`cdf.taxes_and_government_fees.${lineKey}.payee_name`}
+              data-schema-key={`cdfData.taxes_and_government_fees.${lineKey}.payee_name`}
               onFocus={() => setActiveRow(lineNumber)}
             />
             {lineNumber > 1 && (
@@ -112,8 +112,8 @@ const TaxesAndFees: React.FC = () => {
               lineNumber === 1 ? 'bg-gray-600 text-gray-400' : 'bg-gray-700 text-white'
             }`}
             readOnly={lineNumber === 1}
-            data-schema-key={`cdf.taxes_and_government_fees.${lineKey}.borrower_amount`}
-            value={getValue(`cdf.taxes_and_government_fees.${lineKey}.borrower_amount`)}
+            data-schema-key={`cdfData.taxes_and_government_fees.${lineKey}.borrower_amount`}
+            value={getValue(`cdfData.taxes_and_government_fees.${lineKey}.borrower_amount`)}
             onChange={handleInputChange}
             onFocus={() => setActiveRow(lineNumber)}
           />
@@ -123,8 +123,8 @@ const TaxesAndFees: React.FC = () => {
             type="text" 
             inputMode="decimal"
             className="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500"
-            data-schema-key={`cdf.taxes_and_government_fees.${lineKey}.before_borrower_amount`}
-            value={getValue(`cdf.taxes_and_government_fees.${lineKey}.before_borrower_amount`)}
+            data-schema-key={`cdfData.taxes_and_government_fees.${lineKey}.before_borrower_amount`}
+            value={getValue(`cdfData.taxes_and_government_fees.${lineKey}.before_borrower_amount`)}
             onChange={handleInputChange}
             onFocus={() => setActiveRow(lineNumber)}
           />
@@ -138,7 +138,7 @@ const TaxesAndFees: React.FC = () => {
                 lineNumber === 1 ? 'bg-gray-600 text-gray-400' : 'bg-gray-700 text-white'
               }`}
               readOnly={lineNumber === 1}
-              data-schema-key={`cdf.taxes_and_government_fees.${lineKey}.seller_amount`}
+              data-schema-key={`cdfData.taxes_and_government_fees.${lineKey}.seller_amount`}
               onFocus={() => setActiveRow(lineNumber)}
             />
             {lineNumber > 1 && (
@@ -156,7 +156,7 @@ const TaxesAndFees: React.FC = () => {
             type="text" 
             inputMode="decimal"
             className="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500"
-            data-schema-key={`cdf.taxes_and_government_fees.${lineKey}.before_seller_amount`}
+            data-schema-key={`cdfData.taxes_and_government_fees.${lineKey}.before_seller_amount`}
             onFocus={() => setActiveRow(lineNumber)}
           />
         </td>
@@ -168,7 +168,7 @@ const TaxesAndFees: React.FC = () => {
               lineNumber === 1 ? 'bg-gray-600 text-gray-400' : 'bg-gray-700 text-white'
             }`}
             readOnly={lineNumber === 1}
-            data-schema-key={`cdf.taxes_and_government_fees.${lineKey}.paid_by_others_amount`}
+            data-schema-key={`cdfData.taxes_and_government_fees.${lineKey}.paid_by_others_amount`}
             onFocus={() => setActiveRow(lineNumber)}
           />
         </td>
@@ -190,7 +190,7 @@ const TaxesAndFees: React.FC = () => {
                     type="text" 
                     className="w-full pl-3 pr-8 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                     placeholder="Search address..."
-                    data-schema-key="cdf.taxes_and_government_fees.line_01.payees.0.address.address_1"
+                    data-schema-key="cdfData.taxes_and_government_fees.line_01.payees.0.address.address_1"
                   />
                   <button 
                     type="button" 
@@ -206,7 +206,7 @@ const TaxesAndFees: React.FC = () => {
                 <input 
                   type="text" 
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
-                  data-schema-key="cdf.taxes_and_government_fees.line_01.payees.0.address.address_2"
+                  data-schema-key="cdfData.taxes_and_government_fees.line_01.payees.0.address.address_2"
                 />
               </div>
             </div>
@@ -216,7 +216,7 @@ const TaxesAndFees: React.FC = () => {
                 <input 
                   type="text" 
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
-                  data-schema-key="cdf.taxes_and_government_fees.line_01.payees.0.address.city"
+                  data-schema-key="cdfData.taxes_and_government_fees.line_01.payees.0.address.city"
                 />
               </div>
               <div>
@@ -224,7 +224,7 @@ const TaxesAndFees: React.FC = () => {
                 <div className="relative">
                   <select 
                     className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none"
-                    data-schema-key="cdf.taxes_and_government_fees.line_01.payees.0.address.state"
+                    data-schema-key="cdfData.taxes_and_government_fees.line_01.payees.0.address.state"
                     defaultValue="RI"
                   >
                     {stateOptions.map(state => (
@@ -245,7 +245,7 @@ const TaxesAndFees: React.FC = () => {
                   type="text" 
                   inputMode="numeric"
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
-                  data-schema-key="cdf.taxes_and_government_fees.line_01.payees.0.address.zipcode"
+                  data-schema-key="cdfData.taxes_and_government_fees.line_01.payees.0.address.zipcode"
                 />
               </div>
             </div>
@@ -720,7 +720,7 @@ const TaxesAndFees: React.FC = () => {
                         type="text" 
                         inputMode="decimal"
                         className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
-                        data-schema-key="cdf.taxes_and_government_fees.line_01.deed_amount"
+                        data-schema-key="cdfData.taxes_and_government_fees.line_01.deed_amount"
                       />
                     </div>
                     <div className="col-span-2">
@@ -749,7 +749,7 @@ const TaxesAndFees: React.FC = () => {
                         type="text" 
                         inputMode="decimal"
                         className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
-                        data-schema-key="cdf.taxes_and_government_fees.line_01.mortgage_amount"
+                        data-schema-key="cdfData.taxes_and_government_fees.line_01.mortgage_amount"
                       />
                     </div>
                     <div className="col-span-2">
@@ -842,7 +842,7 @@ const TaxesAndFees: React.FC = () => {
                     <input 
                       type="hidden" 
                       value={activePaymentType}
-                      data-schema-key="cdf.taxes_and_government_fees.line_01.payees.0.type"
+                      data-schema-key="cdfData.taxes_and_government_fees.line_01.payees.0.type"
                     />
                   </div>
                   
@@ -856,7 +856,7 @@ const TaxesAndFees: React.FC = () => {
                           <input 
                             type="text" 
                             className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
-                            data-schema-key="cdf.taxes_and_government_fees.line_01.payees.0.name_dep"
+                            data-schema-key="cdfData.taxes_and_government_fees.line_01.payees.0.name_dep"
                           />
                         </div>
                         <div>
@@ -868,7 +868,7 @@ const TaxesAndFees: React.FC = () => {
                             type="text" 
                             inputMode="decimal"
                             className="w-full px-3 py-2.5 bg-gray-600 border border-gray-500 rounded text-gray-400 text-sm"
-                            data-schema-key="cdf.taxes_and_government_fees.line_01.payees.0.payment_dep"
+                            data-schema-key="cdfData.taxes_and_government_fees.line_01.payees.0.payment_dep"
                             readOnly
                           />
                         </div>
@@ -876,7 +876,7 @@ const TaxesAndFees: React.FC = () => {
                           <label className="block text-sm text-gray-300 mb-2">Label</label>
                           <select 
                             className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none"
-                            data-schema-key="cdf.taxes_and_government_fees.line_01.payees.0.label.payee_label_id"
+                            data-schema-key="cdfData.taxes_and_government_fees.line_01.payees.0.label.payee_label_id"
                             defaultValue="recording_fee"
                           >
                             {labelOptions.map(option => (
@@ -894,7 +894,7 @@ const TaxesAndFees: React.FC = () => {
                           <input 
                             type="text" 
                             className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
-                            data-schema-key="cdf.taxes_and_government_fees.line_01.payees.0.reference_number"
+                            data-schema-key="cdfData.taxes_and_government_fees.line_01.payees.0.reference_number"
                           />
                         </div>
                       </div>

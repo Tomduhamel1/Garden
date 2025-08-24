@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import type { FormEvent } from 'react';
 import { useAuth } from '../contexts/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -8,6 +9,7 @@ const Login = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const { login } = useAuth();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -16,9 +18,10 @@ const Login = () => {
 
     try {
       await login(email, password);
+      // Navigate to dashboard after successful login
+      window.location.href = '/dashboard';
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Login failed');
-    } finally {
       setLoading(false);
     }
   };
@@ -30,6 +33,11 @@ const Login = () => {
           <div className="text-center mb-8">
             <h1 className="text-3xl font-bold text-white mb-2">Garden</h1>
             <p className="text-gray-400">Sign in to your account</p>
+            <div className="mt-4 p-3 bg-blue-900/30 border border-blue-600/50 rounded">
+              <p className="text-sm text-blue-300">Demo Credentials:</p>
+              <p className="text-xs text-blue-200 mt-1">Email: demo@garden.com</p>
+              <p className="text-xs text-blue-200">Password: demo123</p>
+            </div>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6">

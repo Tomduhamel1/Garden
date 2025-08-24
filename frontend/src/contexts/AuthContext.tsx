@@ -33,25 +33,48 @@ interface AuthProviderProps {
 }
 
 export function AuthProvider({ children }: AuthProviderProps) {
-  const [user, setUser] = useState<User | null>(null);
-  const [token, setToken] = useState<string | null>(null);
-  const [loading, setLoading] = useState(true);
+  // Always start with demo user logged in for demo mode
+  const [user, setUser] = useState<User | null>({
+    id: 1,
+    email: 'demo@garden.com',
+    firstName: 'Demo',
+    lastName: 'User'
+  });
+  const [token, setToken] = useState<string | null>('demo-token-12345');
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    // Check for existing token on mount
-    const storedToken = localStorage.getItem('token');
-    const storedUser = localStorage.getItem('user');
-
-    if (storedToken && storedUser) {
-      setToken(storedToken);
-      setUser(JSON.parse(storedUser));
+    // Set demo credentials on mount - only if not already set
+    if (!localStorage.getItem('token')) {
+      localStorage.setItem('token', 'demo-token-12345');
+      localStorage.setItem('user', JSON.stringify({
+        id: 1,
+        email: 'demo@garden.com',
+        firstName: 'Demo',
+        lastName: 'User'
+      }));
     }
-    
-    setLoading(false);
   }, []);
 
   const login = async (email: string, password: string) => {
     try {
+      // Demo mode - bypass API for testing
+      if (email === 'demo@garden.com' && password === 'demo123') {
+        const demoUser = {
+          id: 1,
+          email: 'demo@garden.com',
+          firstName: 'Demo',
+          lastName: 'User'
+        };
+        const demoToken = 'demo-token-12345';
+        
+        localStorage.setItem('token', demoToken);
+        localStorage.setItem('user', JSON.stringify(demoUser));
+        setToken(demoToken);
+        setUser(demoUser);
+        return;
+      }
+      
       const response = await authAPI.login(email, password);
       const { token, user } = response.data.data;
 

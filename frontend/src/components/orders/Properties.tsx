@@ -78,9 +78,9 @@ const Properties: React.FC = () => {
                           type="text" 
                           className="w-full pl-9 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
                           placeholder="Search address..."
-                          value={getValue('properties.0.address')}
+                          value={getValue('propertiesData.properties.0.address')}
                           onChange={handleInputChange}
-                          data-schema-key="properties.0.address"
+                          data-schema-key="propertiesData.properties.0.address"
                         />
                       </div>
                     </div>
@@ -89,9 +89,9 @@ const Properties: React.FC = () => {
                       <input 
                         type="text" 
                         className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
-                        value={getValue('properties.0.unit')}
+                        value={getValue('propertiesData.properties.0.unit')}
                         onChange={handleInputChange}
-                        data-schema-key="properties.0.unit"
+                        data-schema-key="propertiesData.properties.0.unit"
                       />
                     </div>
                   </div>
@@ -102,9 +102,9 @@ const Properties: React.FC = () => {
                       <input 
                         type="text" 
                         className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
-                        value={getValue('properties.0.city')}
+                        value={getValue('propertiesData.properties.0.city')}
                         onChange={handleInputChange}
-                        data-schema-key="properties.0.city"
+                        data-schema-key="propertiesData.properties.0.city"
                       />
                     </div>
                     <div className="flex-1">
@@ -112,17 +112,17 @@ const Properties: React.FC = () => {
                       <input 
                         type="text" 
                         className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
-                        value={getValue('properties.0.county')}
+                        value={getValue('propertiesData.properties.0.county')}
                         onChange={handleInputChange}
-                        data-schema-key="properties.0.county"
+                        data-schema-key="propertiesData.properties.0.county"
                       />
                     </div>
                     <div className="flex-1">
                       <label className="block text-sm font-medium text-gray-300 mb-2">State</label>
                       <select 
-                        value={getValue('properties.0.state')}
+                        value={getValue('propertiesData.properties.0.state')}
                         onChange={handleInputChange}
-                        data-schema-key="properties.0.state"
+                        data-schema-key="propertiesData.properties.0.state"
                         className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500">
                         <option value="">Select State</option>
                         <option value="CA">California</option>
@@ -136,9 +136,9 @@ const Properties: React.FC = () => {
                       <input 
                         type="text" 
                         className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
-                        value={getValue('properties.0.zip')}
+                        value={getValue('propertiesData.properties.0.zip')}
                         onChange={handleInputChange}
-                        data-schema-key="properties.0.zip"
+                        data-schema-key="propertiesData.properties.0.zip"
                       />
                     </div>
                   </div>
@@ -152,9 +152,9 @@ const Properties: React.FC = () => {
                     <div className="flex-1">
                       <label className="block text-sm font-medium text-gray-300 mb-2">Property Type</label>
                       <select 
-                        value={getValue('properties.0.property_type')}
+                        value={getValue('propertiesData.properties.0.property_type')}
                         onChange={handleInputChange}
-                        data-schema-key="properties.0.property_type"
+                        data-schema-key="propertiesData.properties.0.property_type"
                         className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500">
                         <option value="">Select Type</option>
                         <option value="single-family">Single Family</option>

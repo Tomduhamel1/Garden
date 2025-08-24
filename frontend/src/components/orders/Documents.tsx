@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useOrderData } from '../../hooks/useOrderData';
+import DocumentPreview from '../documents/DocumentPreview';
 
 interface Document {
   id: string;
@@ -12,7 +13,7 @@ interface Document {
 
 const Documents: React.FC = () => {
   const { loading, saving, getValue, handleInputChange, handleSave } = useOrderData();
-  const [selectedMode, setSelectedMode] = useState<'generate' | 'scan' | 'upload'>('generate');
+  const [selectedMode, setSelectedMode] = useState<'generate' | 'scan' | 'upload' | 'preview'>('generate');
   const [groupBy, setGroupBy] = useState('package');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedFolder, setSelectedFolder] = useState('');
@@ -64,13 +65,89 @@ const Documents: React.FC = () => {
           </div>
         </section>
 
+        {/* Mode Selection Tabs */}
+        <section className="px-10 pt-6">
+          <div className="flex gap-2 border-b border-gray-600">
+            <button
+              onClick={() => setSelectedMode('generate')}
+              className={`px-4 py-2 text-sm font-medium border-b-2 transition-colors ${
+                selectedMode === 'generate'
+                  ? 'text-blue-400 border-blue-400'
+                  : 'text-gray-400 border-transparent hover:text-gray-300'
+              }`}
+            >
+              <i className="fa fa-file-alt mr-2"></i>
+              Generate Documents
+            </button>
+            <button
+              onClick={() => setSelectedMode('preview')}
+              className={`px-4 py-2 text-sm font-medium border-b-2 transition-colors ${
+                selectedMode === 'preview'
+                  ? 'text-blue-400 border-blue-400'
+                  : 'text-gray-400 border-transparent hover:text-gray-300'
+              }`}
+            >
+              <i className="fa fa-eye mr-2"></i>
+              Preview & Download
+            </button>
+            <button
+              onClick={() => setSelectedMode('upload')}
+              className={`px-4 py-2 text-sm font-medium border-b-2 transition-colors ${
+                selectedMode === 'upload'
+                  ? 'text-blue-400 border-blue-400'
+                  : 'text-gray-400 border-transparent hover:text-gray-300'
+              }`}
+            >
+              <i className="fa fa-upload mr-2"></i>
+              Upload
+            </button>
+            <button
+              onClick={() => setSelectedMode('scan')}
+              className={`px-4 py-2 text-sm font-medium border-b-2 transition-colors ${
+                selectedMode === 'scan'
+                  ? 'text-blue-400 border-blue-400'
+                  : 'text-gray-400 border-transparent hover:text-gray-300'
+              }`}
+            >
+              <i className="fa fa-camera mr-2"></i>
+              Scan
+            </button>
+          </div>
+        </section>
+
         {/* Content Body */}
         <section className="p-10">
+          {selectedMode === 'preview' ? (
+            <DocumentPreview documentType="all" />
+          ) : selectedMode === 'generate' ? (
           <div className="grid grid-cols-3 gap-8">
             {/* Document Generation */}
             <div className="bg-gray-800 rounded-lg p-6">
               <h3 className="text-lg font-semibold text-white mb-4">Generate Documents</h3>
-              <p className="text-gray-400 text-sm">Document generation functionality would be implemented here.</p>
+              <div className="space-y-3">
+                <button 
+                  onClick={() => setSelectedMode('preview')}
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-sm"
+                >
+                  <i className="fa fa-file-contract mr-2"></i>
+                  Closing Disclosure
+                </button>
+                <button 
+                  onClick={() => setSelectedMode('preview')}
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-sm"
+                >
+                  <i className="fa fa-file-invoice-dollar mr-2"></i>
+                  Settlement Statement
+                </button>
+                <button className="w-full bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded text-sm">
+                  <i className="fa fa-file-signature mr-2"></i>
+                  Loan Documents
+                </button>
+                <button className="w-full bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded text-sm">
+                  <i className="fa fa-file-alt mr-2"></i>
+                  Title Documents
+                </button>
+              </div>
             </div>
 
             {/* Document Status */}
@@ -106,6 +183,24 @@ const Documents: React.FC = () => {
               </div>
             </div>
           </div>
+          ) : selectedMode === 'upload' ? (
+            <div className="bg-gray-800 rounded-lg p-6">
+              <h3 className="text-lg font-semibold text-white mb-4">Upload Documents</h3>
+              <div className="border-2 border-dashed border-gray-600 rounded-lg p-8 text-center">
+                <i className="fa fa-cloud-upload-alt text-4xl text-gray-400 mb-4"></i>
+                <p className="text-gray-300 mb-2">Drag and drop files here</p>
+                <p className="text-gray-500 text-sm mb-4">or</p>
+                <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">
+                  Browse Files
+                </button>
+              </div>
+            </div>
+          ) : (
+            <div className="bg-gray-800 rounded-lg p-6">
+              <h3 className="text-lg font-semibold text-white mb-4">Scan Documents</h3>
+              <p className="text-gray-400">Scanner integration would be implemented here.</p>
+            </div>
+          )}
         </section>
       </section>
 

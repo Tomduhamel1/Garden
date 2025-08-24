@@ -31,7 +31,7 @@ export default function Prepaids() {
                     type="text"
                     className="w-full pl-9 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                     placeholder="Search address..."
-                    data-schema-key="cdf.prepaid_item_information.line_01.payees.0.address.address_1"
+                    data-schema-key="cdfData.prepaid_item_information.line_01.payees.0.address.address_1"
                   />
                 </div>
               </div>
@@ -40,7 +40,7 @@ export default function Prepaids() {
                 <input
                   type="text"
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
-                  data-schema-key="cdf.prepaid_item_information.line_01.payees.0.address.address_2"
+                  data-schema-key="cdfData.prepaid_item_information.line_01.payees.0.address.address_2"
                 />
               </div>
             </div>
@@ -50,14 +50,14 @@ export default function Prepaids() {
                 <input
                   type="text"
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
-                  data-schema-key="cdf.prepaid_item_information.line_01.payees.0.address.city"
+                  data-schema-key="cdfData.prepaid_item_information.line_01.payees.0.address.city"
                 />
               </div>
               <div>
                 <label className="block text-sm text-gray-300 mb-2">State</label>
                 <select
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none"
-                  data-schema-key="cdf.prepaid_item_information.line_01.payees.0.address.state"
+                  data-schema-key="cdfData.prepaid_item_information.line_01.payees.0.address.state"
                 >
                   <option value="">Select one...</option>
                   <option value="RI">RI</option>
@@ -73,7 +73,7 @@ export default function Prepaids() {
                   type="text"
                   inputMode="numeric"
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
-                  data-schema-key="cdf.prepaid_item_information.line_01.payees.0.address.zipcode"
+                  data-schema-key="cdfData.prepaid_item_information.line_01.payees.0.address.zipcode"
                 />
               </div>
             </div>
@@ -225,8 +225,8 @@ export default function Prepaids() {
                 ? 'bg-gray-600 text-gray-400'
                 : 'bg-gray-700 text-white focus:outline-none focus:border-blue-500'
             }`}
-            data-schema-key={`cdf.prepaid_item_information.line_${lineNumberPadded}.description`}
-            value={getValue(`cdf.prepaid_item_information.line_${lineNumberPadded}.description`)}
+            data-schema-key={`cdfData.prepaid_item_information.line_${lineNumberPadded}.description`}
+            value={getValue(`cdfData.prepaid_item_information.line_${lineNumberPadded}.description`)}
             onChange={handleInputChange}
             onFocus={() => handleRowFocus(lineNumber)}
             readOnly={isReadOnlyDescription}
@@ -240,8 +240,8 @@ export default function Prepaids() {
                 ? 'bg-gray-600 text-gray-400'
                 : 'bg-gray-700 text-white focus:outline-none focus:border-blue-500'
             }`}
-            data-schema-key={`cdf.prepaid_item_information.line_${lineNumberPadded}.payee_name`}
-            value={getValue(`cdf.prepaid_item_information.line_${lineNumberPadded}.payee_name`)}
+            data-schema-key={`cdfData.prepaid_item_information.line_${lineNumberPadded}.payee_name`}
+            value={getValue(`cdfData.prepaid_item_information.line_${lineNumberPadded}.payee_name`)}
             onChange={handleInputChange}
             onFocus={() => handleRowFocus(lineNumber)}
             readOnly={isReadOnlyPayee}
@@ -252,8 +252,8 @@ export default function Prepaids() {
             type="text"
             inputMode="decimal"
             className="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500"
-            data-schema-key={`cdf.prepaid_item_information.line_${lineNumberPadded}.borrower_amount`}
-            value={getValue(`cdf.prepaid_item_information.line_${lineNumberPadded}.borrower_amount`)}
+            data-schema-key={`cdfData.prepaid_item_information.line_${lineNumberPadded}.borrower_amount`}
+            value={getValue(`cdfData.prepaid_item_information.line_${lineNumberPadded}.borrower_amount`)}
             onChange={handleInputChange}
             onFocus={() => handleRowFocus(lineNumber)}
           />
@@ -263,8 +263,8 @@ export default function Prepaids() {
             type="text"
             inputMode="decimal"
             className="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500"
-            data-schema-key={`cdf.prepaid_item_information.line_${lineNumberPadded}.before_borrower_amount`}
-            value={getValue(`cdf.prepaid_item_information.line_${lineNumberPadded}.before_borrower_amount`)}
+            data-schema-key={`cdfData.prepaid_item_information.line_${lineNumberPadded}.before_borrower_amount`}
+            value={getValue(`cdfData.prepaid_item_information.line_${lineNumberPadded}.before_borrower_amount`)}
             onChange={handleInputChange}
             onFocus={() => handleRowFocus(lineNumber)}
           />
@@ -274,7 +274,7 @@ export default function Prepaids() {
             type="text"
             inputMode="decimal"
             className="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500"
-            data-schema-key={`cdf.prepaid_item_information.line_${lineNumberPadded}.seller_amount`}
+            data-schema-key={`cdfData.prepaid_item_information.line_${lineNumberPadded}.seller_amount`}
             onFocus={() => handleRowFocus(lineNumber)}
           />
         </td>
@@ -283,7 +283,7 @@ export default function Prepaids() {
             type="text"
             inputMode="decimal"
             className="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500"
-            data-schema-key={`cdf.prepaid_item_information.line_${lineNumberPadded}.before_seller_amount`}
+            data-schema-key={`cdfData.prepaid_item_information.line_${lineNumberPadded}.before_seller_amount`}
             onFocus={() => handleRowFocus(lineNumber)}
           />
         </td>
@@ -292,7 +292,7 @@ export default function Prepaids() {
             type="text"
             inputMode="decimal"
             className="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500"
-            data-schema-key={`cdf.prepaid_item_information.line_${lineNumberPadded}.paid_by_others_amount`}
+            data-schema-key={`cdfData.prepaid_item_information.line_${lineNumberPadded}.paid_by_others_amount`}
             onFocus={() => handleRowFocus(lineNumber)}
           />
         </td>
@@ -459,7 +459,7 @@ export default function Prepaids() {
                     <input
                       type="text"
                       className="w-full px-3 py-2.5 bg-gray-600 border border-gray-500 rounded text-gray-400 text-sm"
-                      data-schema-key={`cdf.prepaid_item_information.line_${activeLineForSettings.toString().padStart(2, '0')}.description`}
+                      data-schema-key={`cdfData.prepaid_item_information.line_${activeLineForSettings.toString().padStart(2, '0')}.description`}
                       readOnly
                     />
                   </div>
@@ -468,7 +468,7 @@ export default function Prepaids() {
                     <input
                       type="text"
                       className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
-                      data-schema-key={`cdf.prepaid_item_information.line_${activeLineForSettings.toString().padStart(2, '0')}.number_of_months`}
+                      data-schema-key={`cdfData.prepaid_item_information.line_${activeLineForSettings.toString().padStart(2, '0')}.number_of_months`}
                     />
                   </div>
                   <div className="col-span-2 flex items-center">
@@ -582,7 +582,7 @@ export default function Prepaids() {
                     <input
                       type="hidden"
                       value={paymentType}
-                      data-schema-key="cdf.prepaid_item_information.line_01.payees.0.type"
+                      data-schema-key="cdfData.prepaid_item_information.line_01.payees.0.type"
                     />
                   </div>
 
@@ -596,7 +596,7 @@ export default function Prepaids() {
                           <input
                             type="text"
                             className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
-                            data-schema-key="cdf.prepaid_item_information.line_01.payees.0.name_dep"
+                            data-schema-key="cdfData.prepaid_item_information.line_01.payees.0.name_dep"
                           />
                         </div>
                         <div>
@@ -608,7 +608,7 @@ export default function Prepaids() {
                             type="text"
                             inputMode="decimal"
                             className="w-full px-3 py-2.5 bg-gray-600 border border-gray-500 rounded text-gray-400 text-sm"
-                            data-schema-key="cdf.prepaid_item_information.line_01.payees.0.payment_dep"
+                            data-schema-key="cdfData.prepaid_item_information.line_01.payees.0.payment_dep"
                             readOnly
                           />
                         </div>
@@ -616,7 +616,7 @@ export default function Prepaids() {
                           <label className="block text-sm text-gray-300 mb-2">Label</label>
                           <select
                             className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none"
-                            data-schema-key="cdf.prepaid_item_information.line_01.payees.0.label.payee_label_id"
+                            data-schema-key="cdfData.prepaid_item_information.line_01.payees.0.label.payee_label_id"
                           >
                             <option value="insurance" selected>
                               Insurance
@@ -642,7 +642,7 @@ export default function Prepaids() {
                           <input
                             type="text"
                             className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
-                            data-schema-key="cdf.prepaid_item_information.line_01.payees.0.reference_number"
+                            data-schema-key="cdfData.prepaid_item_information.line_01.payees.0.reference_number"
                           />
                         </div>
                       </div>

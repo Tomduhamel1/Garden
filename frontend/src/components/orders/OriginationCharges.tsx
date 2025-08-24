@@ -72,8 +72,8 @@ export default function OriginationCharges() {
           <input
             type="text"
             className="w-full px-3 py-2 bg-transparent text-white focus:outline-none focus:bg-blue-900/10"
-            data-schema-key={`cdf.origination_charges.${prefix}.description`}
-            value={getValue(`cdf.origination_charges.${prefix}.description`)}
+            data-schema-key={`cdfData.origination_charges.${prefix}.description`}
+            value={getValue(`cdfData.origination_charges.${prefix}.description`)}
             onChange={handleInputChange}
             onFocus={() => setActiveRow(lineNumber)}
             readOnly={lineNumber === 1}
@@ -83,8 +83,8 @@ export default function OriginationCharges() {
           <input
             type="text"
             className="w-full px-3 py-2 bg-transparent text-white focus:outline-none focus:bg-blue-900/10"
-            data-schema-key={`cdf.origination_charges.${prefix}.payee_name`}
-            value={getValue(`cdf.origination_charges.${prefix}.payee_name`)}
+            data-schema-key={`cdfData.origination_charges.${prefix}.payee_name`}
+            value={getValue(`cdfData.origination_charges.${prefix}.payee_name`)}
             onChange={handleInputChange}
             onFocus={() => setActiveRow(lineNumber)}
           />
@@ -94,8 +94,8 @@ export default function OriginationCharges() {
             type="number"
             className="w-full px-3 py-2 bg-transparent text-white text-right focus:outline-none focus:bg-blue-900/10"
             inputMode="decimal"
-            data-schema-key={`cdf.origination_charges.${prefix}.borrower_amount`}
-            value={getValue(`cdf.origination_charges.${prefix}.borrower_amount`)}
+            data-schema-key={`cdfData.origination_charges.${prefix}.borrower_amount`}
+            value={getValue(`cdfData.origination_charges.${prefix}.borrower_amount`)}
             onChange={handleInputChange}
             onFocus={() => setActiveRow(lineNumber)}
           />
@@ -105,8 +105,8 @@ export default function OriginationCharges() {
             type="number"
             className="w-full px-3 py-2 bg-transparent text-white text-right focus:outline-none focus:bg-blue-900/10"
             inputMode="decimal"
-            data-schema-key={`cdf.origination_charges.${prefix}.before_borrower_amount`}
-            value={getValue(`cdf.origination_charges.${prefix}.before_borrower_amount`)}
+            data-schema-key={`cdfData.origination_charges.${prefix}.before_borrower_amount`}
+            value={getValue(`cdfData.origination_charges.${prefix}.before_borrower_amount`)}
             onChange={handleInputChange}
             onFocus={() => setActiveRow(lineNumber)}
           />
@@ -116,8 +116,8 @@ export default function OriginationCharges() {
             type="number"
             className="w-full px-3 py-2 bg-transparent text-white text-right focus:outline-none focus:bg-blue-900/10"
             inputMode="decimal"
-            data-schema-key={`cdf.origination_charges.${prefix}.seller_amount`}
-            value={getValue(`cdf.origination_charges.${prefix}.seller_amount`)}
+            data-schema-key={`cdfData.origination_charges.${prefix}.seller_amount`}
+            value={getValue(`cdfData.origination_charges.${prefix}.seller_amount`)}
             onChange={handleInputChange}
             onFocus={() => setActiveRow(lineNumber)}
           />
@@ -127,8 +127,8 @@ export default function OriginationCharges() {
             type="number"
             className="w-full px-3 py-2 bg-transparent text-white text-right focus:outline-none focus:bg-blue-900/10"
             inputMode="decimal"
-            data-schema-key={`cdf.origination_charges.${prefix}.before_seller_amount`}
-            value={getValue(`cdf.origination_charges.${prefix}.before_seller_amount`)}
+            data-schema-key={`cdfData.origination_charges.${prefix}.before_seller_amount`}
+            value={getValue(`cdfData.origination_charges.${prefix}.before_seller_amount`)}
             onChange={handleInputChange}
             onFocus={() => setActiveRow(lineNumber)}
           />
@@ -138,8 +138,8 @@ export default function OriginationCharges() {
             type="number"
             className="w-full px-3 py-2 bg-transparent text-white text-right focus:outline-none focus:bg-blue-900/10"
             inputMode="decimal"
-            data-schema-key={`cdf.origination_charges.${prefix}.paid_by_others_amount`}
-            value={getValue(`cdf.origination_charges.${prefix}.paid_by_others_amount`)}
+            data-schema-key={`cdfData.origination_charges.${prefix}.paid_by_others_amount`}
+            value={getValue(`cdfData.origination_charges.${prefix}.paid_by_others_amount`)}
             onChange={handleInputChange}
             onFocus={() => setActiveRow(lineNumber)}
           />
@@ -159,7 +159,7 @@ export default function OriginationCharges() {
                 <input 
                   type="text" 
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
-                  data-schema-key="cdf.origination_charges.line_06.payees.0.reference_number"
+                  data-schema-key="cdfData.origination_charges.line_06.payees.0.reference_number"
                 />
               </div>
             </div>
@@ -167,8 +167,8 @@ export default function OriginationCharges() {
             <div className="space-y-4">
               <h5 className="text-base font-semibold text-white">Mailing Address</h5>
               
-              <input type="hidden" data-schema-key="cdf.origination_charges.line_06.payees.0.address.latitude" />
-              <input type="hidden" data-schema-key="cdf.origination_charges.line_06.payees.0.address.longitude" />
+              <input type="hidden" data-schema-key="cdfData.origination_charges.line_06.payees.0.address.latitude" />
+              <input type="hidden" data-schema-key="cdfData.origination_charges.line_06.payees.0.address.longitude" />
               
               <div className="grid grid-cols-5 gap-5">
                 <div className="col-span-3">
@@ -179,7 +179,7 @@ export default function OriginationCharges() {
                       type="text" 
                       className="w-full pl-9 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                       placeholder="Search address..."
-                      data-schema-key="cdf.origination_charges.line_06.payees.0.address.address_1"
+                      data-schema-key="cdfData.origination_charges.line_06.payees.0.address.address_1"
                     />
                   </div>
                 </div>
@@ -188,7 +188,7 @@ export default function OriginationCharges() {
                   <input 
                     type="text" 
                     className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
-                    data-schema-key="cdf.origination_charges.line_06.payees.0.address.address_2"
+                    data-schema-key="cdfData.origination_charges.line_06.payees.0.address.address_2"
                   />
                 </div>
               </div>
@@ -199,14 +199,14 @@ export default function OriginationCharges() {
                   <input 
                     type="text" 
                     className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
-                    data-schema-key="cdf.origination_charges.line_06.payees.0.address.city"
+                    data-schema-key="cdfData.origination_charges.line_06.payees.0.address.city"
                   />
                 </div>
                 <div>
                   <label className="block text-sm text-gray-300 mb-2">State</label>
                   <select 
                     className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none"
-                    data-schema-key="cdf.origination_charges.line_06.payees.0.address.state"
+                    data-schema-key="cdfData.origination_charges.line_06.payees.0.address.state"
                     defaultValue="RI"
                   >
                     <option value="">Select one...</option>
@@ -221,7 +221,7 @@ export default function OriginationCharges() {
                     type="text" 
                     className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                     inputMode="numeric"
-                    data-schema-key="cdf.origination_charges.line_06.payees.0.address.zipcode"
+                    data-schema-key="cdfData.origination_charges.line_06.payees.0.address.zipcode"
                   />
                 </div>
               </div>
@@ -238,7 +238,7 @@ export default function OriginationCharges() {
                 <input 
                   type="text" 
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
-                  data-schema-key="cdf.origination_charges.line_06.payees.0.reference_number"
+                  data-schema-key="cdfData.origination_charges.line_06.payees.0.reference_number"
                 />
               </div>
             </div>
@@ -314,7 +314,7 @@ export default function OriginationCharges() {
                 <label className="block text-sm text-gray-300 mb-2">Name</label>
                 <select 
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none"
-                  data-schema-key="cdf.origination_charges.line_06.payees.0.aggregate_payee_id"
+                  data-schema-key="cdfData.origination_charges.line_06.payees.0.aggregate_payee_id"
                 >
                   <option value="">Select one...</option>
                   {aggregatePayees.map(payee => (
@@ -331,7 +331,7 @@ export default function OriginationCharges() {
                   type="text" 
                   className="w-full px-3 py-2.5 bg-gray-600 border border-gray-500 rounded text-gray-400 text-sm cursor-not-allowed"
                   inputMode="decimal"
-                  data-schema-key="cdf.origination_charges.line_06.payees.0.payment_dep"
+                  data-schema-key="cdfData.origination_charges.line_06.payees.0.payment_dep"
                   readOnly
                 />
               </div>
@@ -339,7 +339,7 @@ export default function OriginationCharges() {
                 <label className="block text-sm text-gray-300 mb-2">Label</label>
                 <select 
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none"
-                  data-schema-key="cdf.origination_charges.line_06.payees.0.label.payee_label_id"
+                  data-schema-key="cdfData.origination_charges.line_06.payees.0.label.payee_label_id"
                   defaultValue="unclassified"
                 >
                   {labelOptions.map(option => (
@@ -365,7 +365,7 @@ export default function OriginationCharges() {
                     type="text" 
                     className="w-full pl-9 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                     placeholder="Search orders..."
-                    data-schema-key="cdf.origination_charges.line_06.payees.0.order_transfer_order_id"
+                    data-schema-key="cdfData.origination_charges.line_06.payees.0.order_transfer_order_id"
                   />
                 </div>
               </div>
@@ -373,7 +373,7 @@ export default function OriginationCharges() {
                 <label className="block text-sm text-gray-300 mb-2">For Benefit Of</label>
                 <select 
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none"
-                  data-schema-key="cdf.origination_charges.line_06.payees.0.order_transfer_for_benefit_of"
+                  data-schema-key="cdfData.origination_charges.line_06.payees.0.order_transfer_for_benefit_of"
                 >
                   <option value="">Select party...</option>
                   <option value="borrower">Buyer</option>
@@ -400,7 +400,7 @@ export default function OriginationCharges() {
                 <input 
                   type="text" 
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
-                  data-schema-key="cdf.origination_charges.line_06.payees.0.holdback_release_note"
+                  data-schema-key="cdfData.origination_charges.line_06.payees.0.holdback_release_note"
                 />
               </div>
               <div>
@@ -411,7 +411,7 @@ export default function OriginationCharges() {
                     type="text" 
                     className="w-full pl-9 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                     inputMode="numeric"
-                    data-schema-key="cdf.origination_charges.line_06.payees.0.holdback_release_date"
+                    data-schema-key="cdfData.origination_charges.line_06.payees.0.holdback_release_date"
                   />
                 </div>
               </div>
@@ -577,7 +577,7 @@ export default function OriginationCharges() {
                       </button>
                     ))}
                   </div>
-                  <input type="hidden" value={activePaymentType} data-schema-key="cdf.origination_charges.line_06.payees.0.type" />
+                  <input type="hidden" value={activePaymentType} data-schema-key="cdfData.origination_charges.line_06.payees.0.type" />
                 </div>
 
                 <div>
@@ -590,7 +590,7 @@ export default function OriginationCharges() {
                           <input 
                             type="text" 
                             className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
-                            data-schema-key="cdf.origination_charges.line_06.payees.0.name_dep"
+                            data-schema-key="cdfData.origination_charges.line_06.payees.0.name_dep"
                           />
                         </div>
                         <div>
@@ -602,7 +602,7 @@ export default function OriginationCharges() {
                             type="text" 
                             className="w-full px-3 py-2.5 bg-gray-600 border border-gray-500 rounded text-gray-400 text-sm cursor-not-allowed"
                             inputMode="decimal"
-                            data-schema-key="cdf.origination_charges.line_06.payees.0.payment_dep"
+                            data-schema-key="cdfData.origination_charges.line_06.payees.0.payment_dep"
                             readOnly
                           />
                         </div>
@@ -610,7 +610,7 @@ export default function OriginationCharges() {
                           <label className="block text-sm text-gray-300 mb-2">Label</label>
                           <select 
                             className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none"
-                            data-schema-key="cdf.origination_charges.line_06.payees.0.label.payee_label_id"
+                            data-schema-key="cdfData.origination_charges.line_06.payees.0.label.payee_label_id"
                             defaultValue="unclassified"
                           >
                             {labelOptions.map(option => (

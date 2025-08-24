@@ -10,7 +10,7 @@ type TabType = 'info' | 'addresses' | 'attorney' | 'signature' | 'notary';
 type PersonType = 'individual' | 'organization';
 
 const Contacts: React.FC<ContactsProps> = ({ orderId }) => {
-  const { loading, saving, handleInputChange, handleSave, getValue } = useOrderData();
+  const { loading, saving, handleInputChange, handleSave, getValue, orderData } = useOrderData();
   const [activeContactType, setActiveContactType] = useState<ContactType>('buyers');
   const [activeTab, setActiveTab] = useState<TabType>('info');
   const [personType, setPersonType] = useState<PersonType>('individual');
@@ -35,10 +35,10 @@ const Contacts: React.FC<ContactsProps> = ({ orderId }) => {
   const showOtherForms = !showBorrowerForms && !showSellerForms;
 
   // Get names from data
-  const borrowerName = getValue(`contactsData.borrowers.${activeBorrowerIndex}.name.first`) + ' ' + 
-                      getValue(`contactsData.borrowers.${activeBorrowerIndex}.name.last`) || "Borrower";
-  const sellerName = getValue(`contactsData.sellers.${activeSellerIndex}.name.first`) + ' ' +
-                     getValue(`contactsData.sellers.${activeSellerIndex}.name.last`) || "Seller";
+  const borrowerName = getValue(`contactsData.borrowers.${activeBorrowerIndex}.first_name`) + ' ' + 
+                      getValue(`contactsData.borrowers.${activeBorrowerIndex}.last_name`) || "Borrower";
+  const sellerName = getValue(`contactsData.sellers.${activeSellerIndex}.first_name`) + ' ' +
+                     getValue(`contactsData.sellers.${activeSellerIndex}.last_name`) || "Seller";
 
   if (loading) {
     return (
@@ -155,8 +155,8 @@ const Contacts: React.FC<ContactsProps> = ({ orderId }) => {
                 <input 
                   type="text" 
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
-                  data-schema-key={`contactsData.${prefix}[${index}].name.first`}
-                  value={getValue(`contactsData.${prefix}[${index}].name.first`)}
+                  data-schema-key={`contactsData.${prefix}.${index}.first_name`}
+                  value={getValue(`contactsData.${prefix}.${index}.first_name`)}
                   onChange={handleInputChange}
                 />
               </div>
@@ -165,8 +165,8 @@ const Contacts: React.FC<ContactsProps> = ({ orderId }) => {
                 <input 
                   type="text" 
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
-                  data-schema-key={`contactsData.${prefix}[${index}].name.middle`}
-                  value={getValue(`contactsData.${prefix}[${index}].name.middle`)}
+                  data-schema-key={`contactsData.${prefix}.${index}.middle_name`}
+                  value={getValue(`contactsData.${prefix}.${index}.middle_name`)}
                   onChange={handleInputChange}
                 />
               </div>
@@ -175,8 +175,8 @@ const Contacts: React.FC<ContactsProps> = ({ orderId }) => {
                 <input 
                   type="text" 
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
-                  data-schema-key={`contactsData.${prefix}[${index}].name.last`}
-                  value={getValue(`contactsData.${prefix}[${index}].name.last`)}
+                  data-schema-key={`contactsData.${prefix}.${index}.last_name`}
+                  value={getValue(`contactsData.${prefix}.${index}.last_name`)}
                   onChange={handleInputChange}
                 />
               </div>
@@ -185,7 +185,7 @@ const Contacts: React.FC<ContactsProps> = ({ orderId }) => {
                 <input 
                   type="text" 
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
-                  data-schema-key={`contacts.${prefix}.${index}.suffix`}
+                  data-schema-key={`contactsData.${prefix}.${index}.suffix`}
                 />
               </div>
             </div>
@@ -195,7 +195,7 @@ const Contacts: React.FC<ContactsProps> = ({ orderId }) => {
                 <label className="block text-sm text-gray-300 mb-2">Gender</label>
                 <select 
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none" 
-                  data-schema-key={`contacts.${prefix}.${index}.gender`}
+                  data-schema-key={`contactsData.${prefix}.${index}.gender`}
                 >
                   <option value="">Select one...</option>
                   <option value="Male">Male</option>
@@ -206,7 +206,7 @@ const Contacts: React.FC<ContactsProps> = ({ orderId }) => {
                 <label className="block text-sm text-gray-300 mb-2">Marital Status</label>
                 <select 
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none" 
-                  data-schema-key={`contacts.${prefix}.${index}.marital_status`}
+                  data-schema-key={`contactsData.${prefix}.${index}.marital_status`}
                 >
                   <option value="">Select one...</option>
                   <option value="Married">Married</option>
@@ -224,7 +224,7 @@ const Contacts: React.FC<ContactsProps> = ({ orderId }) => {
                   type="text" 
                   inputMode="numeric" 
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
-                  data-schema-key={`contacts.${prefix}.${index}.SSN`}
+                  data-schema-key={`contactsData.${prefix}.${index}.SSN`}
                 />
               </div>
               <div className="flex-1">
@@ -235,7 +235,7 @@ const Contacts: React.FC<ContactsProps> = ({ orderId }) => {
                     type="text" 
                     inputMode="numeric" 
                     className="w-full pl-9 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
-                    data-schema-key={`contacts.${prefix}.${index}.date_of_birth`}
+                    data-schema-key={`contactsData.${prefix}.${index}.date_of_birth`}
                   />
                 </div>
               </div>
@@ -252,8 +252,8 @@ const Contacts: React.FC<ContactsProps> = ({ orderId }) => {
                 <input 
                   type="email" 
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
-                  data-schema-key={`contactsData.${prefix}[${index}].email`}
-                  value={getValue(`contactsData.${prefix}[${index}].email`)}
+                  data-schema-key={`contactsData.${prefix}.${index}.email`}
+                  value={getValue(`contactsData.${prefix}.${index}.email`)}
                   onChange={handleInputChange}
                 />
               </div>
@@ -262,7 +262,7 @@ const Contacts: React.FC<ContactsProps> = ({ orderId }) => {
                 <input 
                   type="tel" 
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
-                  data-schema-key={`contacts.${prefix}.${index}.phone`}
+                  data-schema-key={`contactsData.${prefix}.${index}.home_phone`}
                 />
               </div>
               <div className="flex-1">
@@ -270,7 +270,7 @@ const Contacts: React.FC<ContactsProps> = ({ orderId }) => {
                 <input 
                   type="tel" 
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
-                  data-schema-key={`contacts.${prefix}.${index}.mobile`}
+                  data-schema-key={`contactsData.${prefix}.${index}.cell_phone`}
                 />
               </div>
               <div className="flex-1">
@@ -278,7 +278,7 @@ const Contacts: React.FC<ContactsProps> = ({ orderId }) => {
                 <input 
                   type="tel" 
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
-                  data-schema-key={`contacts.${prefix}.${index}.fax`}
+                  data-schema-key={`contactsData.${prefix}.${index}.fax`}
                 />
               </div>
             </div>
@@ -295,7 +295,7 @@ const Contacts: React.FC<ContactsProps> = ({ orderId }) => {
                   <input 
                     type="text" 
                     className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
-                    data-schema-key={`contacts.${prefix}.${index}.company`}
+                    data-schema-key={`contactsData.${prefix}.${index}.company`}
                   />
                 </div>
                 <div className="flex-1">
@@ -303,7 +303,7 @@ const Contacts: React.FC<ContactsProps> = ({ orderId }) => {
                   <input 
                     type="text" 
                     className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
-                    data-schema-key={`contacts.${prefix}.${index}.title`}
+                    data-schema-key={`contactsData.${prefix}.${index}.title`}
                   />
                 </div>
               </div>
@@ -319,7 +319,7 @@ const Contacts: React.FC<ContactsProps> = ({ orderId }) => {
                 <input 
                   type="checkbox" 
                   className="mr-2"
-                  data-schema-key={`contacts.${prefix}.${index}.power_of_attorney`}
+                  data-schema-key={`contactsData.${prefix}.${index}.power_of_attorney`}
                 />
                 <span className="text-sm text-gray-300">Power of Attorney</span>
               </label>
@@ -329,7 +329,7 @@ const Contacts: React.FC<ContactsProps> = ({ orderId }) => {
               <label className="block text-sm text-gray-300 mb-2">Preferred Language</label>
               <select 
                 className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none" 
-                data-schema-key={`contacts.${prefix}.${index}.preferred_language`}
+                data-schema-key={`contactsData.${prefix}.${index}.preferred_language`}
               >
                 <option value="English">English</option>
                 <option value="Spanish">Spanish</option>
@@ -363,7 +363,7 @@ const Contacts: React.FC<ContactsProps> = ({ orderId }) => {
               <input 
                 type="text" 
                 className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
-                data-schema-key={`contacts.${prefix}.${index}.current_address.street`}
+                data-schema-key={`contactsData.${prefix}.${index}.current_address.street`}
               />
             </div>
 
@@ -373,7 +373,7 @@ const Contacts: React.FC<ContactsProps> = ({ orderId }) => {
                 <input 
                   type="text" 
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
-                  data-schema-key={`contacts.${prefix}.${index}.current_address.city`}
+                  data-schema-key={`contactsData.${prefix}.${index}.current_address.city`}
                 />
               </div>
               <div>
@@ -381,7 +381,7 @@ const Contacts: React.FC<ContactsProps> = ({ orderId }) => {
                 <input 
                   type="text" 
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
-                  data-schema-key={`contacts.${prefix}.${index}.current_address.state`}
+                  data-schema-key={`contactsData.${prefix}.${index}.current_address.state`}
                 />
               </div>
               <div>
@@ -389,7 +389,7 @@ const Contacts: React.FC<ContactsProps> = ({ orderId }) => {
                 <input 
                   type="text" 
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
-                  data-schema-key={`contacts.${prefix}.${index}.current_address.zip`}
+                  data-schema-key={`contactsData.${prefix}.${index}.current_address.zip`}
                 />
               </div>
             </div>
@@ -399,7 +399,7 @@ const Contacts: React.FC<ContactsProps> = ({ orderId }) => {
               <input 
                 type="text" 
                 className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
-                data-schema-key={`contacts.${prefix}.${index}.current_address.county`}
+                data-schema-key={`contactsData.${prefix}.${index}.current_address.county`}
               />
             </div>
           </section>
@@ -423,7 +423,7 @@ const Contacts: React.FC<ContactsProps> = ({ orderId }) => {
               <input 
                 type="text" 
                 className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
-                data-schema-key={`contacts.${prefix}.${index}.mailing_address.street`}
+                data-schema-key={`contactsData.${prefix}.${index}.mailing_address.street`}
               />
             </div>
 
@@ -433,7 +433,7 @@ const Contacts: React.FC<ContactsProps> = ({ orderId }) => {
                 <input 
                   type="text" 
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
-                  data-schema-key={`contacts.${prefix}.${index}.mailing_address.city`}
+                  data-schema-key={`contactsData.${prefix}.${index}.mailing_address.city`}
                 />
               </div>
               <div>
@@ -441,7 +441,7 @@ const Contacts: React.FC<ContactsProps> = ({ orderId }) => {
                 <input 
                   type="text" 
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
-                  data-schema-key={`contacts.${prefix}.${index}.mailing_address.state`}
+                  data-schema-key={`contactsData.${prefix}.${index}.mailing_address.state`}
                 />
               </div>
               <div>
@@ -449,7 +449,7 @@ const Contacts: React.FC<ContactsProps> = ({ orderId }) => {
                 <input 
                   type="text" 
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
-                  data-schema-key={`contacts.${prefix}.${index}.mailing_address.zip`}
+                  data-schema-key={`contactsData.${prefix}.${index}.mailing_address.zip`}
                 />
               </div>
             </div>
@@ -517,7 +517,7 @@ const Contacts: React.FC<ContactsProps> = ({ orderId }) => {
             <input 
               type="text" 
               className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
-              data-schema-key={`contacts.${prefix}.${index}.signature_name`}
+              data-schema-key={`contactsData.${prefix}.${index}.signature_name`}
             />
           </div>
 
@@ -526,7 +526,7 @@ const Contacts: React.FC<ContactsProps> = ({ orderId }) => {
             <input 
               type="text" 
               className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
-              data-schema-key={`contacts.${prefix}.${index}.aka`}
+              data-schema-key={`contactsData.${prefix}.${index}.aka`}
             />
           </div>
         </section>
@@ -539,7 +539,7 @@ const Contacts: React.FC<ContactsProps> = ({ orderId }) => {
             <input 
               type="text" 
               className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
-              data-schema-key={`contacts.${prefix}.${index}.vesting_name`}
+              data-schema-key={`contactsData.${prefix}.${index}.vesting_name`}
             />
           </div>
 
@@ -547,7 +547,7 @@ const Contacts: React.FC<ContactsProps> = ({ orderId }) => {
             <label className="block text-sm text-gray-300 mb-2">Manner of Holding Title</label>
             <select 
               className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none" 
-              data-schema-key={`contacts.${prefix}.${index}.manner_of_holding_title`}
+              data-schema-key={`contactsData.${prefix}.${index}.manner_of_holding_title`}
             >
               <option value="">Select one...</option>
               <option value="Sole Ownership">Sole Ownership</option>
@@ -613,7 +613,7 @@ const Contacts: React.FC<ContactsProps> = ({ orderId }) => {
                       type="text" 
                       className="w-full pl-9 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 text-left" 
                       placeholder="Search for title abstractor..." 
-                      data-schema-key="contacts.title_companies.0.company_id"
+                      data-schema-key="contactsData.title_companies.0.company_id"
                     />
                   </div>
                 </div>
@@ -658,7 +658,7 @@ const Contacts: React.FC<ContactsProps> = ({ orderId }) => {
                       type="text" 
                       className="w-full pl-9 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 text-left" 
                       placeholder="Search for surveying firm..." 
-                      data-schema-key="contacts.surveying_firms.0.company_id"
+                      data-schema-key="contactsData.surveying_firms.0.company_id"
                     />
                   </div>
                 </div>
@@ -698,7 +698,7 @@ const Contacts: React.FC<ContactsProps> = ({ orderId }) => {
             <div className="max-w-md mx-auto relative">
               <select 
                 className="w-full px-4 py-3 bg-blue-600 border border-blue-600 rounded text-white text-base font-medium focus:outline-none focus:bg-blue-700 appearance-none cursor-pointer" 
-                data-schema-key="contacts.other_contacts.0.company_type"
+                data-schema-key="contactsData.other_contacts.0.company_type"
               >
                 <option value="">Select Contact Type</option>
                 <option value="appraisalCompany">Appraisal Company</option>

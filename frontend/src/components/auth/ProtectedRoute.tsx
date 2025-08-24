@@ -9,6 +9,9 @@ interface ProtectedRouteProps {
 export default function ProtectedRoute({ children }: ProtectedRouteProps) {
   const { isAuthenticated, loading } = useAuth();
 
+  // Check for demo token
+  const isDemoMode = localStorage.getItem('token') === 'demo-token-12345';
+
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-900 flex items-center justify-center">
@@ -17,7 +20,7 @@ export default function ProtectedRoute({ children }: ProtectedRouteProps) {
     );
   }
 
-  if (!isAuthenticated) {
+  if (!isAuthenticated && !isDemoMode) {
     return <Navigate to="/login" replace />;
   }
 

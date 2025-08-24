@@ -25,20 +25,20 @@ export default function Escrow() {
                 <label className="block text-sm text-gray-300 mb-2">Street Address 1</label>
                 <input
                   type="text"
-                  value={getValue('cdf.escrow_information.payees.0.check_info.street_address')}
+                  value={getValue('cdfData.escrow_information.payees.0.check_info.street_address')}
                   onChange={handleInputChange}
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
-                  data-schema-key="cdf.escrow_information.payees.0.check_info.street_address"
+                  data-schema-key="cdfData.escrow_information.payees.0.check_info.street_address"
                 />
               </div>
               <div>
                 <label className="block text-sm text-gray-300 mb-2">Street Address 2</label>
                 <input
                   type="text"
-                  value={getValue('cdf.escrow_information.payees.0.check_info.street_address_2')}
+                  value={getValue('cdfData.escrow_information.payees.0.check_info.street_address_2')}
                   onChange={handleInputChange}
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
-                  data-schema-key="cdf.escrow_information.payees.0.check_info.street_address_2"
+                  data-schema-key="cdfData.escrow_information.payees.0.check_info.street_address_2"
                 />
               </div>
             </div>
@@ -47,30 +47,30 @@ export default function Escrow() {
                 <label className="block text-sm text-gray-300 mb-2">City</label>
                 <input
                   type="text"
-                  value={getValue('cdf.escrow_information.payees.0.check_info.city')}
+                  value={getValue('cdfData.escrow_information.payees.0.check_info.city')}
                   onChange={handleInputChange}
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
-                  data-schema-key="cdf.escrow_information.payees.0.check_info.city"
+                  data-schema-key="cdfData.escrow_information.payees.0.check_info.city"
                 />
               </div>
               <div>
                 <label className="block text-sm text-gray-300 mb-2">State</label>
                 <input
                   type="text"
-                  value={getValue('cdf.escrow_information.payees.0.check_info.state')}
+                  value={getValue('cdfData.escrow_information.payees.0.check_info.state')}
                   onChange={handleInputChange}
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
-                  data-schema-key="cdf.escrow_information.payees.0.check_info.state"
+                  data-schema-key="cdfData.escrow_information.payees.0.check_info.state"
                 />
               </div>
               <div>
                 <label className="block text-sm text-gray-300 mb-2">Zip Code</label>
                 <input
                   type="text"
-                  value={getValue('cdf.escrow_information.payees.0.check_info.zip_code')}
+                  value={getValue('cdfData.escrow_information.payees.0.check_info.zip_code')}
                   onChange={handleInputChange}
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
-                  data-schema-key="cdf.escrow_information.payees.0.check_info.zip_code"
+                  data-schema-key="cdfData.escrow_information.payees.0.check_info.zip_code"
                 />
               </div>
             </div>
@@ -87,30 +87,30 @@ export default function Escrow() {
                 <input
                   type="text"
                   inputMode="numeric"
-                  value={getValue('cdf.escrow_information.payees.0.wire_info.routing_number')}
+                  value={getValue('cdfData.escrow_information.payees.0.wire_info.routing_number')}
                   onChange={handleInputChange}
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
-                  data-schema-key="cdf.escrow_information.payees.0.wire_info.routing_number"
+                  data-schema-key="cdfData.escrow_information.payees.0.wire_info.routing_number"
                 />
               </div>
               <div>
                 <label className="block text-sm text-gray-300 mb-2">Bank Name</label>
                 <input
                   type="text"
-                  value={getValue('cdf.escrow_information.payees.0.wire_info.bank_name')}
+                  value={getValue('cdfData.escrow_information.payees.0.wire_info.bank_name')}
                   onChange={handleInputChange}
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
-                  data-schema-key="cdf.escrow_information.payees.0.wire_info.bank_name"
+                  data-schema-key="cdfData.escrow_information.payees.0.wire_info.bank_name"
                 />
               </div>
               <div>
                 <label className="block text-sm text-gray-300 mb-2">Account #</label>
                 <input
                   type="text"
-                  value={getValue('cdf.escrow_information.payees.0.wire_info.account_number')}
+                  value={getValue('cdfData.escrow_information.payees.0.wire_info.account_number')}
                   onChange={handleInputChange}
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
-                  data-schema-key="cdf.escrow_information.payees.0.wire_info.account_number"
+                  data-schema-key="cdfData.escrow_information.payees.0.wire_info.account_number"
                 />
               </div>
             </div>
@@ -119,10 +119,10 @@ export default function Escrow() {
                 <label className="block text-sm text-gray-300 mb-2">Name on Account</label>
                 <input
                   type="text"
-                  value={getValue('cdf.escrow_information.payees.0.wire_info.account_name')}
+                  value={getValue('cdfData.escrow_information.payees.0.wire_info.account_name')}
                   onChange={handleInputChange}
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
-                  data-schema-key="cdf.escrow_information.payees.0.wire_info.account_name"
+                  data-schema-key="cdfData.escrow_information.payees.0.wire_info.account_name"
                 />
               </div>
               <div>
@@ -226,14 +226,14 @@ export default function Escrow() {
         <td className="py-3 px-4">
           <input
             type="text"
-            value={getValue(`cdf.escrow_information.line_${lineNumberPadded}.description`)}
+            value={getValue(`cdfData.escrow_information.line_${lineNumberPadded}.description`)}
             onChange={handleInputChange}
             className={`w-full px-3 py-1.5 border border-gray-500 rounded text-sm ${
               isReadOnlyDescription
                 ? 'bg-gray-600 text-gray-400'
                 : 'bg-gray-700 text-white focus:outline-none focus:border-blue-500'
             }`}
-            data-schema-key={`cdf.escrow_information.line_${lineNumberPadded}.description`}
+            data-schema-key={`cdfData.escrow_information.line_${lineNumberPadded}.description`}
             onFocus={() => handleRowFocus(lineNumber)}
             readOnly={isReadOnlyDescription}
           />
@@ -242,14 +242,14 @@ export default function Escrow() {
           <input
             type="text"
             inputMode="decimal"
-            value={getValue(`cdf.escrow_information.line_${lineNumberPadded}.per_month_amount`)}
+            value={getValue(`cdfData.escrow_information.line_${lineNumberPadded}.per_month_amount`)}
             onChange={handleInputChange}
             className={`w-full px-3 py-1.5 border border-gray-500 rounded text-sm text-center ${
               isLine08ReadOnly
                 ? 'bg-gray-600 text-gray-400'
                 : 'bg-gray-700 text-white focus:outline-none focus:border-blue-500'
             }`}
-            data-schema-key={`cdf.escrow_information.line_${lineNumberPadded}.per_month_amount`}
+            data-schema-key={`cdfData.escrow_information.line_${lineNumberPadded}.per_month_amount`}
             onFocus={() => handleRowFocus(lineNumber)}
             readOnly={isLine08ReadOnly}
           />
@@ -262,7 +262,7 @@ export default function Escrow() {
                 ? 'bg-gray-600 text-gray-400'
                 : 'bg-gray-700 text-white focus:outline-none focus:border-blue-500'
             }`}
-            data-schema-key={`cdf.escrow_information.line_${lineNumberPadded}.number_of_months`}
+            data-schema-key={`cdfData.escrow_information.line_${lineNumberPadded}.number_of_months`}
             onFocus={() => handleRowFocus(lineNumber)}
             readOnly={isLine08ReadOnly}
           />
@@ -271,10 +271,10 @@ export default function Escrow() {
           <input
             type="text"
             inputMode="decimal"
-            value={getValue(`cdf.escrow_information.line_${lineNumberPadded}.borrower_amount`)}
+            value={getValue(`cdfData.escrow_information.line_${lineNumberPadded}.borrower_amount`)}
             onChange={handleInputChange}
             className="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500"
-            data-schema-key={`cdf.escrow_information.line_${lineNumberPadded}.borrower_amount`}
+            data-schema-key={`cdfData.escrow_information.line_${lineNumberPadded}.borrower_amount`}
             onFocus={() => handleRowFocus(lineNumber)}
           />
         </td>
@@ -283,7 +283,7 @@ export default function Escrow() {
             type="text"
             inputMode="decimal"
             className="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500"
-            data-schema-key={`cdf.escrow_information.line_${lineNumberPadded}.before_borrower_amount`}
+            data-schema-key={`cdfData.escrow_information.line_${lineNumberPadded}.before_borrower_amount`}
             onFocus={() => handleRowFocus(lineNumber)}
           />
         </td>
@@ -291,10 +291,10 @@ export default function Escrow() {
           <input
             type="text"
             inputMode="decimal"
-            value={getValue(`cdf.escrow_information.line_${lineNumberPadded}.seller_amount`)}
+            value={getValue(`cdfData.escrow_information.line_${lineNumberPadded}.seller_amount`)}
             onChange={handleInputChange}
             className="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500"
-            data-schema-key={`cdf.escrow_information.line_${lineNumberPadded}.seller_amount`}
+            data-schema-key={`cdfData.escrow_information.line_${lineNumberPadded}.seller_amount`}
             onFocus={() => handleRowFocus(lineNumber)}
           />
         </td>
@@ -303,7 +303,7 @@ export default function Escrow() {
             type="text"
             inputMode="decimal"
             className="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500"
-            data-schema-key={`cdf.escrow_information.line_${lineNumberPadded}.before_seller_amount`}
+            data-schema-key={`cdfData.escrow_information.line_${lineNumberPadded}.before_seller_amount`}
             onFocus={() => handleRowFocus(lineNumber)}
           />
         </td>
@@ -312,7 +312,7 @@ export default function Escrow() {
             type="text"
             inputMode="decimal"
             className="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500"
-            data-schema-key={`cdf.escrow_information.line_${lineNumberPadded}.paid_by_others_amount`}
+            data-schema-key={`cdfData.escrow_information.line_${lineNumberPadded}.paid_by_others_amount`}
             onFocus={() => handleRowFocus(lineNumber)}
           />
         </td>
@@ -566,7 +566,7 @@ export default function Escrow() {
                     <input
                       type="hidden"
                       value={paymentType}
-                      data-schema-key="cdf.escrow_information.payees.0.type"
+                      data-schema-key="cdfData.escrow_information.payees.0.type"
                     />
                   </div>
 
@@ -579,10 +579,10 @@ export default function Escrow() {
                           <label className="block text-sm text-gray-300 mb-2">Name</label>
                           <input
                             type="text"
-                            value={getValue('cdf.escrow_information.payees.0.name_dep')}
+                            value={getValue('cdfData.escrow_information.payees.0.name_dep')}
                             onChange={handleInputChange}
                             className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
-                            data-schema-key="cdf.escrow_information.payees.0.name_dep"
+                            data-schema-key="cdfData.escrow_information.payees.0.name_dep"
                           />
                         </div>
                         <div>
@@ -593,20 +593,20 @@ export default function Escrow() {
                           <input
                             type="text"
                             inputMode="decimal"
-                            value={getValue('cdf.escrow_information.payees.0.payment_dep')}
+                            value={getValue('cdfData.escrow_information.payees.0.payment_dep')}
                             onChange={handleInputChange}
                             className="w-full px-3 py-2.5 bg-gray-600 border border-gray-500 rounded text-gray-400 text-sm"
-                            data-schema-key="cdf.escrow_information.payees.0.payment_dep"
+                            data-schema-key="cdfData.escrow_information.payees.0.payment_dep"
                             readOnly
                           />
                         </div>
                         <div>
                           <label className="block text-sm text-gray-300 mb-2">Label</label>
                           <select
-                            value={getValue('cdf.escrow_information.payees.0.label.payee_label_id')}
+                            value={getValue('cdfData.escrow_information.payees.0.label.payee_label_id')}
                             onChange={handleInputChange}
                             className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none"
-                            data-schema-key="cdf.escrow_information.payees.0.label.payee_label_id"
+                            data-schema-key="cdfData.escrow_information.payees.0.label.payee_label_id"
                           >
                             <option value="insurance">Insurance</option>
                             <option value="lenders_policy">Lender's Policy</option>

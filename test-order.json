@@ -1,0 +1,29 @@
+{
+  "order_number": "TEST-DEMO-001",
+  "property_address": "456 Oak Avenue, Los Angeles, CA 90025",
+  "loan_amount": 750000,
+  "purchase_price": 950000,
+  "borrower_name": "John Smith",
+  "seller_name": "Jane Doe",
+  "cdf_data": {
+    "loan": {
+      "amount": 750000,
+      "rate": 6.875,
+      "term": 30,
+      "pmi_rate": 0.5
+    },
+    "property": {
+      "address": "456 Oak Avenue",
+      "city": "Los Angeles", 
+      "state": "CA",
+      "zip": "90025",
+      "purchase_price": 950000
+    },
+    "borrower": {
+      "first_name": "John",
+      "last_name": "Smith",
+      "email": "john.smith@example.com",
+      "phone": "(555) 123-4567"
+    }
+  }
+}

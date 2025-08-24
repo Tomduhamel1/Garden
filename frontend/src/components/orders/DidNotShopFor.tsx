@@ -70,8 +70,8 @@ export default function DidNotShopFor() {
           <input
             type="text"
             className="w-full px-3 py-2 bg-transparent text-white focus:outline-none focus:bg-blue-900/10"
-            data-schema-key={`cdf.services_borrower_did_not_shop_for.line_${paddedNumber}.description`}
-            value={getValue(`cdf.services_borrower_did_not_shop_for.line_${paddedNumber}.description`)}
+            data-schema-key={`cdfData.services_borrower_did_not_shop_for.line_${paddedNumber}.description`}
+            value={getValue(`cdfData.services_borrower_did_not_shop_for.line_${paddedNumber}.description`)}
             onChange={handleInputChange}
             onFocus={() => setActiveRow(lineNumber)}
           />
@@ -80,8 +80,8 @@ export default function DidNotShopFor() {
           <input
             type="text"
             className="w-full px-3 py-2 bg-transparent text-white focus:outline-none focus:bg-blue-900/10"
-            data-schema-key={`cdf.services_borrower_did_not_shop_for.line_${paddedNumber}.payee_name`}
-            value={getValue(`cdf.services_borrower_did_not_shop_for.line_${paddedNumber}.payee_name`)}
+            data-schema-key={`cdfData.services_borrower_did_not_shop_for.line_${paddedNumber}.payee_name`}
+            value={getValue(`cdfData.services_borrower_did_not_shop_for.line_${paddedNumber}.payee_name`)}
             onChange={handleInputChange}
             onFocus={() => setActiveRow(lineNumber)}
           />
@@ -91,8 +91,8 @@ export default function DidNotShopFor() {
             type="text"
             className="w-full px-3 py-2 bg-transparent text-white text-right focus:outline-none focus:bg-blue-900/10"
             inputMode="decimal"
-            data-schema-key={`cdf.services_borrower_did_not_shop_for.line_${paddedNumber}.borrower_amount`}
-            value={getValue(`cdf.services_borrower_did_not_shop_for.line_${paddedNumber}.borrower_amount`)}
+            data-schema-key={`cdfData.services_borrower_did_not_shop_for.line_${paddedNumber}.borrower_amount`}
+            value={getValue(`cdfData.services_borrower_did_not_shop_for.line_${paddedNumber}.borrower_amount`)}
             onChange={handleInputChange}
             onFocus={() => setActiveRow(lineNumber)}
           />
@@ -102,8 +102,8 @@ export default function DidNotShopFor() {
             type="text"
             className="w-full px-3 py-2 bg-transparent text-white text-right focus:outline-none focus:bg-blue-900/10"
             inputMode="decimal"
-            data-schema-key={`cdf.services_borrower_did_not_shop_for.line_${paddedNumber}.before_borrower_amount`}
-            value={getValue(`cdf.services_borrower_did_not_shop_for.line_${paddedNumber}.before_borrower_amount`)}
+            data-schema-key={`cdfData.services_borrower_did_not_shop_for.line_${paddedNumber}.before_borrower_amount`}
+            value={getValue(`cdfData.services_borrower_did_not_shop_for.line_${paddedNumber}.before_borrower_amount`)}
             onChange={handleInputChange}
             onFocus={() => setActiveRow(lineNumber)}
           />
@@ -113,8 +113,8 @@ export default function DidNotShopFor() {
             type="text"
             className="w-full px-3 py-2 bg-transparent text-white text-right focus:outline-none focus:bg-blue-900/10"
             inputMode="decimal"
-            data-schema-key={`cdf.services_borrower_did_not_shop_for.line_${paddedNumber}.seller_amount`}
-            value={getValue(`cdf.services_borrower_did_not_shop_for.line_${paddedNumber}.seller_amount`)}
+            data-schema-key={`cdfData.services_borrower_did_not_shop_for.line_${paddedNumber}.seller_amount`}
+            value={getValue(`cdfData.services_borrower_did_not_shop_for.line_${paddedNumber}.seller_amount`)}
             onChange={handleInputChange}
             onFocus={() => setActiveRow(lineNumber)}
           />
@@ -124,8 +124,8 @@ export default function DidNotShopFor() {
             type="text"
             className="w-full px-3 py-2 bg-transparent text-white text-right focus:outline-none focus:bg-blue-900/10"
             inputMode="decimal"
-            data-schema-key={`cdf.services_borrower_did_not_shop_for.line_${paddedNumber}.before_seller_amount`}
-            value={getValue(`cdf.services_borrower_did_not_shop_for.line_${paddedNumber}.before_seller_amount`)}
+            data-schema-key={`cdfData.services_borrower_did_not_shop_for.line_${paddedNumber}.before_seller_amount`}
+            value={getValue(`cdfData.services_borrower_did_not_shop_for.line_${paddedNumber}.before_seller_amount`)}
             onChange={handleInputChange}
             onFocus={() => setActiveRow(lineNumber)}
           />
@@ -135,8 +135,8 @@ export default function DidNotShopFor() {
             type="text"
             className="w-full px-3 py-2 bg-transparent text-white text-right focus:outline-none focus:bg-blue-900/10"
             inputMode="decimal"
-            data-schema-key={`cdf.services_borrower_did_not_shop_for.line_${paddedNumber}.paid_by_others_amount`}
-            value={getValue(`cdf.services_borrower_did_not_shop_for.line_${paddedNumber}.paid_by_others_amount`)}
+            data-schema-key={`cdfData.services_borrower_did_not_shop_for.line_${paddedNumber}.paid_by_others_amount`}
+            value={getValue(`cdfData.services_borrower_did_not_shop_for.line_${paddedNumber}.paid_by_others_amount`)}
             onChange={handleInputChange}
             onFocus={() => setActiveRow(lineNumber)}
           />
@@ -156,8 +156,8 @@ export default function DidNotShopFor() {
                 <input 
                   type="text" 
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
-                  data-schema-key="cdf.services_borrower_did_not_shop_for.line_04.payees.0.reference_number"
-                  value={getValue('cdf.services_borrower_did_not_shop_for.line_04.payees.0.reference_number')}
+                  data-schema-key="cdfData.services_borrower_did_not_shop_for.line_04.payees.0.reference_number"
+                  value={getValue('cdfData.services_borrower_did_not_shop_for.line_04.payees.0.reference_number')}
                   onChange={handleInputChange}
                 />
               </div>
@@ -168,14 +168,14 @@ export default function DidNotShopFor() {
               
               <input 
                 type="hidden" 
-                data-schema-key="cdf.services_borrower_did_not_shop_for.line_04.payees.0.address.latitude"
-                value={getValue('cdf.services_borrower_did_not_shop_for.line_04.payees.0.address.latitude')}
+                data-schema-key="cdfData.services_borrower_did_not_shop_for.line_04.payees.0.address.latitude"
+                value={getValue('cdfData.services_borrower_did_not_shop_for.line_04.payees.0.address.latitude')}
                 onChange={handleInputChange}
               />
               <input 
                 type="hidden" 
-                data-schema-key="cdf.services_borrower_did_not_shop_for.line_04.payees.0.address.longitude"
-                value={getValue('cdf.services_borrower_did_not_shop_for.line_04.payees.0.address.longitude')}
+                data-schema-key="cdfData.services_borrower_did_not_shop_for.line_04.payees.0.address.longitude"
+                value={getValue('cdfData.services_borrower_did_not_shop_for.line_04.payees.0.address.longitude')}
                 onChange={handleInputChange}
               />
               
@@ -188,8 +188,8 @@ export default function DidNotShopFor() {
                       type="text" 
                       className="w-full pl-9 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                       placeholder="Search address..."
-                      data-schema-key="cdf.services_borrower_did_not_shop_for.line_04.payees.0.address.address_1"
-                      value={getValue('cdf.services_borrower_did_not_shop_for.line_04.payees.0.address.address_1')}
+                      data-schema-key="cdfData.services_borrower_did_not_shop_for.line_04.payees.0.address.address_1"
+                      value={getValue('cdfData.services_borrower_did_not_shop_for.line_04.payees.0.address.address_1')}
                       onChange={handleInputChange}
                     />
                   </div>
@@ -199,8 +199,8 @@ export default function DidNotShopFor() {
                   <input 
                     type="text" 
                     className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
-                    data-schema-key="cdf.services_borrower_did_not_shop_for.line_04.payees.0.address.address_2"
-                    value={getValue('cdf.services_borrower_did_not_shop_for.line_04.payees.0.address.address_2')}
+                    data-schema-key="cdfData.services_borrower_did_not_shop_for.line_04.payees.0.address.address_2"
+                    value={getValue('cdfData.services_borrower_did_not_shop_for.line_04.payees.0.address.address_2')}
                     onChange={handleInputChange}
                   />
                 </div>
@@ -212,8 +212,8 @@ export default function DidNotShopFor() {
                   <input 
                     type="text" 
                     className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
-                    data-schema-key="cdf.services_borrower_did_not_shop_for.line_04.payees.0.address.city"
-                    value={getValue('cdf.services_borrower_did_not_shop_for.line_04.payees.0.address.city')}
+                    data-schema-key="cdfData.services_borrower_did_not_shop_for.line_04.payees.0.address.city"
+                    value={getValue('cdfData.services_borrower_did_not_shop_for.line_04.payees.0.address.city')}
                     onChange={handleInputChange}
                   />
                 </div>
@@ -221,8 +221,8 @@ export default function DidNotShopFor() {
                   <label className="block text-sm text-gray-300 mb-2">State</label>
                   <select 
                     className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none"
-                    data-schema-key="cdf.services_borrower_did_not_shop_for.line_04.payees.0.address.state"
-                    value={getValue('cdf.services_borrower_did_not_shop_for.line_04.payees.0.address.state') || 'RI'}
+                    data-schema-key="cdfData.services_borrower_did_not_shop_for.line_04.payees.0.address.state"
+                    value={getValue('cdfData.services_borrower_did_not_shop_for.line_04.payees.0.address.state') || 'RI'}
                     onChange={handleInputChange}
                   >
                     <option value="">Select one...</option>
@@ -237,8 +237,8 @@ export default function DidNotShopFor() {
                     type="text" 
                     className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                     inputMode="numeric"
-                    data-schema-key="cdf.services_borrower_did_not_shop_for.line_04.payees.0.address.zipcode"
-                    value={getValue('cdf.services_borrower_did_not_shop_for.line_04.payees.0.address.zipcode')}
+                    data-schema-key="cdfData.services_borrower_did_not_shop_for.line_04.payees.0.address.zipcode"
+                    value={getValue('cdfData.services_borrower_did_not_shop_for.line_04.payees.0.address.zipcode')}
                     onChange={handleInputChange}
                   />
                 </div>
@@ -256,8 +256,8 @@ export default function DidNotShopFor() {
                 <input 
                   type="text" 
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
-                  data-schema-key="cdf.services_borrower_did_not_shop_for.line_04.payees.0.reference_number"
-                  value={getValue('cdf.services_borrower_did_not_shop_for.line_04.payees.0.reference_number')}
+                  data-schema-key="cdfData.services_borrower_did_not_shop_for.line_04.payees.0.reference_number"
+                  value={getValue('cdfData.services_borrower_did_not_shop_for.line_04.payees.0.reference_number')}
                   onChange={handleInputChange}
                 />
               </div>
@@ -334,8 +334,8 @@ export default function DidNotShopFor() {
                 <label className="block text-sm text-gray-300 mb-2">Name</label>
                 <select 
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none"
-                  data-schema-key="cdf.services_borrower_did_not_shop_for.line_04.payees.0.aggregate_payee_id"
-                  value={getValue('cdf.services_borrower_did_not_shop_for.line_04.payees.0.aggregate_payee_id')}
+                  data-schema-key="cdfData.services_borrower_did_not_shop_for.line_04.payees.0.aggregate_payee_id"
+                  value={getValue('cdfData.services_borrower_did_not_shop_for.line_04.payees.0.aggregate_payee_id')}
                   onChange={handleInputChange}
                 >
                   <option value="">Select one...</option>
@@ -353,7 +353,7 @@ export default function DidNotShopFor() {
                   type="text" 
                   className="w-full px-3 py-2.5 bg-gray-600 border border-gray-500 rounded text-gray-400 text-sm cursor-not-allowed"
                   inputMode="decimal"
-                  data-schema-key="cdf.services_borrower_did_not_shop_for.line_04.payees.0.payment_dep"
+                  data-schema-key="cdfData.services_borrower_did_not_shop_for.line_04.payees.0.payment_dep"
                   readOnly
                 />
               </div>
@@ -361,7 +361,7 @@ export default function DidNotShopFor() {
                 <label className="block text-sm text-gray-300 mb-2">Label</label>
                 <select 
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none"
-                  data-schema-key="cdf.services_borrower_did_not_shop_for.line_04.payees.0.label.payee_label_id"
+                  data-schema-key="cdfData.services_borrower_did_not_shop_for.line_04.payees.0.label.payee_label_id"
                   defaultValue="unclassified"
                 >
                   {labelOptions.map(option => (
@@ -387,7 +387,7 @@ export default function DidNotShopFor() {
                     type="text" 
                     className="w-full pl-9 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                     placeholder="Search orders..."
-                    data-schema-key="cdf.services_borrower_did_not_shop_for.line_04.payees.0.order_transfer_order_id"
+                    data-schema-key="cdfData.services_borrower_did_not_shop_for.line_04.payees.0.order_transfer_order_id"
                   />
                 </div>
               </div>
@@ -395,7 +395,7 @@ export default function DidNotShopFor() {
                 <label className="block text-sm text-gray-300 mb-2">For Benefit Of</label>
                 <select 
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none"
-                  data-schema-key="cdf.services_borrower_did_not_shop_for.line_04.payees.0.order_transfer_for_benefit_of"
+                  data-schema-key="cdfData.services_borrower_did_not_shop_for.line_04.payees.0.order_transfer_for_benefit_of"
                 >
                   <option value="">Select party...</option>
                   <option value="borrower">Buyer</option>
@@ -422,7 +422,7 @@ export default function DidNotShopFor() {
                 <input 
                   type="text" 
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
-                  data-schema-key="cdf.services_borrower_did_not_shop_for.line_04.payees.0.holdback_release_note"
+                  data-schema-key="cdfData.services_borrower_did_not_shop_for.line_04.payees.0.holdback_release_note"
                 />
               </div>
               <div>
@@ -433,7 +433,7 @@ export default function DidNotShopFor() {
                     type="text" 
                     className="w-full pl-9 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                     inputMode="numeric"
-                    data-schema-key="cdf.services_borrower_did_not_shop_for.line_04.payees.0.holdback_release_date"
+                    data-schema-key="cdfData.services_borrower_did_not_shop_for.line_04.payees.0.holdback_release_date"
                   />
                 </div>
               </div>
@@ -602,7 +602,7 @@ export default function DidNotShopFor() {
                   <input 
                     type="hidden" 
                     value={activePaymentType} 
-                    data-schema-key="cdf.services_borrower_did_not_shop_for.line_04.payees.0.type"
+                    data-schema-key="cdfData.services_borrower_did_not_shop_for.line_04.payees.0.type"
                     onChange={handleInputChange}
                   />
                 </div>
@@ -617,8 +617,8 @@ export default function DidNotShopFor() {
                           <input 
                             type="text" 
                             className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
-                            data-schema-key="cdf.services_borrower_did_not_shop_for.line_04.payees.0.name_dep"
-                            value={getValue('cdf.services_borrower_did_not_shop_for.line_04.payees.0.name_dep')}
+                            data-schema-key="cdfData.services_borrower_did_not_shop_for.line_04.payees.0.name_dep"
+                            value={getValue('cdfData.services_borrower_did_not_shop_for.line_04.payees.0.name_dep')}
                             onChange={handleInputChange}
                           />
                         </div>
@@ -631,7 +631,7 @@ export default function DidNotShopFor() {
                             type="text" 
                             className="w-full px-3 py-2.5 bg-gray-600 border border-gray-500 rounded text-gray-400 text-sm cursor-not-allowed"
                             inputMode="decimal"
-                            data-schema-key="cdf.services_borrower_did_not_shop_for.line_04.payees.0.payment_dep"
+                            data-schema-key="cdfData.services_borrower_did_not_shop_for.line_04.payees.0.payment_dep"
                             readOnly
                           />
                         </div>
@@ -639,8 +639,8 @@ export default function DidNotShopFor() {
                           <label className="block text-sm text-gray-300 mb-2">Label</label>
                           <select 
                             className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none"
-                            data-schema-key="cdf.services_borrower_did_not_shop_for.line_04.payees.0.label.payee_label_id"
-                            value={getValue('cdf.services_borrower_did_not_shop_for.line_04.payees.0.label.payee_label_id') || 'unclassified'}
+                            data-schema-key="cdfData.services_borrower_did_not_shop_for.line_04.payees.0.label.payee_label_id"
+                            value={getValue('cdfData.services_borrower_did_not_shop_for.line_04.payees.0.label.payee_label_id') || 'unclassified'}
                             onChange={handleInputChange}
                           >
                             {labelOptions.map(option => (

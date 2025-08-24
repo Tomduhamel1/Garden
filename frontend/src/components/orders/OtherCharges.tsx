@@ -35,24 +35,24 @@ const OtherCharges: React.FC = () => {
         <td className="py-3 px-4">
           <input 
             type="text" 
-            value={getValue(`cdf.other_charges.line_${lineNumber.toString().padStart(2, '0')}.description`)}
+            value={getValue(`cdfData.other_charges.line_${lineNumber.toString().padStart(2, '0')}.description`)}
             onChange={handleInputChange}
             className={`w-full bg-transparent border-none outline-none focus:ring-0 ${isSpecialLine ? 'text-gray-400' : 'text-gray-100'}`}
             placeholder="Description"
             readOnly={isSpecialLine}
-            data-schema-key={`cdf.other_charges.line_${lineNumber.toString().padStart(2, '0')}.description`}
+            data-schema-key={`cdfData.other_charges.line_${lineNumber.toString().padStart(2, '0')}.description`}
           />
         </td>
         <td className="py-3 px-4 text-right">
           <input 
             type="text" 
             inputMode="decimal"
-            value={getValue(`cdf.other_charges.line_${lineNumber.toString().padStart(2, '0')}.amount`)}
+            value={getValue(`cdfData.other_charges.line_${lineNumber.toString().padStart(2, '0')}.amount`)}
             onChange={handleInputChange}
             className={`w-full bg-transparent border-none outline-none focus:ring-0 text-right ${isSpecialLine ? 'text-gray-400' : 'text-gray-100'}`}
             placeholder="0.00"
             readOnly={isSpecialLine}
-            data-schema-key={`cdf.other_charges.line_${lineNumber.toString().padStart(2, '0')}.amount`}
+            data-schema-key={`cdfData.other_charges.line_${lineNumber.toString().padStart(2, '0')}.amount`}
           />
         </td>
         <td className="py-3 px-4 text-center">
@@ -61,7 +61,7 @@ const OtherCharges: React.FC = () => {
             className="w-4 h-4 text-blue-600 bg-gray-700 border-gray-600 rounded focus:ring-blue-500"
             defaultChecked={isSpecialLine}
             disabled={isSpecialLine}
-            data-schema-key={`cdf.other_charges.${lineIndex}.paid_by_borrower`}
+            data-schema-key={`cdfData.other_charges.${lineIndex}.paid_by_borrower`}
           />
         </td>
         <td className="py-3 px-4 text-center">
@@ -69,7 +69,7 @@ const OtherCharges: React.FC = () => {
             type="checkbox" 
             className="w-4 h-4 text-blue-600 bg-gray-700 border-gray-600 rounded focus:ring-blue-500"
             disabled={isSpecialLine}
-            data-schema-key={`cdf.other_charges.${lineIndex}.paid_by_seller`}
+            data-schema-key={`cdfData.other_charges.${lineIndex}.paid_by_seller`}
           />
         </td>
         <td className="py-3 px-4">
