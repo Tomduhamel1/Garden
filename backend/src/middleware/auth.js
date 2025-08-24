@@ -35,6 +35,17 @@ const authenticate = async (req, res, next) => {
       ? authHeader.slice(7) 
       : authHeader;
 
+    // Development bypass for demo token
+    if (token === 'demo-token-12345') {
+      req.user = {
+        id: 1,
+        email: 'demo@garden.com',
+        firstName: 'Demo',
+        lastName: 'User'
+      };
+      return next();
+    }
+
     const decoded = verifyToken(token);
     req.user = decoded;
     

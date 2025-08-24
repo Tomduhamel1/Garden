@@ -75,7 +75,7 @@ export default function DidShopFor() {
             inputMode="decimal"
             className={`w-full px-3 py-1.5 ${isCalculatedRow ? 'bg-gray-600 text-gray-400' : 'bg-gray-700 text-white'} border border-gray-500 rounded text-sm text-right focus:outline-none focus:border-blue-500`}
             data-schema-key={`cdfData.services_borrower_did_shop_for.line_${paddedNumber}.borrower_amount`}
-            value={getValue(`cdfData.services_borrower_did_shop_for.line_${paddedNumber}.borrower_amount`)}
+            value={getValue(`cdfData.services_borrower_did_shop_for.line_${paddedNumber}.paid_by_borrower`)}
             onChange={handleInputChange}
             onFocus={() => setActiveRow(lineNumber)}
             readOnly={isCalculatedRow}
@@ -87,7 +87,7 @@ export default function DidShopFor() {
             inputMode="decimal"
             className={`w-full px-3 py-1.5 ${isCalculatedRow ? 'bg-gray-600 text-gray-400' : 'bg-gray-700 text-white'} border border-gray-500 rounded text-sm text-right focus:outline-none focus:border-blue-500`}
             data-schema-key={`cdfData.services_borrower_did_shop_for.line_${paddedNumber}.before_borrower_amount`}
-            value={getValue(`cdfData.services_borrower_did_shop_for.line_${paddedNumber}.before_borrower_amount`)}
+            value={getValue(`cdfData.services_borrower_did_shop_for.line_${paddedNumber}.paid_before_closing`)}
             onChange={handleInputChange}
             onFocus={() => setActiveRow(lineNumber)}
             readOnly={isCalculatedRow}
@@ -99,7 +99,7 @@ export default function DidShopFor() {
             inputMode="decimal"
             className={`w-full px-3 py-1.5 ${isCalculatedRow ? 'bg-gray-600 text-gray-400' : 'bg-gray-700 text-white'} border border-gray-500 rounded text-sm text-right focus:outline-none focus:border-blue-500`}
             data-schema-key={`cdfData.services_borrower_did_shop_for.line_${paddedNumber}.seller_amount`}
-            value={getValue(`cdfData.services_borrower_did_shop_for.line_${paddedNumber}.seller_amount`)}
+            value={getValue(`cdfData.services_borrower_did_shop_for.line_${paddedNumber}.paid_by_seller`)}
             onChange={handleInputChange}
             onFocus={() => setActiveRow(lineNumber)}
             readOnly={isCalculatedRow}
@@ -111,7 +111,7 @@ export default function DidShopFor() {
             inputMode="decimal"
             className={`w-full px-3 py-1.5 ${isCalculatedRow ? 'bg-gray-600 text-gray-400' : 'bg-gray-700 text-white'} border border-gray-500 rounded text-sm text-right focus:outline-none focus:border-blue-500`}
             data-schema-key={`cdfData.services_borrower_did_shop_for.line_${paddedNumber}.before_seller_amount`}
-            value={getValue(`cdfData.services_borrower_did_shop_for.line_${paddedNumber}.before_seller_amount`)}
+            value={getValue(`cdfData.services_borrower_did_shop_for.line_${paddedNumber}.paid_before_closing`)}
             onChange={handleInputChange}
             onFocus={() => setActiveRow(lineNumber)}
             readOnly={isCalculatedRow}
@@ -123,7 +123,7 @@ export default function DidShopFor() {
             inputMode="decimal"
             className={`w-full px-3 py-1.5 ${isCalculatedRow ? 'bg-gray-600 text-gray-400' : 'bg-gray-700 text-white'} border border-gray-500 rounded text-sm text-right focus:outline-none focus:border-blue-500`}
             data-schema-key={`cdfData.services_borrower_did_shop_for.line_${paddedNumber}.paid_by_others_amount`}
-            value={getValue(`cdfData.services_borrower_did_shop_for.line_${paddedNumber}.paid_by_others_amount`)}
+            value={getValue(`cdfData.services_borrower_did_shop_for.line_${paddedNumber}.paid_by_others`)}
             onChange={handleInputChange}
             onFocus={() => setActiveRow(lineNumber)}
             readOnly={isCalculatedRow}

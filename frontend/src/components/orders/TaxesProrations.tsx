@@ -333,7 +333,9 @@ const TaxesProrations: React.FC<TaxesProrationsProps> = () => {
                                     type="text" 
                                     inputMode="numeric" 
                                     className="w-full pl-9 pr-3 py-2 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
-                                    data-schema-key={`properties.0.tax_information.${activeTab}.payment_dates.${index}`}
+                                    value={getValue(`properties.0.tax_information.${activeTab}.payment_dates.${index}`) || ''}
+            onChange={handleInputChange}
+            data-schema-key={`properties.0.tax_information.${activeTab}.payment_dates.${index}`}
                                   />
                                 </div>
                               </td>
@@ -342,7 +344,9 @@ const TaxesProrations: React.FC<TaxesProrationsProps> = () => {
                                   type="text" 
                                   inputMode="decimal" 
                                   className="w-full px-3 py-2 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
-                                  data-schema-key={`properties.0.tax_information.${activeTab}.payment_amounts.${index}`}
+                                  value={getValue(`properties.0.tax_information.${activeTab}.payment_amounts.${index}`) || ''}
+            onChange={handleInputChange}
+            data-schema-key={`properties.0.tax_information.${activeTab}.payment_amounts.${index}`}
                                 />
                               </td>
                             </tr>
@@ -428,7 +432,8 @@ const TaxesProrations: React.FC<TaxesProrationsProps> = () => {
                           <input 
                             type="text" 
                             className="w-full px-3 py-2.5 bg-gray-600 border border-green-500 rounded text-green-400 text-sm focus:outline-none focus:border-green-400 font-semibold"
-                            data-schema-key={`properties.0.tax_information.${activeTab}.prorated_amount`}
+                            onChange={handleInputChange}
+            data-schema-key={`properties.0.tax_information.${activeTab}.prorated_amount`}
                             value={data.payment_borrower}
                             readOnly
                           />

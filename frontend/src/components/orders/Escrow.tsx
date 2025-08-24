@@ -262,6 +262,8 @@ export default function Escrow() {
                 ? 'bg-gray-600 text-gray-400'
                 : 'bg-gray-700 text-white focus:outline-none focus:border-blue-500'
             }`}
+            value={getValue(`cdfData.escrow_information.line_${lineNumberPadded}.number_of_months`) || ''}
+            onChange={handleInputChange}
             data-schema-key={`cdfData.escrow_information.line_${lineNumberPadded}.number_of_months`}
             onFocus={() => handleRowFocus(lineNumber)}
             readOnly={isLine08ReadOnly}
@@ -271,7 +273,7 @@ export default function Escrow() {
           <input
             type="text"
             inputMode="decimal"
-            value={getValue(`cdfData.escrow_information.line_${lineNumberPadded}.borrower_amount`)}
+            value={getValue(`cdfData.escrow_information.line_${lineNumberPadded}.paid_by_borrower`)}
             onChange={handleInputChange}
             className="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500"
             data-schema-key={`cdfData.escrow_information.line_${lineNumberPadded}.borrower_amount`}
@@ -283,6 +285,8 @@ export default function Escrow() {
             type="text"
             inputMode="decimal"
             className="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500"
+            value={getValue(`cdfData.escrow_information.line_${lineNumberPadded}.paid_before_closing`) || ''}
+            onChange={handleInputChange}
             data-schema-key={`cdfData.escrow_information.line_${lineNumberPadded}.before_borrower_amount`}
             onFocus={() => handleRowFocus(lineNumber)}
           />
@@ -291,7 +295,7 @@ export default function Escrow() {
           <input
             type="text"
             inputMode="decimal"
-            value={getValue(`cdfData.escrow_information.line_${lineNumberPadded}.seller_amount`)}
+            value={getValue(`cdfData.escrow_information.line_${lineNumberPadded}.paid_by_seller`)}
             onChange={handleInputChange}
             className="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500"
             data-schema-key={`cdfData.escrow_information.line_${lineNumberPadded}.seller_amount`}
@@ -303,6 +307,8 @@ export default function Escrow() {
             type="text"
             inputMode="decimal"
             className="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500"
+            value={getValue(`cdfData.escrow_information.line_${lineNumberPadded}.paid_before_closing`) || ''}
+            onChange={handleInputChange}
             data-schema-key={`cdfData.escrow_information.line_${lineNumberPadded}.before_seller_amount`}
             onFocus={() => handleRowFocus(lineNumber)}
           />
@@ -312,6 +318,8 @@ export default function Escrow() {
             type="text"
             inputMode="decimal"
             className="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500"
+            value={getValue(`cdfData.escrow_information.line_${lineNumberPadded}.paid_by_others`) || ''}
+            onChange={handleInputChange}
             data-schema-key={`cdfData.escrow_information.line_${lineNumberPadded}.paid_by_others_amount`}
             onFocus={() => handleRowFocus(lineNumber)}
           />

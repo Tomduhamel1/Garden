@@ -127,7 +127,8 @@ const PolicyInfoRates: React.FC = () => {
                   </label>
                   <select 
                     className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    data-schema-key={`title.policies.${activePolicyTab}.policy_type`}
+                    onChange={handleInputChange}
+            data-schema-key={`title.policies.${activePolicyTab}.policy_type`}
                     defaultValue="alta_homeowner"
                   >
                     <option value="alta_owner">ALTA Owner's Policy</option>
@@ -141,7 +142,8 @@ const PolicyInfoRates: React.FC = () => {
                   </label>
                   <select 
                     className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    data-schema-key={`title.policies.${activePolicyTab}.form_version`}
+                    onChange={handleInputChange}
+            data-schema-key={`title.policies.${activePolicyTab}.form_version`}
                     defaultValue="_2021_ALTA"
                   >
                     <option value="_2021_ALTA">2021 ALTA</option>
@@ -157,7 +159,9 @@ const PolicyInfoRates: React.FC = () => {
                     <input
                       type="text"
                       className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      data-schema-key={`title.policies.${activePolicyTab}.insurance_amount`}
+                      value={getValue(`title.policies.${activePolicyTab}.insurance_amount`) || ''}
+            onChange={handleInputChange}
+            data-schema-key={`title.policies.${activePolicyTab}.insurance_amount`}
                       placeholder="$0.00"
                     />
                   </div>
@@ -167,7 +171,8 @@ const PolicyInfoRates: React.FC = () => {
                     </label>
                     <select 
                       className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      data-schema-key={`title.policies.${activePolicyTab}.rate_type`}
+                      onChange={handleInputChange}
+            data-schema-key={`title.policies.${activePolicyTab}.rate_type`}
                       defaultValue="basic"
                     >
                       <option value="basic">Basic</option>
@@ -196,7 +201,9 @@ const PolicyInfoRates: React.FC = () => {
                 </label>
                 <textarea
                   className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  data-schema-key={`title.policies.${activePolicyTab}.proposed_insured`}
+                  value={getValue(`title.policies.${activePolicyTab}.proposed_insured`) || ''}
+            onChange={handleInputChange}
+            data-schema-key={`title.policies.${activePolicyTab}.proposed_insured`}
                   rows={5}
                   placeholder="Enter proposed insured..."
                 />

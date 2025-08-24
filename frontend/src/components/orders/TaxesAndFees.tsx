@@ -92,6 +92,8 @@ const TaxesAndFees: React.FC = () => {
               type="text" 
               className="w-full pl-3 pr-8 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
               data-schema-key={`cdfData.taxes_and_government_fees.${lineKey}.payee_name`}
+              value={getValue(`cdfData.taxes_and_government_fees.${lineKey}.payee_name`) || ''}
+              onChange={handleInputChange}
               onFocus={() => setActiveRow(lineNumber)}
             />
             {lineNumber > 1 && (
@@ -112,8 +114,8 @@ const TaxesAndFees: React.FC = () => {
               lineNumber === 1 ? 'bg-gray-600 text-gray-400' : 'bg-gray-700 text-white'
             }`}
             readOnly={lineNumber === 1}
-            data-schema-key={`cdfData.taxes_and_government_fees.${lineKey}.borrower_amount`}
-            value={getValue(`cdfData.taxes_and_government_fees.${lineKey}.borrower_amount`)}
+            data-schema-key={`cdfData.taxes_and_government_fees.${lineKey}.paid_by_borrower`}
+            value={getValue(`cdfData.taxes_and_government_fees.${lineKey}.paid_by_borrower`)}
             onChange={handleInputChange}
             onFocus={() => setActiveRow(lineNumber)}
           />
@@ -123,8 +125,8 @@ const TaxesAndFees: React.FC = () => {
             type="text" 
             inputMode="decimal"
             className="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500"
-            data-schema-key={`cdfData.taxes_and_government_fees.${lineKey}.before_borrower_amount`}
-            value={getValue(`cdfData.taxes_and_government_fees.${lineKey}.before_borrower_amount`)}
+            data-schema-key={`cdfData.taxes_and_government_fees.${lineKey}.paid_before_closing`}
+            value={getValue(`cdfData.taxes_and_government_fees.${lineKey}.paid_before_closing`)}
             onChange={handleInputChange}
             onFocus={() => setActiveRow(lineNumber)}
           />
@@ -138,7 +140,7 @@ const TaxesAndFees: React.FC = () => {
                 lineNumber === 1 ? 'bg-gray-600 text-gray-400' : 'bg-gray-700 text-white'
               }`}
               readOnly={lineNumber === 1}
-              data-schema-key={`cdfData.taxes_and_government_fees.${lineKey}.seller_amount`}
+              data-schema-key={`cdfData.taxes_and_government_fees.${lineKey}.paid_by_seller`}
               onFocus={() => setActiveRow(lineNumber)}
             />
             {lineNumber > 1 && (
@@ -156,7 +158,9 @@ const TaxesAndFees: React.FC = () => {
             type="text" 
             inputMode="decimal"
             className="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500"
-            data-schema-key={`cdfData.taxes_and_government_fees.${lineKey}.before_seller_amount`}
+            value={getValue(`cdfData.taxes_and_government_fees.${lineKey}.paid_before_closing`) || ''}
+            onChange={handleInputChange}
+            data-schema-key={`cdfData.taxes_and_government_fees.${lineKey}.paid_before_closing`}
             onFocus={() => setActiveRow(lineNumber)}
           />
         </td>
@@ -168,7 +172,27 @@ const TaxesAndFees: React.FC = () => {
               lineNumber === 1 ? 'bg-gray-600 text-gray-400' : 'bg-gray-700 text-white'
             }`}
             readOnly={lineNumber === 1}
-            data-schema-key={`cdfData.taxes_and_government_fees.${lineKey}.paid_by_others_amount`}
+            data-schema-key={`cdfData.taxes_and_government_fees.${lineKey}.paid_by_others`}
+            onFocus={() => setActiveRow(lineNumber)}
+          />
+        </td>
+        <td className="py-3 px-4 text-center">
+          <input 
+            type="checkbox"
+            className="w-4 h-4 text-blue-600 bg-gray-700 border-gray-500 rounded focus:ring-blue-500"
+            data-schema-key={`cdfData.taxes_and_government_fees.${lineKey}.is_optional`}
+            checked={getValue(`cdfData.taxes_and_government_fees.${lineKey}.is_optional`) === 'true'}
+            onChange={handleInputChange}
+            onFocus={() => setActiveRow(lineNumber)}
+          />
+        </td>
+        <td className="py-3 px-4 text-center">
+          <input 
+            type="checkbox"
+            className="w-4 h-4 text-blue-600 bg-gray-700 border-gray-500 rounded focus:ring-blue-500"
+            data-schema-key={`cdfData.taxes_and_government_fees.${lineKey}.not_required`}
+            checked={getValue(`cdfData.taxes_and_government_fees.${lineKey}.not_required`) === 'true'}
+            onChange={handleInputChange}
             onFocus={() => setActiveRow(lineNumber)}
           />
         </td>
@@ -523,7 +547,9 @@ const TaxesAndFees: React.FC = () => {
                                     doc.id === 'mortgage' && !doc.attributes.pages ? 'border border-red-500' : 'border border-gray-500 focus:border-blue-500'
                                   }`}
                                   placeholder="count"
-                                  data-schema-key={`quotingservice_documents.${index}.attributes.0.value`}
+                                  value={getValue(`quotingservice_documents.${index}.attributes.0.value`) || ''}
+            onChange={handleInputChange}
+            data-schema-key={`quotingservice_documents.${index}.attributes.0.value`}
                                 />
                               </td>
                             </tr>
@@ -537,7 +563,9 @@ const TaxesAndFees: React.FC = () => {
                                       inputMode="decimal"
                                       className="w-full px-3 py-1.5 bg-gray-600 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                                       placeholder="amount"
-                                      data-schema-key={`quotingservice_documents.${index}.attributes.1.value`}
+                                      value={getValue(`quotingservice_documents.${index}.attributes.1.value`) || ''}
+            onChange={handleInputChange}
+            data-schema-key={`quotingservice_documents.${index}.attributes.1.value`}
                                     />
                                   </td>
                                 </tr>
@@ -632,6 +660,8 @@ const TaxesAndFees: React.FC = () => {
                     <th className="py-3 px-4 text-center border-b border-gray-600" colSpan={2}>Paid by Borrower</th>
                     <th className="py-3 px-4 text-center border-b border-gray-600" colSpan={2}>Paid by Seller</th>
                     <th className="py-3 px-4 text-center border-b border-gray-600"></th>
+                    <th className="py-3 px-4 text-center border-b border-gray-600"></th>
+                    <th className="py-3 px-4 text-center border-b border-gray-600"></th>
                   </tr>
                   <tr className="bg-gray-700">
                     <th className="w-12 py-3 px-4 text-center text-sm text-gray-300 border-b border-gray-600"></th>
@@ -642,6 +672,8 @@ const TaxesAndFees: React.FC = () => {
                     <th className="py-3 px-4 text-center text-sm text-gray-300 border-b border-gray-600">At Closing</th>
                     <th className="py-3 px-4 text-center text-sm text-gray-300 border-b border-gray-600">Before Closing</th>
                     <th className="py-3 px-4 text-center text-sm text-gray-300 border-b border-gray-600">By Others</th>
+                    <th className="py-3 px-4 text-center text-sm text-gray-300 border-b border-gray-600" style={{ width: '70px' }}>Optional</th>
+                    <th className="py-3 px-4 text-center text-sm text-gray-300 border-b border-gray-600" style={{ width: '70px' }}>Not Req</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -657,6 +689,8 @@ const TaxesAndFees: React.FC = () => {
                     <th className="py-3 px-4 text-center text-sm text-white">$230.00</th>
                     <th className="py-3 px-4 text-center text-sm text-white">$0.00</th>
                     <th className="py-3 px-4 text-center text-sm text-white">$0.00</th>
+                    <th className="py-3 px-4"></th>
+                    <th className="py-3 px-4"></th>
                   </tr>
                 </tfoot>
               </table>

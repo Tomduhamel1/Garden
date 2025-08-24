@@ -103,7 +103,7 @@ const Loan: React.FC<LoanProps> = ({ orderId }) => {
                 {/* Loan Section */}
                 <section>
                   <h3 className="text-base font-semibold text-white mb-5 pb-2 border-b border-gray-600">Loan</h3>
-                  <div className="grid grid-cols-2 gap-5">
+                  <div className="grid grid-cols-2 gap-5 mb-5">
                     <div>
                       <label className="block text-sm text-gray-300 mb-2">Loan Amount</label>
                       <input 
@@ -142,6 +142,39 @@ const Loan: React.FC<LoanProps> = ({ orderId }) => {
                         </button>
                       </div>
                       <input type="hidden" data-schema-key="cdfData.loans.0.funding_type" value={fundingType} />
+                    </div>
+                  </div>
+                  
+                  <div className="grid grid-cols-2 gap-5">
+                    <div>
+                      <label className="block text-sm text-gray-300 mb-2">Loan Type</label>
+                      <select 
+                        value={getValue('cdfData.loans.0.loan_type') || ''}
+                        onChange={handleInputChange}
+                        className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none" 
+                        data-schema-key="cdfData.loans.0.loan_type"
+                      >
+                        <option value="">Select...</option>
+                        <option value="Conventional">Conventional</option>
+                        <option value="FHA">FHA</option>
+                        <option value="VA">VA</option>
+                        <option value="USDA">USDA</option>
+                        <option value="Jumbo">Jumbo</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label className="block text-sm text-gray-300 mb-2">Loan Purpose</label>
+                      <select 
+                        value={getValue('cdfData.loans.0.loan_purpose') || ''}
+                        onChange={handleInputChange}
+                        className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none" 
+                        data-schema-key="cdfData.loans.0.loan_purpose"
+                      >
+                        <option value="">Select...</option>
+                        <option value="Purchase">Purchase</option>
+                        <option value="Refinance">Refinance</option>
+                        <option value="CashOut">Cash-Out Refinance</option>
+                      </select>
                     </div>
                   </div>
                 </section>
@@ -203,6 +236,8 @@ const Loan: React.FC<LoanProps> = ({ orderId }) => {
                         <input 
                           type="text" 
                           inputMode="numeric" 
+                          value={getValue('cdfData.loans.0.last_payment_date') || ''}
+                          onChange={handleInputChange}
                           className="w-full pl-9 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
                           data-schema-key="cdfData.loans.0.last_payment_date"
                         />
@@ -217,6 +252,8 @@ const Loan: React.FC<LoanProps> = ({ orderId }) => {
                       <input 
                         type="text" 
                         inputMode="numeric" 
+                        value={getValue('cdfData.loans.0.mortgage_commitment_date') || ''}
+                        onChange={handleInputChange}
                         className="w-full pl-9 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
                         data-schema-key="cdfData.loans.0.mortgage_commitment_date"
                       />
@@ -236,6 +273,8 @@ const Loan: React.FC<LoanProps> = ({ orderId }) => {
                       <input 
                         type="text" 
                         maxLength={30} 
+                        value={getValue('cdfData.loans.0.loan_number') || ''}
+                        onChange={handleInputChange}
                         className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
                         data-schema-key="cdfData.loans.0.loan_number"
                       />
@@ -245,6 +284,8 @@ const Loan: React.FC<LoanProps> = ({ orderId }) => {
                       <input 
                         type="text" 
                         maxLength={30} 
+                        value={getValue('cdfData.loans.0.mortgage_insurance_case_number') || ''}
+                        onChange={handleInputChange}
                         className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
                         data-schema-key="cdfData.loans.0.mortgage_insurance_case_number"
                       />
@@ -260,6 +301,8 @@ const Loan: React.FC<LoanProps> = ({ orderId }) => {
                       <label className="block text-sm text-gray-300 mb-2">Grace Period Days</label>
                       <input 
                         type="text" 
+                        value={getValue('cdfData.loans.0.penalty_grace_period_days') || ''}
+                        onChange={handleInputChange}
                         className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
                         data-schema-key="cdfData.loans.0.penalty_grace_period_days"
                       />
@@ -269,6 +312,8 @@ const Loan: React.FC<LoanProps> = ({ orderId }) => {
                       <input 
                         type="text" 
                         inputMode="decimal" 
+                        value={getValue('cdfData.loans.0.late_penalty_amount') || ''}
+                        onChange={handleInputChange}
                         className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
                         data-schema-key="cdfData.loans.0.late_penalty_amount"
                       />
@@ -300,6 +345,75 @@ const Loan: React.FC<LoanProps> = ({ orderId }) => {
                         </button>
                       </div>
                       <input type="hidden" data-schema-key="cdfData.loans.0.late_penalty_type" value={latePenaltyType === 'percent' ? '%' : '$'} />
+                    </div>
+                  </div>
+                </section>
+
+                {/* Mortgage Insurance Section */}
+                <section>
+                  <h3 className="text-base font-semibold text-white mb-5 pb-2 border-b border-gray-600">Mortgage Insurance</h3>
+                  <div className="grid grid-cols-2 gap-5 mb-5">
+                    <div>
+                      <label className="block text-sm text-gray-300 mb-2">Monthly MI Amount</label>
+                      <input 
+                        type="text" 
+                        inputMode="decimal" 
+                        value={getValue('cdfData.loans.0.mi_monthly_amount') || ''}
+                        onChange={handleInputChange}
+                        className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
+                        data-schema-key="cdfData.loans.0.mi_monthly_amount"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm text-gray-300 mb-2">Upfront MI Amount</label>
+                      <input 
+                        type="text" 
+                        inputMode="decimal" 
+                        value={getValue('cdfData.loans.0.mi_upfront_amount') || ''}
+                        onChange={handleInputChange}
+                        className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
+                        data-schema-key="cdfData.loans.0.mi_upfront_amount"
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <label className="block text-sm text-gray-300 mb-2">MI Percentage</label>
+                    <input 
+                      type="text" 
+                      inputMode="decimal" 
+                      value={getValue('cdfData.loans.0.mi_percentage') || ''}
+                      onChange={handleInputChange}
+                      className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
+                      data-schema-key="cdfData.loans.0.mi_percentage"
+                    />
+                  </div>
+                </section>
+
+                {/* Lender Credits & Points Section */}
+                <section>
+                  <h3 className="text-base font-semibold text-white mb-5 pb-2 border-b border-gray-600">Credits & Points</h3>
+                  <div className="grid grid-cols-2 gap-5">
+                    <div>
+                      <label className="block text-sm text-gray-300 mb-2">Discount Points</label>
+                      <input 
+                        type="text" 
+                        inputMode="decimal" 
+                        value={getValue('cdfData.loans.0.discount_points') || ''}
+                        onChange={handleInputChange}
+                        className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
+                        data-schema-key="cdfData.loans.0.discount_points"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm text-gray-300 mb-2">Lender Credits</label>
+                      <input 
+                        type="text" 
+                        inputMode="decimal" 
+                        value={getValue('cdfData.loans.0.lender_credits') || ''}
+                        onChange={handleInputChange}
+                        className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
+                        data-schema-key="cdfData.loans.0.lender_credits"
+                      />
                     </div>
                   </div>
                 </section>
@@ -353,12 +467,14 @@ const Loan: React.FC<LoanProps> = ({ orderId }) => {
                     onChange={setIsHeloc}
                     label="HELOC"
                   />
+                  <input type="hidden" data-schema-key="cdfData.loans.0.is_heloc" value={isHeloc.toString()} />
                   
                   <ToggleSwitch 
                     checked={isConstructionLoan}
                     onChange={setIsConstructionLoan}
                     label="Construction Loan"
                   />
+                  <input type="hidden" data-schema-key="cdfData.loans.0.construction_loan" value={isConstructionLoan.toString()} />
                 </div>
                 
                 <div className="space-y-4">

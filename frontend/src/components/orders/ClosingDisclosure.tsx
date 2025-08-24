@@ -131,7 +131,7 @@ export function ClosingDisclosure() {
   console.log('ClosingDisclosure - purchase price:', getValue('cdfData.transaction_information.purchase_price'));
 
   // Calculate section totals from line items
-  const calculateSectionTotal = (sectionPath: string, lineCount: number = 8, amountField: string = 'borrower_amount') => {
+  const calculateSectionTotal = (sectionPath: string, lineCount: number = 8, amountField: string = 'paid_by_borrower') => {
     let total = 0;
     for (let i = 1; i <= lineCount; i++) {
       const lineKey = `line_${i.toString().padStart(2, '0')}`;
@@ -154,6 +154,67 @@ export function ClosingDisclosure() {
   const totalLoanCosts = sectionATotal + sectionBTotal + sectionCTotal; // Section D
   const totalOtherCosts = sectionETotal + sectionFTotal + sectionGTotal + sectionHTotal; // Section I
   const totalClosingCosts = totalLoanCosts + totalOtherCosts; // Section J
+
+  // Cash to Close calculations
+  const calculateCreditsTotal = (sectionPath: string, lineCount: number = 5) => {
+    let total = 0;
+    for (let i = 1; i <= lineCount; i++) {
+      const lineKey = `line_${i.toString().padStart(2, '0')}`;
+      const amount = getValue(`${sectionPath}.${lineKey}.amount`) || 0;
+      total += Number(amount);
+    }
+    return total;
+  };
+
+  const calculateDebitsTotal = (sectionPath: string, lineCount: number = 5) => {
+    let total = 0;
+    for (let i = 1; i <= lineCount; i++) {
+      const lineKey = `line_${i.toString().padStart(2, '0')}`;
+      const amount = getValue(`${sectionPath}.${lineKey}.amount`) || 0;
+      total += Number(amount);
+    }
+    return total;
+  };
+
+  // Calculate closing costs paid before closing from all sections
+  const calculatePaidBeforeClosing = () => {
+    const sectionPaths = [
+      'cdfData.origination_charges',
+      'cdfData.services_borrower_did_not_shop_for',
+      'cdfData.services_borrower_did_shop_for',
+      'cdfData.other_charges'
+    ];
+    
+    let total = 0;
+    sectionPaths.forEach(path => {
+      for (let i = 1; i <= 8; i++) {
+        const lineKey = `line_${i.toString().padStart(2, '0')}`;
+        const amount = getValue(`${path}.${lineKey}.paid_before_closing`) || 0;
+        total += Number(amount);
+      }
+    });
+
+    // Add taxes and prepaids before closing amounts
+    for (let i = 1; i <= 5; i++) {
+      const lineKey = `line_${i.toString().padStart(2, '0')}`;
+      total += Number(getValue(`cdfData.taxes_and_government_fees.${lineKey}.before_borrower_amount`) || 0);
+      total += Number(getValue(`cdfData.prepaid_item_information.${lineKey}.before_borrower_amount`) || 0);
+      total += Number(getValue(`cdfData.escrow_information.${lineKey}.before_borrower_amount`) || 0);
+    }
+    
+    return total;
+  };
+
+  const closingCostsPaidBefore = calculatePaidBeforeClosing();
+  const closingCostsFinanced = Number(getValue('cdfData.closing_costs_financed') || 0);
+  const downPayment = Number(getValue('cdfData.loan_information.loan_amount') || 0) - Number(getValue('cdfData.loan_information.sale_price') || 0);
+  const deposit = Number(getValue('cdfData.transaction_information.deposit') || 0);
+  const fundsForBorrower = calculateCreditsTotal('cdfData.borrower_credit_information', 5);
+  const sellerCredits = calculateCreditsTotal('cdfData.seller_credit_information', 5);
+  const adjustmentsAndCredits = Number(getValue('cdfData.adjustments_and_other_credits') || 0);
+
+  // Final cash to close calculation
+  const cashToClose = totalClosingCosts - closingCostsPaidBefore - closingCostsFinanced + Math.abs(downPayment) - deposit - fundsForBorrower - sellerCredits - adjustmentsAndCredits;
 
   const handlePrint = () => {
     window.print();
@@ -397,15 +458,33 @@ export function ClosingDisclosure() {
             <td colSpan={2}></td>
             <td></td>
           </tr>
-          {[1, 2].map(i => {
+          {/* Section A - ALL 8 LINES pulling REAL DATA */}
+          {[1, 2, 3, 4, 5, 6, 7, 8].map(i => {
             const lineKey = `line_${String(i).padStart(2, '0')}`;
-            const description = getValue(`cdfData.origination_charges.${lineKey}.description`);
-            const amount = getValue(`cdfData.origination_charges.${lineKey}.borrower_amount`) || 0;
-            if (!description && !amount) return null;
+            const description = getValue(`cdfData.origination_charges.${lineKey}.description`) || '';
+            const borrowerAmount = getValue(`cdfData.origination_charges.${lineKey}.paid_by_borrower`) || 0;
+            const sellerAmount = getValue(`cdfData.origination_charges.${lineKey}.paid_by_seller`) || 0;
+            const othersAmount = getValue(`cdfData.origination_charges.${lineKey}.paid_by_others`) || 0;
+            const beforeClosingAmount = getValue(`cdfData.origination_charges.${lineKey}.paid_before_closing`) || 0;
+            
+            // Only show line if it has data
+            if (!description && !borrowerAmount && !sellerAmount && !othersAmount && !beforeClosingAmount) {
+              return (
+                <tr key={`orig-${i}`}>
+                  <td colSpan={2}><span style={{ marginRight: '5px' }}>{String(i).padStart(2, '0')}</span></td>
+                  <td></td><td></td><td></td><td></td><td></td>
+                </tr>
+              );
+            }
+            
             return (
               <tr key={`orig-${i}`}>
                 <td colSpan={2}><span style={{ marginRight: '5px' }}>{String(i).padStart(2, '0')}</span> {description}</td>
-                <td>${Number(amount).toLocaleString()}</td><td></td><td></td><td></td><td></td>
+                <td>${Number(borrowerAmount).toLocaleString()}</td>
+                <td>${Number(sellerAmount).toLocaleString()}</td>
+                <td>${Number(othersAmount).toLocaleString()}</td>
+                <td>${Number(beforeClosingAmount).toLocaleString()}</td>
+                <td></td>
               </tr>
             );
           })}
@@ -416,12 +495,29 @@ export function ClosingDisclosure() {
             <td colSpan={2}></td>
             <td></td>
           </tr>
-          {[1, 2].map(i => (
-            <tr key={`no-shop-${i}`}>
-              <td colSpan={2}><span style={{ marginRight: '5px' }}>{String(i).padStart(2, '0')}</span></td>
-              <td></td><td></td><td></td><td></td><td></td>
-            </tr>
-          ))}
+          {/* Section B - ALL 8 LINES pulling REAL DATA */}
+          {[1, 2, 3, 4, 5, 6, 7, 8].map(i => {
+            const lineKey = `line_${String(i).padStart(2, '0')}`;
+            const description = getValue(`cdfData.services_borrower_did_not_shop_for.${lineKey}.description`) || '';
+            const payeeName = getValue(`cdfData.services_borrower_did_not_shop_for.${lineKey}.payee_name`) || '';
+            const borrowerAmount = getValue(`cdfData.services_borrower_did_not_shop_for.${lineKey}.paid_by_borrower`) || 0;
+            const sellerAmount = getValue(`cdfData.services_borrower_did_not_shop_for.${lineKey}.paid_by_seller`) || 0;
+            const othersAmount = getValue(`cdfData.services_borrower_did_not_shop_for.${lineKey}.paid_by_others`) || 0;
+            const beforeClosingAmount = getValue(`cdfData.services_borrower_did_not_shop_for.${lineKey}.paid_before_closing`) || 0;
+            
+            const displayText = description + (payeeName ? ` to ${payeeName}` : '');
+            
+            return (
+              <tr key={`no-shop-${i}`}>
+                <td colSpan={2}><span style={{ marginRight: '5px' }}>{String(i).padStart(2, '0')}</span> {displayText}</td>
+                <td>${Number(borrowerAmount).toLocaleString()}</td>
+                <td>${Number(sellerAmount).toLocaleString()}</td>
+                <td>${Number(othersAmount).toLocaleString()}</td>
+                <td>${Number(beforeClosingAmount).toLocaleString()}</td>
+                <td></td>
+              </tr>
+            );
+          })}
           
           <tr className="grey-header">
             <td colSpan={2}>C. Services Borrower Did Shop For</td>
@@ -429,13 +525,29 @@ export function ClosingDisclosure() {
             <td colSpan={2}></td>
             <td></td>
           </tr>
-          <tr><td colSpan={2}><span style={{ marginRight: '5px' }}>01</span> Closing Protection Letter to First National Title & Escrow</td><td>$50.00</td><td></td><td></td><td></td><td></td></tr>
-          <tr><td colSpan={2}><span style={{ marginRight: '5px' }}>02</span> Courier Fee to First National Title & Escrow</td><td>$50.00</td><td></td><td></td><td></td><td></td></tr>
-          <tr><td colSpan={2}><span style={{ marginRight: '5px' }}>03</span> Municipal Lien Certificate to First National Title & Escrow</td><td>$25.00</td><td></td><td></td><td></td><td></td></tr>
-          <tr><td colSpan={2}><span style={{ marginRight: '5px' }}>04</span> Settlement or Closing Fee to First National Title & Escrow</td><td>$550.00</td><td></td><td></td><td></td><td></td></tr>
-          <tr><td colSpan={2}><span style={{ marginRight: '5px' }}>05</span> Title - Lender's Title Policy to CATIC</td><td></td><td></td><td></td><td></td><td></td></tr>
-          <tr><td colSpan={2}><span style={{ marginRight: '5px' }}>06</span> Title Search Fee to First National Title & Escrow</td><td>$350.00</td><td></td><td></td><td></td><td></td></tr>
-          <tr><td colSpan={2}><span style={{ marginRight: '5px' }}>07</span> Wire Verification Fee to First National Title & Escrow</td><td>$25.00</td><td></td><td></td><td></td><td></td></tr>
+          {/* Section C - ALL 8 LINES pulling REAL DATA */}
+          {[1, 2, 3, 4, 5, 6, 7, 8].map(i => {
+            const lineKey = `line_${String(i).padStart(2, '0')}`;
+            const description = getValue(`cdfData.services_borrower_did_shop_for.${lineKey}.description`) || '';
+            const payeeName = getValue(`cdfData.services_borrower_did_shop_for.${lineKey}.payee_name`) || '';
+            const borrowerAmount = getValue(`cdfData.services_borrower_did_shop_for.${lineKey}.paid_by_borrower`) || 0;
+            const sellerAmount = getValue(`cdfData.services_borrower_did_shop_for.${lineKey}.paid_by_seller`) || 0;
+            const othersAmount = getValue(`cdfData.services_borrower_did_shop_for.${lineKey}.paid_by_others`) || 0;
+            const beforeClosingAmount = getValue(`cdfData.services_borrower_did_shop_for.${lineKey}.paid_before_closing`) || 0;
+            
+            const displayText = description + (payeeName ? ` to ${payeeName}` : '');
+            
+            return (
+              <tr key={`shop-${i}`}>
+                <td colSpan={2}><span style={{ marginRight: '5px' }}>{String(i).padStart(2, '0')}</span> {displayText}</td>
+                <td>${Number(borrowerAmount).toLocaleString()}</td>
+                <td>${Number(sellerAmount).toLocaleString()}</td>
+                <td>${Number(othersAmount).toLocaleString()}</td>
+                <td>${Number(beforeClosingAmount).toLocaleString()}</td>
+                <td></td>
+              </tr>
+            );
+          })}
           
           <tr className="black-header">
             <td colSpan={2}>D. TOTAL LOAN COSTS (Borrower-Paid)</td>
@@ -469,8 +581,29 @@ export function ClosingDisclosure() {
             <td colSpan={2}></td>
             <td></td>
           </tr>
-          <tr><td colSpan={2}><span style={{ marginRight: '5px' }}>01</span> Recording Fees Deed: Mortgage:</td><td></td><td></td><td></td><td></td><td></td></tr>
-          <tr><td colSpan={2}><span style={{ marginRight: '5px' }}>02</span> State Transfer Taxes (Deed) to City of Warwick</td><td></td><td></td><td>$230.00</td><td></td><td></td></tr>
+          {/* Section E - Taxes and Government Fees - REAL DATA */}
+          {[1, 2, 3, 4].map(i => {
+            const lineKey = `line_${String(i).padStart(2, '0')}`;
+            const description = getValue(`cdfData.taxes_and_government_fees.${lineKey}.description`) || '';
+            const payeeName = getValue(`cdfData.taxes_and_government_fees.${lineKey}.payee_name`) || '';
+            const borrowerAmount = getValue(`cdfData.taxes_and_government_fees.${lineKey}.borrower_amount`) || 0;
+            const sellerAmount = getValue(`cdfData.taxes_and_government_fees.${lineKey}.seller_amount`) || 0;
+            const othersAmount = getValue(`cdfData.taxes_and_government_fees.${lineKey}.paid_by_others_amount`) || 0;
+            const beforeClosingAmount = getValue(`cdfData.taxes_and_government_fees.${lineKey}.before_borrower_amount`) || getValue(`cdfData.taxes_and_government_fees.${lineKey}.before_seller_amount`) || 0;
+            
+            const displayText = description + (payeeName ? ` to ${payeeName}` : '');
+            
+            return (
+              <tr key={`gov-${i}`}>
+                <td colSpan={2}><span style={{ marginRight: '5px' }}>{String(i).padStart(2, '0')}</span> {displayText}</td>
+                <td>${Number(borrowerAmount).toLocaleString()}</td>
+                <td>${Number(sellerAmount).toLocaleString()}</td>
+                <td>${Number(othersAmount).toLocaleString()}</td>
+                <td>${Number(beforeClosingAmount).toLocaleString()}</td>
+                <td></td>
+              </tr>
+            );
+          })}
           
           <tr className="grey-header">
             <td colSpan={2}>F. Prepaids</td>
@@ -478,8 +611,29 @@ export function ClosingDisclosure() {
             <td colSpan={2}></td>
             <td></td>
           </tr>
-          <tr><td colSpan={2}><span style={{ marginRight: '5px' }}>01</span> Homeowner's Insurance Premium ( mo.)</td><td></td><td></td><td></td><td></td><td></td></tr>
-          <tr><td colSpan={2}><span style={{ marginRight: '5px' }}>02</span> Mortgage Insurance Premium ( mo.)</td><td></td><td></td><td></td><td></td><td></td></tr>
+          {/* Section F - Prepaids - REAL DATA */}
+          {[1, 2, 3, 4, 5].map(i => {
+            const lineKey = `line_${String(i).padStart(2, '0')}`;
+            const description = getValue(`cdfData.prepaid_item_information.${lineKey}.description`) || '';
+            const borrowerAmount = getValue(`cdfData.prepaid_item_information.${lineKey}.borrower_amount`) || 0;
+            const sellerAmount = getValue(`cdfData.prepaid_item_information.${lineKey}.seller_amount`) || 0;
+            const beforeBorrowerAmount = getValue(`cdfData.prepaid_item_information.${lineKey}.before_borrower_amount`) || 0;
+            const beforeSellerAmount = getValue(`cdfData.prepaid_item_information.${lineKey}.before_seller_amount`) || 0;
+            const numberOfMonths = getValue(`cdfData.prepaid_item_information.${lineKey}.number_of_months`) || '';
+            
+            const displayText = description + (numberOfMonths ? ` (${numberOfMonths} mo.)` : '');
+            
+            return (
+              <tr key={`prepaid-${i}`}>
+                <td colSpan={2}><span style={{ marginRight: '5px' }}>{String(i).padStart(2, '0')}</span> {displayText}</td>
+                <td>${Number(borrowerAmount).toLocaleString()}</td>
+                <td>${Number(sellerAmount).toLocaleString()}</td>
+                <td>${Number(beforeBorrowerAmount).toLocaleString()}</td>
+                <td>${Number(beforeSellerAmount).toLocaleString()}</td>
+                <td></td>
+              </tr>
+            );
+          })}
           
           <tr className="grey-header">
             <td colSpan={2}>G. Initial Escrow Payment at Closing</td>
@@ -487,7 +641,29 @@ export function ClosingDisclosure() {
             <td colSpan={2}></td>
             <td></td>
           </tr>
-          <tr><td colSpan={2}><span style={{ marginRight: '5px' }}>08</span> Aggregate adjustment</td><td>$-500.00</td><td></td><td></td><td></td><td></td></tr>
+          {/* Section G - Initial Escrow - REAL DATA */}
+          {[1, 2, 3, 4, 5, 6, 7, 8].map(i => {
+            const lineKey = `line_${String(i).padStart(2, '0')}`;
+            const description = getValue(`cdfData.escrow_information.${lineKey}.description`) || '';
+            const borrowerAmount = getValue(`cdfData.escrow_information.${lineKey}.borrower_amount`) || 0;
+            const sellerAmount = getValue(`cdfData.escrow_information.${lineKey}.seller_amount`) || 0;
+            const beforeBorrowerAmount = getValue(`cdfData.escrow_information.${lineKey}.before_borrower_amount`) || 0;
+            const beforeSellerAmount = getValue(`cdfData.escrow_information.${lineKey}.before_seller_amount`) || 0;
+            const numberOfMonths = getValue(`cdfData.escrow_information.${lineKey}.number_of_months`) || '';
+            
+            const displayText = description + (numberOfMonths ? ` (${numberOfMonths} mo.)` : '');
+            
+            return (
+              <tr key={`escrow-${i}`}>
+                <td colSpan={2}><span style={{ marginRight: '5px' }}>{String(i).padStart(2, '0')}</span> {displayText}</td>
+                <td>${Number(borrowerAmount).toLocaleString()}</td>
+                <td>${Number(sellerAmount).toLocaleString()}</td>
+                <td>${Number(beforeBorrowerAmount).toLocaleString()}</td>
+                <td>${Number(beforeSellerAmount).toLocaleString()}</td>
+                <td></td>
+              </tr>
+            );
+          })}
           
           <tr className="grey-header">
             <td colSpan={2}>H. Other</td>
@@ -495,8 +671,29 @@ export function ClosingDisclosure() {
             <td colSpan={2}></td>
             <td></td>
           </tr>
-          <tr><td colSpan={2}><span style={{ marginRight: '5px' }}>01</span> Listing Agent Commission</td><td></td><td></td><td>$10,000.00</td><td></td><td></td></tr>
-          <tr><td colSpan={2}><span style={{ marginRight: '5px' }}>02</span> Selling Agent Commission</td><td></td><td></td><td>$10,000.00</td><td></td><td></td></tr>
+          {/* Section H - Other Charges - REAL DATA */}
+          {[1, 2, 3, 4, 5, 6, 7, 8].map(i => {
+            const lineKey = `line_${String(i).padStart(2, '0')}`;
+            const description = getValue(`cdfData.other_charges.${lineKey}.description`) || '';
+            const payeeName = getValue(`cdfData.other_charges.${lineKey}.payee_name`) || '';
+            const borrowerAmount = getValue(`cdfData.other_charges.${lineKey}.paid_by_borrower`) || 0;
+            const sellerAmount = getValue(`cdfData.other_charges.${lineKey}.paid_by_seller`) || 0;
+            const othersAmount = getValue(`cdfData.other_charges.${lineKey}.paid_by_others`) || 0;
+            const beforeClosingAmount = getValue(`cdfData.other_charges.${lineKey}.paid_before_closing`) || 0;
+            
+            const displayText = description + (payeeName ? ` to ${payeeName}` : '');
+            
+            return (
+              <tr key={`other-${i}`}>
+                <td colSpan={2}><span style={{ marginRight: '5px' }}>{String(i).padStart(2, '0')}</span> {displayText}</td>
+                <td>${Number(borrowerAmount).toLocaleString()}</td>
+                <td>${Number(sellerAmount).toLocaleString()}</td>
+                <td>${Number(othersAmount).toLocaleString()}</td>
+                <td>${Number(beforeClosingAmount).toLocaleString()}</td>
+                <td></td>
+              </tr>
+            );
+          })}
           <tr><td colSpan={2}><span style={{ marginRight: '5px' }}>03</span> Sewer Charges to First National Title & Escrow</td><td></td><td></td><td>$500.00</td><td></td><td></td></tr>
           <tr><td colSpan={2}><span style={{ marginRight: '5px' }}>04</span> Title - Owner's Title Policy (Optional) to CATIC</td><td>$1,008.00</td><td></td><td></td><td></td><td></td></tr>
           <tr><td colSpan={2}><span style={{ marginRight: '5px' }}>05</span> Water Charges to First National Title & Escrow</td><td></td><td></td><td>$500.00</td><td></td><td></td></tr>
@@ -537,6 +734,111 @@ export function ClosingDisclosure() {
     <div className="document-page" data-page="3">
       <div style={{ fontSize: '14px', fontWeight: 'bold', marginBottom: '15px' }}>Calculating Cash to Close</div>
       
+      {/* Section K - Borrower Credits */}
+      <table className="document-table" style={{ marginBottom: '15px' }}>
+        <thead>
+          <tr>
+            <th className="grey-header" colSpan={2} style={{ width: '70%' }}>K. Due from Borrower at Closing</th>
+            <th style={{ width: '15%' }}>Borrower-Paid</th>
+            <th style={{ width: '15%' }}>Other</th>
+          </tr>
+        </thead>
+        <tbody>
+          {[1, 2, 3, 4, 5].map(i => {
+            const lineKey = `line_${String(i).padStart(2, '0')}`;
+            const description = getValue(`cdfData.borrower_credit_information.${lineKey}.description`) || '';
+            const amount = getValue(`cdfData.borrower_credit_information.${lineKey}.amount`) || 0;
+            
+            return (
+              <tr key={`borrower-credit-${i}`}>
+                <td colSpan={2}><span style={{ marginRight: '5px' }}>{String(i).padStart(2, '0')}</span> {description}</td>
+                <td>${Number(amount).toLocaleString()}</td>
+                <td></td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+      
+      {/* Section L - Borrower Debits */}
+      <table className="document-table" style={{ marginBottom: '15px' }}>
+        <thead>
+          <tr>
+            <th className="grey-header" colSpan={2} style={{ width: '70%' }}>L. Paid Already by or on Behalf of Borrower at or Before Closing</th>
+            <th style={{ width: '15%' }}>Borrower-Paid</th>
+            <th style={{ width: '15%' }}>Other</th>
+          </tr>
+        </thead>
+        <tbody>
+          {[1, 2, 3, 4].map(i => {
+            const lineKey = `line_${String(i).padStart(2, '0')}`;
+            const description = getValue(`cdfData.borrower_debit_information.${lineKey}.description`) || '';
+            const amount = getValue(`cdfData.borrower_debit_information.${lineKey}.amount`) || 0;
+            
+            return (
+              <tr key={`borrower-debit-${i}`}>
+                <td colSpan={2}><span style={{ marginRight: '5px' }}>{String(i).padStart(2, '0')}</span> {description}</td>
+                <td>-${Number(amount).toLocaleString()}</td>
+                <td></td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+      
+      {/* Section M - Seller Credits */}
+      <table className="document-table" style={{ marginBottom: '15px' }}>
+        <thead>
+          <tr>
+            <th className="grey-header" colSpan={2} style={{ width: '70%' }}>M. Due to Seller at Closing</th>
+            <th style={{ width: '15%' }}>Seller-Received</th>
+            <th style={{ width: '15%' }}>Other</th>
+          </tr>
+        </thead>
+        <tbody>
+          {[1, 2, 3, 4, 5].map(i => {
+            const lineKey = `line_${String(i).padStart(2, '0')}`;
+            const description = getValue(`cdfData.seller_credit_information.${lineKey}.description`) || '';
+            const amount = getValue(`cdfData.seller_credit_information.${lineKey}.amount`) || 0;
+            
+            return (
+              <tr key={`seller-credit-${i}`}>
+                <td colSpan={2}><span style={{ marginRight: '5px' }}>{String(i).padStart(2, '0')}</span> {description}</td>
+                <td>${Number(amount).toLocaleString()}</td>
+                <td></td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+      
+      {/* Section N - Seller Debits */}
+      <table className="document-table" style={{ marginBottom: '15px' }}>
+        <thead>
+          <tr>
+            <th className="grey-header" colSpan={2} style={{ width: '70%' }}>N. Due from Seller at Closing</th>
+            <th style={{ width: '15%' }}>Seller-Paid</th>
+            <th style={{ width: '15%' }}>Other</th>
+          </tr>
+        </thead>
+        <tbody>
+          {[1, 2, 3, 4, 5].map(i => {
+            const lineKey = `line_${String(i).padStart(2, '0')}`;
+            const description = getValue(`cdfData.seller_debit_information.${lineKey}.description`) || '';
+            const amount = getValue(`cdfData.seller_debit_information.${lineKey}.amount`) || 0;
+            
+            return (
+              <tr key={`seller-debit-${i}`}>
+                <td colSpan={2}><span style={{ marginRight: '5px' }}>{String(i).padStart(2, '0')}</span> {description}</td>
+                <td>-${Number(amount).toLocaleString()}</td>
+                <td></td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+      
+      {/* Cash to Close Summary */}
       <table className="document-table" style={{ marginBottom: '20px' }}>
         <thead>
           <tr>
@@ -556,49 +858,49 @@ export function ClosingDisclosure() {
           <tr>
             <td>Closing Costs Paid Before Closing</td>
             <td></td>
-            <td>$0.00</td>
+            <td>-${closingCostsPaidBefore.toLocaleString()}</td>
             <td></td>
           </tr>
           <tr>
             <td>Closing Costs Financed (Paid from your Loan Amount)</td>
             <td></td>
-            <td>$0.00</td>
+            <td>-${closingCostsFinanced.toLocaleString()}</td>
             <td></td>
           </tr>
           <tr>
             <td>Down Payment/Funds from Borrower</td>
             <td></td>
-            <td>$450,988.56</td>
+            <td>${Math.abs(downPayment).toLocaleString()}</td>
             <td></td>
           </tr>
           <tr>
             <td>Deposit</td>
             <td></td>
-            <td>$0.00</td>
+            <td>-${deposit.toLocaleString()}</td>
             <td></td>
           </tr>
           <tr>
             <td>Funds for Borrower</td>
             <td></td>
-            <td>$0.00</td>
+            <td>-${fundsForBorrower.toLocaleString()}</td>
             <td></td>
           </tr>
           <tr>
             <td>Seller Credits</td>
             <td></td>
-            <td>$0.00</td>
+            <td>-${sellerCredits.toLocaleString()}</td>
             <td></td>
           </tr>
           <tr>
             <td>Adjustments and Other Credits</td>
             <td></td>
-            <td>$0.00</td>
+            <td>-${adjustmentsAndCredits.toLocaleString()}</td>
             <td></td>
           </tr>
           <tr className="black-header">
             <td><strong>Cash to Close</strong></td>
             <td></td>
-            <td><strong>$452,046.56</strong></td>
+            <td><strong>${cashToClose.toLocaleString()}</strong></td>
             <td></td>
           </tr>
         </tbody>

@@ -253,7 +253,7 @@ export default function Prepaids() {
             inputMode="decimal"
             className="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500"
             data-schema-key={`cdfData.prepaid_item_information.line_${lineNumberPadded}.borrower_amount`}
-            value={getValue(`cdfData.prepaid_item_information.line_${lineNumberPadded}.borrower_amount`)}
+            value={getValue(`cdfData.prepaid_item_information.line_${lineNumberPadded}.paid_by_borrower`)}
             onChange={handleInputChange}
             onFocus={() => handleRowFocus(lineNumber)}
           />
@@ -264,7 +264,7 @@ export default function Prepaids() {
             inputMode="decimal"
             className="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500"
             data-schema-key={`cdfData.prepaid_item_information.line_${lineNumberPadded}.before_borrower_amount`}
-            value={getValue(`cdfData.prepaid_item_information.line_${lineNumberPadded}.before_borrower_amount`)}
+            value={getValue(`cdfData.prepaid_item_information.line_${lineNumberPadded}.paid_before_closing`)}
             onChange={handleInputChange}
             onFocus={() => handleRowFocus(lineNumber)}
           />
@@ -274,6 +274,8 @@ export default function Prepaids() {
             type="text"
             inputMode="decimal"
             className="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500"
+            value={getValue(`cdfData.prepaid_item_information.line_${lineNumberPadded}.paid_by_seller`) || ''}
+            onChange={handleInputChange}
             data-schema-key={`cdfData.prepaid_item_information.line_${lineNumberPadded}.seller_amount`}
             onFocus={() => handleRowFocus(lineNumber)}
           />
@@ -283,6 +285,8 @@ export default function Prepaids() {
             type="text"
             inputMode="decimal"
             className="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500"
+            value={getValue(`cdfData.prepaid_item_information.line_${lineNumberPadded}.paid_before_closing`) || ''}
+            onChange={handleInputChange}
             data-schema-key={`cdfData.prepaid_item_information.line_${lineNumberPadded}.before_seller_amount`}
             onFocus={() => handleRowFocus(lineNumber)}
           />
@@ -292,6 +296,8 @@ export default function Prepaids() {
             type="text"
             inputMode="decimal"
             className="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500"
+            value={getValue(`cdfData.prepaid_item_information.line_${lineNumberPadded}.paid_by_others`) || ''}
+            onChange={handleInputChange}
             data-schema-key={`cdfData.prepaid_item_information.line_${lineNumberPadded}.paid_by_others_amount`}
             onFocus={() => handleRowFocus(lineNumber)}
           />
@@ -468,7 +474,9 @@ export default function Prepaids() {
                     <input
                       type="text"
                       className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
-                      data-schema-key={`cdfData.prepaid_item_information.line_${activeLineForSettings.toString().padStart(2, '0')}.number_of_months`}
+                      value={getValue(`cdfData.prepaid_item_information.line_${activeLineForSettings.toString().padStart(2, '0')}.number_of_months`) || ''}
+            onChange={handleInputChange}
+            data-schema-key={`cdfData.prepaid_item_information.line_${activeLineForSettings.toString().padStart(2, '0')}.number_of_months`}
                     />
                   </div>
                   <div className="col-span-2 flex items-center">

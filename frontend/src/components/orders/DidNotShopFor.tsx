@@ -91,8 +91,8 @@ export default function DidNotShopFor() {
             type="text"
             className="w-full px-3 py-2 bg-transparent text-white text-right focus:outline-none focus:bg-blue-900/10"
             inputMode="decimal"
-            data-schema-key={`cdfData.services_borrower_did_not_shop_for.line_${paddedNumber}.borrower_amount`}
-            value={getValue(`cdfData.services_borrower_did_not_shop_for.line_${paddedNumber}.borrower_amount`)}
+            data-schema-key={`cdfData.services_borrower_did_not_shop_for.line_${paddedNumber}.paid_by_borrower`}
+            value={getValue(`cdfData.services_borrower_did_not_shop_for.line_${paddedNumber}.paid_by_borrower`)}
             onChange={handleInputChange}
             onFocus={() => setActiveRow(lineNumber)}
           />
@@ -102,8 +102,8 @@ export default function DidNotShopFor() {
             type="text"
             className="w-full px-3 py-2 bg-transparent text-white text-right focus:outline-none focus:bg-blue-900/10"
             inputMode="decimal"
-            data-schema-key={`cdfData.services_borrower_did_not_shop_for.line_${paddedNumber}.before_borrower_amount`}
-            value={getValue(`cdfData.services_borrower_did_not_shop_for.line_${paddedNumber}.before_borrower_amount`)}
+            data-schema-key={`cdfData.services_borrower_did_not_shop_for.line_${paddedNumber}.paid_before_closing`}
+            value={getValue(`cdfData.services_borrower_did_not_shop_for.line_${paddedNumber}.paid_before_closing`)}
             onChange={handleInputChange}
             onFocus={() => setActiveRow(lineNumber)}
           />
@@ -113,8 +113,8 @@ export default function DidNotShopFor() {
             type="text"
             className="w-full px-3 py-2 bg-transparent text-white text-right focus:outline-none focus:bg-blue-900/10"
             inputMode="decimal"
-            data-schema-key={`cdfData.services_borrower_did_not_shop_for.line_${paddedNumber}.seller_amount`}
-            value={getValue(`cdfData.services_borrower_did_not_shop_for.line_${paddedNumber}.seller_amount`)}
+            data-schema-key={`cdfData.services_borrower_did_not_shop_for.line_${paddedNumber}.paid_by_seller`}
+            value={getValue(`cdfData.services_borrower_did_not_shop_for.line_${paddedNumber}.paid_by_seller`)}
             onChange={handleInputChange}
             onFocus={() => setActiveRow(lineNumber)}
           />
@@ -124,8 +124,8 @@ export default function DidNotShopFor() {
             type="text"
             className="w-full px-3 py-2 bg-transparent text-white text-right focus:outline-none focus:bg-blue-900/10"
             inputMode="decimal"
-            data-schema-key={`cdfData.services_borrower_did_not_shop_for.line_${paddedNumber}.before_seller_amount`}
-            value={getValue(`cdfData.services_borrower_did_not_shop_for.line_${paddedNumber}.before_seller_amount`)}
+            data-schema-key={`cdfData.services_borrower_did_not_shop_for.line_${paddedNumber}.paid_before_closing`}
+            value={getValue(`cdfData.services_borrower_did_not_shop_for.line_${paddedNumber}.paid_before_closing`)}
             onChange={handleInputChange}
             onFocus={() => setActiveRow(lineNumber)}
           />
@@ -135,8 +135,8 @@ export default function DidNotShopFor() {
             type="text"
             className="w-full px-3 py-2 bg-transparent text-white text-right focus:outline-none focus:bg-blue-900/10"
             inputMode="decimal"
-            data-schema-key={`cdfData.services_borrower_did_not_shop_for.line_${paddedNumber}.paid_by_others_amount`}
-            value={getValue(`cdfData.services_borrower_did_not_shop_for.line_${paddedNumber}.paid_by_others_amount`)}
+            data-schema-key={`cdfData.services_borrower_did_not_shop_for.line_${paddedNumber}.paid_by_others`}
+            value={getValue(`cdfData.services_borrower_did_not_shop_for.line_${paddedNumber}.paid_by_others`)}
             onChange={handleInputChange}
             onFocus={() => setActiveRow(lineNumber)}
           />

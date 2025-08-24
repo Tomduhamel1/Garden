@@ -94,8 +94,8 @@ export default function OriginationCharges() {
             type="number"
             className="w-full px-3 py-2 bg-transparent text-white text-right focus:outline-none focus:bg-blue-900/10"
             inputMode="decimal"
-            data-schema-key={`cdfData.origination_charges.${prefix}.borrower_amount`}
-            value={getValue(`cdfData.origination_charges.${prefix}.borrower_amount`)}
+            data-schema-key={`cdfData.origination_charges.${prefix}.paid_by_borrower`}
+            value={getValue(`cdfData.origination_charges.${prefix}.paid_by_borrower`)}
             onChange={handleInputChange}
             onFocus={() => setActiveRow(lineNumber)}
           />
@@ -105,8 +105,8 @@ export default function OriginationCharges() {
             type="number"
             className="w-full px-3 py-2 bg-transparent text-white text-right focus:outline-none focus:bg-blue-900/10"
             inputMode="decimal"
-            data-schema-key={`cdfData.origination_charges.${prefix}.before_borrower_amount`}
-            value={getValue(`cdfData.origination_charges.${prefix}.before_borrower_amount`)}
+            data-schema-key={`cdfData.origination_charges.${prefix}.paid_before_closing`}
+            value={getValue(`cdfData.origination_charges.${prefix}.paid_before_closing`)}
             onChange={handleInputChange}
             onFocus={() => setActiveRow(lineNumber)}
           />
@@ -116,8 +116,8 @@ export default function OriginationCharges() {
             type="number"
             className="w-full px-3 py-2 bg-transparent text-white text-right focus:outline-none focus:bg-blue-900/10"
             inputMode="decimal"
-            data-schema-key={`cdfData.origination_charges.${prefix}.seller_amount`}
-            value={getValue(`cdfData.origination_charges.${prefix}.seller_amount`)}
+            data-schema-key={`cdfData.origination_charges.${prefix}.paid_by_seller`}
+            value={getValue(`cdfData.origination_charges.${prefix}.paid_by_seller`)}
             onChange={handleInputChange}
             onFocus={() => setActiveRow(lineNumber)}
           />
@@ -127,19 +127,39 @@ export default function OriginationCharges() {
             type="number"
             className="w-full px-3 py-2 bg-transparent text-white text-right focus:outline-none focus:bg-blue-900/10"
             inputMode="decimal"
-            data-schema-key={`cdfData.origination_charges.${prefix}.before_seller_amount`}
-            value={getValue(`cdfData.origination_charges.${prefix}.before_seller_amount`)}
+            data-schema-key={`cdfData.origination_charges.${prefix}.paid_before_closing`}
+            value={getValue(`cdfData.origination_charges.${prefix}.paid_before_closing`)}
             onChange={handleInputChange}
             onFocus={() => setActiveRow(lineNumber)}
           />
         </td>
-        <td>
+        <td className="border-r border-gray-600">
           <input
             type="number"
             className="w-full px-3 py-2 bg-transparent text-white text-right focus:outline-none focus:bg-blue-900/10"
             inputMode="decimal"
-            data-schema-key={`cdfData.origination_charges.${prefix}.paid_by_others_amount`}
-            value={getValue(`cdfData.origination_charges.${prefix}.paid_by_others_amount`)}
+            data-schema-key={`cdfData.origination_charges.${prefix}.paid_by_others`}
+            value={getValue(`cdfData.origination_charges.${prefix}.paid_by_others`)}
+            onChange={handleInputChange}
+            onFocus={() => setActiveRow(lineNumber)}
+          />
+        </td>
+        <td className="border-r border-gray-600 text-center">
+          <input 
+            type="checkbox"
+            className="w-4 h-4 text-blue-600 bg-gray-700 border-gray-500 rounded focus:ring-blue-500"
+            data-schema-key={`cdfData.origination_charges.${prefix}.is_optional`}
+            checked={getValue(`cdfData.origination_charges.${prefix}.is_optional`) === 'true'}
+            onChange={handleInputChange}
+            onFocus={() => setActiveRow(lineNumber)}
+          />
+        </td>
+        <td className="text-center">
+          <input 
+            type="checkbox"
+            className="w-4 h-4 text-blue-600 bg-gray-700 border-gray-500 rounded focus:ring-blue-500"
+            data-schema-key={`cdfData.origination_charges.${prefix}.not_required`}
+            checked={getValue(`cdfData.origination_charges.${prefix}.not_required`) === 'true'}
             onChange={handleInputChange}
             onFocus={() => setActiveRow(lineNumber)}
           />
@@ -477,7 +497,9 @@ export default function OriginationCharges() {
                       <th className="text-left py-3 px-4 border-r border-gray-600" rowSpan={2}>Payee</th>
                       <th className="text-center py-2 px-4 border-r border-gray-600 border-b border-gray-600" colSpan={2}>Paid by Borrower</th>
                       <th className="text-center py-2 px-4 border-r border-gray-600 border-b border-gray-600" colSpan={2}>Paid by Seller</th>
-                      <th className="text-center py-3 px-4" rowSpan={2}>By Others</th>
+                      <th className="text-center py-3 px-4 border-r border-gray-600" rowSpan={2}>By Others</th>
+                      <th className="text-center py-3 px-4 border-r border-gray-600" rowSpan={2} style={{ width: '70px' }}>Optional</th>
+                      <th className="text-center py-3 px-4" rowSpan={2} style={{ width: '70px' }}>Not Req</th>
                     </tr>
                     <tr>
                       <th className="text-center py-2 px-4 border-r border-gray-600 text-gray-300">At Closing</th>
@@ -498,7 +520,9 @@ export default function OriginationCharges() {
                       <th className="text-right py-3 px-4 border-r border-gray-600 text-gray-300">$0.00</th>
                       <th className="text-right py-3 px-4 border-r border-gray-600 text-gray-300">$0.00</th>
                       <th className="text-right py-3 px-4 border-r border-gray-600 text-gray-300">$0.00</th>
-                      <th className="text-right py-3 px-4 text-gray-300">$0.00</th>
+                      <th className="text-right py-3 px-4 border-r border-gray-600 text-gray-300">$0.00</th>
+                      <th className="text-center py-3 px-4 border-r border-gray-600"></th>
+                      <th className="text-center py-3 px-4"></th>
                     </tr>
                   </tfoot>
                 </table>

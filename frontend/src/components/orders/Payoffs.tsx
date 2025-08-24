@@ -96,6 +96,60 @@ export default function Payoffs() {
                     </div>
                   </div>
                   
+                  <div className="grid grid-cols-2 gap-5">
+                    <div>
+                      <label className="block text-sm text-gray-300 mb-2">Per Diem</label>
+                      <input
+                        type="text"
+                        inputMode="decimal"
+                        className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
+                        value={getValue(`payoffs.${payoffIndex}.per_diem`) || ''}
+                        onChange={handleInputChange}
+                        data-schema-key={`payoffs.${payoffIndex}.per_diem`}
+                      />
+                    </div>
+                    
+                    <div>
+                      <label className="block text-sm text-gray-300 mb-2">Recording Fee</label>
+                      <input
+                        type="text"
+                        inputMode="decimal"
+                        className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
+                        value={getValue(`payoffs.${payoffIndex}.recording_fee`) || ''}
+                        onChange={handleInputChange}
+                        data-schema-key={`payoffs.${payoffIndex}.recording_fee`}
+                      />
+                    </div>
+                  </div>
+                  
+                  <div className="grid grid-cols-2 gap-5">
+                    <div className="flex items-center">
+                      <label className="flex items-center cursor-pointer">
+                        <input 
+                          type="checkbox" 
+                          className="mr-2" 
+                          checked={getValue(`payoffs.${payoffIndex}.payoff_ordered`) || false}
+                          onChange={handleInputChange}
+                          data-schema-key={`payoffs.${payoffIndex}.payoff_ordered`}
+                        />
+                        <span className="text-sm text-gray-300">Payoff Ordered</span>
+                      </label>
+                    </div>
+                    
+                    <div className="flex items-center">
+                      <label className="flex items-center cursor-pointer">
+                        <input 
+                          type="checkbox" 
+                          className="mr-2" 
+                          checked={getValue(`payoffs.${payoffIndex}.payoff_received`) || false}
+                          onChange={handleInputChange}
+                          data-schema-key={`payoffs.${payoffIndex}.payoff_received`}
+                        />
+                        <span className="text-sm text-gray-300">Payoff Received</span>
+                      </label>
+                    </div>
+                  </div>
+                  
                   <button
                     type="button"
                     className="w-full px-4 py-2.5 bg-blue-600 border border-blue-600 rounded text-white text-sm hover:bg-blue-700 hover:border-blue-700"

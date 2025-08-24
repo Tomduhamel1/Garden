@@ -1,22 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useOrderData } from '../../hooks/useOrderData';
 
 const DebitsCredits: React.FC = () => {
   const { loading, saving, getValue, handleInputChange, handleSave } = useOrderData();
-  const [borrowerDebits, setBorrowerDebits] = useState(Array(15).fill({ statementText: '', amount: '' }));
-  const [sellerCredits, setSellerCredits] = useState(Array(17).fill({ statementText: '', amount: '' }));
-
-  const handleBorrowerDebitChange = (index: number, field: 'statementText' | 'amount', value: string) => {
-    const updated = [...borrowerDebits];
-    updated[index] = { ...updated[index], [field]: value };
-    setBorrowerDebits(updated);
-  };
-
-  const handleSellerCreditChange = (index: number, field: 'statementText' | 'amount', value: string) => {
-    const updated = [...sellerCredits];
-    updated[index] = { ...updated[index], [field]: value };
-    setSellerCredits(updated);
-  };
 
   const addLine = () => {
     // Implementation for adding lines
@@ -35,7 +21,7 @@ const DebitsCredits: React.FC = () => {
           <div className="flex items-center gap-4">
             <i className="fa fa-calculator text-gray-400 text-xl"></i>
             <h2 className="text-2xl font-semibold text-white">Credits / Debits</h2>
-            <span className="bg-green-600 px-2 py-1 rounded text-xs font-medium">K/M</span>
+            <span className="bg-green-600 px-2 py-1 rounded text-xs font-medium">K-N</span>
           </div>
           <button
             onClick={handleSave}
@@ -79,28 +65,28 @@ const DebitsCredits: React.FC = () => {
             </button>
           </section>
 
-          {/* Two-Column Layout */}
+          {/* Four-Section Layout */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {/* Left Column: Due from Borrower */}
-            <div>
+            {/* Left Column: Borrower Sections */}
+            <div className="space-y-8">
+              {/* Section K: Borrower Credits */}
               <form className="space-y-4">
                 <table className="w-full bg-gray-800 border border-gray-600 rounded-lg overflow-hidden">
                   <thead>
                     <tr className="bg-gray-700">
                       <th className="py-3 px-4 text-center border-b border-gray-600" colSpan={3}>
-                        K. Due from Borrower at Closing
+                        K. Due to Borrower at Closing
                       </th>
                     </tr>
                     <tr className="bg-gray-700">
                       <th className="w-12 py-3 px-4 text-center text-sm text-gray-300 border-b border-gray-600"></th>
-                      <th className="py-3 px-4 text-left text-sm text-gray-300 border-b border-gray-600">Statement Text</th>
+                      <th className="py-3 px-4 text-left text-sm text-gray-300 border-b border-gray-600">Description</th>
                       <th className="py-3 px-4 text-center text-sm text-gray-300 border-b border-gray-600">Amount</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {[...Array(15)].map((_, index) => {
+                    {[...Array(5)].map((_, index) => {
                       const lineNum = String(index + 1).padStart(2, '0');
-                      const isReadOnly = index === 0 || index === 2; // Lines 01 and 03 are readonly
                       
                       return (
                         <tr key={index} className="border-b border-gray-600">
@@ -108,22 +94,68 @@ const DebitsCredits: React.FC = () => {
                           <td className="py-3 px-4">
                             <input 
                               type="text" 
-                              className={`w-full px-3 py-1.5 ${isReadOnly ? 'bg-gray-600 text-gray-400' : 'bg-gray-700 text-white focus:outline-none focus:border-blue-500'} border border-gray-500 rounded text-sm`}
-                              readOnly={isReadOnly}
-                              value={getValue(`cdf.borrower_debit_information.line_${lineNum}.statement_text`) || ''}
+                              className="w-full px-3 py-1.5 bg-gray-700 text-white focus:outline-none focus:border-blue-500 border border-gray-500 rounded text-sm"
+                              value={getValue(`cdfData.borrower_credit_information.line_${lineNum}.description`) || ''}
                               onChange={handleInputChange}
-                              data-schema-key={`cdf.borrower_debit_information.line_${lineNum}.statement_text`}
+                              data-schema-key={`cdfData.borrower_credit_information.line_${lineNum}.description`}
                             />
                           </td>
                           <td className="py-3 px-4">
                             <input 
                               type="text" 
                               inputMode="decimal" 
-                              className={`w-full px-3 py-1.5 ${isReadOnly ? 'bg-gray-600 text-gray-400' : 'bg-gray-700 text-white focus:outline-none focus:border-blue-500'} border border-gray-500 rounded text-sm text-right`}
-                              readOnly={isReadOnly}
-                              value={getValue(`cdf.borrower_debit_information.line_${lineNum}.amount`) || ''}
+                              className="w-full px-3 py-1.5 bg-gray-700 text-white focus:outline-none focus:border-blue-500 border border-gray-500 rounded text-sm text-right"
+                              value={getValue(`cdfData.borrower_credit_information.line_${lineNum}.amount`) || ''}
                               onChange={handleInputChange}
-                              data-schema-key={`cdf.borrower_debit_information.line_${lineNum}.amount`}
+                              data-schema-key={`cdfData.borrower_credit_information.line_${lineNum}.amount`}
+                            />
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </form>
+
+              {/* Section L: Borrower Debits */}
+              <form className="space-y-4">
+                <table className="w-full bg-gray-800 border border-gray-600 rounded-lg overflow-hidden">
+                  <thead>
+                    <tr className="bg-gray-700">
+                      <th className="py-3 px-4 text-center border-b border-gray-600" colSpan={3}>
+                        L. Paid Already by or on Behalf of Borrower at or Before Closing
+                      </th>
+                    </tr>
+                    <tr className="bg-gray-700">
+                      <th className="w-12 py-3 px-4 text-center text-sm text-gray-300 border-b border-gray-600"></th>
+                      <th className="py-3 px-4 text-left text-sm text-gray-300 border-b border-gray-600">Description</th>
+                      <th className="py-3 px-4 text-center text-sm text-gray-300 border-b border-gray-600">Amount</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {[...Array(4)].map((_, index) => {
+                      const lineNum = String(index + 1).padStart(2, '0');
+                      
+                      return (
+                        <tr key={index} className="border-b border-gray-600">
+                          <td className="py-3 px-4 text-center text-sm text-gray-400">{lineNum}</td>
+                          <td className="py-3 px-4">
+                            <input 
+                              type="text" 
+                              className="w-full px-3 py-1.5 bg-gray-700 text-white focus:outline-none focus:border-blue-500 border border-gray-500 rounded text-sm"
+                              value={getValue(`cdfData.borrower_debit_information.line_${lineNum}.description`) || ''}
+                              onChange={handleInputChange}
+                              data-schema-key={`cdfData.borrower_debit_information.line_${lineNum}.description`}
+                            />
+                          </td>
+                          <td className="py-3 px-4">
+                            <input 
+                              type="text" 
+                              inputMode="decimal" 
+                              className="w-full px-3 py-1.5 bg-gray-700 text-white focus:outline-none focus:border-blue-500 border border-gray-500 rounded text-sm text-right"
+                              value={getValue(`cdfData.borrower_debit_information.line_${lineNum}.amount`) || ''}
+                              onChange={handleInputChange}
+                              data-schema-key={`cdfData.borrower_debit_information.line_${lineNum}.amount`}
                             />
                           </td>
                         </tr>
@@ -134,8 +166,9 @@ const DebitsCredits: React.FC = () => {
               </form>
             </div>
 
-            {/* Right Column: Due to Seller */}
-            <div>
+            {/* Right Column: Seller Sections */}
+            <div className="space-y-8">
+              {/* Section M: Seller Credits */}
               <form className="space-y-4">
                 <table className="w-full bg-gray-800 border border-gray-600 rounded-lg overflow-hidden">
                   <thead>
@@ -146,47 +179,82 @@ const DebitsCredits: React.FC = () => {
                     </tr>
                     <tr className="bg-gray-700">
                       <th className="w-12 py-3 px-4 text-center text-sm text-gray-300 border-b border-gray-600"></th>
-                      <th className="py-3 px-4 text-left text-sm text-gray-300 border-b border-gray-600">Statement Text</th>
+                      <th className="py-3 px-4 text-left text-sm text-gray-300 border-b border-gray-600">Description</th>
                       <th className="py-3 px-4 text-center text-sm text-gray-300 border-b border-gray-600">Amount</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {[...Array(17)].map((_, index) => {
+                    {[...Array(5)].map((_, index) => {
                       const lineNum = String(index + 1).padStart(2, '0');
-                      const isReadOnly = index === 0; // Line 01 is readonly
-                      const hasLinkIcon = index === 1; // Line 02 has link icon
                       
                       return (
                         <tr key={index} className="border-b border-gray-600">
-                          <td className="py-3 px-4 text-center text-sm text-gray-400">
-                            {hasLinkIcon ? (
-                              <div className="flex items-center justify-center gap-1">
-                                <i className="fa fa-link text-blue-400 text-xs" title="These amounts are always linked"></i>
-                                {lineNum}
-                              </div>
-                            ) : (
-                              lineNum
-                            )}
-                          </td>
+                          <td className="py-3 px-4 text-center text-sm text-gray-400">{lineNum}</td>
                           <td className="py-3 px-4">
                             <input 
                               type="text" 
-                              className={`w-full px-3 py-1.5 ${isReadOnly || hasLinkIcon ? 'bg-gray-600 text-gray-400' : 'bg-gray-700 text-white focus:outline-none focus:border-blue-500'} border border-gray-500 rounded text-sm`}
-                              readOnly={isReadOnly || hasLinkIcon}
-                              value={getValue(`cdf.seller_credit_information.line_${lineNum}.statement_text`) || ''}
+                              className="w-full px-3 py-1.5 bg-gray-700 text-white focus:outline-none focus:border-blue-500 border border-gray-500 rounded text-sm"
+                              value={getValue(`cdfData.seller_credit_information.line_${lineNum}.description`) || ''}
                               onChange={handleInputChange}
-                              data-schema-key={`cdf.seller_credit_information.line_${lineNum}.statement_text`}
+                              data-schema-key={`cdfData.seller_credit_information.line_${lineNum}.description`}
                             />
                           </td>
                           <td className="py-3 px-4">
                             <input 
                               type="text" 
                               inputMode="decimal" 
-                              className={`w-full px-3 py-1.5 ${isReadOnly ? 'bg-gray-600 text-gray-400' : 'bg-gray-700 text-white focus:outline-none focus:border-blue-500'} border border-gray-500 rounded text-sm text-right`}
-                              readOnly={isReadOnly}
-                              value={getValue(`cdf.seller_credit_information.line_${lineNum}.amount`) || ''}
+                              className="w-full px-3 py-1.5 bg-gray-700 text-white focus:outline-none focus:border-blue-500 border border-gray-500 rounded text-sm text-right"
+                              value={getValue(`cdfData.seller_credit_information.line_${lineNum}.amount`) || ''}
                               onChange={handleInputChange}
-                              data-schema-key={`cdf.seller_credit_information.line_${lineNum}.amount`}
+                              data-schema-key={`cdfData.seller_credit_information.line_${lineNum}.amount`}
+                            />
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </form>
+
+              {/* Section N: Seller Debits */}
+              <form className="space-y-4">
+                <table className="w-full bg-gray-800 border border-gray-600 rounded-lg overflow-hidden">
+                  <thead>
+                    <tr className="bg-gray-700">
+                      <th className="py-3 px-4 text-center border-b border-gray-600" colSpan={3}>
+                        N. Due from Seller at Closing
+                      </th>
+                    </tr>
+                    <tr className="bg-gray-700">
+                      <th className="w-12 py-3 px-4 text-center text-sm text-gray-300 border-b border-gray-600"></th>
+                      <th className="py-3 px-4 text-left text-sm text-gray-300 border-b border-gray-600">Description</th>
+                      <th className="py-3 px-4 text-center text-sm text-gray-300 border-b border-gray-600">Amount</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {[...Array(5)].map((_, index) => {
+                      const lineNum = String(index + 1).padStart(2, '0');
+                      
+                      return (
+                        <tr key={index} className="border-b border-gray-600">
+                          <td className="py-3 px-4 text-center text-sm text-gray-400">{lineNum}</td>
+                          <td className="py-3 px-4">
+                            <input 
+                              type="text" 
+                              className="w-full px-3 py-1.5 bg-gray-700 text-white focus:outline-none focus:border-blue-500 border border-gray-500 rounded text-sm"
+                              value={getValue(`cdfData.seller_debit_information.line_${lineNum}.description`) || ''}
+                              onChange={handleInputChange}
+                              data-schema-key={`cdfData.seller_debit_information.line_${lineNum}.description`}
+                            />
+                          </td>
+                          <td className="py-3 px-4">
+                            <input 
+                              type="text" 
+                              inputMode="decimal" 
+                              className="w-full px-3 py-1.5 bg-gray-700 text-white focus:outline-none focus:border-blue-500 border border-gray-500 rounded text-sm text-right"
+                              value={getValue(`cdfData.seller_debit_information.line_${lineNum}.amount`) || ''}
+                              onChange={handleInputChange}
+                              data-schema-key={`cdfData.seller_debit_information.line_${lineNum}.amount`}
                             />
                           </td>
                         </tr>
