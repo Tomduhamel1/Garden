@@ -35,9 +35,9 @@ const Contacts: React.FC<ContactsProps> = ({ orderId }) => {
   const showOtherForms = !showBorrowerForms && !showSellerForms;
 
   // Get names from data
-  const borrowerName = getValue(`contactsData.borrowers.${activeBorrowerIndex}.first_name`) + ' ' + 
+  const borrowerName = getValue(`contactsData.borrowers.${activeBorrowerIndex}.first_name`) || '' + ' ' + 
                       getValue(`contactsData.borrowers.${activeBorrowerIndex}.last_name`) || "Borrower";
-  const sellerName = getValue(`contactsData.sellers.${activeSellerIndex}.first_name`) + ' ' +
+  const sellerName = getValue(`contactsData.sellers.${activeSellerIndex}.first_name`) || '' + ' ' +
                      getValue(`contactsData.sellers.${activeSellerIndex}.last_name`) || "Seller";
 
   if (loading) {
@@ -156,7 +156,7 @@ const Contacts: React.FC<ContactsProps> = ({ orderId }) => {
                   type="text" 
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
                   data-schema-key={`contactsData.${prefix}.${index}.first_name`}
-                  value={getValue(`contactsData.${prefix}.${index}.first_name`)}
+                  value={getValue(`contactsData.${prefix}.${index}.first_name`) || ''}
                   onChange={handleInputChange}
                 />
               </div>
@@ -166,7 +166,7 @@ const Contacts: React.FC<ContactsProps> = ({ orderId }) => {
                   type="text" 
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
                   data-schema-key={`contactsData.${prefix}.${index}.middle_name`}
-                  value={getValue(`contactsData.${prefix}.${index}.middle_name`)}
+                  value={getValue(`contactsData.${prefix}.${index}.middle_name`) || ''}
                   onChange={handleInputChange}
                 />
               </div>
@@ -176,7 +176,7 @@ const Contacts: React.FC<ContactsProps> = ({ orderId }) => {
                   type="text" 
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
                   data-schema-key={`contactsData.${prefix}.${index}.last_name`}
-                  value={getValue(`contactsData.${prefix}.${index}.last_name`)}
+                  value={getValue(`contactsData.${prefix}.${index}.last_name`) || ''}
                   onChange={handleInputChange}
                 />
               </div>
@@ -253,7 +253,7 @@ const Contacts: React.FC<ContactsProps> = ({ orderId }) => {
                   type="email" 
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
                   data-schema-key={`contactsData.${prefix}.${index}.email`}
-                  value={getValue(`contactsData.${prefix}.${index}.email`)}
+                  value={getValue(`contactsData.${prefix}.${index}.email`) || ''}
                   onChange={handleInputChange}
                 />
               </div>
@@ -279,6 +279,40 @@ const Contacts: React.FC<ContactsProps> = ({ orderId }) => {
                   type="tel" 
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
                   data-schema-key={`contactsData.${prefix}.${index}.fax`}
+                />
+              </div>
+            </div>
+
+            {/* License and IDs */}
+            <div className="grid grid-cols-3 gap-5 mb-5">
+              <div>
+                <label className="block text-sm text-gray-300 mb-2">License Number</label>
+                <input 
+                  type="text" 
+                  className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
+                  data-schema-key={`contactsData.${prefix}.${index}.license_number`}
+                  value={getValue(`contactsData.${prefix}.${index}.license_number`) || ''}
+                  onChange={handleInputChange}
+                />
+              </div>
+              <div>
+                <label className="block text-sm text-gray-300 mb-2">NMLSR ID</label>
+                <input 
+                  type="text" 
+                  className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
+                  data-schema-key={`contactsData.${prefix}.${index}.nmlsr_id`}
+                  value={getValue(`contactsData.${prefix}.${index}.nmlsr_id`) || ''}
+                  onChange={handleInputChange}
+                />
+              </div>
+              <div>
+                <label className="block text-sm text-gray-300 mb-2">{isBorrower ? 'Borrower' : 'Seller'} ID</label>
+                <input 
+                  type="text" 
+                  className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
+                  data-schema-key={`contactsData.${prefix}.${index}.${isBorrower ? 'borrower' : 'seller'}_id`}
+                  value={getValue(`contactsData.${prefix}.${index}.${isBorrower ? 'borrower' : 'seller'}_id`) || ''}
+                  onChange={handleInputChange}
                 />
               </div>
             </div>

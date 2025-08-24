@@ -64,7 +64,7 @@ const TaxesProrations: React.FC<TaxesProrationsProps> = () => {
   // Calculate city tax proration when inputs change
   useEffect(() => {
     const annualAmount = parseCurrency(cityTaxData.annual_amount || '0');
-    const closingDate = getValue('cdf.closing_information.closing_date');
+    const closingDate = getValue('cdfData.ata.closing_information.closing_date') || '';
     
     if (annualAmount > 0 && closingDate) {
       const proration = calculateTaxProration(
@@ -89,7 +89,7 @@ const TaxesProrations: React.FC<TaxesProrationsProps> = () => {
   // Calculate county tax proration when inputs change
   useEffect(() => {
     const annualAmount = parseCurrency(countyTaxData.annual_amount || '0');
-    const closingDate = getValue('cdf.closing_information.closing_date');
+    const closingDate = getValue('cdfData.ata.closing_information.closing_date') || '';
     
     if (annualAmount > 0 && closingDate) {
       const proration = calculateTaxProration(

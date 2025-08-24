@@ -209,15 +209,15 @@ describe('BasicInfo Component', () => {
       
       expect(mockUseOrderData.handleInputChange).toHaveBeenCalledTimes(3)
       expect(mockUseOrderData.handleInputChange).toHaveBeenCalledWith(
-        'properties_data.street_address',
+        'propertiesData.data.street_address',
         expect.any(Object)
       )
       expect(mockUseOrderData.handleInputChange).toHaveBeenCalledWith(
-        'properties_data.city',
+        'propertiesData.data.city',
         expect.any(Object)
       )
       expect(mockUseOrderData.handleInputChange).toHaveBeenCalledWith(
-        'cdf_data.order_info.sale_price',
+        'cdfData.data.order_info.sale_price',
         expect.any(Object)
       )
     })
@@ -229,10 +229,10 @@ describe('BasicInfo Component', () => {
       
       // Verify getValue is called with expected paths
       expect(mockUseOrderData.getValue).toHaveBeenCalledWith('order_number')
-      expect(mockUseOrderData.getValue).toHaveBeenCalledWith('cdf_data.order_info.closing_date')
-      expect(mockUseOrderData.getValue).toHaveBeenCalledWith('properties_data.street_address')
-      expect(mockUseOrderData.getValue).toHaveBeenCalledWith('contacts_data.borrower.first_name')
-      expect(mockUseOrderData.getValue).toHaveBeenCalledWith('contacts_data.seller.first_name')
+      expect(mockUseOrderData.getValue).toHaveBeenCalledWith('cdfData.data.order_info.closing_date')
+      expect(mockUseOrderData.getValue).toHaveBeenCalledWith('propertiesData.data.street_address')
+      expect(mockUseOrderData.getValue).toHaveBeenCalledWith('contactsData.data.borrower.first_name')
+      expect(mockUseOrderData.getValue).toHaveBeenCalledWith('contactsData.data.seller.first_name')
     })
 
     it('should handle missing or undefined data gracefully', () => {
