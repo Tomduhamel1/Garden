@@ -11,6 +11,9 @@ import DidShopFor from '../components/orders/DidShopFor';
 import DidNotShopFor from '../components/orders/DidNotShopFor';
 import OtherCharges from '../components/orders/OtherCharges';
 import TaxesAndFees from '../components/orders/TaxesAndFees';
+import TaxesDebug from '../components/orders/TaxesDebug';
+import TaxesAndFeesDebug from '../components/orders/TaxesAndFeesDebug';
+import TaxesSimpleTest from '../components/orders/TaxesSimpleTest';
 import Prepaids from '../components/orders/Prepaids';
 import Escrow from '../components/orders/Escrow';
 import Payoffs from '../components/orders/Payoffs';
@@ -95,6 +98,9 @@ const AppRoutes = () => {
         <Route path="schema-inspector" element={<SchemaInspector />} />
         {/* Route aliases for AppShell menu compatibility */}
         <Route path="taxes-fees" element={<TaxesAndFees />} />
+        <Route path="taxes-debug" element={<TaxesDebug />} />
+        <Route path="taxes-fees-debug" element={<TaxesAndFeesDebug />} />
+        <Route path="taxes-simple" element={<TaxesSimpleTest />} />
         <Route path="debits-credits-km" element={<DebitsCredits />} />
       </Route>
       <Route path="/dashboard" element={

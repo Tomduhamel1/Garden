@@ -586,9 +586,9 @@ export function ClosingDisclosure() {
             const lineKey = `line_${String(i).padStart(2, '0')}`;
             const description = getValue(`cdfData.taxes_and_government_fees.${lineKey}.description`) || '';
             const payeeName = getValue(`cdfData.taxes_and_government_fees.${lineKey}.payee_name`) || '';
-            const borrowerAmount = getValue(`cdfData.taxes_and_government_fees.${lineKey}.borrower_amount`) || 0;
-            const sellerAmount = getValue(`cdfData.taxes_and_government_fees.${lineKey}.seller_amount`) || 0;
-            const othersAmount = getValue(`cdfData.taxes_and_government_fees.${lineKey}.paid_by_others_amount`) || 0;
+            const borrowerAmount = getValue(`cdfData.taxes_and_government_fees.${lineKey}.paid_by_borrower`) || 0;
+            const sellerAmount = getValue(`cdfData.taxes_and_government_fees.${lineKey}.paid_by_seller`) || 0;
+            const othersAmount = getValue(`cdfData.taxes_and_government_fees.${lineKey}.paid_by_others`) || 0;
             const beforeClosingAmount = getValue(`cdfData.taxes_and_government_fees.${lineKey}.before_borrower_amount`) || getValue(`cdfData.taxes_and_government_fees.${lineKey}.before_seller_amount`) || 0;
             
             const displayText = description + (payeeName ? ` to ${payeeName}` : '');
@@ -615,8 +615,8 @@ export function ClosingDisclosure() {
           {[1, 2, 3, 4, 5].map(i => {
             const lineKey = `line_${String(i).padStart(2, '0')}`;
             const description = getValue(`cdfData.prepaid_item_information.${lineKey}.description`) || '';
-            const borrowerAmount = getValue(`cdfData.prepaid_item_information.${lineKey}.borrower_amount`) || 0;
-            const sellerAmount = getValue(`cdfData.prepaid_item_information.${lineKey}.seller_amount`) || 0;
+            const borrowerAmount = getValue(`cdfData.prepaid_item_information.${lineKey}.paid_by_borrower`) || 0;
+            const sellerAmount = getValue(`cdfData.prepaid_item_information.${lineKey}.paid_by_seller`) || 0;
             const beforeBorrowerAmount = getValue(`cdfData.prepaid_item_information.${lineKey}.before_borrower_amount`) || 0;
             const beforeSellerAmount = getValue(`cdfData.prepaid_item_information.${lineKey}.before_seller_amount`) || 0;
             const numberOfMonths = getValue(`cdfData.prepaid_item_information.${lineKey}.number_of_months`) || '';
@@ -645,8 +645,8 @@ export function ClosingDisclosure() {
           {[1, 2, 3, 4, 5, 6, 7, 8].map(i => {
             const lineKey = `line_${String(i).padStart(2, '0')}`;
             const description = getValue(`cdfData.escrow_information.${lineKey}.description`) || '';
-            const borrowerAmount = getValue(`cdfData.escrow_information.${lineKey}.borrower_amount`) || 0;
-            const sellerAmount = getValue(`cdfData.escrow_information.${lineKey}.seller_amount`) || 0;
+            const borrowerAmount = getValue(`cdfData.escrow_information.${lineKey}.paid_by_borrower`) || 0;
+            const sellerAmount = getValue(`cdfData.escrow_information.${lineKey}.paid_by_seller`) || 0;
             const beforeBorrowerAmount = getValue(`cdfData.escrow_information.${lineKey}.before_borrower_amount`) || 0;
             const beforeSellerAmount = getValue(`cdfData.escrow_information.${lineKey}.before_seller_amount`) || 0;
             const numberOfMonths = getValue(`cdfData.escrow_information.${lineKey}.number_of_months`) || '';

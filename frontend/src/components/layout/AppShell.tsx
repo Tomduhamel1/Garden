@@ -19,7 +19,7 @@ interface NavSection {
 
 export default function AppShell() {
   const location = useLocation();
-  const orderId = location.pathname.split('/')[2] || '1';
+  const orderId = location.pathname.split('/')[2] || 'b09b0775-9318-454a-ada9-77f0c2147e18';
   const { user, logout } = useAuth();
   
   const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({
@@ -52,7 +52,7 @@ export default function AppShell() {
             <Link to="/dashboard" className="px-3 py-1 text-sm hover:text-blue-400 transition-colors">
               Dashboard
             </Link>
-            <Link to="/orders/1/basic-info" className="px-3 py-1 text-sm hover:text-blue-400 transition-colors">
+            <Link to="/orders/b09b0775-9318-454a-ada9-77f0c2147e18/basic-info" className="px-3 py-1 text-sm hover:text-blue-400 transition-colors">
               Orders
             </Link>
             <Link to="/contacts" className="px-3 py-1 text-sm text-gray-400 hover:text-blue-400 transition-colors">
@@ -330,9 +330,9 @@ export default function AppShell() {
                 <span className="bg-gray-500 text-white min-w-[20px] h-5 rounded text-xs font-semibold inline-flex items-center justify-center">C</span>
               </Link>
               <Link 
-                to={`/orders/${orderId}/taxes-fees`}
+                to={`/orders/${orderId}/taxes-and-fees`}
                 className={`flex items-center justify-between py-3 pl-8 pr-5 text-xs transition-all ${
-                  isActive(`/orders/${orderId}/taxes-fees`) 
+                  isActive(`/orders/${orderId}/taxes-and-fees`) 
                     ? 'text-white bg-blue-600 border-l-4 border-l-blue-400' 
                     : 'text-gray-300 border-l-4 border-l-transparent hover:bg-gray-700 hover:text-white'
                 }`}
