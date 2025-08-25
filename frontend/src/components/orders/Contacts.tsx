@@ -432,7 +432,7 @@ const Contacts: React.FC = () => {
     );
   };
 
-  // Render Sellers Info Form (matching buyers structure)
+  // Render Sellers Info Form (complete match to buyers structure)
   const renderSellersInfoForm = () => {
     if (!showSellersForm || activeTab !== 'info') return null;
 
@@ -455,7 +455,7 @@ const Contacts: React.FC = () => {
             </div>
           </section>
 
-          {/* Name Fields - Same structure as buyers but with sellers prefix */}
+          {/* Name Fields */}
           <section>
             <div className="grid grid-cols-4 gap-5 mb-5">
               <div>
@@ -468,11 +468,501 @@ const Contacts: React.FC = () => {
                   onChange={handleInputChange}
                 />
               </div>
-              {/* ... rest of seller fields similar to buyer fields ... */}
+              <div>
+                <label className="block text-sm text-gray-300 mb-2">Middle Name</label>
+                <input 
+                  type="text" 
+                  className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
+                  data-schema-key={`contactsData.sellers.${activeSellerIndex}.middle_name`}
+                  value={getValue(`contactsData.sellers.${activeSellerIndex}.middle_name`) || ''}
+                  onChange={handleInputChange}
+                />
+              </div>
+              <div>
+                <label className="block text-sm text-gray-300 mb-2">Last Name</label>
+                <input 
+                  type="text" 
+                  className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
+                  data-schema-key={`contactsData.sellers.${activeSellerIndex}.last_name`}
+                  value={getValue(`contactsData.sellers.${activeSellerIndex}.last_name`) || ''}
+                  onChange={handleInputChange}
+                />
+              </div>
+              <div>
+                <label className="block text-sm text-gray-300 mb-2">Suffix</label>
+                <input 
+                  type="text" 
+                  className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
+                  data-schema-key={`contactsData.sellers.${activeSellerIndex}.suffix`}
+                  value={getValue(`contactsData.sellers.${activeSellerIndex}.suffix`) || ''}
+                  onChange={handleInputChange}
+                />
+              </div>
             </div>
+
+            <div className="flex gap-5 mb-5">
+              <div className="flex-1">
+                <label className="block text-sm text-gray-300 mb-2">Gender</label>
+                <select 
+                  className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none" 
+                  data-schema-key={`contactsData.sellers.${activeSellerIndex}.gender`}
+                  value={getValue(`contactsData.sellers.${activeSellerIndex}.gender`) || ''}
+                  onChange={handleInputChange}
+                >
+                  <option value="">Select one...</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                </select>
+              </div>
+              <div className="flex-1">
+                <label className="block text-sm text-gray-300 mb-2">Marital Status</label>
+                <select 
+                  className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none" 
+                  data-schema-key={`contactsData.sellers.${activeSellerIndex}.marital_status`}
+                  value={getValue(`contactsData.sellers.${activeSellerIndex}.marital_status`) || ''}
+                  onChange={handleInputChange}
+                >
+                  <option value="">Select one...</option>
+                  <option value="Married">Married</option>
+                  <option value="Unmarried">Unmarried</option>
+                  <option value="Single">Single</option>
+                  <option value="Reg. Dom. Partnership">Reg. Dom. Partnership</option>
+                  <option value="Unknown">Unknown</option>
+                  <option value="Widow">Widow</option>
+                  <option value="Widower">Widower</option>
+                </select>
+              </div>
+              <div className="flex-1">
+                <label className="block text-sm text-gray-300 mb-2">SSN</label>
+                <input 
+                  type="text" 
+                  inputMode="numeric" 
+                  className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
+                  data-schema-key={`contactsData.sellers.${activeSellerIndex}.SSN`}
+                  value={getValue(`contactsData.sellers.${activeSellerIndex}.SSN`) || ''}
+                  onChange={handleInputChange}
+                />
+              </div>
+              <div className="flex-1">
+                <label className="block text-sm text-gray-300 mb-2">Date of Birth</label>
+                <div className="relative">
+                  <i className="fa fa-calendar absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                  <input 
+                    type="text" 
+                    inputMode="numeric" 
+                    className="w-full pl-9 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
+                    data-schema-key={`contactsData.sellers.${activeSellerIndex}.date_of_birth`}
+                    value={getValue(`contactsData.sellers.${activeSellerIndex}.date_of_birth`) || ''}
+                    onChange={handleInputChange}
+                  />
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Contact Info */}
+          <section>
+            <h3 className="text-base font-semibold mb-4 pb-2 border-b border-gray-600">Contact Info</h3>
+            
+            <div className="flex gap-5 mb-5">
+              <div className="flex-1">
+                <label className="block text-sm text-gray-300 mb-2">Email</label>
+                <input 
+                  type="email" 
+                  className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
+                  data-schema-key={`contactsData.sellers.${activeSellerIndex}.email`}
+                  value={getValue(`contactsData.sellers.${activeSellerIndex}.email`) || ''}
+                  onChange={handleInputChange}
+                />
+              </div>
+              <div className="flex-1">
+                <label className="block text-sm text-gray-300 mb-2">Cell Phone</label>
+                <input 
+                  type="tel" 
+                  inputMode="tel" 
+                  className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
+                  data-schema-key={`contactsData.sellers.${activeSellerIndex}.cell_phone`}
+                  value={getValue(`contactsData.sellers.${activeSellerIndex}.cell_phone`) || ''}
+                  onChange={handleInputChange}
+                />
+              </div>
+            </div>
+
+            <div className="flex gap-5 mb-5">
+              <div className="flex-1">
+                <label className="block text-sm text-gray-300 mb-2">Home Phone</label>
+                <input 
+                  type="tel" 
+                  inputMode="tel" 
+                  className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
+                  data-schema-key={`contactsData.sellers.${activeSellerIndex}.home_phone`}
+                  value={getValue(`contactsData.sellers.${activeSellerIndex}.home_phone`) || ''}
+                  onChange={handleInputChange}
+                />
+              </div>
+              <div className="flex-1">
+                <label className="block text-sm text-gray-300 mb-2">Work Phone</label>
+                <input 
+                  type="tel" 
+                  inputMode="tel" 
+                  className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
+                  data-schema-key={`contactsData.sellers.${activeSellerIndex}.work_phone`}
+                  value={getValue(`contactsData.sellers.${activeSellerIndex}.work_phone`) || ''}
+                  onChange={handleInputChange}
+                />
+              </div>
+              <div className="flex-1">
+                <label className="block text-sm text-gray-300 mb-2">Fax</label>
+                <input 
+                  type="tel" 
+                  inputMode="tel" 
+                  className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
+                  data-schema-key={`contactsData.sellers.${activeSellerIndex}.fax`}
+                  value={getValue(`contactsData.sellers.${activeSellerIndex}.fax`) || ''}
+                  onChange={handleInputChange}
+                />
+              </div>
+            </div>
+          </section>
+
+          {/* Grid Layout for Additional Sections - matching sellers structure from HTML */}
+          <section className="grid grid-cols-4 gap-8">
+            {/* Column 1: Will Be On */}
+            <div>
+              <h4 className="text-sm font-semibold mb-4">On</h4>
+              <div className="space-y-3">
+                <div className="flex items-center gap-3">
+                  <input 
+                    type="checkbox" 
+                    className="w-4 h-4" 
+                    data-schema-key={`contactsData.sellers.${activeSellerIndex}.on_title`}
+                    checked={getValue(`contactsData.sellers.${activeSellerIndex}.on_title`) || false}
+                    onChange={handleInputChange}
+                  />
+                  <label className="text-sm cursor-pointer">Title</label>
+                </div>
+                <div>
+                  <label className="block text-sm text-gray-300 mb-2">Ownership %</label>
+                  <input 
+                    type="text" 
+                    inputMode="decimal" 
+                    className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
+                    data-schema-key={`contactsData.sellers.${activeSellerIndex}.ownership_percentage`}
+                    value={getValue(`contactsData.sellers.${activeSellerIndex}.ownership_percentage`) || ''}
+                    onChange={handleInputChange}
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Column 2: Participating In & POA */}
+            <div>
+              <h4 className="text-sm font-semibold mb-4">Participating In</h4>
+              <div className="flex items-center gap-3 mb-6">
+                <input 
+                  type="checkbox" 
+                  className="w-4 h-4" 
+                  data-schema-key={`contactsData.sellers.${activeSellerIndex}.has_exchange`}
+                  checked={getValue(`contactsData.sellers.${activeSellerIndex}.has_exchange`) || false}
+                  onChange={handleInputChange}
+                />
+                <label className="text-sm cursor-pointer">1031 Exchange</label>
+              </div>
+              
+              <h4 className="text-sm font-semibold mb-4">POA</h4>
+              <div className="flex items-center gap-3">
+                <input 
+                  type="checkbox" 
+                  className="w-4 h-4" 
+                  data-schema-key={`contactsData.sellers.${activeSellerIndex}.power_of_attorney.has`}
+                  checked={getValue(`contactsData.sellers.${activeSellerIndex}.power_of_attorney.has`) || false}
+                  onChange={handleInputChange}
+                />
+                <label className="text-sm cursor-pointer">Given</label>
+              </div>
+            </div>
+
+            {/* Column 3: 1099 Reporting */}
+            <div>
+              <h4 className="text-sm font-semibold mb-4 flex items-center gap-2">
+                1099 Reporting
+                <i className="fa fa-question-circle text-gray-400 cursor-help" title="1099 tax reporting information"></i>
+              </h4>
+              <div className="space-y-3">
+                <div className="flex items-center gap-3">
+                  <input 
+                    type="checkbox" 
+                    className="w-4 h-4" 
+                    data-schema-key={`contactsData.sellers.${activeSellerIndex}.reporting_1099.required`}
+                    checked={getValue(`contactsData.sellers.${activeSellerIndex}.reporting_1099.required`) || false}
+                    onChange={handleInputChange}
+                  />
+                  <label className="text-sm cursor-pointer">1099 Required</label>
+                </div>
+                <div>
+                  <label className="block text-sm text-gray-300 mb-2">Tax ID</label>
+                  <input 
+                    type="text" 
+                    className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
+                    data-schema-key={`contactsData.sellers.${activeSellerIndex}.reporting_1099.tax_id`}
+                    value={getValue(`contactsData.sellers.${activeSellerIndex}.reporting_1099.tax_id`) || ''}
+                    onChange={handleInputChange}
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Column 4: Empty */}
+            <div></div>
           </section>
         </form>
       </div>
+    );
+  };
+
+  // Render Addresses Tab
+  const renderAddressesTab = () => {
+    if (activeTab !== 'addresses' || !showHorizontalTabs) return null;
+    
+    const isBorrower = showBuyersForm;
+    const index = isBorrower ? activeBorrowerIndex : activeSellerIndex;
+    const prefix = isBorrower ? 'borrowers' : 'sellers';
+
+    // US States array for dropdown
+    const states = [
+      'AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD', 
+      'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 
+      'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY', 'DC'
+    ];
+
+    return (
+      <form className="space-y-8">
+        {/* Current Address Section */}
+        <section className="mb-8">
+          <h3 className="text-base font-semibold mb-4 pb-2 border-b border-gray-600">Current Address</h3>
+          
+          <div className="flex items-center gap-3 mb-5">
+            <input 
+              type="checkbox" 
+              className="w-4 h-4" 
+              data-schema-key={`contactsData.${prefix}.${index}.current_address.same_as_property`}
+              checked={getValue(`contactsData.${prefix}.${index}.current_address.same_as_property`) || false}
+              onChange={handleInputChange}
+            />
+            <label className="text-sm cursor-pointer">Same as Property</label>
+          </div>
+
+          <div className="flex gap-5 mb-5">
+            <div className="flex-[2.5]">
+              <label className="block text-sm text-gray-300 mb-2">Address</label>
+              <input 
+                type="text" 
+                className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
+                data-schema-key={`contactsData.${prefix}.${index}.current_address.street`}
+                value={getValue(`contactsData.${prefix}.${index}.current_address.street`) || ''}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="flex-[1.5]">
+              <label className="block text-sm text-gray-300 mb-2">Apt, Suite, Etc.</label>
+              <input 
+                type="text" 
+                className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
+                data-schema-key={`contactsData.${prefix}.${index}.current_address.unit`}
+                value={getValue(`contactsData.${prefix}.${index}.current_address.unit`) || ''}
+                onChange={handleInputChange}
+              />
+            </div>
+          </div>
+
+          <div className="flex gap-5 mb-5">
+            <div className="flex-1">
+              <label className="block text-sm text-gray-300 mb-2">City</label>
+              <input 
+                type="text" 
+                className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
+                data-schema-key={`contactsData.${prefix}.${index}.current_address.city`}
+                value={getValue(`contactsData.${prefix}.${index}.current_address.city`) || ''}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="flex-1">
+              <label className="block text-sm text-gray-300 mb-2">State</label>
+              <select 
+                className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none" 
+                data-schema-key={`contactsData.${prefix}.${index}.current_address.state`}
+                value={getValue(`contactsData.${prefix}.${index}.current_address.state`) || ''}
+                onChange={handleInputChange}
+              >
+                <option value="">Select one...</option>
+                {states.map(state => (
+                  <option key={state} value={state}>{state}</option>
+                ))}
+              </select>
+            </div>
+            <div className="flex-1">
+              <label className="block text-sm text-gray-300 mb-2">Zipcode</label>
+              <input 
+                type="text" 
+                inputMode="numeric" 
+                className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
+                data-schema-key={`contactsData.${prefix}.${index}.current_address.zipcode`}
+                value={getValue(`contactsData.${prefix}.${index}.current_address.zipcode`) || ''}
+                onChange={handleInputChange}
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* Forwarding Address Section */}
+        <section className="mb-8">
+          <h3 className="text-base font-semibold mb-4 pb-2 border-b border-gray-600">Forwarding Address</h3>
+          
+          <div className="flex gap-8 mb-5">
+            <div className="flex items-center gap-3">
+              <input 
+                type="checkbox" 
+                className="w-4 h-4" 
+                data-schema-key={`contactsData.${prefix}.${index}.forwarding_address.same_as_property`}
+                checked={getValue(`contactsData.${prefix}.${index}.forwarding_address.same_as_property`) || false}
+                onChange={handleInputChange}
+              />
+              <label className="text-sm cursor-pointer">Same as Property</label>
+            </div>
+            <div className="flex items-center gap-3">
+              <input 
+                type="checkbox" 
+                className="w-4 h-4" 
+                data-schema-key={`contactsData.${prefix}.${index}.forwarding_address.same_as_current`}
+                checked={getValue(`contactsData.${prefix}.${index}.forwarding_address.same_as_current`) || false}
+                onChange={handleInputChange}
+              />
+              <label className="text-sm cursor-pointer">Same as Current</label>
+            </div>
+          </div>
+
+          <div className="flex gap-5 mb-5">
+            <div className="flex-[2.5]">
+              <label className="block text-sm text-gray-300 mb-2">Address</label>
+              <input 
+                type="text" 
+                className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
+                data-schema-key={`contactsData.${prefix}.${index}.forwarding_address.street`}
+                value={getValue(`contactsData.${prefix}.${index}.forwarding_address.street`) || ''}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="flex-[1.5]">
+              <label className="block text-sm text-gray-300 mb-2">Apt, Suite, Etc.</label>
+              <input 
+                type="text" 
+                className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
+                data-schema-key={`contactsData.${prefix}.${index}.forwarding_address.unit`}
+                value={getValue(`contactsData.${prefix}.${index}.forwarding_address.unit`) || ''}
+                onChange={handleInputChange}
+              />
+            </div>
+          </div>
+
+          <div className="flex gap-5 mb-5">
+            <div className="flex-1">
+              <label className="block text-sm text-gray-300 mb-2">City</label>
+              <input 
+                type="text" 
+                className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
+                data-schema-key={`contactsData.${prefix}.${index}.forwarding_address.city`}
+                value={getValue(`contactsData.${prefix}.${index}.forwarding_address.city`) || ''}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="flex-1">
+              <label className="block text-sm text-gray-300 mb-2">State</label>
+              <select 
+                className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none" 
+                data-schema-key={`contactsData.${prefix}.${index}.forwarding_address.state`}
+                value={getValue(`contactsData.${prefix}.${index}.forwarding_address.state`) || ''}
+                onChange={handleInputChange}
+              >
+                <option value="">Select one...</option>
+                {states.map(state => (
+                  <option key={state} value={state}>{state}</option>
+                ))}
+              </select>
+            </div>
+            <div className="flex-1">
+              <label className="block text-sm text-gray-300 mb-2">Zipcode</label>
+              <input 
+                type="text" 
+                inputMode="numeric" 
+                className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
+                data-schema-key={`contactsData.${prefix}.${index}.forwarding_address.zipcode`}
+                value={getValue(`contactsData.${prefix}.${index}.forwarding_address.zipcode`) || ''}
+                onChange={handleInputChange}
+              />
+            </div>
+          </div>
+        </section>
+      </form>
+    );
+  };
+
+  // Render Attorney Tab
+  const renderAttorneyTab = () => {
+    if (activeTab !== 'attorney' || !showHorizontalTabs) return null;
+    
+    return (
+      <section className="mb-8">
+        <h3 className="text-lg font-semibold mb-5 text-white">Search Existing Law Firms</h3>
+        <div className="relative mb-6">
+          <i className="fa fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+          <input 
+            type="text" 
+            className="w-full pl-9 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
+            placeholder="Search existing law firms..."
+          />
+        </div>
+        
+        <h3 className="text-lg font-semibold mb-5 text-white">New Law Firm</h3>
+        <button className="px-4 py-2 bg-blue-600 border border-blue-600 rounded text-white hover:bg-blue-700">
+          Create New Law Firm
+        </button>
+      </section>
+    );
+  };
+
+  // Render Signature Tab
+  const renderSignatureTab = () => {
+    if (activeTab !== 'signature' || !showHorizontalTabs) return null;
+    
+    return (
+      <>
+        <section className="mb-8">
+          <h3 className="text-base font-semibold mb-4 pb-2 border-b border-gray-600">Signature</h3>
+          <p className="text-gray-400 text-sm">Signature management functionality</p>
+        </section>
+
+        <section className="mb-8">
+          <h3 className="text-base font-semibold mb-4 pb-2 border-b border-gray-600">Vesting</h3>
+          <p className="text-gray-400 text-sm">Vesting management functionality</p>
+        </section>
+      </>
+    );
+  };
+
+  // Render Notary Tab
+  const renderNotaryTab = () => {
+    if (activeTab !== 'notary' || !showHorizontalTabs) return null;
+    
+    return (
+      <section className="mb-8">
+        <div className="py-4 px-5 bg-gray-600 border-b border-gray-600 cursor-pointer flex justify-between items-center">
+          <h4 className="text-base font-semibold">This {showBuyersForm ? 'Borrower' : 'Seller'}</h4>
+          <span className="transition-transform">▼</span>
+        </div>
+        <div className="mt-4">
+          <p className="text-gray-400 text-sm">Notary blocks functionality</p>
+        </div>
+      </section>
     );
   };
 
@@ -559,6 +1049,10 @@ const Contacts: React.FC = () => {
           <section className="tab-content">
             {renderBuyersInfoForm()}
             {renderSellersInfoForm()}
+            {renderAddressesTab()}
+            {renderAttorneyTab()}
+            {renderSignatureTab()}
+            {renderNotaryTab()}
             {renderOtherContactsForm()}
           </section>
         </section>
