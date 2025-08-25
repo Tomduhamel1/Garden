@@ -15,7 +15,7 @@ const DebitsCreditsFn: React.FC<DebitsCreditsFnProps> = () => {
     Array.from({ length: 17 }, (_, i) => ({
       statement_text: '',
       amount: '',
-      editable: i === 0 || i === 2 || i === 4 // Example: only certain lines are editable
+      editable: true // All lines should be editable by default
     }))
   );
 
@@ -23,7 +23,7 @@ const DebitsCreditsFn: React.FC<DebitsCreditsFnProps> = () => {
     Array.from({ length: 15 }, (_, i) => ({
       statement_text: '',
       amount: '',
-      editable: i === 0 || i === 2 || i === 4 // Example: only certain lines are editable
+      editable: true // All lines should be editable by default
     }))
   );
 

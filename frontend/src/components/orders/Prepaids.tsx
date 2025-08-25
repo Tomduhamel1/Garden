@@ -233,9 +233,9 @@ export default function Prepaids() {
     const lineNumberPadded = lineNumber.toString().padStart(2, '0');
     const isActive = activeRow === lineNumber || isActiveDefault;
     
-    // Determine field states for different line types
-    const isReadOnlyDescription = lineNumber <= 4; // Lines 01-04 have readonly descriptions
-    const isReadOnlyPayee = lineNumber === 3; // Line 03 has readonly payee
+    // Determine field states for different line types - only truly calculated fields should be readonly
+    const isReadOnlyDescription = false; // All descriptions should be editable
+    const isReadOnlyPayee = false; // All payees should be editable
 
     return (
       <tr
