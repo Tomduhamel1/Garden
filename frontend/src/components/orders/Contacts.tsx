@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useOrderData } from '../../hooks/useOrderData';
 
-type ContactType = 'buyers' | 'sellers' | 'lenders' | 'buyersAgents' | 'sellersAgents' | 'titleAbstractors' | 'surveyingFirms' | 'otherContacts';
+type ContactType = 'buyers' | 'sellers' | 'lenders' | 'mortgageBrokerages' | 'sellingAgencies' | 'listingAgencies' | 'recordingOffices' | 'taxAuthorities' | 'titleAbstractors' | 'surveyingFirms' | 'otherContacts';
 type TabType = 'info' | 'addresses' | 'attorney' | 'signature' | 'notary';
 type PersonType = 'individual' | 'organization';
 
@@ -13,13 +13,16 @@ const Contacts: React.FC = () => {
   const [activeBorrowerIndex, setActiveBorrowerIndex] = useState(0);
   const [activeSellerIndex, setActiveSellerIndex] = useState(0);
 
-  // Map contact types to display names
+  // Map contact types to display names (matching original HTML)
   const contactTypeLabels: Record<ContactType, string> = {
     buyers: 'Buyers',
     sellers: 'Sellers', 
     lenders: 'Lenders',
-    buyersAgents: "Buyer's Agents",
-    sellersAgents: "Seller's Agents",
+    mortgageBrokerages: 'Mortgage Brokerages',
+    sellingAgencies: 'Selling Agencies',
+    listingAgencies: 'Listing Agencies',
+    recordingOffices: 'Recording Offices',
+    taxAuthorities: 'Tax Authorities',
     titleAbstractors: 'Title Abstractors',
     surveyingFirms: 'Surveying Firms',
     otherContacts: 'Other Contacts'
@@ -36,19 +39,32 @@ const Contacts: React.FC = () => {
   const sellerName = getValue(`contactsData.sellers.${activeSellerIndex}.first_name`) || '' + ' ' +
                      getValue(`contactsData.sellers.${activeSellerIndex}.last_name`) || "Seller";
 
+  // Handle contact type change (matching original functionality)
+  const handleContactTypeChange = (contactType: ContactType) => {
+    setActiveContactType(contactType);
+    setActiveTab('info'); // Reset to info tab when changing contact type
+  };
+
   if (loading) {
     return (
-      <section className="flex-1 bg-gray-900 overflow-y-auto flex items-center justify-center">
-        <div className="text-gray-400">
-          <i className="fa fa-spinner fa-spin text-4xl"></i>
-          <p className="mt-4">Loading contacts...</p>
-        </div>
-      </section>
+      <>
+        <section className="flex-1 bg-gray-900 overflow-y-auto flex items-center justify-center">
+          <div className="text-gray-400">
+            <i className="fa fa-spinner fa-spin text-4xl"></i>
+            <p className="mt-4">Loading contacts...</p>
+          </div>
+        </section>
+        
+        {/* Contact Types Menu - Right Sidebar */}
+        <section className="w-48 bg-gray-800 border-l border-gray-600 py-5">
+          <div className="text-gray-400 text-center">Loading...</div>
+        </section>
+      </>
     );
   }
 
   const renderContactTabs = () => {
-    // Only show tabs for buyers/sellers
+    // Only show tabs for buyers/sellers (matching original)
     if (!showBorrowerForms && !showSellerForms) return null;
 
     return (
@@ -60,7 +76,7 @@ const Contacts: React.FC = () => {
           </div>
         </section>
 
-        {/* Sub Tabs */}
+        {/* Sub Tabs - Info, Addresses, Attorney, Signature & Vesting, Notary Blocks */}
         <section className="flex items-center justify-between mb-8 border-b border-gray-600">
           <div className="flex">
             <button 
@@ -104,75 +120,39 @@ const Contacts: React.FC = () => {
               Notary Blocks
             </button>
           </div>
-          <div className="mb-3">
-            <select 
-              className="px-3 py-2 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none"
-              value={personType}
-              onChange={(e) => setPersonType(e.target.value as PersonType)}
-            >
-              <option value="individual">Individual</option>
-              <option value="organization">Organization</option>
-            </select>
-          </div>
         </section>
       </>
     );
   };
 
   const renderInfoTab = () => {
+    if (activeTab !== 'info') return null;
+    
     const isBorrower = showBorrowerForms;
     const index = isBorrower ? activeBorrowerIndex : activeSellerIndex;
     const prefix = isBorrower ? 'borrowers' : 'sellers';
 
     return (
-      <section className={activeTab === 'info' ? '' : 'hidden'}>
+      <section className="tab-content">
         <form className="space-y-8">
-          {/* Basic Info Section */}
-          <section className="mb-6">
+          {/* Search Existing */}
+          <section>
+            <div className="relative mb-6">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <i className="fa fa-search text-gray-400"></i>
+              </div>
+              <input 
+                type="text" 
+                className="w-full pl-9 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
+                placeholder={`Search existing ${isBorrower ? 'buyers' : 'sellers'}...`}
+                data-schema-key="customerName"
+              />
+            </div>
+          </section>
+
+          {/* Basic Info */}
+          <section>
             <h3 className="text-base font-semibold mb-4 pb-2 border-b border-gray-600">Basic Info</h3>
-            <div className="mb-5">
-              <div className="relative">
-                <i className="fa fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-                <input 
-                  type="text" 
-                  className="w-full pl-9 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
-                  placeholder={`Search existing ${isBorrower ? 'buyers' : 'sellers'}...`}
-                  data-schema-key="customerName"
-                />
-              </div>
-            </div>
-          </section>
-
-          {/* Entity Type & Company Info */}
-          <section>
-            <div className="grid grid-cols-2 gap-5 mb-5">
-              <div>
-                <label className="block text-sm text-gray-300 mb-2">Type</label>
-                <select 
-                  className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none" 
-                  data-schema-key={`contactsData.${prefix}.${index}.type`}
-                  value={getValue(`contactsData.${prefix}.${index}.type`) || 'person'}
-                  onChange={handleInputChange}
-                >
-                  <option value="person">Person</option>
-                  <option value="company">Company</option>
-                </select>
-              </div>
-              <div>
-                <label className="block text-sm text-gray-300 mb-2">Company Name</label>
-                <input 
-                  type="text" 
-                  className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
-                  data-schema-key={`contactsData.${prefix}.${index}.company_name`}
-                  value={getValue(`contactsData.${prefix}.${index}.company_name`) || ''}
-                  onChange={handleInputChange}
-                />
-              </div>
-            </div>
-          </section>
-
-          {/* Name Fields */}
-          <section>
             <div className="grid grid-cols-4 gap-5 mb-5">
               <div>
                 <label className="block text-sm text-gray-300 mb-2">First Name</label>
@@ -215,73 +195,13 @@ const Contacts: React.FC = () => {
                 />
               </div>
             </div>
-
-            <div className="flex gap-5 mb-5">
-              <div className="flex-1">
-                <label className="block text-sm text-gray-300 mb-2">Gender</label>
-                <select 
-                  className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none" 
-                  data-schema-key={`contactsData.${prefix}.${index}.gender`}
-                  value={getValue(`contactsData.${prefix}.${index}.gender`) || ''}
-                  onChange={handleInputChange}
-                >
-                  <option value="">Select one...</option>
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                </select>
-              </div>
-              <div className="flex-1">
-                <label className="block text-sm text-gray-300 mb-2">Marital Status</label>
-                <select 
-                  className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none" 
-                  data-schema-key={`contactsData.${prefix}.${index}.marital_status`}
-                  value={getValue(`contactsData.${prefix}.${index}.marital_status`) || ''}
-                  onChange={handleInputChange}
-                >
-                  <option value="">Select one...</option>
-                  <option value="Married">Married</option>
-                  <option value="Unmarried">Unmarried</option>
-                  <option value="Single">Single</option>
-                  <option value="Reg. Dom. Partnership">Reg. Dom. Partnership</option>
-                  <option value="Unknown">Unknown</option>
-                  <option value="Widow">Widow</option>
-                  <option value="Widower">Widower</option>
-                </select>
-              </div>
-              <div className="flex-1">
-                <label className="block text-sm text-gray-300 mb-2">SSN</label>
-                <input 
-                  type="text" 
-                  inputMode="numeric" 
-                  className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
-                  data-schema-key={`contactsData.${prefix}.${index}.SSN`}
-                  value={getValue(`contactsData.${prefix}.${index}.SSN`) || ''}
-                  onChange={handleInputChange}
-                />
-              </div>
-              <div className="flex-1">
-                <label className="block text-sm text-gray-300 mb-2">Date of Birth</label>
-                <div className="relative">
-                  <i className="fa fa-calendar absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-                  <input 
-                    type="text" 
-                    inputMode="numeric" 
-                    className="w-full pl-9 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
-                    data-schema-key={`contactsData.${prefix}.${index}.date_of_birth`}
-                    value={getValue(`contactsData.${prefix}.${index}.date_of_birth`) || ''}
-                    onChange={handleInputChange}
-                  />
-                </div>
-              </div>
-            </div>
           </section>
 
           {/* Contact Info */}
           <section>
             <h3 className="text-base font-semibold mb-4 pb-2 border-b border-gray-600">Contact Info</h3>
-            
-            <div className="flex gap-5 mb-5">
-              <div className="flex-1">
+            <div className="grid grid-cols-3 gap-5 mb-5">
+              <div>
                 <label className="block text-sm text-gray-300 mb-2">Email</label>
                 <input 
                   type="email" 
@@ -291,167 +211,26 @@ const Contacts: React.FC = () => {
                   onChange={handleInputChange}
                 />
               </div>
-              <div className="flex-1">
-                <label className="block text-sm text-gray-300 mb-2">Home Phone</label>
+              <div>
+                <label className="block text-sm text-gray-300 mb-2">Phone</label>
                 <input 
                   type="tel" 
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
-                  data-schema-key={`contactsData.${prefix}.${index}.home_phone`}
-                  value={getValue(`contactsData.${prefix}.${index}.home_phone`) || ''}
+                  data-schema-key={`contactsData.${prefix}.${index}.phone_number`}
+                  value={getValue(`contactsData.${prefix}.${index}.phone_number`) || ''}
                   onChange={handleInputChange}
                 />
               </div>
-              <div className="flex-1">
+              <div>
                 <label className="block text-sm text-gray-300 mb-2">Mobile</label>
                 <input 
                   type="tel" 
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
-                  data-schema-key={`contactsData.${prefix}.${index}.cell_phone`}
-                  value={getValue(`contactsData.${prefix}.${index}.cell_phone`) || ''}
+                  data-schema-key={`contactsData.${prefix}.${index}.mobile_phone_number`}
+                  value={getValue(`contactsData.${prefix}.${index}.mobile_phone_number`) || ''}
                   onChange={handleInputChange}
                 />
               </div>
-              <div className="flex-1">
-                <label className="block text-sm text-gray-300 mb-2">Work Phone</label>
-                <input 
-                  type="tel" 
-                  className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
-                  data-schema-key={`contactsData.${prefix}.${index}.work_phone`}
-                  value={getValue(`contactsData.${prefix}.${index}.work_phone`) || ''}
-                  onChange={handleInputChange}
-                />
-              </div>
-            </div>
-
-            {/* License and IDs */}
-            <div className="grid grid-cols-3 gap-5 mb-5">
-              <div>
-                <label className="block text-sm text-gray-300 mb-2">License Number</label>
-                <input 
-                  type="text" 
-                  className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
-                  data-schema-key={`contactsData.${prefix}.${index}.license_number`}
-                  value={getValue(`contactsData.${prefix}.${index}.license_number`) || ''}
-                  onChange={handleInputChange}
-                />
-              </div>
-              <div>
-                <label className="block text-sm text-gray-300 mb-2">NMLSR ID</label>
-                <input 
-                  type="text" 
-                  className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
-                  data-schema-key={`contactsData.${prefix}.${index}.nmlsr_id`}
-                  value={getValue(`contactsData.${prefix}.${index}.nmlsr_id`) || ''}
-                  onChange={handleInputChange}
-                />
-              </div>
-              <div>
-                <label className="block text-sm text-gray-300 mb-2">{isBorrower ? 'Borrower' : 'Seller'} ID</label>
-                <input 
-                  type="text" 
-                  className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
-                  data-schema-key={`contactsData.${prefix}.${index}.${isBorrower ? 'borrower' : 'seller'}_id`}
-                  value={getValue(`contactsData.${prefix}.${index}.${isBorrower ? 'borrower' : 'seller'}_id`) || ''}
-                  onChange={handleInputChange}
-                />
-              </div>
-            </div>
-          </section>
-
-          {/* Ownership Info */}
-          <section>
-            <h3 className="text-base font-semibold mb-4 pb-2 border-b border-gray-600">Ownership Info</h3>
-            
-            <div className="grid grid-cols-2 gap-5 mb-5">
-              <div>
-                <label className="inline-flex items-center">
-                  <input 
-                    type="checkbox" 
-                    className="mr-2" 
-                    data-schema-key={`contactsData.${prefix}.${index}.on_title`}
-                    checked={getValue(`contactsData.${prefix}.${index}.on_title`) || false}
-                    onChange={handleInputChange}
-                  />
-                  <span className="text-sm text-gray-300">On Title</span>
-                </label>
-              </div>
-              <div>
-                <label className="block text-sm text-gray-300 mb-2">Ownership Percentage</label>
-                <input 
-                  type="number" 
-                  min="0" 
-                  max="100" 
-                  step="0.01" 
-                  className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
-                  data-schema-key={`contactsData.${prefix}.${index}.ownership_percentage`}
-                  value={getValue(`contactsData.${prefix}.${index}.ownership_percentage`) || ''}
-                  onChange={handleInputChange}
-                />
-              </div>
-            </div>
-          </section>
-
-          {/* Employment Info - Only for Individual type */}
-          {personType === 'individual' && (
-            <section>
-              <h3 className="text-base font-semibold mb-4 pb-2 border-b border-gray-600">Employment Info</h3>
-              
-              <div className="flex gap-5 mb-5">
-                <div className="flex-1">
-                  <label className="block text-sm text-gray-300 mb-2">Company</label>
-                  <input 
-                    type="text" 
-                    className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
-                    data-schema-key={`contactsData.${prefix}.${index}.company`}
-                    value={getValue(`contactsData.${prefix}.${index}.company`) || ''}
-                    onChange={handleInputChange}
-                  />
-                </div>
-                <div className="flex-1">
-                  <label className="block text-sm text-gray-300 mb-2">Title</label>
-                  <input 
-                    type="text" 
-                    className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
-                    data-schema-key={`contactsData.${prefix}.${index}.title`}
-                    value={getValue(`contactsData.${prefix}.${index}.title`) || ''}
-                    onChange={handleInputChange}
-                  />
-                </div>
-              </div>
-            </section>
-          )}
-
-          {/* Mailing Info */}
-          <section>
-            <h3 className="text-base font-semibold mb-4 pb-2 border-b border-gray-600">Mailing Info</h3>
-            
-            <div className="mb-5">
-              <label className="inline-flex items-center">
-                <input 
-                  type="checkbox" 
-                  className="mr-2"
-                  data-schema-key={`contactsData.${prefix}.${index}.power_of_attorney`}
-                />
-                <span className="text-sm text-gray-300">Power of Attorney</span>
-              </label>
-            </div>
-
-            <div className="mb-5">
-              <label className="block text-sm text-gray-300 mb-2">Preferred Language</label>
-              <select 
-                className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none" 
-                value={getValue(`contactsData.${prefix}.${index}.preferred_language`) || ''}
-            onChange={handleInputChange}
-            data-schema-key={`contactsData.${prefix}.${index}.preferred_language`}
-              >
-                <option value="English">English</option>
-                <option value="Spanish">Spanish</option>
-                <option value="French">French</option>
-                <option value="German">German</option>
-                <option value="Chinese">Chinese</option>
-                <option value="Japanese">Japanese</option>
-                <option value="Other">Other</option>
-              </select>
             </div>
           </section>
         </form>
@@ -460,432 +239,132 @@ const Contacts: React.FC = () => {
   };
 
   const renderAddressesTab = () => {
+    if (activeTab !== 'addresses') return null;
+    
     const isBorrower = showBorrowerForms;
     const index = isBorrower ? activeBorrowerIndex : activeSellerIndex;
     const prefix = isBorrower ? 'borrowers' : 'sellers';
 
     return (
-      <section className={activeTab === 'addresses' ? '' : 'hidden'}>
+      <section className="tab-content">
         <form className="space-y-8">
-          {/* Current Address Section */}
-          <section>
-            <h3 className="text-base font-semibold mb-4 pb-2 border-b border-gray-600">Current Address</h3>
-            
-            <div className="mb-5">
+          <h3 className="text-base font-semibold mb-4 pb-2 border-b border-gray-600">Current Address</h3>
+          <div className="grid grid-cols-2 gap-5 mb-5">
+            <div>
               <label className="block text-sm text-gray-300 mb-2">Street Address</label>
               <input 
                 type="text" 
                 className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
-                data-schema-key={`contactsData.${prefix}.${index}.current_address.address_1`}
-                value={getValue(`contactsData.${prefix}.${index}.current_address.address_1`) || ''}
+                data-schema-key={`contactsData.${prefix}.${index}.address`}
+                value={getValue(`contactsData.${prefix}.${index}.address`) || ''}
                 onChange={handleInputChange}
               />
             </div>
-            
-            <div className="mb-5">
-              <label className="block text-sm text-gray-300 mb-2">Address Line 2</label>
+            <div>
+              <label className="block text-sm text-gray-300 mb-2">City</label>
               <input 
                 type="text" 
                 className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
-                data-schema-key={`contactsData.${prefix}.${index}.current_address.address_2`}
-                value={getValue(`contactsData.${prefix}.${index}.current_address.address_2`) || ''}
+                data-schema-key={`contactsData.${prefix}.${index}.city`}
+                value={getValue(`contactsData.${prefix}.${index}.city`) || ''}
                 onChange={handleInputChange}
               />
             </div>
-
-            <div className="grid grid-cols-3 gap-5 mb-5">
-              <div>
-                <label className="block text-sm text-gray-300 mb-2">City</label>
-                <input 
-                  type="text" 
-                  className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
-                  data-schema-key={`contactsData.${prefix}.${index}.current_address.city`}
-                  value={getValue(`contactsData.${prefix}.${index}.current_address.city`) || ''}
-                  onChange={handleInputChange}
-                />
-              </div>
-              <div>
-                <label className="block text-sm text-gray-300 mb-2">State</label>
-                <input 
-                  type="text" 
-                  className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
-                  data-schema-key={`contactsData.${prefix}.${index}.current_address.state`}
-                  value={getValue(`contactsData.${prefix}.${index}.current_address.state`) || ''}
-                  onChange={handleInputChange}
-                />
-              </div>
-              <div>
-                <label className="block text-sm text-gray-300 mb-2">ZIP</label>
-                <input 
-                  type="text" 
-                  className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
-                  data-schema-key={`contactsData.${prefix}.${index}.current_address.zipcode`}
-                  value={getValue(`contactsData.${prefix}.${index}.current_address.zipcode`) || ''}
-                  onChange={handleInputChange}
-                />
-              </div>
-            </div>
-
-            <div className="mb-5">
-              <label className="block text-sm text-gray-300 mb-2">County</label>
+            <div>
+              <label className="block text-sm text-gray-300 mb-2">State</label>
               <input 
                 type="text" 
                 className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
-                data-schema-key={`contactsData.${prefix}.${index}.current_address.county`}
-                value={getValue(`contactsData.${prefix}.${index}.current_address.county`) || ''}
+                data-schema-key={`contactsData.${prefix}.${index}.state`}
+                value={getValue(`contactsData.${prefix}.${index}.state`) || ''}
                 onChange={handleInputChange}
               />
             </div>
-          </section>
-
-          {/* Mailing Address Section */}
-          <section>
-            <h3 className="text-base font-semibold mb-4 pb-2 border-b border-gray-600">Mailing Address</h3>
-            
-            <div className="mb-5">
-              <label className="inline-flex items-center">
-                <input 
-                  type="checkbox" 
-                  className="mr-2"
-                />
-                <span className="text-sm text-gray-300">Same as Current Address</span>
-              </label>
-            </div>
-
-            <div className="mb-5">
-              <label className="block text-sm text-gray-300 mb-2">Street Address</label>
+            <div>
+              <label className="block text-sm text-gray-300 mb-2">ZIP Code</label>
               <input 
                 type="text" 
                 className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
-                data-schema-key={`contactsData.${prefix}.${index}.mailing_address.address_1`}
-                value={getValue(`contactsData.${prefix}.${index}.mailing_address.address_1`) || ''}
+                data-schema-key={`contactsData.${prefix}.${index}.zip_code`}
+                value={getValue(`contactsData.${prefix}.${index}.zip_code`) || ''}
                 onChange={handleInputChange}
               />
             </div>
-            
-            <div className="mb-5">
-              <label className="block text-sm text-gray-300 mb-2">Address Line 2</label>
-              <input 
-                type="text" 
-                className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
-                data-schema-key={`contactsData.${prefix}.${index}.mailing_address.address_2`}
-                value={getValue(`contactsData.${prefix}.${index}.mailing_address.address_2`) || ''}
-                onChange={handleInputChange}
-              />
-            </div>
-
-            <div className="grid grid-cols-3 gap-5 mb-5">
-              <div>
-                <label className="block text-sm text-gray-300 mb-2">City</label>
-                <input 
-                  type="text" 
-                  className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
-                  data-schema-key={`contactsData.${prefix}.${index}.mailing_address.city`}
-                  value={getValue(`contactsData.${prefix}.${index}.mailing_address.city`) || ''}
-                  onChange={handleInputChange}
-                />
-              </div>
-              <div>
-                <label className="block text-sm text-gray-300 mb-2">State</label>
-                <input 
-                  type="text" 
-                  className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
-                  data-schema-key={`contactsData.${prefix}.${index}.mailing_address.state`}
-                  value={getValue(`contactsData.${prefix}.${index}.mailing_address.state`) || ''}
-                  onChange={handleInputChange}
-                />
-              </div>
-              <div>
-                <label className="block text-sm text-gray-300 mb-2">ZIP</label>
-                <input 
-                  type="text" 
-                  className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
-                  data-schema-key={`contactsData.${prefix}.${index}.mailing_address.zipcode`}
-                  value={getValue(`contactsData.${prefix}.${index}.mailing_address.zipcode`) || ''}
-                  onChange={handleInputChange}
-                />
-              </div>
-            </div>
-          </section>
+          </div>
         </form>
       </section>
     );
   };
 
   const renderAttorneyTab = () => {
+    if (activeTab !== 'attorney') return null;
+    
     return (
-      <section className={activeTab === 'attorney' ? '' : 'hidden'}>
+      <section className="tab-content">
         <section className="mb-8">
-          <div className="bg-gray-700 border border-gray-600 rounded-md p-10 grid grid-cols-3 gap-10 items-center text-center">
-            <div className="flex flex-col items-center">
-              <div className="text-5xl mb-4">🏢</div>
-              <h3 className="text-lg font-semibold mb-5 text-white">Existing Attorney</h3>
-              <div className="w-full">
-                <div className="relative">
-                  <i className="fa fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-                  <input 
-                    type="text" 
-                    className="w-full pl-9 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 text-left" 
-                    placeholder="Search for attorney..."
-                  />
-                </div>
+          <section className="mb-8">
+            <h3 className="text-lg font-semibold mb-5 text-white">Search Existing Law Firms</h3>
+            <div className="relative mb-6">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <i className="fa fa-search text-gray-400"></i>
               </div>
+              <input 
+                type="text" 
+                className="w-full pl-9 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
+                placeholder="Search existing law firms..."
+              />
             </div>
-
-            <div className="relative">
-              <div className="w-px h-32 bg-gray-500 mx-auto"></div>
-              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-700 px-3 py-2 text-gray-400 text-sm font-medium">
-                Or
-              </div>
-            </div>
-
-            <div className="flex flex-col items-center">
-              <div className="text-5xl mb-4">👥</div>
-              <h3 className="text-lg font-semibold mb-5 text-white">New Attorney</h3>
-              <button 
-                type="button" 
-                className="bg-blue-600 border border-blue-600 rounded px-6 py-3 text-white text-sm font-medium hover:bg-blue-700"
-              >
-                Add New Attorney
-              </button>
-            </div>
-          </div>
+          </section>
         </section>
       </section>
     );
   };
 
   const renderSignatureTab = () => {
-    const isBorrower = showBorrowerForms;
-    const index = isBorrower ? activeBorrowerIndex : activeSellerIndex;
-    const prefix = isBorrower ? 'borrowers' : 'sellers';
-
+    if (activeTab !== 'signature') return null;
+    
     return (
-      <section className={activeTab === 'signature' ? '' : 'hidden'}>
+      <section className="tab-content">
         <section className="mb-8">
           <h3 className="text-base font-semibold mb-4 pb-2 border-b border-gray-600">Signature</h3>
-          
-          <div className="mb-5">
-            <label className="block text-sm text-gray-300 mb-2">Signature Name</label>
-            <input 
-              type="text" 
-              className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
-              value={getValue(`contactsData.${prefix}.${index}.signature_name`) || ''}
-            onChange={handleInputChange}
-            data-schema-key={`contactsData.${prefix}.${index}.signature_name`}
-            />
-          </div>
-
-          <div className="mb-5">
-            <label className="block text-sm text-gray-300 mb-2">AKA</label>
-            <input 
-              type="text" 
-              className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
-              value={getValue(`contactsData.${prefix}.${index}.aka`) || ''}
-            onChange={handleInputChange}
-            data-schema-key={`contactsData.${prefix}.${index}.aka`}
-            />
-          </div>
+          <p className="text-gray-400 text-sm">Signature management functionality</p>
         </section>
 
         <section className="mb-8">
           <h3 className="text-base font-semibold mb-4 pb-2 border-b border-gray-600">Vesting</h3>
-          
-          <div className="mb-5">
-            <label className="block text-sm text-gray-300 mb-2">Vesting Name</label>
-            <input 
-              type="text" 
-              className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
-              value={getValue(`contactsData.${prefix}.${index}.vesting_name`) || ''}
-            onChange={handleInputChange}
-            data-schema-key={`contactsData.${prefix}.${index}.vesting_name`}
-            />
-          </div>
-
-          <div className="mb-5">
-            <label className="block text-sm text-gray-300 mb-2">Manner of Holding Title</label>
-            <select 
-              className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none" 
-              value={getValue(`contactsData.${prefix}.${index}.manner_of_holding_title`) || ''}
-            onChange={handleInputChange}
-            data-schema-key={`contactsData.${prefix}.${index}.manner_of_holding_title`}
-            >
-              <option value="">Select one...</option>
-              <option value="Sole Ownership">Sole Ownership</option>
-              <option value="Joint Tenants">Joint Tenants</option>
-              <option value="Tenants in Common">Tenants in Common</option>
-              <option value="Community Property">Community Property</option>
-              <option value="Trust">Trust</option>
-            </select>
-          </div>
+          <p className="text-gray-400 text-sm">Vesting management functionality</p>
         </section>
       </section>
     );
   };
 
   const renderNotaryTab = () => {
+    if (activeTab !== 'notary') return null;
+    
     return (
-      <section className={activeTab === 'notary' ? '' : 'hidden'}>
+      <section className="tab-content">
         <section className="mb-8">
-          {/* Notary Accordion */}
-          <div className="border border-gray-600 rounded">
-            <button className="w-full px-5 py-3 bg-gray-700 text-left text-white flex justify-between items-center hover:bg-gray-600">
-              <span>Notary Block 1</span>
-              <i className="fa fa-chevron-down text-gray-400"></i>
-            </button>
-            <div className="p-5 bg-gray-800">
-              <div className="mb-5">
-                <label className="block text-sm text-gray-300 mb-2">Notary Name</label>
-                <input 
-                  type="text" 
-                  className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
-                />
-              </div>
-              <div className="mb-5">
-                <label className="block text-sm text-gray-300 mb-2">Commission Expiry</label>
-                <input 
-                  type="date" 
-                  className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
-                />
-              </div>
-            </div>
+          <div className="py-4 px-5 bg-gray-600 border-b border-gray-600 cursor-pointer flex justify-between items-center">
+            <h4 className="text-base font-semibold">This {showBorrowerForms ? 'Borrower' : 'Seller'}</h4>
+            <span className="transition-transform">▼</span>
           </div>
+          <p className="text-gray-400 text-sm mt-4">Notary blocks functionality</p>
         </section>
       </section>
     );
   };
 
   const renderOtherContactsForm = () => {
-    if (!showOtherForms) return null;
-
-    // Special handling for Title Abstractors
-    if (activeContactType === 'titleAbstractors') {
-      return (
-        <section>
-          <form className="space-y-8">
-            <section className="bg-gray-700 border border-gray-600 rounded-md p-10 grid grid-cols-3 gap-10 items-center text-center">
-              <div className="flex flex-col items-center">
-                <div className="text-5xl mb-4">🏢</div>
-                <h3 className="text-lg font-semibold mb-5 text-white">Existing Title Abstractor</h3>
-                <div className="w-full">
-                  <div className="relative">
-                    <i className="fa fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-                    <input 
-                      type="text" 
-                      className="w-full pl-9 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 text-left" 
-                      placeholder="Search for title abstractor..." 
-                      data-schema-key="contactsData.title_companies.0.company_id"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <div className="relative">
-                <div className="w-px h-32 bg-gray-500 mx-auto"></div>
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-700 px-3 py-2 text-gray-400 text-sm font-medium">
-                  Or
-                </div>
-              </div>
-
-              <div className="flex flex-col items-center">
-                <div className="text-5xl mb-4">👥</div>
-                <h3 className="text-lg font-semibold mb-5 text-white">New Title Abstractor</h3>
-                <button 
-                  type="button" 
-                  className="bg-blue-600 border border-blue-600 rounded px-6 py-3 text-white text-sm font-medium hover:bg-blue-700"
-                >
-                  Add New Title Abstractor
-                </button>
-              </div>
-            </section>
-          </form>
-        </section>
-      );
-    }
-
-    // Special handling for Surveying Firms
-    if (activeContactType === 'surveyingFirms') {
-      return (
-        <section>
-          <form className="space-y-8">
-            <section className="bg-gray-700 border border-gray-600 rounded-md p-10 grid grid-cols-3 gap-10 items-center text-center">
-              <div className="flex flex-col items-center">
-                <div className="text-5xl mb-4">🏢</div>
-                <h3 className="text-lg font-semibold mb-5 text-white">Existing Surveying Firm</h3>
-                <div className="w-full">
-                  <div className="relative">
-                    <i className="fa fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-                    <input 
-                      type="text" 
-                      className="w-full pl-9 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 text-left" 
-                      placeholder="Search for surveying firm..." 
-                      data-schema-key="contactsData.surveying_firms.0.company_id"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <div className="relative">
-                <div className="w-px h-32 bg-gray-500 mx-auto"></div>
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-700 px-3 py-2 text-gray-400 text-sm font-medium">
-                  Or
-                </div>
-              </div>
-
-              <div className="flex flex-col items-center">
-                <div className="text-5xl mb-4">👥</div>
-                <h3 className="text-lg font-semibold mb-5 text-white">New Surveying Firm</h3>
-                <button 
-                  type="button" 
-                  className="bg-blue-600 border border-blue-600 rounded px-6 py-3 text-white text-sm font-medium hover:bg-blue-700"
-                >
-                  Add New Surveying Firm
-                </button>
-              </div>
-            </section>
-          </form>
-        </section>
-      );
-    }
-
-    // Generic other contacts form
+    if (showBorrowerForms || showSellerForms) return null;
+    
     return (
-      <section>
-        <form className="space-y-8">
-          <section className="bg-gray-700 border border-gray-600 rounded-md p-10 text-center">
-            <div className="text-5xl mb-4">📋</div>
-            <h3 className="text-lg font-semibold mb-8 text-white">Choose a type of contact to add to this order</h3>
-            
-            <div className="max-w-md mx-auto relative">
-              <select 
-                className="w-full px-4 py-3 bg-blue-600 border border-blue-600 rounded text-white text-base font-medium focus:outline-none focus:bg-blue-700 appearance-none cursor-pointer" 
-                data-schema-key="contactsData.other_contacts.0.company_type"
-              >
-                <option value="">Select Contact Type</option>
-                <option value="appraisalCompany">Appraisal Company</option>
-                <option value="builder">Builder</option>
-                <option value="creditCardCompany">Credit Card Co.</option>
-                <option value="exchangeAccommodator">Exchange Accommodator</option>
-                <option value="generalContractor">General Contractor</option>
-                <option value="governmentEntity">Government Entity</option>
-                <option value="HOA">HOA</option>
-                <option value="HOAManagementCompany">HOA Management Co.</option>
-                <option value="homeWarrantyCompany">Home Warranty Co.</option>
-                <option value="insuranceCompany">Insurance Company</option>
-                <option value="lawFirm">Law Firm</option>
-                <option value="mortgageBroker">Mortgage Broker</option>
-                <option value="pestControlCompany">Pest Control Co.</option>
-                <option value="propertyManagementCompany">Property Management Co.</option>
-                <option value="realEstateAgency">Real Estate Agency</option>
-                <option value="recordingOffice">Recording Office</option>
-                <option value="titleInsuranceCompany">Title Insurance Co.</option>
-                <option value="utilityCompany">Utility Company</option>
-                <option value="other">Other</option>
-              </select>
-              <i className="fa fa-chevron-down absolute right-4 top-1/2 transform -translate-y-1/2 text-white pointer-events-none"></i>
-            </div>
-          </section>
-        </form>
+      <section className="tab-content">
+        <h3 className="text-lg font-semibold mb-8 text-white">
+          {contactTypeLabels[activeContactType]} Management
+        </h3>
+        <p className="text-gray-400 text-sm">
+          {contactTypeLabels[activeContactType]} contact management functionality will be implemented here.
+        </p>
       </section>
     );
   };
@@ -893,30 +372,30 @@ const Contacts: React.FC = () => {
   return (
     <>
       {/* Main Content */}
-      <section className="flex-1 p-10">
+      <section className="flex-1 bg-gray-900 overflow-y-auto">
         {/* Page Header */}
-        <section className="flex items-center justify-between gap-4 mb-8 pb-4 border-b border-gray-600">
+        <section className="py-8 px-10 pb-5 border-b border-gray-600 flex items-center justify-between">
           <div className="flex items-center gap-4">
             <i className="fa fa-users text-gray-400 text-xl"></i>
-            <h2 className="text-2xl font-semibold">Contacts</h2>
+            <h2 className="text-2xl font-semibold text-white">Contacts</h2>
+            <span className="bg-green-600 px-2 py-1 rounded text-xs font-medium">B</span>
           </div>
-          <div className="flex gap-2">
-            <button 
-              type="button"
+          <div className="flex gap-3">
+            <button
               onClick={handleSave}
-              disabled={saving}
-              className="bg-green-600 border border-green-500 rounded px-3 py-2 text-white text-sm hover:bg-green-700 disabled:bg-gray-600 disabled:border-gray-500"
+              disabled={loading || saving}
+              className="bg-blue-600 hover:bg-blue-700 disabled:bg-gray-600 px-4 py-2 rounded text-white text-sm flex items-center gap-2"
             >
-              <i className={`fa ${saving ? 'fa-spinner fa-spin' : 'fa-save'} mr-1`}></i>
+              {saving && <i className="fa fa-spinner fa-spin"></i>}
               {saving ? 'Saving...' : 'Save'}
             </button>
-            <button className="bg-gray-600 border border-gray-500 rounded px-3 py-2 text-white text-sm hover:bg-gray-500">
+            <button className="bg-gray-600 hover:bg-gray-700 px-4 py-2 rounded text-white text-sm flex items-center gap-2">
               <i className="fa fa-plus mr-1"></i>
               <span>
                 {showBorrowerForms ? 'Add Borrower' : showSellerForms ? 'Add Seller' : 'Add Contact'}
               </span>
             </button>
-            <button className="bg-gray-600 border border-gray-500 rounded px-3 py-2 text-gray-400 text-sm opacity-50 cursor-not-allowed">
+            <button className="bg-gray-600 hover:bg-gray-700 px-4 py-2 rounded text-white text-sm flex items-center gap-2">
               <i className="fa fa-minus mr-1"></i>
               <span>
                 {showBorrowerForms ? 'Remove Borrower' : showSellerForms ? 'Remove Seller' : 'Remove Contact'}
@@ -925,62 +404,42 @@ const Contacts: React.FC = () => {
           </div>
         </section>
 
-        {/* Contact Type Tabs */}
-        <section className="mb-8">
-          <div className="flex space-x-1">
-            {Object.entries(contactTypeLabels).map(([type, label]) => (
-              <button
-                key={type}
-                className={`px-4 py-2 text-sm font-medium rounded-t ${
-                  activeContactType === type 
-                    ? 'bg-gray-700 text-blue-400 border-t-2 border-t-blue-500' 
-                    : 'bg-gray-800 text-gray-400 hover:text-gray-300'
-                }`}
-                onClick={() => {
-                  setActiveContactType(type as ContactType);
-                  setActiveTab('info'); // Reset to info tab when changing contact type
-                }}
-              >
-                {label}
-              </button>
-            ))}
-          </div>
+        {/* Form Content */}
+        <section className="px-10 py-8">
+          {/* Render appropriate tabs and content */}
+          {renderContactTabs()}
+
+          {/* Tab Content */}
+          {(showBorrowerForms || showSellerForms) && (
+            <>
+              {renderInfoTab()}
+              {renderAddressesTab()}
+              {renderAttorneyTab()}
+              {renderSignatureTab()}
+              {renderNotaryTab()}
+            </>
+          )}
+
+          {/* Other contact forms */}
+          {renderOtherContactsForm()}
         </section>
-
-        {/* Render appropriate tabs and content */}
-        {renderContactTabs()}
-
-        {/* Tab Content */}
-        {(showBorrowerForms || showSellerForms) && (
-          <>
-            {renderInfoTab()}
-            {renderAddressesTab()}
-            {renderAttorneyTab()}
-            {renderSignatureTab()}
-            {renderNotaryTab()}
-          </>
-        )}
-
-        {/* Other contact forms */}
-        {renderOtherContactsForm()}
       </section>
 
-      {/* Right Rail */}
-      <section className="w-64 bg-gray-800 border-l border-gray-600 p-5">
-        <section className="mb-5 p-4 bg-gray-700 rounded">
-          <h4 className="text-white text-sm mb-2.5">Chat</h4>
-          <p className="text-gray-400 text-xs">Chat functionality</p>
-        </section>
-
-        <section className="mb-5 p-4 bg-gray-700 rounded">
-          <h4 className="text-white text-sm mb-2.5">Tasks</h4>
-          <p className="text-gray-400 text-xs">No tasks assigned</p>
-        </section>
-
-        <section className="mb-5 p-4 bg-gray-700 rounded">
-          <h4 className="text-white text-sm mb-2.5">Notes</h4>
-          <p className="text-gray-400 text-xs">No notes added</p>
-        </section>
+      {/* Contact Types Menu - Right Sidebar (matching original HTML) */}
+      <section className="w-48 bg-gray-800 border-l border-gray-600 py-5">
+        {Object.entries(contactTypeLabels).map(([type, label]) => (
+          <button
+            key={type}
+            className={`contact-type-btn block w-full py-3 px-5 text-left text-sm border-l-3 ${
+              activeContactType === type 
+                ? 'text-white bg-blue-600 border-l-blue-400' 
+                : 'text-gray-300 border-l-transparent hover:bg-gray-700 hover:text-white'
+            }`}
+            onClick={() => handleContactTypeChange(type as ContactType)}
+          >
+            {label}
+          </button>
+        ))}
       </section>
     </>
   );
