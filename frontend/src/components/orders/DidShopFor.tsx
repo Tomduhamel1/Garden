@@ -35,7 +35,7 @@ export default function DidShopFor() {
   const renderTableRow = (lineNumber: number) => {
     const paddedNumber = lineNumber.toString().padStart(2, '0');
     const isActive = activeRow === lineNumber;
-    const isCalculatedRow = lineNumber === 5;
+    const isCalculatedRow = lineNumber === 5; // Only line 5 is truly calculated
 
     return (
       <tr 
@@ -74,7 +74,7 @@ export default function DidShopFor() {
             type="text"
             inputMode="decimal"
             className={`w-full px-3 py-1.5 ${isCalculatedRow ? 'bg-gray-600 text-gray-400' : 'bg-gray-700 text-white'} border border-gray-500 rounded text-sm text-right focus:outline-none focus:border-blue-500`}
-            data-schema-key={`cdfData.services_borrower_did_shop_for.line_${paddedNumber}.borrower_amount`}
+            data-schema-key={`cdfData.services_borrower_did_shop_for.line_${paddedNumber}.paid_by_borrower`}
             value={getValue(`cdfData.services_borrower_did_shop_for.line_${paddedNumber}.paid_by_borrower`)}
             onChange={handleInputChange}
             onFocus={() => setActiveRow(lineNumber)}
@@ -86,7 +86,7 @@ export default function DidShopFor() {
             type="text"
             inputMode="decimal"
             className={`w-full px-3 py-1.5 ${isCalculatedRow ? 'bg-gray-600 text-gray-400' : 'bg-gray-700 text-white'} border border-gray-500 rounded text-sm text-right focus:outline-none focus:border-blue-500`}
-            data-schema-key={`cdfData.services_borrower_did_shop_for.line_${paddedNumber}.before_borrower_amount`}
+            data-schema-key={`cdfData.services_borrower_did_shop_for.line_${paddedNumber}.paid_before_closing`}
             value={getValue(`cdfData.services_borrower_did_shop_for.line_${paddedNumber}.paid_before_closing`)}
             onChange={handleInputChange}
             onFocus={() => setActiveRow(lineNumber)}
@@ -98,7 +98,7 @@ export default function DidShopFor() {
             type="text"
             inputMode="decimal"
             className={`w-full px-3 py-1.5 ${isCalculatedRow ? 'bg-gray-600 text-gray-400' : 'bg-gray-700 text-white'} border border-gray-500 rounded text-sm text-right focus:outline-none focus:border-blue-500`}
-            data-schema-key={`cdfData.services_borrower_did_shop_for.line_${paddedNumber}.seller_amount`}
+            data-schema-key={`cdfData.services_borrower_did_shop_for.line_${paddedNumber}.paid_by_seller`}
             value={getValue(`cdfData.services_borrower_did_shop_for.line_${paddedNumber}.paid_by_seller`)}
             onChange={handleInputChange}
             onFocus={() => setActiveRow(lineNumber)}
@@ -110,8 +110,8 @@ export default function DidShopFor() {
             type="text"
             inputMode="decimal"
             className={`w-full px-3 py-1.5 ${isCalculatedRow ? 'bg-gray-600 text-gray-400' : 'bg-gray-700 text-white'} border border-gray-500 rounded text-sm text-right focus:outline-none focus:border-blue-500`}
-            data-schema-key={`cdfData.services_borrower_did_shop_for.line_${paddedNumber}.before_seller_amount`}
-            value={getValue(`cdfData.services_borrower_did_shop_for.line_${paddedNumber}.paid_before_closing`)}
+            data-schema-key={`cdfData.services_borrower_did_shop_for.line_${paddedNumber}.paid_before_closing_seller`}
+            value={getValue(`cdfData.services_borrower_did_shop_for.line_${paddedNumber}.paid_before_closing_seller`)}
             onChange={handleInputChange}
             onFocus={() => setActiveRow(lineNumber)}
             readOnly={isCalculatedRow}
@@ -122,7 +122,7 @@ export default function DidShopFor() {
             type="text"
             inputMode="decimal"
             className={`w-full px-3 py-1.5 ${isCalculatedRow ? 'bg-gray-600 text-gray-400' : 'bg-gray-700 text-white'} border border-gray-500 rounded text-sm text-right focus:outline-none focus:border-blue-500`}
-            data-schema-key={`cdfData.services_borrower_did_shop_for.line_${paddedNumber}.paid_by_others_amount`}
+            data-schema-key={`cdfData.services_borrower_did_shop_for.line_${paddedNumber}.paid_by_others`}
             value={getValue(`cdfData.services_borrower_did_shop_for.line_${paddedNumber}.paid_by_others`)}
             onChange={handleInputChange}
             onFocus={() => setActiveRow(lineNumber)}
@@ -146,6 +146,8 @@ export default function DidShopFor() {
                   type="text" 
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                   data-schema-key="check_info.street_address"
+                  value={getValue("check_info.street_address")}
+                  onChange={handleInputChange}
                 />
               </div>
               <div>
@@ -154,6 +156,8 @@ export default function DidShopFor() {
                   type="text" 
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                   data-schema-key="check_info.street_address_2"
+                  value={getValue("check_info.street_address_2")}
+                  onChange={handleInputChange}
                 />
               </div>
             </div>
@@ -164,6 +168,8 @@ export default function DidShopFor() {
                   type="text" 
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                   data-schema-key="check_info.city"
+                  value={getValue("check_info.city")}
+                  onChange={handleInputChange}
                 />
               </div>
               <div>
@@ -172,6 +178,8 @@ export default function DidShopFor() {
                   type="text" 
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                   data-schema-key="check_info.state"
+                  value={getValue("check_info.state")}
+                  onChange={handleInputChange}
                 />
               </div>
               <div>
@@ -180,6 +188,8 @@ export default function DidShopFor() {
                   type="text" 
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                   data-schema-key="check_info.zip_code"
+                  value={getValue("check_info.zip_code")}
+                  onChange={handleInputChange}
                 />
               </div>
             </div>
@@ -211,6 +221,8 @@ export default function DidShopFor() {
                   inputMode="numeric"
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                   data-schema-key="wire_info.routing_number"
+                  value={getValue("wire_info.routing_number")}
+                  onChange={handleInputChange}
                 />
               </div>
               <div>
@@ -219,6 +231,8 @@ export default function DidShopFor() {
                   type="text" 
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                   data-schema-key="wire_info.bank_name"
+                  value={getValue("wire_info.bank_name")}
+                  onChange={handleInputChange}
                 />
               </div>
               <div>
@@ -227,6 +241,8 @@ export default function DidShopFor() {
                   type="text" 
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                   data-schema-key="wire_info.account_number"
+                  value={getValue("wire_info.account_number")}
+                  onChange={handleInputChange}
                 />
               </div>
             </div>
@@ -237,6 +253,8 @@ export default function DidShopFor() {
                   type="text" 
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                   data-schema-key="wire_info.account_name"
+                  value={getValue("wire_info.account_name")}
+                  onChange={handleInputChange}
                 />
               </div>
               <div>
@@ -245,6 +263,8 @@ export default function DidShopFor() {
                   type="text" 
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                   data-schema-key="wire_info.further_credit_to"
+                  value={getValue("wire_info.further_credit_to")}
+                  onChange={handleInputChange}
                 />
               </div>
             </div>
@@ -268,6 +288,8 @@ export default function DidShopFor() {
                 <select 
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none"
                   data-schema-key="global_payee_id"
+                  value={getValue("global_payee_id")}
+                  onChange={handleInputChange}
                 >
                   <option value="">Select Payee</option>
                 </select>
@@ -286,6 +308,8 @@ export default function DidShopFor() {
                 <select 
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none"
                   data-schema-key="transfer_order_id"
+                  value={getValue("transfer_order_id")}
+                  onChange={handleInputChange}
                 >
                   <option value="">Select Order</option>
                 </select>
@@ -305,6 +329,8 @@ export default function DidShopFor() {
                   type="text" 
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                   data-schema-key="escrow_reason"
+                  value={getValue("escrow_reason")}
+                  onChange={handleInputChange}
                 />
               </div>
               <div>
@@ -313,6 +339,8 @@ export default function DidShopFor() {
                   rows={3}
                   className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 resize-none"
                   data-schema-key="release_conditions"
+                  value={getValue("release_conditions")}
+                  onChange={handleInputChange}
                 />
               </div>
             </div>
@@ -512,19 +540,21 @@ export default function DidShopFor() {
                             type="text" 
                             className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                             data-schema-key="cdfData.services_borrower_did_shop_for.line_01.payees.0.name_dep"
+                            value={getValue("cdfData.services_borrower_did_shop_for.line_01.payees.0.name_dep")}
+                            onChange={handleInputChange}
                           />
                         </div>
                         <div>
                           <label className="block text-sm text-gray-300 mb-2">
                             Payment Amount
-                            <i className="fa fa-lock text-gray-500 ml-1"></i>
                           </label>
                           <input 
                             type="text" 
                             inputMode="decimal"
-                            className="w-full px-3 py-2.5 bg-gray-600 border border-gray-500 rounded text-gray-400 text-sm"
+                            className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                             data-schema-key="cdfData.services_borrower_did_shop_for.line_01.payees.0.payment_dep"
-                            readOnly
+                            value={getValue("cdfData.services_borrower_did_shop_for.line_01.payees.0.payment_dep")}
+                            onChange={handleInputChange}
                           />
                         </div>
                         <div>
@@ -532,7 +562,8 @@ export default function DidShopFor() {
                           <select 
                             className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none"
                             data-schema-key="cdfData.services_borrower_did_shop_for.line_01.payees.0.label.payee_label_id"
-                            defaultValue="settlement_fee"
+                            value={getValue("cdfData.services_borrower_did_shop_for.line_01.payees.0.label.payee_label_id")}
+                            onChange={handleInputChange}
                           >
                             {labelOptions.map(option => (
                               <option key={option.value} value={option.value}>{option.label}</option>
@@ -550,9 +581,10 @@ export default function DidShopFor() {
                           </label>
                           <input 
                             type="text" 
-                            className="w-full px-3 py-2.5 bg-gray-600 border border-gray-500 rounded text-gray-400 text-sm"
+                            className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                             data-schema-key="cdfData.services_borrower_did_shop_for.line_01.payees.0.reference_number"
-                            readOnly
+                            value={getValue("cdfData.services_borrower_did_shop_for.line_01.payees.0.reference_number")}
+                            onChange={handleInputChange}
                           />
                         </div>
                       </div>

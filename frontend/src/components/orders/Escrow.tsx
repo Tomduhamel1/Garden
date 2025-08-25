@@ -210,9 +210,9 @@ export default function Escrow() {
     const lineNumberPadded = lineNumber.toString().padStart(2, '0');
     const isActive = activeRow === lineNumber || isActiveDefault;
     
-    // Determine field states - Description is readonly for lines 01-03 and 08
-    const isReadOnlyDescription = lineNumber <= 3 || lineNumber === 8;
-    // Line 08 has multiple readonly fields
+    // Only line 08 (aggregate) should have readonly fields since it's calculated
+    const isReadOnlyDescription = lineNumber === 8;
+    // Line 08 has multiple readonly fields since it's a total line
     const isLine08ReadOnly = lineNumber === 8;
 
     return (
@@ -276,7 +276,7 @@ export default function Escrow() {
             value={getValue(`cdfData.escrow_information.line_${lineNumberPadded}.paid_by_borrower`)}
             onChange={handleInputChange}
             className="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500"
-            data-schema-key={`cdfData.escrow_information.line_${lineNumberPadded}.borrower_amount`}
+            data-schema-key={`cdfData.escrow_information.line_${lineNumberPadded}.paid_by_borrower`}
             onFocus={() => handleRowFocus(lineNumber)}
           />
         </td>
@@ -287,7 +287,7 @@ export default function Escrow() {
             className="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500"
             value={getValue(`cdfData.escrow_information.line_${lineNumberPadded}.paid_before_closing`) || ''}
             onChange={handleInputChange}
-            data-schema-key={`cdfData.escrow_information.line_${lineNumberPadded}.before_borrower_amount`}
+            data-schema-key={`cdfData.escrow_information.line_${lineNumberPadded}.paid_before_closing`}
             onFocus={() => handleRowFocus(lineNumber)}
           />
         </td>
@@ -298,7 +298,7 @@ export default function Escrow() {
             value={getValue(`cdfData.escrow_information.line_${lineNumberPadded}.paid_by_seller`)}
             onChange={handleInputChange}
             className="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500"
-            data-schema-key={`cdfData.escrow_information.line_${lineNumberPadded}.seller_amount`}
+            data-schema-key={`cdfData.escrow_information.line_${lineNumberPadded}.paid_by_seller`}
             onFocus={() => handleRowFocus(lineNumber)}
           />
         </td>
@@ -309,7 +309,7 @@ export default function Escrow() {
             className="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500"
             value={getValue(`cdfData.escrow_information.line_${lineNumberPadded}.paid_before_closing`) || ''}
             onChange={handleInputChange}
-            data-schema-key={`cdfData.escrow_information.line_${lineNumberPadded}.before_seller_amount`}
+            data-schema-key={`cdfData.escrow_information.line_${lineNumberPadded}.paid_before_closing_seller`}
             onFocus={() => handleRowFocus(lineNumber)}
           />
         </td>
@@ -596,16 +596,14 @@ export default function Escrow() {
                         <div>
                           <label className="block text-sm text-gray-300 mb-2">
                             Payment Amount
-                            <i className="fa fa-lock text-gray-500 ml-1"></i>
                           </label>
                           <input
                             type="text"
                             inputMode="decimal"
                             value={getValue('cdfData.escrow_information.payees.0.payment_dep')}
                             onChange={handleInputChange}
-                            className="w-full px-3 py-2.5 bg-gray-600 border border-gray-500 rounded text-gray-400 text-sm"
+                            className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                             data-schema-key="cdfData.escrow_information.payees.0.payment_dep"
-                            readOnly
                           />
                         </div>
                         <div>

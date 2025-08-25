@@ -235,11 +235,10 @@ const TaxesAndFees: React.FC = () => {
         <td className="py-3 px-4">
           <input 
             type="text" 
-            className={`w-full px-3 py-1.5 ${isLine01 ? 'bg-gray-600 text-gray-400' : 'bg-gray-700 text-white'} border border-gray-500 rounded text-sm focus:outline-none focus:border-blue-500`}
+            className="w-full px-3 py-1.5 bg-gray-700 text-white border border-gray-500 rounded text-sm focus:outline-none focus:border-blue-500"
             value={lineData.description}
-            onChange={(e) => !isLine01 && handleLocalChange(lineKey, 'description', e.target.value)}
+            onChange={(e) => handleLocalChange(lineKey, 'description', e.target.value)}
             onFocus={() => setActiveRow(lineNumber)}
-            readOnly={isLine01}
           />
         </td>
         
@@ -278,11 +277,10 @@ const TaxesAndFees: React.FC = () => {
           <input 
             type="text" 
             inputMode="decimal"
-            className={`w-full px-3 py-1.5 ${isLine01 ? 'bg-gray-600 text-gray-400' : 'bg-gray-700 text-white'} border border-gray-500 rounded text-sm text-right focus:outline-none focus:border-blue-500`}
+            className="w-full px-3 py-1.5 bg-gray-700 text-white border border-gray-500 rounded text-sm text-right focus:outline-none focus:border-blue-500"
             value={lineData.paid_by_borrower}
-            onChange={(e) => !isLine01 && handleLocalChange(lineKey, 'paid_by_borrower', e.target.value)}
+            onChange={(e) => handleLocalChange(lineKey, 'paid_by_borrower', e.target.value)}
             onFocus={() => setActiveRow(lineNumber)}
-            readOnly={isLine01}
             placeholder="0.00"
           />
         </td>
@@ -323,11 +321,10 @@ const TaxesAndFees: React.FC = () => {
             <input 
               type="text" 
               inputMode="decimal"
-              className={`w-full px-3 py-1.5 ${isLine01 ? 'bg-gray-600 text-gray-400' : 'bg-gray-700 text-white'} border border-gray-500 rounded text-sm text-right focus:outline-none focus:border-blue-500`}
+              className="w-full px-3 py-1.5 bg-gray-700 text-white border border-gray-500 rounded text-sm text-right focus:outline-none focus:border-blue-500"
               value={lineData.paid_by_seller}
-              onChange={(e) => !isLine01 && handleLocalChange(lineKey, 'paid_by_seller', e.target.value)}
+              onChange={(e) => handleLocalChange(lineKey, 'paid_by_seller', e.target.value)}
               onFocus={() => setActiveRow(lineNumber)}
-              readOnly={isLine01}
               placeholder="0.00"
             />
           )}
@@ -349,11 +346,10 @@ const TaxesAndFees: React.FC = () => {
           <input 
             type="text" 
             inputMode="decimal"
-            className={`w-full px-3 py-1.5 ${isLine01 ? 'bg-gray-600 text-gray-400' : 'bg-gray-700 text-white'} border border-gray-500 rounded text-sm text-right focus:outline-none focus:border-blue-500`}
+            className="w-full px-3 py-1.5 bg-gray-700 text-white border border-gray-500 rounded text-sm text-right focus:outline-none focus:border-blue-500"
             value={lineData.paid_by_others}
-            onChange={(e) => !isLine01 && handleLocalChange(lineKey, 'paid_by_others', e.target.value)}
+            onChange={(e) => handleLocalChange(lineKey, 'paid_by_others', e.target.value)}
             onFocus={() => setActiveRow(lineNumber)}
-            readOnly={isLine01}
             placeholder="0.00"
           />
         </td>
@@ -686,7 +682,16 @@ const TaxesAndFees: React.FC = () => {
               <div className="grid grid-cols-4 gap-4">
                 <div>
                   <label className="block text-sm text-gray-300 mb-2">Recording Type</label>
-                  <input type="text" className="w-full px-3 py-2.5 bg-gray-600 border border-gray-500 rounded text-gray-400 text-sm" value="Deed" readOnly />
+                  <select className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none">
+                    <option value="deed" selected>Deed</option>
+                    <option value="mortgage">Mortgage</option>
+                    <option value="affidavit">Affidavit</option>
+                    <option value="assignment_mortgage">Assignment of Mortgage or Lease</option>
+                    <option value="discharge_mortgage">Discharge of Mortgage</option>
+                    <option value="easement">Easement</option>
+                    <option value="lease">Lease</option>
+                    <option value="power_attorney">Power of Attorney</option>
+                  </select>
                 </div>
                 <div>
                   <label className="block text-sm text-gray-300 mb-2">Deed Amount</label>
@@ -705,7 +710,16 @@ const TaxesAndFees: React.FC = () => {
               <div className="grid grid-cols-4 gap-4">
                 <div>
                   <label className="block text-sm text-gray-300 mb-2">Recording Type</label>
-                  <input type="text" className="w-full px-3 py-2.5 bg-gray-600 border border-gray-500 rounded text-gray-400 text-sm" value="Mortgage" readOnly />
+                  <select className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none">
+                    <option value="deed">Deed</option>
+                    <option value="mortgage" selected>Mortgage</option>
+                    <option value="affidavit">Affidavit</option>
+                    <option value="assignment_mortgage">Assignment of Mortgage or Lease</option>
+                    <option value="discharge_mortgage">Discharge of Mortgage</option>
+                    <option value="easement">Easement</option>
+                    <option value="lease">Lease</option>
+                    <option value="power_attorney">Power of Attorney</option>
+                  </select>
                 </div>
                 <div>
                   <label className="block text-sm text-gray-300 mb-2">Mortgage Amount</label>
@@ -800,9 +814,8 @@ const TaxesAndFees: React.FC = () => {
                     <div>
                       <label className="block text-sm text-gray-300 mb-2">
                         Payment Amount
-                        <i className="fa fa-lock text-gray-500 ml-1"></i>
                       </label>
-                      <input type="text" inputMode="decimal" className="w-full px-3 py-2.5 bg-gray-600 border border-gray-500 rounded text-gray-400 text-sm" readOnly />
+                      <input type="text" inputMode="decimal" className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" />
                     </div>
                     <div>
                       <label className="block text-sm text-gray-300 mb-2">Label</label>

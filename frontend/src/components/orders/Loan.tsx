@@ -2,11 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useOrderData } from '../../hooks/useOrderData';
 import { calculateLoan, formatCurrency, formatPercentage, parseCurrency } from '../../utils/calculations';
 
-interface LoanProps {
-  orderId?: string;
-}
-
-const Loan: React.FC<LoanProps> = ({ orderId }) => {
+const Loan: React.FC = () => {
   const { loading, saving, getValue, handleInputChange, handleSave } = useOrderData();
   const [fundingType, setFundingType] = useState<'net' | 'gross'>('net');
   const [latePenaltyType, setLatePenaltyType] = useState<'percent' | 'dollar'>('percent');
@@ -30,8 +26,19 @@ const Loan: React.FC<LoanProps> = ({ orderId }) => {
         includeAmortization: false
       });
       setLoanCalculation(calculation);
+      
+      // Also save the monthly P&I to the schema
+      if (calculation?.monthlyPayment) {
+        const event = {
+          target: {
+            value: calculation.monthlyPayment.toString(),
+            getAttribute: (attr: string) => attr === 'data-schema-key' ? 'cdfData.loans.0.monthly_principal_and_interest' : null
+          }
+        } as React.ChangeEvent<HTMLInputElement>;
+        handleInputChange(event);
+      }
     }
-  }, [getValue]);
+  }, [getValue, handleInputChange]);
 
   const ToggleSwitch = ({ 
     checked, 
@@ -175,6 +182,51 @@ const Loan: React.FC<LoanProps> = ({ orderId }) => {
                         <option value="Refinance">Refinance</option>
                         <option value="CashOut">Cash-Out Refinance</option>
                       </select>
+                    </div>
+                  </div>
+                  
+                  <div className="grid grid-cols-2 gap-5 mt-5">
+                    <div>
+                      <label className="block text-sm text-gray-300 mb-2">Loan Product</label>
+                      <select 
+                        value={getValue('cdfData.loans.0.loan_product') || ''}
+                        onChange={handleInputChange}
+                        className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none" 
+                        data-schema-key="cdfData.loans.0.loan_product"
+                      >
+                        <option value="">Select...</option>
+                        <option value="Fixed Rate">Fixed Rate</option>
+                        <option value="Adjustable Rate">Adjustable Rate (ARM)</option>
+                        <option value="5/1 ARM">5/1 ARM</option>
+                        <option value="7/1 ARM">7/1 ARM</option>
+                        <option value="10/1 ARM">10/1 ARM</option>
+                        <option value="Interest Only">Interest Only</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label className="block text-sm text-gray-300 mb-2">Monthly P&I Payment</label>
+                      <div className="relative">
+                        <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-sm">$</span>
+                        <input 
+                          type="text" 
+                          value={loanCalculation?.monthlyPayment ? formatCurrency(loanCalculation.monthlyPayment) : getValue('cdfData.loans.0.monthly_principal_and_interest') || ''}
+                          onChange={(e) => {
+                            const value = parseCurrency(e.target.value);
+                            handleInputChange({
+                              ...e,
+                              target: {
+                                ...e.target,
+                                value: value.toString(),
+                                getAttribute: (attr: string) => attr === 'data-schema-key' ? 'cdfData.loans.0.monthly_principal_and_interest' : null
+                              }
+                            } as React.ChangeEvent<HTMLInputElement>);
+                          }}
+                          className="w-full pl-7 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
+                          data-schema-key="cdfData.loans.0.monthly_principal_and_interest"
+                          placeholder="Calculated automatically"
+                          title="Automatically calculated from loan amount, interest rate, and term"
+                        />
+                      </div>
                     </div>
                   </div>
                 </section>

@@ -1,15 +1,11 @@
 import React, { useState } from 'react';
 import { useOrderData } from '../../hooks/useOrderData';
 
-interface ContactsProps {
-  orderId: string;
-}
-
 type ContactType = 'buyers' | 'sellers' | 'lenders' | 'buyersAgents' | 'sellersAgents' | 'titleAbstractors' | 'surveyingFirms' | 'otherContacts';
 type TabType = 'info' | 'addresses' | 'attorney' | 'signature' | 'notary';
 type PersonType = 'individual' | 'organization';
 
-const Contacts: React.FC<ContactsProps> = ({ orderId }) => {
+const Contacts: React.FC = () => {
   const { loading, saving, handleInputChange, handleSave, getValue, orderData } = useOrderData();
   const [activeContactType, setActiveContactType] = useState<ContactType>('buyers');
   const [activeTab, setActiveTab] = useState<TabType>('info');

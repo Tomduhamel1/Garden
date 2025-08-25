@@ -345,16 +345,16 @@ export default function DidNotShopFor() {
                 </select>
               </div>
               <div>
-                <label className="flex items-center gap-2 text-sm text-gray-300 mb-2">
+                <label className="block text-sm text-gray-300 mb-2">
                   Payment Amount
-                  <i className="fa fa-lock text-gray-400" title="This field cannot be modified."></i>
                 </label>
                 <input 
                   type="text" 
-                  className="w-full px-3 py-2.5 bg-gray-600 border border-gray-500 rounded text-gray-400 text-sm cursor-not-allowed"
+                  className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                   inputMode="decimal"
                   data-schema-key="cdfData.services_borrower_did_not_shop_for.line_04.payees.0.payment_dep"
-                  readOnly
+                  value={getValue('cdfData.services_borrower_did_not_shop_for.line_04.payees.0.payment_dep')}
+                  onChange={handleInputChange}
                 />
               </div>
               <div>
@@ -623,16 +623,16 @@ export default function DidNotShopFor() {
                           />
                         </div>
                         <div>
-                          <label className="flex items-center gap-2 text-sm text-gray-300 mb-2">
+                          <label className="block text-sm text-gray-300 mb-2">
                             Payment Amount
-                            <i className="fa fa-lock text-gray-400" title="This field cannot be modified."></i>
                           </label>
                           <input 
                             type="text" 
-                            className="w-full px-3 py-2.5 bg-gray-600 border border-gray-500 rounded text-gray-400 text-sm cursor-not-allowed"
+                            className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                             inputMode="decimal"
                             data-schema-key="cdfData.services_borrower_did_not_shop_for.line_04.payees.0.payment_dep"
-                            readOnly
+                            value={getValue('cdfData.services_borrower_did_not_shop_for.line_04.payees.0.payment_dep')}
+                            onChange={handleInputChange}
                           />
                         </div>
                         <div>

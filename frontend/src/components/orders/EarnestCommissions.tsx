@@ -4,7 +4,7 @@ import { useOrderData } from '../../hooks/useOrderData';
 interface EarnestCommissionsProps {}
 
 const EarnestCommissions: React.FC<EarnestCommissionsProps> = () => {
-  const { loading, saving, handleInputChange, getValue, saveOrderData } = useOrderData();
+  const { loading, saving, handleInputChange, getValue, handleSave } = useOrderData();
 
   const [earnestData, setEarnestData] = useState({
     earnest_amount: '',
@@ -105,7 +105,7 @@ const EarnestCommissions: React.FC<EarnestCommissionsProps> = () => {
             <h2 className="text-2xl font-semibold text-white">Earnest & Commissions</h2>
           </div>
           <button
-            onClick={saveOrderData}
+            onClick={handleSave}
             disabled={saving}
             className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
           >
@@ -167,16 +167,15 @@ const EarnestCommissions: React.FC<EarnestCommissionsProps> = () => {
             <section>
               <h3 className="text-base font-semibold text-white mb-5 pb-2 border-b border-gray-600">Excess Earnest</h3>
               <div className="mb-5">
-                <label className="flex items-center gap-2 text-sm text-gray-300 mb-2">
+                <label className="block text-sm text-gray-300 mb-2">
                   Earnest Held By Settlement Agency
-                  <i className="fa fa-lock text-gray-400" title="This field cannot be modified."></i>
                 </label>
                 <input 
                   type="text" 
-                  className="w-full px-3 py-2.5 bg-gray-600 border border-gray-500 rounded text-gray-400 text-sm cursor-not-allowed"
+                  className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                   data-schema-key="earnest_held_by_settlement_agency"
                   value={earnestData.earnest_held_by_settlement_agency}
-                  readOnly
+                  onChange={(e) => setEarnestData({ ...earnestData, earnest_held_by_settlement_agency: e.target.value })}
                 />
               </div>
               

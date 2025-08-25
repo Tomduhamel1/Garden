@@ -76,7 +76,7 @@ const Dashboard: React.FC = () => {
             <Link to="/dashboard" className="px-3 py-1 text-sm text-blue-400">
               Dashboard
             </Link>
-            <Link to="/orders/1/basic-info" className="px-3 py-1 text-sm hover:text-blue-400 transition-colors">
+            <Link to={orders.length > 0 ? `/orders/${orders[0].id}/basic-info` : "/orders"} className="px-3 py-1 text-sm hover:text-blue-400 transition-colors">
               Orders
             </Link>
             <Link to="/contacts" className="px-3 py-1 text-sm text-gray-400 hover:text-blue-400 transition-colors">

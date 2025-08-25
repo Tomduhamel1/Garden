@@ -253,7 +253,7 @@ export function ClosingDisclosure() {
             <tbody>
               <tr><td>Borrower(s)</td><td data-schema-key="contactsData.borrowers.0">{getValue('contactsData.borrowers.0.first_name')} {getValue('contactsData.borrowers.0.last_name')}<br />{getValue('contactsData.borrowers.0.current_address.address_1')}<br />{getValue('contactsData.borrowers.0.current_address.city')}, {getValue('contactsData.borrowers.0.current_address.state')} {getValue('contactsData.borrowers.0.current_address.zipcode')}</td></tr>
               <tr><td>Seller(s)</td><td data-schema-key="contactsData.sellers.0">{getValue('contactsData.sellers.0.first_name')} {getValue('contactsData.sellers.0.last_name')}<br />{getValue('contactsData.sellers.0.current_address.address_1')}<br />{getValue('contactsData.sellers.0.current_address.city')}, {getValue('contactsData.sellers.0.current_address.state')} {getValue('contactsData.sellers.0.current_address.zipcode')}</td></tr>
-              <tr><td>Lender</td><td data-schema-key="lender.name"></td></tr>
+              <tr><td>Lender</td><td data-schema-key="cdfData.lender.name">{getValue('cdfData.lender.name') || ''}</td></tr>
             </tbody>
           </table>
         </div>
@@ -1027,63 +1027,63 @@ export function ClosingDisclosure() {
           <tr>
             <td style={{ verticalAlign: 'top' }}>
               <div style={{ fontSize: '9px' }}>
-                <strong>Name</strong><br />
-                Address<br />
-                <br />
-                NMLS ID<br />
-                State License ID<br />
-                Contact<br />
-                Contact NMLS ID<br />
-                Contact State License ID<br />
-                Email<br />
-                Phone
+                <strong>{getValue('cdfData.lender.name') || 'Lender Name'}</strong><br />
+                {getValue('cdfData.lender.address') || 'Address'}<br />
+                {getValue('cdfData.lender.city') ? `${getValue('cdfData.lender.city')}, ${getValue('cdfData.lender.state')} ${getValue('cdfData.lender.zip')}` : ''}<br />
+                NMLS ID: {getValue('cdfData.lender.nmls_id') || ''}<br />
+                State License ID: {getValue('cdfData.lender.state_license_id') || ''}<br />
+                Contact: {getValue('cdfData.lender.contact_name') || ''}<br />
+                Contact NMLS ID: {getValue('cdfData.lender.contact_nmls_id') || ''}<br />
+                Contact State License ID: {getValue('cdfData.lender.contact_state_license_id') || ''}<br />
+                Email: {getValue('cdfData.lender.email') || ''}<br />
+                Phone: {getValue('cdfData.lender.phone') || ''}
               </div>
             </td>
             <td style={{ verticalAlign: 'top' }}>
               <div style={{ fontSize: '9px' }}>
-                <strong>Name</strong><br />
-                Address<br />
-                <br />
-                NMLS ID<br />
-                State License ID<br />
-                Contact<br />
-                Contact NMLS ID<br />
-                Contact State License ID<br />
-                Email<br />
-                Phone
+                <strong>{getValue('cdfData.mortgage_broker.name') || ''}</strong><br />
+                {getValue('cdfData.mortgage_broker.address') || ''}<br />
+                {getValue('cdfData.mortgage_broker.city') ? `${getValue('cdfData.mortgage_broker.city')}, ${getValue('cdfData.mortgage_broker.state')} ${getValue('cdfData.mortgage_broker.zip')}` : ''}<br />
+                NMLS ID: {getValue('cdfData.mortgage_broker.nmls_id') || ''}<br />
+                State License ID: {getValue('cdfData.mortgage_broker.state_license_id') || ''}<br />
+                Contact: {getValue('cdfData.mortgage_broker.contact_name') || ''}<br />
+                Contact NMLS ID: {getValue('cdfData.mortgage_broker.contact_nmls_id') || ''}<br />
+                Contact State License ID: {getValue('cdfData.mortgage_broker.contact_state_license_id') || ''}<br />
+                Email: {getValue('cdfData.mortgage_broker.email') || ''}<br />
+                Phone: {getValue('cdfData.mortgage_broker.phone') || ''}
               </div>
             </td>
             <td style={{ verticalAlign: 'top' }}>
               <div style={{ fontSize: '9px' }}>
-                <strong>Name</strong><br />
-                Address<br />
-                <br />
-                License ID<br />
-                Contact<br />
-                Email<br />
-                Phone
+                <strong>{getValue('contactsData.buyersAgents.0.company_name') || getValue('contactsData.buyersAgents.0.first_name') ? `${getValue('contactsData.buyersAgents.0.first_name')} ${getValue('contactsData.buyersAgents.0.last_name')}` : ''}</strong><br />
+                {getValue('contactsData.buyersAgents.0.company_name') || ''}<br />
+                {getValue('contactsData.buyersAgents.0.current_address.address_1') || ''}<br />
+                {getValue('contactsData.buyersAgents.0.current_address.city') ? `${getValue('contactsData.buyersAgents.0.current_address.city')}, ${getValue('contactsData.buyersAgents.0.current_address.state')} ${getValue('contactsData.buyersAgents.0.current_address.zipcode')}` : ''}<br />
+                License ID: {getValue('contactsData.buyersAgents.0.license_id') || ''}<br />
+                Email: {getValue('contactsData.buyersAgents.0.email') || ''}<br />
+                Phone: {getValue('contactsData.buyersAgents.0.phone') || ''}
               </div>
             </td>
             <td style={{ verticalAlign: 'top' }}>
               <div style={{ fontSize: '9px' }}>
-                <strong>Name</strong><br />
-                Address<br />
-                <br />
-                License ID<br />
-                Contact<br />
-                Email<br />
-                Phone
+                <strong>{getValue('contactsData.sellersAgents.0.company_name') || getValue('contactsData.sellersAgents.0.first_name') ? `${getValue('contactsData.sellersAgents.0.first_name')} ${getValue('contactsData.sellersAgents.0.last_name')}` : ''}</strong><br />
+                {getValue('contactsData.sellersAgents.0.company_name') || ''}<br />
+                {getValue('contactsData.sellersAgents.0.current_address.address_1') || ''}<br />
+                {getValue('contactsData.sellersAgents.0.current_address.city') ? `${getValue('contactsData.sellersAgents.0.current_address.city')}, ${getValue('contactsData.sellersAgents.0.current_address.state')} ${getValue('contactsData.sellersAgents.0.current_address.zipcode')}` : ''}<br />
+                License ID: {getValue('contactsData.sellersAgents.0.license_id') || ''}<br />
+                Email: {getValue('contactsData.sellersAgents.0.email') || ''}<br />
+                Phone: {getValue('contactsData.sellersAgents.0.phone') || ''}
               </div>
             </td>
             <td style={{ verticalAlign: 'top' }}>
               <div style={{ fontSize: '9px' }}>
-                <strong>First National Title & Escrow</strong><br />
-                123 Main Street<br />
-                Warwick, RI 02886<br />
+                <strong>{getValue('cdfData.settlement_agent.name') || 'First National Title & Escrow'}</strong><br />
+                {getValue('cdfData.settlement_agent.address') || '123 Main Street'}<br />
+                {getValue('cdfData.settlement_agent.city') || 'Warwick'}, {getValue('cdfData.settlement_agent.state') || 'RI'} {getValue('cdfData.settlement_agent.zip') || '02886'}<br />
                 <br />
-                Contact<br />
-                Email<br />
-                Phone
+                Contact: {getValue('cdfData.settlement_agent.contact_name') || ''}<br />
+                Email: {getValue('cdfData.settlement_agent.email') || ''}<br />
+                Phone: {getValue('cdfData.settlement_agent.phone') || ''}
               </div>
             </td>
           </tr>

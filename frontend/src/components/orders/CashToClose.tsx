@@ -146,13 +146,15 @@ const CashToClose: React.FC = () => {
                     {/* Closing Costs Financed Row */}
                     <tr className="border-b border-gray-600">
                       <td className="py-4 px-6 font-medium text-white">
-                        Closing Costs Financed
+                        Closing Costs Financed (paid from your Loan Amount)
                       </td>
                       <td className="py-4 px-6 border-l border-gray-600">
                         <input 
                           type="text" 
                           inputMode="decimal"
                           className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500" 
+                          value={getValue('cdf.purchase_cash_to_close.closing_costs_financed.estimate') || ''}
+                          onChange={handleInputChange}
                           data-schema-key="cdf.purchase_cash_to_close.closing_costs_financed.estimate"
                         />
                       </td>
@@ -418,6 +420,51 @@ const CashToClose: React.FC = () => {
                     </tr>
                   </tfoot>
                 </table>
+              </div>
+            </section>
+
+            {/* Critical CD Fields Section */}
+            <section>
+              <h3 className="text-base font-semibold text-white mb-5 pb-2 border-b border-gray-600">Key Cash to Close Fields (for Closing Disclosure)</h3>
+              <div className="bg-gray-800 border border-gray-600 rounded-lg p-6">
+                <div className="grid grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                      Closing Costs Financed
+                      <span className="text-xs text-gray-500 ml-2">(included in loan)</span>
+                    </label>
+                    <div className="relative">
+                      <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-sm">$</span>
+                      <input 
+                        type="number" 
+                        className="w-full pl-7 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
+                        value={getValue('cdfData.closing_costs_financed') || ''}
+                        onChange={handleInputChange}
+                        data-schema-key="cdfData.closing_costs_financed"
+                        placeholder="0.00"
+                        step="0.01"
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                      Adjustments and Other Credits
+                      <span className="text-xs text-gray-500 ml-2">(seller/lender credits)</span>
+                    </label>
+                    <div className="relative">
+                      <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-sm">$</span>
+                      <input 
+                        type="number" 
+                        className="w-full pl-7 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
+                        value={getValue('cdfData.adjustments_and_other_credits') || ''}
+                        onChange={handleInputChange}
+                        data-schema-key="cdfData.adjustments_and_other_credits"
+                        placeholder="0.00"
+                        step="0.01"
+                      />
+                    </div>
+                  </div>
+                </div>
               </div>
             </section>
           </form>

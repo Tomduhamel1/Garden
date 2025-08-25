@@ -145,6 +145,37 @@ const BasicInfo = () => {
                       </div>
                     </div>
                   </div>
+
+                  <div className="flex gap-5 mb-5">
+                    <div className="flex-1">
+                      <label className="block text-sm font-medium text-gray-300 mb-2">Date Issued (CD)</label>
+                      <div className="relative">
+                        <i className="fa fa-calendar absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-sm"></i>
+                        <input
+                          type="date"
+                          name="dateIssued"
+                          data-schema-key="cdfData.date_issued"
+                          value={getFieldValue(orderData, 'cdfData.date_issued') || ''}
+                          onChange={handleInputChange}
+                          className="w-full pl-9 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
+                        />
+                      </div>
+                    </div>
+                    <div className="flex-1">
+                      <label className="block text-sm font-medium text-gray-300 mb-2">Disbursement Date</label>
+                      <div className="relative">
+                        <i className="fa fa-calendar absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-sm"></i>
+                        <input
+                          type="date"
+                          name="disbursementDate"
+                          data-schema-key="cdfData.disbursement_date"
+                          value={getFieldValue(orderData, 'cdfData.disbursement_date') || ''}
+                          onChange={handleInputChange}
+                          className="w-full pl-9 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
+                        />
+                      </div>
+                    </div>
+                  </div>
                 </section>
 
                 {/* Amounts Section */}
@@ -186,6 +217,40 @@ const BasicInfo = () => {
                     </div>
                   </div>
 
+                  <div className="flex gap-5 mb-5">
+                    <div className="flex-1">
+                      <label className="block text-sm font-medium text-gray-300 mb-2">Earnest Money Deposit</label>
+                      <div className="relative">
+                        <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-sm">$</span>
+                        <input
+                          type="number"
+                          name="deposit"
+                          data-schema-key="cdfData.transaction_information.deposit"
+                          value={getFieldValue(orderData, 'cdfData.transaction_information.deposit') || ''}
+                          onChange={handleInputChange}
+                          className="w-full pl-7 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
+                          placeholder="0.00"
+                          step="0.01"
+                        />
+                      </div>
+                    </div>
+                    <div className="flex-1">
+                      <label className="block text-sm font-medium text-gray-300 mb-2">Down Payment</label>
+                      <div className="relative">
+                        <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-sm">$</span>
+                        <input
+                          type="number"
+                          name="downPayment"
+                          data-schema-key="cdfData.transaction_information.down_payment"
+                          value={(getFieldValue(orderData, 'cdfData.transaction_information.purchase_price') || 0) - (getFieldValue(orderData, 'cdfData.loans.0.initial_loan_amount') || 0)}
+                          className="w-full pl-7 pr-3 py-2.5 bg-gray-600 border border-gray-500 rounded text-gray-400 text-sm"
+                          readOnly
+                          title="Automatically calculated from Purchase Price - Loan Amount"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
                   <div className="flex gap-6">
                     <label className="flex items-center gap-2 text-sm text-gray-300">
                       <input
@@ -209,6 +274,214 @@ const BasicInfo = () => {
                       />
                       HELOC
                     </label>
+                  </div>
+                </section>
+
+                {/* Lender Information Section */}
+                <section>
+                  <h3 className="text-base font-semibold text-white mb-5 pb-2 border-b border-gray-600">Lender Information</h3>
+                  
+                  <div className="flex gap-5 mb-5">
+                    <div className="flex-1">
+                      <label className="block text-sm font-medium text-gray-300 mb-2">Lender Name</label>
+                      <input
+                        type="text"
+                        name="lenderName"
+                        data-schema-key="cdfData.lender.name"
+                        value={getFieldValue(orderData, 'cdfData.lender.name') || ''}
+                        onChange={handleInputChange}
+                        className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
+                        placeholder="Enter lender name"
+                      />
+                    </div>
+                    <div className="flex-1">
+                      <label className="block text-sm font-medium text-gray-300 mb-2">Lender Address</label>
+                      <input
+                        type="text"
+                        name="lenderAddress"
+                        data-schema-key="cdfData.lender.address"
+                        value={getFieldValue(orderData, 'cdfData.lender.address') || ''}
+                        onChange={handleInputChange}
+                        className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
+                        placeholder="Enter lender address"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="flex gap-5 mb-5">
+                    <div className="flex-1">
+                      <label className="block text-sm font-medium text-gray-300 mb-2">City</label>
+                      <input
+                        type="text"
+                        data-schema-key="cdfData.lender.city"
+                        value={getFieldValue(orderData, 'cdfData.lender.city') || ''}
+                        onChange={handleInputChange}
+                        className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
+                        placeholder="City"
+                      />
+                    </div>
+                    <div className="w-32">
+                      <label className="block text-sm font-medium text-gray-300 mb-2">State</label>
+                      <input
+                        type="text"
+                        data-schema-key="cdfData.lender.state"
+                        value={getFieldValue(orderData, 'cdfData.lender.state') || ''}
+                        onChange={handleInputChange}
+                        className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
+                        placeholder="ST"
+                        maxLength={2}
+                      />
+                    </div>
+                    <div className="w-40">
+                      <label className="block text-sm font-medium text-gray-300 mb-2">ZIP Code</label>
+                      <input
+                        type="text"
+                        data-schema-key="cdfData.lender.zip"
+                        value={getFieldValue(orderData, 'cdfData.lender.zip') || ''}
+                        onChange={handleInputChange}
+                        className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
+                        placeholder="ZIP"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="flex gap-5 mb-5">
+                    <div className="flex-1">
+                      <label className="block text-sm font-medium text-gray-300 mb-2">NMLS ID</label>
+                      <input
+                        type="text"
+                        data-schema-key="cdfData.lender.nmls_id"
+                        value={getFieldValue(orderData, 'cdfData.lender.nmls_id') || ''}
+                        onChange={handleInputChange}
+                        className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
+                        placeholder="NMLS ID"
+                      />
+                    </div>
+                    <div className="flex-1">
+                      <label className="block text-sm font-medium text-gray-300 mb-2">State License ID</label>
+                      <input
+                        type="text"
+                        data-schema-key="cdfData.lender.state_license_id"
+                        value={getFieldValue(orderData, 'cdfData.lender.state_license_id') || ''}
+                        onChange={handleInputChange}
+                        className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
+                        placeholder="State License ID"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="flex gap-5 mb-5">
+                    <div className="flex-1">
+                      <label className="block text-sm font-medium text-gray-300 mb-2">Contact Name</label>
+                      <input
+                        type="text"
+                        data-schema-key="cdfData.lender.contact_name"
+                        value={getFieldValue(orderData, 'cdfData.lender.contact_name') || ''}
+                        onChange={handleInputChange}
+                        className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
+                        placeholder="Contact person name"
+                      />
+                    </div>
+                    <div className="flex-1">
+                      <label className="block text-sm font-medium text-gray-300 mb-2">Contact Email</label>
+                      <input
+                        type="email"
+                        data-schema-key="cdfData.lender.email"
+                        value={getFieldValue(orderData, 'cdfData.lender.email') || ''}
+                        onChange={handleInputChange}
+                        className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
+                        placeholder="email@example.com"
+                      />
+                    </div>
+                    <div className="flex-1">
+                      <label className="block text-sm font-medium text-gray-300 mb-2">Contact Phone</label>
+                      <input
+                        type="tel"
+                        data-schema-key="cdfData.lender.phone"
+                        value={getFieldValue(orderData, 'cdfData.lender.phone') || ''}
+                        onChange={handleInputChange}
+                        className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
+                        placeholder="(555) 555-5555"
+                      />
+                    </div>
+                  </div>
+                </section>
+
+                {/* Settlement Agent Information Section */}
+                <section>
+                  <h3 className="text-base font-semibold text-white mb-5 pb-2 border-b border-gray-600">Settlement Agent Information</h3>
+                  
+                  <div className="flex gap-5 mb-5">
+                    <div className="flex-1">
+                      <label className="block text-sm font-medium text-gray-300 mb-2">Company Name</label>
+                      <input
+                        type="text"
+                        data-schema-key="cdfData.settlement_agent.name"
+                        value={getFieldValue(orderData, 'cdfData.settlement_agent.name') || ''}
+                        onChange={handleInputChange}
+                        className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
+                        placeholder="Settlement company name"
+                      />
+                    </div>
+                    <div className="flex-1">
+                      <label className="block text-sm font-medium text-gray-300 mb-2">Address</label>
+                      <input
+                        type="text"
+                        data-schema-key="cdfData.settlement_agent.address"
+                        value={getFieldValue(orderData, 'cdfData.settlement_agent.address') || ''}
+                        onChange={handleInputChange}
+                        className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
+                        placeholder="Address"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="flex gap-5 mb-5">
+                    <div className="flex-1">
+                      <label className="block text-sm font-medium text-gray-300 mb-2">City</label>
+                      <input
+                        type="text"
+                        data-schema-key="cdfData.settlement_agent.city"
+                        value={getFieldValue(orderData, 'cdfData.settlement_agent.city') || ''}
+                        onChange={handleInputChange}
+                        className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
+                        placeholder="City"
+                      />
+                    </div>
+                    <div className="w-32">
+                      <label className="block text-sm font-medium text-gray-300 mb-2">State</label>
+                      <input
+                        type="text"
+                        data-schema-key="cdfData.settlement_agent.state"
+                        value={getFieldValue(orderData, 'cdfData.settlement_agent.state') || ''}
+                        onChange={handleInputChange}
+                        className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
+                        placeholder="ST"
+                        maxLength={2}
+                      />
+                    </div>
+                    <div className="w-40">
+                      <label className="block text-sm font-medium text-gray-300 mb-2">ZIP</label>
+                      <input
+                        type="text"
+                        data-schema-key="cdfData.settlement_agent.zip"
+                        value={getFieldValue(orderData, 'cdfData.settlement_agent.zip') || ''}
+                        onChange={handleInputChange}
+                        className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
+                        placeholder="ZIP"
+                      />
+                    </div>
+                    <div className="flex-1">
+                      <label className="block text-sm font-medium text-gray-300 mb-2">Contact Phone</label>
+                      <input
+                        type="tel"
+                        data-schema-key="cdfData.settlement_agent.phone"
+                        value={getFieldValue(orderData, 'cdfData.settlement_agent.phone') || ''}
+                        onChange={handleInputChange}
+                        className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
+                        placeholder="(555) 555-5555"
+                      />
+                    </div>
                   </div>
                 </section>
 

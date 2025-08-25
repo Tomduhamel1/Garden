@@ -133,14 +133,14 @@ export default function ProceedsBorrower() {
                       <div>
                         <label className="block text-sm font-medium text-gray-300 mb-2">
                           Payment Amount
-                          <i className="fa fa-lock ml-1 text-gray-400" title="This field cannot be modified"></i>
                         </label>
                         <input
                           type="text"
                           inputMode="decimal"
-                          readOnly
-                          className="w-full px-3 py-2.5 bg-gray-600 border border-gray-500 rounded text-gray-400 text-sm cursor-not-allowed"
+                          className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                           data-schema-key="contacts.borrower_payees.0.payment_dep"
+                          value={getValue('contacts.borrower_payees.0.payment_dep')}
+                          onChange={handleInputChange}
                         />
                       </div>
                     </div>

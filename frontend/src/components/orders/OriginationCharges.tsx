@@ -127,8 +127,8 @@ export default function OriginationCharges() {
             type="number"
             className="w-full px-3 py-2 bg-transparent text-white text-right focus:outline-none focus:bg-blue-900/10"
             inputMode="decimal"
-            data-schema-key={`cdfData.origination_charges.${prefix}.paid_before_closing`}
-            value={getValue(`cdfData.origination_charges.${prefix}.paid_before_closing`)}
+            data-schema-key={`cdfData.origination_charges.${prefix}.paid_before_closing_seller`}
+            value={getValue(`cdfData.origination_charges.${prefix}.paid_before_closing_seller`)}
             onChange={handleInputChange}
             onFocus={() => setActiveRow(lineNumber)}
           />

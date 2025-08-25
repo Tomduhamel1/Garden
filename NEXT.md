@@ -1,9 +1,31 @@
 # NEXT.md - Current Work Status
 
 ## 🎯 IN PROGRESS
-**Fixing useOrderData hook input blocking issue**
+**Next Priority: Test all CD fields are populating correctly**
 
-## 📊 COMPLETED TODAY (Session: 2025-08-25 continued)
+## 📊 COMPLETED TODAY (Session: 2025-08-25 continued - Part 2)
+### ✅ UUID Consistency Fixed Throughout Application
+**RESOLVED**: Replaced all hardcoded order IDs with proper UUID handling
+
+### Improvements Made:
+1. **Dashboard**: Dynamic order ID linking based on fetched orders
+2. **AppShell**: Uses real UUID as fallback instead of hardcoded "1"
+3. **Contacts & Loan**: Removed unnecessary orderId props, now use useParams
+4. **OrderList**: Fetches and displays real orders from database
+5. **Routes**: Cleaned up component props that were passing hardcoded IDs
+
+### ✅ useOrderData Hook Performance Fix
+**RESOLVED**: Input blocking issue that affected 45+ components
+
+### Solution Implemented:
+1. **Debounced Updates**: Added 150ms debouncing for orderData updates
+2. **Local Input Cache**: Immediate display updates with local state
+3. **Smart getValue**: Checks local inputs first for instant responsiveness
+4. **Memory Management**: Proper cleanup of timeouts on unmount
+
+**Result**: All forms now have smooth, responsive typing without lag!
+
+## 📊 COMPLETED EARLIER TODAY (Session: 2025-08-25 Part 1)
 ### 🔥 CRITICAL FIX: TaxesAndFees Input Blocking Issue
 **RESOLVED**: Users couldn't type in any input fields on TaxesAndFees page
 

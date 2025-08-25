@@ -57,8 +57,8 @@ const AppRoutes = () => {
       <Route path="/orders" element={<OrderList />} />
       <Route path="/orders/:orderId" element={<AppShell />}>
         <Route path="basic-info" element={<BasicInfo />} />
-        <Route path="contacts" element={<Contacts orderId="1" />} />
-        <Route path="loan" element={<Loan orderId="1" />} />
+        <Route path="contacts" element={<Contacts />} />
+        <Route path="loan" element={<Loan />} />
         <Route path="origination-charges" element={<OriginationCharges />} />
         <Route path="did-shop-for" element={<DidShopFor />} />
         <Route path="did-not-shop-for" element={<DidNotShopFor />} />

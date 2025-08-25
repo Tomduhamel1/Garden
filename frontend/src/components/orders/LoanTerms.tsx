@@ -147,7 +147,7 @@ const LoanTerms: React.FC = () => {
                     <input 
                       type="text" 
                       className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
-                      data-schema-key="cdf.loans.0.loan_product"
+                      data-schema-key="cdfData.loans.0.loan_product"
                     />
                   </div>
                 </div>
@@ -170,14 +170,14 @@ const LoanTerms: React.FC = () => {
                           type="text" 
                           inputMode="decimal"
                           className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
-                          data-schema-key="cdf.loans.0.initial_loan_amount"
+                          data-schema-key="cdfData.loans.0.initial_loan_amount"
                         />
                       </td>
                       <td className="py-4 px-6 w-1/4">
                         <div className="relative">
                           <select 
                             className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none" 
-                            data-schema-key="cdf.loans.0.initial_loan_amount_can_increase"
+                            data-schema-key="cdfData.loans.0.initial_loan_amount_can_increase"
                             defaultValue="no"
                           >
                             <option value="no">Cannot increase</option>
@@ -199,14 +199,14 @@ const LoanTerms: React.FC = () => {
                           type="text" 
                           inputMode="decimal"
                           className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
-                          data-schema-key="cdf.loans.0.interest_rate"
+                          data-schema-key="cdfData.loans.0.interest_rate"
                         />
                       </td>
                       <td className="py-4 px-6">
                         <div className="relative">
                           <select 
                             className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none" 
-                            data-schema-key="cdf.loans.0.interest_rate_can_increase"
+                            data-schema-key="cdfData.loans.0.interest_rate_can_increase"
                             defaultValue="no"
                           >
                             <option value="no">Cannot increase</option>
@@ -228,14 +228,14 @@ const LoanTerms: React.FC = () => {
                           type="text" 
                           inputMode="decimal"
                           className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
-                          data-schema-key="cdf.loans.0.monthly_principal_and_interest"
+                          data-schema-key="cdfData.loans.0.monthly_principal_and_interest"
                         />
                       </td>
                       <td className="py-4 px-6">
                         <div className="relative">
                           <select 
                             className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none" 
-                            data-schema-key="cdf.loans.0.monthly_principal_and_interest_can_increase"
+                            data-schema-key="cdfData.loans.0.monthly_principal_and_interest_can_increase"
                             defaultValue="no"
                           >
                             <option value="no">Cannot increase</option>
@@ -257,7 +257,7 @@ const LoanTerms: React.FC = () => {
                         <div className="relative">
                           <select 
                             className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none" 
-                            data-schema-key="cdf.loans.0.has_prepayment_penalty"
+                            data-schema-key="cdfData.loans.0.has_prepayment_penalty"
                             defaultValue="no"
                           >
                             <option value="no">No</option>
@@ -279,7 +279,7 @@ const LoanTerms: React.FC = () => {
                         <div className="relative">
                           <select 
                             className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500 appearance-none" 
-                            data-schema-key="cdf.loans.0.has_balloon_payment"
+                            data-schema-key="cdfData.loans.0.has_balloon_payment"
                             value={hasBalloonPayment}
                             onChange={(e) => setHasBalloonPayment(e.target.value)}
                           >
@@ -296,7 +296,7 @@ const LoanTerms: React.FC = () => {
                             <input 
                               type="text" 
                               className="flex-1 px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
-                              data-schema-key="cdf.loans.0.balloon_payment_description.0"
+                              data-schema-key="cdfData.loans.0.balloon_payment_description.0"
                             />
                             <div className="relative">
                               <button type="button" className="px-3 py-2.5 bg-gray-600 border border-gray-500 rounded text-white text-sm hover:bg-gray-500 flex items-center gap-1">

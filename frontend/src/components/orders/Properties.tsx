@@ -165,26 +165,58 @@ const Properties: React.FC = () => {
                     </div>
                     <div className="flex-1">
                       <label className="block text-sm font-medium text-gray-300 mb-2">Year Built</label>
-                      <input type="number" className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" />
+                      <input 
+                        type="number" 
+                        className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
+                        data-schema-key="propertiesData.properties.0.year_built"
+                        value={getValue('propertiesData.properties.0.year_built')}
+                        onChange={handleInputChange}
+                      />
                     </div>
                     <div className="flex-1">
                       <label className="block text-sm font-medium text-gray-300 mb-2">Square Footage</label>
-                      <input type="number" className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" />
+                      <input 
+                        type="number" 
+                        className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
+                        data-schema-key="propertiesData.properties.0.square_footage"
+                        value={getValue('propertiesData.properties.0.square_footage')}
+                        onChange={handleInputChange}
+                      />
                     </div>
                   </div>
 
                   <div className="flex gap-5 mb-5">
                     <div className="flex-1">
                       <label className="block text-sm font-medium text-gray-300 mb-2">Bedrooms</label>
-                      <input type="number" className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" />
+                      <input 
+                        type="number" 
+                        className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
+                        data-schema-key="propertiesData.properties.0.bedrooms"
+                        value={getValue('propertiesData.properties.0.bedrooms')}
+                        onChange={handleInputChange}
+                      />
                     </div>
                     <div className="flex-1">
                       <label className="block text-sm font-medium text-gray-300 mb-2">Bathrooms</label>
-                      <input type="number" step="0.5" className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" />
+                      <input 
+                        type="number" 
+                        step="0.5" 
+                        className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
+                        data-schema-key="propertiesData.properties.0.bathrooms"
+                        value={getValue('propertiesData.properties.0.bathrooms')}
+                        onChange={handleInputChange}
+                      />
                     </div>
                     <div className="flex-1">
                       <label className="block text-sm font-medium text-gray-300 mb-2">Lot Size</label>
-                      <input type="text" className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" placeholder="e.g., 0.25 acres" />
+                      <input 
+                        type="text" 
+                        className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
+                        placeholder="e.g., 0.25 acres"
+                        data-schema-key="propertiesData.properties.0.lot_size"
+                        value={getValue('propertiesData.properties.0.lot_size')}
+                        onChange={handleInputChange}
+                      />
                     </div>
                   </div>
                 </section>
