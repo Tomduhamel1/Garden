@@ -84,8 +84,8 @@ const TaxesAndFees: React.FC = () => {
       
       try {
         const order = await orderService.getOrder(orderId);
-        if (order?.cdf_data?.taxes_and_government_fees) {
-          const taxes = order.cdf_data.taxes_and_government_fees;
+        if (order?.cdfData?.taxes_and_government_fees) {
+          const taxes = order.cdfData.taxes_and_government_fees;
           const newData: Record<string, TaxLine> = {};
           
           for (let i = 1; i <= 4; i++) {
@@ -135,17 +135,17 @@ const TaxesAndFees: React.FC = () => {
     try {
       const order = await orderService.getOrder(orderId);
       
-      if (!order.cdf_data) order.cdf_data = {};
-      if (!order.cdf_data.taxes_and_government_fees) {
-        order.cdf_data.taxes_and_government_fees = {};
+      if (!order.cdfData) order.cdfData = {};
+      if (!order.cdfData.taxes_and_government_fees) {
+        order.cdfData.taxes_and_government_fees = {};
       }
       
       Object.entries(localData).forEach(([lineKey, lineData]) => {
-        order.cdf_data.taxes_and_government_fees[lineKey] = lineData;
+        order.cdfData.taxes_and_government_fees[lineKey] = lineData;
       });
       
       await orderService.updateOrder(orderId, order);
-      console.log('Saved taxes data:', order.cdf_data.taxes_and_government_fees);
+      console.log('Saved taxes data:', order.cdfData.taxes_and_government_fees);
       
     } catch (error) {
       console.error('Error saving:', error);
@@ -173,6 +173,47 @@ const TaxesAndFees: React.FC = () => {
     });
 
     return totals;
+  };
+
+  const calculateRecordingFees = () => {
+    // Calculate recording fees based on document details
+    let recordingFee = 0;
+    let transferTax = 0;
+    
+    documents.forEach(doc => {
+      const pages = parseInt(doc.pages) || 0;
+      const consideration = parseFloat(doc.consideration) || 0;
+      
+      if (doc.type === 'Deed') {
+        // Base recording fee: $30 for first page, $10 for each additional
+        recordingFee += 30 + (Math.max(0, pages - 1) * 10);
+        
+        // Transfer tax: 0.5% of consideration if taxable
+        if (doc.taxable && consideration > 0) {
+          transferTax += consideration * 0.005;
+        }
+      } else if (doc.type === 'Mortgage') {
+        // Mortgage recording fee: $50 for first page, $10 for each additional
+        recordingFee += 50 + (Math.max(0, pages - 1) * 10);
+      }
+    });
+    
+    // Update Line 01 with calculated recording fee
+    if (recordingFee > 0) {
+      handleLocalChange('line_01', 'paid_by_borrower', recordingFee.toFixed(2));
+    }
+    
+    // Update Line 02 with calculated transfer tax
+    if (transferTax > 0) {
+      handleLocalChange('line_02', 'description', 'Transfer tax (auto-calculated)');
+      handleLocalChange('line_02', 'paid_by_seller', transferTax.toFixed(2));
+    }
+  };
+
+  const updateDocument = (id: string, field: keyof Document, value: string | boolean) => {
+    setDocuments(prev => prev.map(doc => 
+      doc.id === id ? { ...doc, [field]: value } : doc
+    ));
   };
 
   const renderTableRow = (lineNumber: number) => {
@@ -465,6 +506,8 @@ const TaxesAndFees: React.FC = () => {
                                 type="text" 
                                 className="w-full px-3 py-1.5 bg-gray-600 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                                 placeholder="count"
+                                value={doc.pages}
+                                onChange={(e) => updateDocument(doc.id, 'pages', e.target.value)}
                               />
                             </td>
                           </tr>
@@ -478,6 +521,8 @@ const TaxesAndFees: React.FC = () => {
                                     inputMode="decimal"
                                     className="w-full px-3 py-1.5 bg-gray-600 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                                     placeholder="amount"
+                                    value={doc.consideration}
+                                    onChange={(e) => updateDocument(doc.id, 'consideration', e.target.value)}
                                   />
                                 </td>
                               </tr>
@@ -485,8 +530,20 @@ const TaxesAndFees: React.FC = () => {
                                 <td className="py-3 text-sm text-gray-300">Taxable?</td>
                                 <td className="py-3">
                                   <div className="flex bg-gray-600 border border-gray-500 rounded overflow-hidden">
-                                    <button type="button" className="flex-1 px-3 py-1.5 bg-blue-600 text-white text-sm font-medium">Yes</button>
-                                    <button type="button" className="flex-1 px-3 py-1.5 bg-gray-600 text-gray-300 text-sm font-medium hover:bg-gray-500">No</button>
+                                    <button 
+                                      type="button" 
+                                      className={`flex-1 px-3 py-1.5 ${doc.taxable ? 'bg-blue-600 text-white' : 'bg-gray-600 text-gray-300 hover:bg-gray-500'} text-sm font-medium`}
+                                      onClick={() => updateDocument(doc.id, 'taxable', true)}
+                                    >
+                                      Yes
+                                    </button>
+                                    <button 
+                                      type="button" 
+                                      className={`flex-1 px-3 py-1.5 ${!doc.taxable ? 'bg-blue-600 text-white' : 'bg-gray-600 text-gray-300 hover:bg-gray-500'} text-sm font-medium`}
+                                      onClick={() => updateDocument(doc.id, 'taxable', false)}
+                                    >
+                                      No
+                                    </button>
                                   </div>
                                 </td>
                               </tr>
@@ -503,7 +560,8 @@ const TaxesAndFees: React.FC = () => {
                 <button 
                   type="button" 
                   className="bg-blue-600 border border-blue-600 rounded px-6 py-2.5 text-white text-sm hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
-                  disabled
+                  onClick={calculateRecordingFees}
+                  disabled={documents.every(doc => !doc.pages && !doc.consideration)}
                 >
                   Calculate Fees
                 </button>

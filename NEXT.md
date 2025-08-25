@@ -1,9 +1,9 @@
 # NEXT.md - Current Work Status
 
 ## 🎯 IN PROGRESS
-**TaxesAndFees Component - Critical Input Issues Resolved**
+**Fixing useOrderData hook input blocking issue**
 
-## 📊 COMPLETED TODAY (Session: 2025-08-25)
+## 📊 COMPLETED TODAY (Session: 2025-08-25 continued)
 ### 🔥 CRITICAL FIX: TaxesAndFees Input Blocking Issue
 **RESOLVED**: Users couldn't type in any input fields on TaxesAndFees page
 
@@ -45,11 +45,20 @@
 - **✅ Data Persistence**: Fees save and display correctly
 - **✅ Recording Fees**: Line 01 shows "Recording fees" with proper readonly behavior
 
+### 🆕 NEW FEATURES ADDED (Session continuation):
+1. **Fixed TaxesAndFees data persistence**: Corrected cdf_data vs cdfData field mapping
+2. **Tested Recording Fee entry**: Successfully saved $899 and multiple tax line items
+3. **Implemented Auto-Calculation**: 
+   - Added calculateRecordingFees() function with placeholder rates
+   - Connected Document Details inputs to calculation logic
+   - Wired up Calculate Fees button with dynamic enablement
+   - Table starts empty, calculations are optional
+
 ## 🚀 IMMEDIATE NEXT STEPS
-1. **Test Recording Fee Entry**: Verify $899 saves and displays in Closing Disclosure
-2. **Implement Auto-Calculation**: Connect Document Details to fee calculations
-3. **Fix useOrderData Hook**: Investigate root cause of input blocking
-4. **UUID Consistency**: Replace remaining hardcoded "1" IDs throughout app
+1. **Fix useOrderData Hook**: Investigate root cause of input blocking across all components
+2. **UUID Consistency**: Replace remaining hardcoded "1" IDs throughout app
+3. **Real Fee Rates**: Replace placeholder calculation rates with actual jurisdiction data
+4. **Test Full Flow**: Verify fees flow from TaxesAndFees to Closing Disclosure correctly
 
 ## 📝 TECHNICAL NOTES
 ### TaxesAndFees Implementation Details:
