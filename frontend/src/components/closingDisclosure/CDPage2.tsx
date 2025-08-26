@@ -135,6 +135,7 @@ const CDPage2: React.FC = () => {
       <tr key={`other_charges-${paddedNum}`} className="border-b border-gray-300">
         <td className="py-1 px-2">
           <FeeAutocomplete
+            documentMode={true}
             value={getValue(`${baseKey}.description`) || ''}
             onChange={(value) => {
               const event = {

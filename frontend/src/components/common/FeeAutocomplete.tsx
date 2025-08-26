@@ -10,6 +10,7 @@ interface FeeAutocompleteProps {
   className?: string;
   name?: string;
   'data-schema-key'?: string;
+  documentMode?: boolean; // For light theme in CD pages
 }
 
 export const FeeAutocomplete: React.FC<FeeAutocompleteProps> = ({
@@ -20,6 +21,7 @@ export const FeeAutocomplete: React.FC<FeeAutocompleteProps> = ({
   className = '',
   name,
   'data-schema-key': dataSchemaKey,
+  documentMode = false,
 }) => {
   const [localValue, setLocalValue] = useState(value || '');
   const [suggestions, setSuggestions] = useState<FeeType[]>([]);
@@ -115,20 +117,29 @@ export const FeeAutocomplete: React.FC<FeeAutocompleteProps> = ({
         onBlur={handleBlur}
         onFocus={() => localValue.length >= 2 && suggestions.length > 0 && setShowSuggestions(true)}
         placeholder={placeholder}
-        className={`w-full px-2 py-1 bg-gray-700 text-white border border-gray-600 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 ${className}`}
+        className={documentMode 
+          ? `w-full px-2 py-1 bg-white text-black border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500 ${className}`
+          : `w-full px-2 py-1 bg-gray-700 text-white border border-gray-600 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 ${className}`
+        }
         name={name}
         data-schema-key={dataSchemaKey}
       />
       
       {showSuggestions && suggestions.length > 0 && (
-        <div className="absolute z-10 w-full mt-1 bg-gray-800 border border-gray-600 rounded shadow-lg max-h-48 overflow-y-auto">
+        <div className={`absolute z-10 w-full mt-1 rounded shadow-lg max-h-48 overflow-y-auto ${
+          documentMode 
+            ? 'bg-white border border-gray-300' 
+            : 'bg-gray-800 border border-gray-600'
+        }`}>
           {suggestions.map((suggestion, index) => (
             <div
               key={suggestion.key}
               className={`px-3 py-2 cursor-pointer ${
                 index === selectedIndex 
                   ? 'bg-blue-600 text-white' 
-                  : 'text-gray-300 hover:bg-gray-700'
+                  : documentMode
+                    ? 'text-gray-900 hover:bg-gray-100'
+                    : 'text-gray-300 hover:bg-gray-700'
               }`}
               onClick={() => handleSuggestionClick(suggestion)}
             >
