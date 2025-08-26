@@ -1,12 +1,37 @@
 # Session Handoff Document 🤝
 
-**Last Session**: 2025-08-25 12:45 PST  
-**Session Duration**: ~2.5 hours
-**Progress**: **TaxesAndFees Auto-Calculation Feature Implemented!**
+**Last Session**: 2025-08-26 15:30 PST  
+**Session Duration**: ~1.5 hours
+**Progress**: **Closing Disclosure Dropdown Visibility Fixed!**
 
 ## ✅ What Was Accomplished This Session
 
-### 📋 **TaxesAndFees Enhancement & Testing**
+### 🎨 **Closing Disclosure Dropdown Visibility Fixes**
+
+1. **Diagnosed the Real Problem**
+   - User reported dropdowns were unreadable in CD
+   - Initially thought it was CDField select elements
+   - Screenshot revealed it was FeeAutocomplete component
+   - Dark gray dropdown on white document = invisible text
+
+2. **CDField Component Updates**
+   - Added `documentMode={true}` to all instances in CDPage1-5
+   - Fixed select option styling for documentMode
+   - Ensures proper contrast in PDF-style view
+
+3. **FeeAutocomplete Component Fix** (Critical)
+   - Added documentMode prop support
+   - Dynamic theming based on context:
+     - documentMode=true: White bg, black text
+     - documentMode=false: Dark theme (gray-800 bg)
+   - Section H (Other charges) now fully functional
+
+4. **Testing & Verification**
+   - Tested with live data in TaxesAndFees
+   - Confirmed dropdown visibility in browser
+   - All CD pages now properly themed
+
+### 📋 **Previous Session: TaxesAndFees Enhancement & Testing**
 
 1. **Fixed cdfData field mapping issue**
    - Component was saving to `cdf_data` instead of `cdfData`

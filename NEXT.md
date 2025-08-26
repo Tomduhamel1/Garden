@@ -1,9 +1,31 @@
 # NEXT.md - Current Work Status
 
 ## 🎯 IN PROGRESS
-**Next Priority: Test all CD fields are populating correctly**
+**Next Priority: Continue improving UI/UX and data flow**
 
-## 📊 COMPLETED TODAY (Session: 2025-08-25 continued - Part 2)
+## 📊 COMPLETED TODAY (Session: 2025-08-26)
+### ✅ Fixed Closing Disclosure Dropdown Visibility Issues
+**RESOLVED**: CD dropdowns and autocomplete now properly visible
+
+### Critical Fixes Applied:
+1. **CDField Component Fix**:
+   - Added `documentMode={true}` to all CDField instances in CDPage1-5
+   - Fixed select option styling for light theme
+   - Inputs now show black text on light backgrounds
+
+2. **FeeAutocomplete Component Fix** (The Real Issue):
+   - Added documentMode prop support
+   - Dynamic theming: white bg/black text in CD, dark theme elsewhere
+   - Section H (Other charges) dropdown now clearly visible
+
+3. **Testing & Verification**:
+   - Added test data to TaxesAndFees ($450 in fees)
+   - Confirmed data flow to Closing Disclosure
+   - Verified dropdown visibility with proper contrast
+
+**Result**: All CD form fields and dropdowns now properly visible and functional!
+
+## 📊 COMPLETED EARLIER (Session: 2025-08-25 continued - Part 2)
 ### ✅ UUID Consistency Fixed Throughout Application
 **RESOLVED**: Replaced all hardcoded order IDs with proper UUID handling
 
