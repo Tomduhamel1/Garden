@@ -14,6 +14,12 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'userId',
         as: 'user'
       });
+      
+      // Association with global contacts through OrderContactLink
+      Order.hasMany(models.OrderContactLink, {
+        foreignKey: 'orderId',
+        as: 'contactLinks'
+      });
     }
     
     // Instance method to validate order data

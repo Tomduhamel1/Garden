@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useOrderData } from '../../hooks/useOrderData';
+import { FeeAutocomplete } from '../common/FeeAutocomplete';
 
 interface PaymentType {
   value: string;
@@ -33,15 +34,33 @@ const OtherCharges: React.FC = () => {
           {lineNumber.toString().padStart(2, '0')}
         </td>
         <td className="py-3 px-4">
-          <input 
-            type="text" 
-            value={getValue(`cdfData.other_charges.line_${lineNumber.toString().padStart(2, '0')}.description`)}
-            onChange={handleInputChange}
-            className={`w-full bg-transparent border-none outline-none focus:ring-0 ${isSpecialLine ? 'text-gray-400' : 'text-gray-100'}`}
-            placeholder="Description"
-            readOnly={isSpecialLine}
-            data-schema-key={`cdfData.other_charges.line_${lineNumber.toString().padStart(2, '0')}.description`}
-          />
+          {isSpecialLine ? (
+            <input 
+              type="text" 
+              value={getValue(`cdfData.other_charges.line_${lineNumber.toString().padStart(2, '0')}.description`)}
+              onChange={handleInputChange}
+              className="w-full bg-transparent border-none outline-none focus:ring-0 text-gray-400"
+              placeholder="Description"
+              readOnly
+              data-schema-key={`cdfData.other_charges.line_${lineNumber.toString().padStart(2, '0')}.description`}
+            />
+          ) : (
+            <FeeAutocomplete
+              value={getValue(`cdfData.other_charges.line_${lineNumber.toString().padStart(2, '0')}.description`) || ''}
+              onChange={(value) => {
+                const event = {
+                  target: {
+                    dataset: { schemaKey: `cdfData.other_charges.line_${lineNumber.toString().padStart(2, '0')}.description` },
+                    value
+                  }
+                } as any;
+                handleInputChange(event);
+              }}
+              placeholder="Enter fee description..."
+              className="!bg-gray-700 !border-gray-600"
+              data-schema-key={`cdfData.other_charges.line_${lineNumber.toString().padStart(2, '0')}.description`}
+            />
+          )}
         </td>
         <td className="py-3 px-4 text-right">
           <input 

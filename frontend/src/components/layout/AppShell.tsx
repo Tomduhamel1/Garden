@@ -55,7 +55,7 @@ export default function AppShell() {
             <Link to="/orders/b09b0775-9318-454a-ada9-77f0c2147e18/basic-info" className="px-3 py-1 text-sm hover:text-blue-400 transition-colors">
               Orders
             </Link>
-            <Link to="/contacts" className="px-3 py-1 text-sm text-gray-400 hover:text-blue-400 transition-colors">
+            <Link to="/global-contacts" className="px-3 py-1 text-sm text-gray-400 hover:text-blue-400 transition-colors">
               Contacts
             </Link>
             <Link to="/reports" className="px-3 py-1 text-sm text-gray-400 hover:text-blue-400 transition-colors">

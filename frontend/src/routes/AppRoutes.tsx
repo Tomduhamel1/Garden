@@ -24,7 +24,7 @@ import LoanTerms from '../components/orders/LoanTerms';
 import ProjectedPayments from '../components/orders/ProjectedPayments';
 import LoanCalculations from '../components/orders/LoanCalculations';
 import LoanDisclosures from '../components/orders/LoanDisclosures';
-import { ClosingDisclosure } from '../components/orders/ClosingDisclosure';
+import ClosingDisclosure from '../components/closingDisclosure/ClosingDisclosure';
 import SettlementStatement from '../components/orders/SettlementStatement';
 import DebitsCredits from '../components/orders/DebitsCredits';
 import Documents from '../components/orders/Documents';
@@ -47,6 +47,7 @@ import EnvelopesShipping from '../components/orders/EnvelopesShipping';
 import Recording from '../components/orders/Recording';
 import SchemaInspector from '../components/orders/SchemaInspector';
 import Login from '../pages/Login';
+import GlobalContacts from '../pages/GlobalContacts';
 
 const AppRoutes = () => {
   return (
@@ -111,6 +112,11 @@ const AppRoutes = () => {
       <Route path="/orders" element={
         <ProtectedRoute>
           <OrderList />
+        </ProtectedRoute>
+      } />
+      <Route path="/global-contacts" element={
+        <ProtectedRoute>
+          <GlobalContacts />
         </ProtectedRoute>
       } />
     </Routes>

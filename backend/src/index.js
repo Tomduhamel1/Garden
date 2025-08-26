@@ -10,6 +10,8 @@ const db = require('../models');
 // Import routes
 const authRoutes = require('./routes/auth');
 const orderRoutes = require('./routes/orders');
+const globalContactsRoutes = require('./routes/globalContacts');
+const orderContactLinksRoutes = require('./routes/orderContactLinks');
 
 const app = express();
 const PORT = process.env.PORT || 3002;
@@ -34,6 +36,8 @@ app.get('/api/health', (req, res) => {
 // API Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/orders', orderRoutes);
+app.use('/api/global-contacts', globalContactsRoutes);
+app.use('/api', orderContactLinksRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {

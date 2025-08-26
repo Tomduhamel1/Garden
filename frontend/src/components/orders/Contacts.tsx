@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useOrderData } from '../../hooks/useOrderData';
+import ContactSearchPicker from '../common/ContactSearchPicker';
 
 type ContactType = 'buyers' | 'sellers' | 'lenders' | 'mortgageBrokerages' | 'sellingAgencies' | 'listingAgencies' | 'recordingOffices' | 'taxAuthorities' | 'titleAbstractors' | 'surveyingFirms' | 'otherContacts';
 type TabType = 'info' | 'addresses' | 'attorney' | 'signature' | 'notary';
@@ -158,15 +159,38 @@ const Contacts: React.FC = () => {
           <section className="mb-6">
             <h3 className="text-base font-semibold mb-4 pb-2 border-b border-gray-600">Basic Info</h3>
             <div className="mb-5">
-              <div className="relative">
-                <i className="fa fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-                <input 
-                  type="text" 
-                  className="w-full pl-9 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
-                  placeholder="Search existing buyers..." 
-                  data-schema-key="customerName"
-                />
-              </div>
+              <ContactSearchPicker
+                contactType="buyers"
+                placeholder="Search existing buyers..."
+                onContactSelect={(contact) => {
+                  // Populate buyer form with selected contact data
+                  if (contact.type === 'individual' && contact.individualInfo) {
+                    const { first_name, last_name, middle_name, suffix, ssn, date_of_birth } = contact.individualInfo;
+                    const { primary_email, primary_phone, secondary_phone } = contact.contactInfo || {};
+                    
+                    // Populate individual buyer fields
+                    if (first_name) handleInputChange(`contactsData.borrowers.${activeBorrowerIndex}.first_name`, first_name);
+                    if (last_name) handleInputChange(`contactsData.borrowers.${activeBorrowerIndex}.last_name`, last_name);
+                    if (middle_name) handleInputChange(`contactsData.borrowers.${activeBorrowerIndex}.middle_name`, middle_name);
+                    if (suffix) handleInputChange(`contactsData.borrowers.${activeBorrowerIndex}.suffix`, suffix);
+                    if (ssn) handleInputChange(`contactsData.borrowers.${activeBorrowerIndex}.ssn`, ssn);
+                    if (date_of_birth) handleInputChange(`contactsData.borrowers.${activeBorrowerIndex}.date_of_birth`, date_of_birth);
+                    if (primary_email) handleInputChange(`contactsData.borrowers.${activeBorrowerIndex}.email`, primary_email);
+                    if (primary_phone) handleInputChange(`contactsData.borrowers.${activeBorrowerIndex}.primary_phone`, primary_phone);
+                    if (secondary_phone) handleInputChange(`contactsData.borrowers.${activeBorrowerIndex}.secondary_phone`, secondary_phone);
+                  } else if (contact.type === 'business' && contact.businessInfo) {
+                    // Handle business contact selection for buyers
+                    const { company_name, contact_person_name, contact_person_email } = contact.businessInfo;
+                    if (company_name) handleInputChange(`contactsData.borrowers.${activeBorrowerIndex}.company_name`, company_name);
+                    if (contact_person_name) handleInputChange(`contactsData.borrowers.${activeBorrowerIndex}.first_name`, contact_person_name);
+                    if (contact_person_email) handleInputChange(`contactsData.borrowers.${activeBorrowerIndex}.email`, contact_person_email);
+                  }
+                }}
+                onCreateNew={() => {
+                  // Handle create new - clear form or show creation modal
+                  console.log('Create new buyer');
+                }}
+              />
             </div>
           </section>
 
@@ -443,15 +467,38 @@ const Contacts: React.FC = () => {
           <section className="mb-6">
             <h3 className="text-base font-semibold mb-4 pb-2 border-b border-gray-600">Basic Info</h3>
             <div className="mb-5">
-              <div className="relative">
-                <i className="fa fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-                <input 
-                  type="text" 
-                  className="w-full pl-9 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
-                  placeholder="Search existing sellers..." 
-                  data-schema-key="customerName"
-                />
-              </div>
+              <ContactSearchPicker
+                contactType="sellers"
+                placeholder="Search existing sellers..."
+                onContactSelect={(contact) => {
+                  // Populate seller form with selected contact data
+                  if (contact.type === 'individual' && contact.individualInfo) {
+                    const { first_name, last_name, middle_name, suffix, ssn, date_of_birth } = contact.individualInfo;
+                    const { primary_email, primary_phone, secondary_phone } = contact.contactInfo || {};
+                    
+                    // Populate individual seller fields
+                    if (first_name) handleInputChange(`contactsData.sellers.${activeSellerIndex}.first_name`, first_name);
+                    if (last_name) handleInputChange(`contactsData.sellers.${activeSellerIndex}.last_name`, last_name);
+                    if (middle_name) handleInputChange(`contactsData.sellers.${activeSellerIndex}.middle_name`, middle_name);
+                    if (suffix) handleInputChange(`contactsData.sellers.${activeSellerIndex}.suffix`, suffix);
+                    if (ssn) handleInputChange(`contactsData.sellers.${activeSellerIndex}.ssn`, ssn);
+                    if (date_of_birth) handleInputChange(`contactsData.sellers.${activeSellerIndex}.date_of_birth`, date_of_birth);
+                    if (primary_email) handleInputChange(`contactsData.sellers.${activeSellerIndex}.email`, primary_email);
+                    if (primary_phone) handleInputChange(`contactsData.sellers.${activeSellerIndex}.primary_phone`, primary_phone);
+                    if (secondary_phone) handleInputChange(`contactsData.sellers.${activeSellerIndex}.secondary_phone`, secondary_phone);
+                  } else if (contact.type === 'business' && contact.businessInfo) {
+                    // Handle business contact selection for sellers
+                    const { company_name, contact_person_name, contact_person_email } = contact.businessInfo;
+                    if (company_name) handleInputChange(`contactsData.sellers.${activeSellerIndex}.company_name`, company_name);
+                    if (contact_person_name) handleInputChange(`contactsData.sellers.${activeSellerIndex}.first_name`, contact_person_name);
+                    if (contact_person_email) handleInputChange(`contactsData.sellers.${activeSellerIndex}.email`, contact_person_email);
+                  }
+                }}
+                onCreateNew={() => {
+                  // Handle create new - clear form or show creation modal
+                  console.log('Create new seller');
+                }}
+              />
             </div>
           </section>
 
@@ -975,19 +1022,75 @@ const Contacts: React.FC = () => {
         <div className="bg-gray-700 border border-gray-600 rounded-md p-10 grid grid-cols-3 gap-10 items-center text-center">
           <div className="flex flex-col items-center">
             <h3 className="text-lg font-semibold mb-5 text-white">Search Existing {contactTypeLabels[activeContactType]}</h3>
-            <div className="relative w-full">
-              <i className="fa fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-              <input 
-                type="text" 
-                className="w-full pl-9 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500" 
-                placeholder={`Search existing ${contactTypeLabels[activeContactType].toLowerCase()}...`}
-              />
-            </div>
+            <ContactSearchPicker
+              contactType={activeContactType}
+              placeholder={`Search existing ${contactTypeLabels[activeContactType].toLowerCase()}...`}
+              onContactSelect={(contact) => {
+                // Populate form with selected contact data based on type
+                if (contact.type === 'individual' && contact.individualInfo) {
+                  const { first_name, last_name, middle_name } = contact.individualInfo;
+                  const { primary_email, primary_phone } = contact.contactInfo || {};
+                  
+                  // Map activeContactType to field paths
+                  const fieldMapping = {
+                    lenders: 'contactsData.lender',
+                    mortgageBrokerages: 'contactsData.mortgage_broker', 
+                    sellingAgencies: 'contactsData.selling_agent',
+                    listingAgencies: 'contactsData.listing_agent',
+                    recordingOffices: 'contactsData.recording_office',
+                    taxAuthorities: 'contactsData.tax_authority',
+                    titleAbstractors: 'contactsData.title_abstractor', 
+                    surveyingFirms: 'contactsData.surveying_firm',
+                    otherContacts: 'contactsData.other_contact'
+                  };
+                  
+                  const basePath = fieldMapping[activeContactType];
+                  if (basePath) {
+                    if (first_name) handleInputChange(`${basePath}.first_name`, first_name);
+                    if (last_name) handleInputChange(`${basePath}.last_name`, last_name);
+                    if (middle_name) handleInputChange(`${basePath}.middle_name`, middle_name);
+                    if (primary_email) handleInputChange(`${basePath}.email`, primary_email);
+                    if (primary_phone) handleInputChange(`${basePath}.phone`, primary_phone);
+                  }
+                } else if (contact.type === 'business' && contact.businessInfo) {
+                  const { company_name, contact_person_name, contact_person_email } = contact.businessInfo;
+                  const { primary_phone } = contact.contactInfo || {};
+                  
+                  const fieldMapping = {
+                    lenders: 'contactsData.lender',
+                    mortgageBrokerages: 'contactsData.mortgage_broker',
+                    sellingAgencies: 'contactsData.selling_agent', 
+                    listingAgencies: 'contactsData.listing_agent',
+                    recordingOffices: 'contactsData.recording_office',
+                    taxAuthorities: 'contactsData.tax_authority',
+                    titleAbstractors: 'contactsData.title_abstractor',
+                    surveyingFirms: 'contactsData.surveying_firm', 
+                    otherContacts: 'contactsData.other_contact'
+                  };
+                  
+                  const basePath = fieldMapping[activeContactType];
+                  if (basePath) {
+                    if (company_name) handleInputChange(`${basePath}.company_name`, company_name);
+                    if (contact_person_name) handleInputChange(`${basePath}.contact_person`, contact_person_name);
+                    if (contact_person_email) handleInputChange(`${basePath}.email`, contact_person_email);
+                    if (primary_phone) handleInputChange(`${basePath}.phone`, primary_phone);
+                  }
+                }
+              }}
+              onCreateNew={() => {
+                // Handle create new - clear form or show creation modal
+                console.log(`Create new ${activeContactType}`);
+              }}
+              className="w-full"
+            />
           </div>
           
           <div className="flex flex-col items-center">
             <h3 className="text-lg font-semibold mb-5 text-white">New {contactTypeLabels[activeContactType]}</h3>
-            <button className="px-4 py-2 bg-blue-600 border border-blue-600 rounded text-white hover:bg-blue-700">
+            <button 
+              onClick={() => console.log(`Create new ${activeContactType}`)}
+              className="px-4 py-2 bg-blue-600 border border-blue-600 rounded text-white hover:bg-blue-700"
+            >
               Create New
             </button>
           </div>

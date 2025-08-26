@@ -1,0 +1,879 @@
+{
+  "feeTypes": [
+    {
+      "key": "TechnologyFee",
+      "label": "Technology Fee",
+      "section": "H",
+      "common": true
+    },
+    {
+      "key": "WireTransferFee",
+      "label": "Wire Transfer Fee",
+      "section": "H",
+      "common": true
+    },
+    {
+      "key": "CourierFee",
+      "label": "Courier Fee",
+      "section": "H",
+      "common": true
+    },
+    {
+      "key": "NotaryFee",
+      "label": "Notary Fee",
+      "section": "H",
+      "common": true
+    },
+    {
+      "key": "TitleSearchFee",
+      "label": "Title Search Fee",
+      "section": "C",
+      "common": true
+    },
+    {
+      "key": "AppraisalFee",
+      "label": "Appraisal Fee",
+      "section": "B",
+      "common": true
+    },
+    {
+      "key": "CreditReportFee",
+      "label": "Credit Report Fee",
+      "section": "B",
+      "common": true
+    },
+    {
+      "key": "SettlementFee",
+      "label": "Settlement or Closing Fee",
+      "section": "C",
+      "common": true
+    },
+    {
+      "key": "RecordingFeeForDeed",
+      "label": "Recording Fee - Deed",
+      "section": "E",
+      "common": true
+    },
+    {
+      "key": "TransferTax",
+      "label": "Transfer Tax",
+      "section": "E",
+      "common": true
+    },
+    {
+      "key": "DocumentPreparationFee",
+      "label": "Document Preparation Fee",
+      "section": "H"
+    },
+    {
+      "key": "AttorneyFee",
+      "label": "Attorney Fee",
+      "section": "H"
+    },
+    {
+      "key": "TitleInsuranceBinderFee",
+      "label": "Title Insurance Binder Fee",
+      "section": "C"
+    },
+    {
+      "key": "LendersInspection",
+      "label": "Lenders Inspection",
+      "section": "B"
+    },
+    {
+      "key": "MortgageBrokerCommission",
+      "label": "Mortgage Broker Commission",
+      "section": "A"
+    },
+    {
+      "key": "TaxCertificate",
+      "label": "Tax Certificate",
+      "section": "C"
+    },
+    {
+      "key": "MunicipalLienCertificate",
+      "label": "Municipal Lien Certificate",
+      "section": "C"
+    },
+    {
+      "key": "SurveyFee",
+      "label": "Survey Fee",
+      "section": "B"
+    },
+    {
+      "key": "PestInspection",
+      "label": "Pest Inspection",
+      "section": "B"
+    },
+    {
+      "key": "LeadBasedPaintInspection",
+      "label": "Lead-Based Paint Inspection",
+      "section": "B"
+    },
+    {
+      "key": "HomeInspection",
+      "label": "Home Inspection",
+      "section": "B"
+    },
+    {
+      "key": "HomeWarranty",
+      "label": "Home Warranty",
+      "section": "H"
+    },
+    {
+      "key": "RealEstateCommission",
+      "label": "Real Estate Commission",
+      "section": "H"
+    },
+    {
+      "key": "AdminFee",
+      "label": "Administrative Fee",
+      "section": "H"
+    },
+    {
+      "key": "ProcessingFee",
+      "label": "Processing Fee",
+      "section": "A"
+    },
+    {
+      "key": "UnderwritingFee",
+      "label": "Underwriting Fee",
+      "section": "A"
+    },
+    {
+      "key": "ApplicationFee",
+      "label": "Application Fee",
+      "section": "A"
+    },
+    {
+      "key": "TaxServiceFee",
+      "label": "Tax Service Fee",
+      "section": "A"
+    },
+    {
+      "key": "FloodCertification",
+      "label": "Flood Certification",
+      "section": "B"
+    },
+    {
+      "key": "FloodMonitoring",
+      "label": "Flood Monitoring",
+      "section": "H"
+    },
+    {
+      "key": "VerificationOfEmployment",
+      "label": "Verification of Employment",
+      "section": "B"
+    },
+    {
+      "key": "VerificationOfDeposit",
+      "label": "Verification of Deposit",
+      "section": "B"
+    },
+    {
+      "key": "Endorsements",
+      "label": "Endorsements",
+      "section": "C"
+    },
+    {
+      "key": "DiscountPoints",
+      "label": "Discount Points",
+      "section": "A"
+    },
+    {
+      "key": "OriginationFee",
+      "label": "Origination Fee",
+      "section": "A"
+    },
+    {
+      "key": "LendersCoverage",
+      "label": "Lenders Coverage",
+      "section": "C"
+    },
+    {
+      "key": "OwnersCoverage",
+      "label": "Owners Coverage",
+      "section": "C"
+    },
+    {
+      "key": "MortgageRegistrationTax",
+      "label": "Mortgage Registration Tax",
+      "section": "E"
+    },
+    {
+      "key": "RecordingFeeForMortgage",
+      "label": "Recording Fee - Mortgage",
+      "section": "E"
+    },
+    {
+      "key": "RecordingFeeForRelease",
+      "label": "Recording Fee - Release",
+      "section": "E"
+    },
+    {
+      "key": "StateTax",
+      "label": "State Tax",
+      "section": "E"
+    },
+    {
+      "key": "CityTax",
+      "label": "City Tax",
+      "section": "E"
+    },
+    {
+      "key": "CountyTax",
+      "label": "County Tax",
+      "section": "E"
+    },
+    {
+      "key": "InitialEscrowPaymentAtClosing",
+      "label": "Initial Escrow Payment at Closing",
+      "section": "G"
+    },
+    {
+      "key": "HomeownersInsurancePremium",
+      "label": "Homeowners Insurance Premium",
+      "section": "F"
+    },
+    {
+      "key": "MortgageInsurancePremium",
+      "label": "Mortgage Insurance Premium",
+      "section": "F"
+    },
+    {
+      "key": "PrepaidInterest",
+      "label": "Prepaid Interest",
+      "section": "F"
+    },
+    {
+      "key": "PropertyTax",
+      "label": "Property Tax",
+      "section": "F"
+    },
+    {
+      "key": "HomeownersInsurance",
+      "label": "Homeowners Insurance",
+      "section": "G"
+    },
+    {
+      "key": "MortgageInsurance",
+      "label": "Mortgage Insurance",
+      "section": "G"
+    },
+    {
+      "key": "SchoolTax",
+      "label": "School Tax",
+      "section": "G"
+    },
+    {
+      "key": "TaxesAndOtherGovernmentFees",
+      "label": "Taxes and Other Government Fees",
+      "section": "G"
+    },
+    {
+      "key": "AggregateAdjustment",
+      "label": "Aggregate Adjustment",
+      "section": "G"
+    },
+    {
+      "key": "AssignmentFee",
+      "label": "Assignment Fee",
+      "section": "H"
+    },
+    {
+      "key": "BuydownFee",
+      "label": "Buydown Fee",
+      "section": "H"
+    },
+    {
+      "key": "ConveyanceFee",
+      "label": "Conveyance Fee",
+      "section": "E"
+    },
+    {
+      "key": "DeliveryFee",
+      "label": "Delivery Fee",
+      "section": "H"
+    },
+    {
+      "key": "DraftFee",
+      "label": "Draft Fee",
+      "section": "H"
+    },
+    {
+      "key": "EmailDocFee",
+      "label": "Email Doc Fee",
+      "section": "H"
+    },
+    {
+      "key": "ExpressFee",
+      "label": "Express Fee",
+      "section": "H"
+    },
+    {
+      "key": "FaxFee",
+      "label": "Fax Fee",
+      "section": "H"
+    },
+    {
+      "key": "FinalInspectionFee",
+      "label": "Final Inspection Fee",
+      "section": "B"
+    },
+    {
+      "key": "HOACapitalContribution",
+      "label": "HOA Capital Contribution",
+      "section": "H"
+    },
+    {
+      "key": "HOADues",
+      "label": "HOA Dues",
+      "section": "H"
+    },
+    {
+      "key": "HOATransferFee",
+      "label": "HOA Transfer Fee",
+      "section": "H"
+    },
+    {
+      "key": "HOAResaleCertificate",
+      "label": "HOA Resale Certificate",
+      "section": "H"
+    },
+    {
+      "key": "InspectionFee",
+      "label": "Inspection Fee",
+      "section": "B"
+    },
+    {
+      "key": "LendersTitlePolicy",
+      "label": "Lenders Title Policy",
+      "section": "C"
+    },
+    {
+      "key": "LoanOriginationFee",
+      "label": "Loan Origination Fee",
+      "section": "A"
+    },
+    {
+      "key": "LoanDiscountFee",
+      "label": "Loan Discount Fee",
+      "section": "A"
+    },
+    {
+      "key": "MailAwayFee",
+      "label": "Mail Away Fee",
+      "section": "H"
+    },
+    {
+      "key": "MessengerFee",
+      "label": "Messenger Fee",
+      "section": "H"
+    },
+    {
+      "key": "MobileNotaryFee",
+      "label": "Mobile Notary Fee",
+      "section": "H"
+    },
+    {
+      "key": "OvernightMailFee",
+      "label": "Overnight Mail Fee",
+      "section": "H"
+    },
+    {
+      "key": "OwnersTitlePolicy",
+      "label": "Owners Title Policy",
+      "section": "C"
+    },
+    {
+      "key": "PhotoFee",
+      "label": "Photo Fee",
+      "section": "H"
+    },
+    {
+      "key": "PostageFee",
+      "label": "Postage Fee",
+      "section": "H"
+    },
+    {
+      "key": "PowerOfAttorneyPreparationFee",
+      "label": "Power of Attorney Preparation Fee",
+      "section": "H"
+    },
+    {
+      "key": "PropertyInspectionFee",
+      "label": "Property Inspection Fee",
+      "section": "B"
+    },
+    {
+      "key": "PropertyInspectionWaiverFee",
+      "label": "Property Inspection Waiver Fee",
+      "section": "B"
+    },
+    {
+      "key": "RecordingServiceFee",
+      "label": "Recording Service Fee",
+      "section": "H"
+    },
+    {
+      "key": "ReleasePreparationFee",
+      "label": "Release Preparation Fee",
+      "section": "H"
+    },
+    {
+      "key": "ReleaseTrackingFee",
+      "label": "Release Tracking Fee",
+      "section": "H"
+    },
+    {
+      "key": "SepticInspection",
+      "label": "Septic Inspection",
+      "section": "B"
+    },
+    {
+      "key": "SigningFee",
+      "label": "Signing Fee",
+      "section": "H"
+    },
+    {
+      "key": "TitleAbstractFee",
+      "label": "Title Abstract Fee",
+      "section": "C"
+    },
+    {
+      "key": "TitleClosingProtectionLetterFee",
+      "label": "Title Closing Protection Letter Fee",
+      "section": "C"
+    },
+    {
+      "key": "TitleDocumentPrepFee",
+      "label": "Title Document Prep Fee",
+      "section": "C"
+    },
+    {
+      "key": "TitleExamFee",
+      "label": "Title Exam Fee",
+      "section": "C"
+    },
+    {
+      "key": "TitleInsuranceFee",
+      "label": "Title Insurance Fee",
+      "section": "C"
+    },
+    {
+      "key": "TitleSearchAbstractFee",
+      "label": "Title Search Abstract Fee",
+      "section": "C"
+    },
+    {
+      "key": "TitleUpdateFee",
+      "label": "Title Update Fee",
+      "section": "C"
+    },
+    {
+      "key": "TransactionCoordinatorFee",
+      "label": "Transaction Coordinator Fee",
+      "section": "H"
+    },
+    {
+      "key": "TransferFee",
+      "label": "Transfer Fee",
+      "section": "H"
+    },
+    {
+      "key": "TrustAccountFee",
+      "label": "Trust Account Fee",
+      "section": "H"
+    },
+    {
+      "key": "TruthInLendingFee",
+      "label": "Truth in Lending Fee",
+      "section": "H"
+    },
+    {
+      "key": "UPSFee",
+      "label": "UPS Fee",
+      "section": "H"
+    },
+    {
+      "key": "UtilityConnectionFee",
+      "label": "Utility Connection Fee",
+      "section": "H"
+    },
+    {
+      "key": "VACertificateOfEligibilityFee",
+      "label": "VA Certificate of Eligibility Fee",
+      "section": "B"
+    },
+    {
+      "key": "WaterEscrowFee",
+      "label": "Water Escrow Fee",
+      "section": "H"
+    },
+    {
+      "key": "WellInspection",
+      "label": "Well Inspection",
+      "section": "B"
+    },
+    {
+      "key": "WellWaterTestFee",
+      "label": "Well Water Test Fee",
+      "section": "B"
+    },
+    {
+      "key": "ZoningPermitFee",
+      "label": "Zoning Permit Fee",
+      "section": "E"
+    },
+    {
+      "key": "AsbestosInspection",
+      "label": "Asbestos Inspection",
+      "section": "B"
+    },
+    {
+      "key": "BuildingPermitFee",
+      "label": "Building Permit Fee",
+      "section": "E"
+    },
+    {
+      "key": "COEFee",
+      "label": "Certificate of Occupancy Fee",
+      "section": "E"
+    },
+    {
+      "key": "ChimneyInspection",
+      "label": "Chimney Inspection",
+      "section": "B"
+    },
+    {
+      "key": "CommitmentFee",
+      "label": "Commitment Fee",
+      "section": "A"
+    },
+    {
+      "key": "ComplianceFee",
+      "label": "Compliance Fee",
+      "section": "H"
+    },
+    {
+      "key": "CondoAssociationFee",
+      "label": "Condo Association Fee",
+      "section": "H"
+    },
+    {
+      "key": "CondoMasterInsurance",
+      "label": "Condo Master Insurance",
+      "section": "H"
+    },
+    {
+      "key": "CondoMoveInFee",
+      "label": "Condo Move-In Fee",
+      "section": "H"
+    },
+    {
+      "key": "CondoQuestionnaireFee",
+      "label": "Condo Questionnaire Fee",
+      "section": "H"
+    },
+    {
+      "key": "CondoResaleCertificate",
+      "label": "Condo Resale Certificate",
+      "section": "H"
+    },
+    {
+      "key": "ConservationCommissionFee",
+      "label": "Conservation Commission Fee",
+      "section": "E"
+    },
+    {
+      "key": "ConveyanceTax",
+      "label": "Conveyance Tax",
+      "section": "E"
+    },
+    {
+      "key": "CoopApartmentFee",
+      "label": "Co-op Apartment Fee",
+      "section": "H"
+    },
+    {
+      "key": "CoopRecognitionAgreement",
+      "label": "Co-op Recognition Agreement",
+      "section": "H"
+    },
+    {
+      "key": "CreditInquiryFee",
+      "label": "Credit Inquiry Fee",
+      "section": "B"
+    },
+    {
+      "key": "CreditRescoreFee",
+      "label": "Credit Rescore Fee",
+      "section": "B"
+    },
+    {
+      "key": "CreditSupplementFee",
+      "label": "Credit Supplement Fee",
+      "section": "B"
+    },
+    {
+      "key": "DeedPreparationFee",
+      "label": "Deed Preparation Fee",
+      "section": "H"
+    },
+    {
+      "key": "DischargeFee",
+      "label": "Discharge Fee",
+      "section": "H"
+    },
+    {
+      "key": "DisbursementFee",
+      "label": "Disbursement Fee",
+      "section": "H"
+    },
+    {
+      "key": "DockFee",
+      "label": "Dock Fee",
+      "section": "H"
+    },
+    {
+      "key": "DrawInspectionFee",
+      "label": "Draw Inspection Fee",
+      "section": "B"
+    },
+    {
+      "key": "EFTFee",
+      "label": "EFT Fee",
+      "section": "H"
+    },
+    {
+      "key": "ElectricalInspection",
+      "label": "Electrical Inspection",
+      "section": "B"
+    },
+    {
+      "key": "ElevationCertificate",
+      "label": "Elevation Certificate",
+      "section": "B"
+    },
+    {
+      "key": "EngineerInspection",
+      "label": "Engineer Inspection",
+      "section": "B"
+    },
+    {
+      "key": "EnvironmentalInspection",
+      "label": "Environmental Inspection",
+      "section": "B"
+    },
+    {
+      "key": "EscrowFee",
+      "label": "Escrow Fee",
+      "section": "C"
+    },
+    {
+      "key": "EscrowWaiverFee",
+      "label": "Escrow Waiver Fee",
+      "section": "A"
+    },
+    {
+      "key": "EstoppelFee",
+      "label": "Estoppel Fee",
+      "section": "H"
+    },
+    {
+      "key": "FHAUpfrontMIP",
+      "label": "FHA Upfront MIP",
+      "section": "A"
+    },
+    {
+      "key": "FinalWalkThroughInspection",
+      "label": "Final Walk-Through Inspection",
+      "section": "B"
+    },
+    {
+      "key": "FoundationInspection",
+      "label": "Foundation Inspection",
+      "section": "B"
+    },
+    {
+      "key": "FundingFee",
+      "label": "Funding Fee",
+      "section": "A"
+    },
+    {
+      "key": "GarageDoorInspection",
+      "label": "Garage Door Inspection",
+      "section": "B"
+    },
+    {
+      "key": "GolfMembershipTransferFee",
+      "label": "Golf Membership Transfer Fee",
+      "section": "H"
+    },
+    {
+      "key": "GrantDeedFee",
+      "label": "Grant Deed Fee",
+      "section": "H"
+    },
+    {
+      "key": "HazardInsurancePremium",
+      "label": "Hazard Insurance Premium",
+      "section": "F"
+    },
+    {
+      "key": "HealthDepartmentFee",
+      "label": "Health Department Fee",
+      "section": "E"
+    },
+    {
+      "key": "HoldOpenFee",
+      "label": "Hold Open Fee",
+      "section": "H"
+    },
+    {
+      "key": "HydrostaticPressureTest",
+      "label": "Hydrostatic Pressure Test",
+      "section": "B"
+    },
+    {
+      "key": "ImpoundAccountSetup",
+      "label": "Impound Account Setup",
+      "section": "A"
+    },
+    {
+      "key": "IncomeTaxWithholding",
+      "label": "Income Tax Withholding",
+      "section": "E"
+    },
+    {
+      "key": "InsuredClosingLetterFee",
+      "label": "Insured Closing Letter Fee",
+      "section": "C"
+    },
+    {
+      "key": "InterestRateReductionFee",
+      "label": "Interest Rate Reduction Fee",
+      "section": "A"
+    },
+    {
+      "key": "InterimInterest",
+      "label": "Interim Interest",
+      "section": "F"
+    },
+    {
+      "key": "JudgmentPayoff",
+      "label": "Judgment Payoff",
+      "section": "H"
+    },
+    {
+      "key": "LandSurvey",
+      "label": "Land Survey",
+      "section": "B"
+    },
+    {
+      "key": "LateCharge",
+      "label": "Late Charge",
+      "section": "H"
+    },
+    {
+      "key": "LeasePreparationFee",
+      "label": "Lease Preparation Fee",
+      "section": "H"
+    },
+    {
+      "key": "LegalFee",
+      "label": "Legal Fee",
+      "section": "H"
+    },
+    {
+      "key": "LenderAttorneyFee",
+      "label": "Lender Attorney Fee",
+      "section": "A"
+    },
+    {
+      "key": "LenderDocumentPreparationFee",
+      "label": "Lender Document Preparation Fee",
+      "section": "A"
+    },
+    {
+      "key": "LenderProcessingFee",
+      "label": "Lender Processing Fee",
+      "section": "A"
+    },
+    {
+      "key": "LienPayoff",
+      "label": "Lien Payoff",
+      "section": "H"
+    },
+    {
+      "key": "LienSearchFee",
+      "label": "Lien Search Fee",
+      "section": "C"
+    },
+    {
+      "key": "LifeOfLoanTaxService",
+      "label": "Life of Loan Tax Service",
+      "section": "H"
+    },
+    {
+      "key": "LoanAmortizationScheduleFee",
+      "label": "Loan Amortization Schedule Fee",
+      "section": "H"
+    },
+    {
+      "key": "LoanAssumptionFee",
+      "label": "Loan Assumption Fee",
+      "section": "A"
+    },
+    {
+      "key": "LoanModificationFee",
+      "label": "Loan Modification Fee",
+      "section": "A"
+    },
+    {
+      "key": "LoanPayoffFee",
+      "label": "Loan Payoff Fee",
+      "section": "H"
+    },
+    {
+      "key": "LoanReinstatementFee",
+      "label": "Loan Reinstatement Fee",
+      "section": "H"
+    },
+    {
+      "key": "LoanTieFee",
+      "label": "Loan Tie Fee",
+      "section": "H"
+    },
+    {
+      "key": "LockInFee",
+      "label": "Lock-In Fee",
+      "section": "A"
+    },
+    {
+      "key": "ManagementCompanyFee",
+      "label": "Management Company Fee",
+      "section": "H"
+    },
+    {
+      "key": "MechanicLienWaiver",
+      "label": "Mechanic Lien Waiver",
+      "section": "H"
+    },
+    {
+      "key": "MoldInspection",
+      "label": "Mold Inspection",
+      "section": "B"
+    },
+    {
+      "key": "MortgageElectronicRegistrationSystemFee",
+      "label": "Mortgage Electronic Registration System Fee",
+      "section": "A"
+    },
+    {
+      "key": "Other",
+      "label": "Other",
+      "section": "H"
+    }
+  ]
+}
