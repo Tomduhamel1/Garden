@@ -337,9 +337,9 @@ const CDField: React.FC<CDFieldProps> = ({
               } : {})
             }}
           >
-            <option value="" className="bg-gray-800 text-gray-400">Select...</option>
+            <option value="" className={documentMode ? "bg-white text-gray-600" : "bg-gray-800 text-gray-400"}>Select...</option>
             {options.map(opt => (
-              <option key={opt.value} value={opt.value} className="bg-gray-800 text-white">{opt.label}</option>
+              <option key={opt.value} value={opt.value} className={documentMode ? "bg-white text-black" : "bg-gray-800 text-white"}>{opt.label}</option>
             ))}
           </select>
           {validationError && <span className="text-red-500 text-xs ml-1">{validationError}</span>}

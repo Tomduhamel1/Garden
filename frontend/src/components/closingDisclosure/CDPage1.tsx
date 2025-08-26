@@ -101,6 +101,7 @@ const CDPage1: React.FC = () => {
                   <td>Date Issued</td>
                   <td>
                     <CDField
+            documentMode={true}
                       fieldId="date-issued"
                       schemaKey="cdfData.transaction_information.borrower_statement_issued_date"
                       type="date"
@@ -118,6 +119,7 @@ const CDPage1: React.FC = () => {
                   <td>Closing Date</td>
                   <td>
                     <CDField
+            documentMode={true}
                       fieldId="closing-date"
                       schemaKey="closingDate"
                       type="date"
@@ -136,6 +138,7 @@ const CDPage1: React.FC = () => {
                   <td>Disbursement Date</td>
                   <td>
                     <CDField
+            documentMode={true}
                       fieldId="disbursement-date"
                       schemaKey="cdfData.transaction_information.disbursement_date"
                       type="date"
@@ -152,6 +155,7 @@ const CDPage1: React.FC = () => {
                   <td>Settlement Agent</td>
                   <td>
                     <CDField
+            documentMode={true}
                       fieldId="settlement-agent"
                       schemaKey="contactsData.title_companies.0.company_name"
                       type="text"
@@ -169,6 +173,7 @@ const CDPage1: React.FC = () => {
                   <td>File #</td>
                   <td>
                     <CDField
+            documentMode={true}
                       fieldId="file-number"
                       schemaKey="file_number"
                       type="text"
@@ -186,6 +191,7 @@ const CDPage1: React.FC = () => {
                   <td>Property</td>
                   <td>
                     <CDField
+            documentMode={true}
                       fieldId="property-address"
                       schemaKey="propertiesData.properties.0.address"
                       type="text"
@@ -197,6 +203,7 @@ const CDPage1: React.FC = () => {
                       }}
                     /><br />
                     <CDField
+            documentMode={true}
                       fieldId="property-city"
                       schemaKey="propertiesData.properties.0.city"
                       type="text"
@@ -208,6 +215,7 @@ const CDPage1: React.FC = () => {
                       }}
                     />, 
                     <CDField
+            documentMode={true}
                       fieldId="property-state"
                       schemaKey="propertiesData.properties.0.state"
                       type="text"
@@ -220,6 +228,7 @@ const CDPage1: React.FC = () => {
                       }}
                     />{' '}
                     <CDField
+            documentMode={true}
                       fieldId="property-zip"
                       schemaKey="propertiesData.properties.0.zip"
                       type="text"
@@ -236,6 +245,7 @@ const CDPage1: React.FC = () => {
                   <td>Sale Price</td>
                   <td style={{ fontWeight: 'bold' }}>
                     <CDField
+            documentMode={true}
                       fieldId="sale-price"
                       schemaKey="cdfData.transaction_information.purchase_price"
                       type="currency"
@@ -261,6 +271,7 @@ const CDPage1: React.FC = () => {
                   <td>Borrower(s)</td>
                   <td>
                     <CDField
+            documentMode={true}
                       fieldId="borrower-first-name"
                       schemaKey="contactsData.borrowers.0.first_name"
                       type="text"
@@ -272,6 +283,7 @@ const CDPage1: React.FC = () => {
                       }}
                     />{' '}
                     <CDField
+            documentMode={true}
                       fieldId="borrower-last-name"
                       schemaKey="contactsData.borrowers.0.last_name"
                       type="text"
@@ -283,6 +295,7 @@ const CDPage1: React.FC = () => {
                       }}
                     /><br />
                     <CDField
+            documentMode={true}
                       fieldId="borrower-address"
                       schemaKey="contactsData.borrowers.0.current_address.address_1"
                       type="text"
@@ -294,6 +307,7 @@ const CDPage1: React.FC = () => {
                       }}
                     /><br />
                     <CDField
+            documentMode={true}
                       fieldId="borrower-city"
                       schemaKey="contactsData.borrowers.0.current_address.city"
                       type="text"
@@ -305,6 +319,7 @@ const CDPage1: React.FC = () => {
                       }}
                     />, 
                     <CDField
+            documentMode={true}
                       fieldId="borrower-state"
                       schemaKey="contactsData.borrowers.0.current_address.state"
                       type="text"
@@ -317,6 +332,7 @@ const CDPage1: React.FC = () => {
                       }}
                     />{' '}
                     <CDField
+            documentMode={true}
                       fieldId="borrower-zip"
                       schemaKey="contactsData.borrowers.0.current_address.zipcode"
                       type="text"
@@ -333,6 +349,7 @@ const CDPage1: React.FC = () => {
                   <td>Seller(s)</td>
                   <td>
                     <CDField
+            documentMode={true}
                       fieldId="seller-first-name"
                       schemaKey="contactsData.sellers.0.first_name"
                       type="text"
@@ -344,6 +361,7 @@ const CDPage1: React.FC = () => {
                       }}
                     />{' '}
                     <CDField
+            documentMode={true}
                       fieldId="seller-last-name"
                       schemaKey="contactsData.sellers.0.last_name"
                       type="text"
@@ -355,6 +373,7 @@ const CDPage1: React.FC = () => {
                       }}
                     /><br />
                     <CDField
+            documentMode={true}
                       fieldId="seller-address"
                       schemaKey="contactsData.sellers.0.current_address.address_1"
                       type="text"
@@ -366,6 +385,7 @@ const CDPage1: React.FC = () => {
                       }}
                     /><br />
                     <CDField
+            documentMode={true}
                       fieldId="seller-city"
                       schemaKey="contactsData.sellers.0.current_address.city"
                       type="text"
@@ -377,6 +397,7 @@ const CDPage1: React.FC = () => {
                       }}
                     />, 
                     <CDField
+            documentMode={true}
                       fieldId="seller-state"
                       schemaKey="contactsData.sellers.0.current_address.state"
                       type="text"
@@ -389,6 +410,7 @@ const CDPage1: React.FC = () => {
                       }}
                     />{' '}
                     <CDField
+            documentMode={true}
                       fieldId="seller-zip"
                       schemaKey="contactsData.sellers.0.current_address.zipcode"
                       type="text"
@@ -405,6 +427,7 @@ const CDPage1: React.FC = () => {
                   <td>Lender</td>
                   <td>
                     <CDField
+            documentMode={true}
                       fieldId="lender-name"
                       schemaKey="contactsData.lenders.0.company_name"
                       type="text"
@@ -429,6 +452,7 @@ const CDPage1: React.FC = () => {
                   <td>Loan Term</td>
                   <td>
                     <CDField
+            documentMode={true}
                       fieldId="loan-term"
                       schemaKey="cdfData.loans.0.loan_term_years"
                       documentMode={true}
@@ -444,6 +468,7 @@ const CDPage1: React.FC = () => {
                   <td>Purpose</td>
                   <td>
                     <CDField
+            documentMode={true}
                       fieldId="loan-purpose"
                       schemaKey="cdfData.loans.0.loan_purpose"
                       documentMode={true}
@@ -460,6 +485,7 @@ const CDPage1: React.FC = () => {
                   <td>Product</td>
                   <td>
                     <CDField
+            documentMode={true}
                       fieldId="loan-product"
                       schemaKey="cdfData.loans.0.loan_product"
                       documentMode={true}
@@ -475,6 +501,7 @@ const CDPage1: React.FC = () => {
                   <td>Loan Type</td>
                   <td>
                     <CDField
+            documentMode={true}
                       fieldId="loan-type"
                       schemaKey="cdfData.loans.0.loan_type"
                       documentMode={true}
@@ -491,6 +518,7 @@ const CDPage1: React.FC = () => {
                   <td>Loan ID #</td>
                   <td>
                     <CDField
+            documentMode={true}
                       fieldId="loan-number"
                       schemaKey="cdfData.loans.0.loan_number"
                       type="text"
@@ -507,6 +535,7 @@ const CDPage1: React.FC = () => {
                   <td>MIC #</td>
                   <td>
                     <CDField
+            documentMode={true}
                       fieldId="mic-number"
                       schemaKey="cdfData.loans.0.mortgage_insurance_case_number"
                       type="text"
@@ -538,6 +567,7 @@ const CDPage1: React.FC = () => {
               <td>Loan Amount</td>
               <td>
                 <CDField
+            documentMode={true}
                   fieldId="loan-amount"
                   schemaKey="cdfData.loans.0.initial_loan_amount"
                   documentMode={true}
@@ -554,6 +584,7 @@ const CDPage1: React.FC = () => {
               <td>Interest Rate</td>
               <td>
                 <CDField
+            documentMode={true}
                   fieldId="interest-rate"
                   schemaKey="cdfData.loans.0.interest_rate"
                   documentMode={true}
@@ -570,6 +601,7 @@ const CDPage1: React.FC = () => {
               <td>Monthly Principal & Interest<br /><small style={{ fontSize: '8px' }}>See Projected Payments below for your Estimated Total Monthly Payment</small></td>
               <td>
                 <CDField
+            documentMode={true}
                   fieldId="monthly-pi"
                   schemaKey="cdfData.loans.0.monthly_principal_and_interest"
                   documentMode={true}
@@ -597,6 +629,7 @@ const CDPage1: React.FC = () => {
               <td></td>
               <td>
                 <CDField
+            documentMode={true}
                   fieldId="has-balloon"
                   schemaKey="cdfData.loans.0.has_balloon_payment"
                   documentMode={true}
@@ -608,6 +641,7 @@ const CDPage1: React.FC = () => {
                 /> 
                 <small style={{ fontSize: '8px', marginLeft: '5px' }}>
                   <CDField
+            documentMode={true}
                     fieldId="balloon-description"
                     schemaKey="cdfData.loans.0.balloon_payment_description.0"
                     type="text"
@@ -643,6 +677,7 @@ const CDPage1: React.FC = () => {
                   <td>Principal & Interest</td>
                   <td>
                     <CDField
+            documentMode={true}
                       fieldId="year1-pi"
                       schemaKey="cdfData.projected_payments.year1.principal_interest"
                       type="currency"
@@ -660,6 +695,7 @@ const CDPage1: React.FC = () => {
                   <td>Mortgage Insurance</td>
                   <td>+ 
                     <CDField
+            documentMode={true}
                       fieldId="year1-mi"
                       schemaKey="cdfData.projected_payments.year1.mortgage_insurance"
                       type="currency"
@@ -678,6 +714,7 @@ const CDPage1: React.FC = () => {
                   <td>Estimated Escrow<br /><small style={{ fontSize: '8px' }}>Amount can increase over time.</small></td>
                   <td>+ 
                     <CDField
+            documentMode={true}
                       fieldId="year1-escrow"
                       schemaKey="cdfData.projected_payments.year1.estimated_escrow"
                       type="currency"
@@ -696,6 +733,7 @@ const CDPage1: React.FC = () => {
                   <td><strong>Estimated Total Monthly Payment</strong></td>
                   <td>
                     <CDField
+            documentMode={true}
                       fieldId="year1-total"
                       schemaKey="cdfData.projected_payments.year1.total_payment"
                       type="currency"
@@ -724,6 +762,7 @@ const CDPage1: React.FC = () => {
                 <tr>
                   <td>
                     <CDField
+            documentMode={true}
                       fieldId="estimated-tia"
                       schemaKey="cdfData.estimated_taxes_insurance_assessments"
                       type="currency"
@@ -765,6 +804,7 @@ const CDPage1: React.FC = () => {
               <td style={{ width: '40%' }}>Closing Costs</td>
               <td style={{ width: '20%', textAlign: 'right' }}>
                 <CDField
+            documentMode={true}
                   fieldId="closing-costs"
                   schemaKey="cdfData.closing_costs_total"
                   type="currency"
@@ -780,6 +820,7 @@ const CDPage1: React.FC = () => {
               <td style={{ fontSize: '8px' }}>
                 Includes{' '}
                 <CDField
+            documentMode={true}
                   fieldId="lender-credits"
                   schemaKey="cdfData.lender_credits"
                   type="currency"
@@ -797,6 +838,7 @@ const CDPage1: React.FC = () => {
               <td style={{ fontWeight: 'bold' }}>Cash to Close</td>
               <td style={{ textAlign: 'right', fontWeight: 'bold' }}>
                 <CDField
+            documentMode={true}
                   fieldId="cash-to-close"
                   schemaKey="cdfData.cash_to_close"
                   type="currency"
@@ -829,6 +871,7 @@ const CDPage1: React.FC = () => {
         }}>
           CLOSING DISCLOSURE &nbsp;&nbsp;&nbsp; PAGE 1 OF 5 • LOAN ID # 
           <CDField
+            documentMode={true}
             fieldId="loan-id-footer"
             schemaKey="cdfData.loans.0.loan_number"
             type="text"

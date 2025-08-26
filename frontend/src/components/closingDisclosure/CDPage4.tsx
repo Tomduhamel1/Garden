@@ -27,6 +27,7 @@ const CDPage4: React.FC<CDPage4Props> = ({ cdfData, getValue, setValue }) => {
               If you sell or transfer this property to another person, your lender
               <div className="mt-1">
                 <CDField
+            documentMode={true}
                   value={cdfData?.loan_disclosures?.assumption}
                   schemaKey="cdfData.loan_disclosures.assumption"
                   getValue={getValue}
@@ -55,6 +56,7 @@ const CDPage4: React.FC<CDPage4Props> = ({ cdfData, getValue, setValue }) => {
               Your loan
               <div className="mt-1">
                 <CDField
+            documentMode={true}
                   value={cdfData?.loan_disclosures?.demand_feature}
                   schemaKey="cdfData.loan_disclosures.demand_feature"
                   getValue={getValue}
@@ -82,6 +84,7 @@ const CDPage4: React.FC<CDPage4Props> = ({ cdfData, getValue, setValue }) => {
             <div className="text-[9pt] mt-1">
               If your payment is more than
               <CDField
+            documentMode={true}
                 value={cdfData?.loan_disclosures?.late_payment_days}
                 schemaKey="cdfData.loan_disclosures.late_payment_days"
                 getValue={getValue}
@@ -97,6 +100,7 @@ const CDPage4: React.FC<CDPage4Props> = ({ cdfData, getValue, setValue }) => {
               />
               days late, your lender will charge a late fee of
               <CDField
+            documentMode={true}
                 value={cdfData?.loan_disclosures?.late_payment_fee}
                 schemaKey="cdfData.loan_disclosures.late_payment_fee"
                 getValue={getValue}
@@ -120,6 +124,7 @@ const CDPage4: React.FC<CDPage4Props> = ({ cdfData, getValue, setValue }) => {
               Under your loan terms, you
               <div className="mt-1">
                 <CDField
+            documentMode={true}
                   value={cdfData?.loan_disclosures?.negative_amortization}
                   schemaKey="cdfData.loan_disclosures.negative_amortization"
                   getValue={getValue}
@@ -149,6 +154,7 @@ const CDPage4: React.FC<CDPage4Props> = ({ cdfData, getValue, setValue }) => {
               Your lender
               <div className="mt-1">
                 <CDField
+            documentMode={true}
                   value={cdfData?.loan_disclosures?.partial_payments}
                   schemaKey="cdfData.loan_disclosures.partial_payments"
                   getValue={getValue}
@@ -178,6 +184,7 @@ const CDPage4: React.FC<CDPage4Props> = ({ cdfData, getValue, setValue }) => {
               You are granting a security interest in
               <div className="mt-1">
                 <CDField
+            documentMode={true}
                   value={cdfData?.property?.address?.street_address}
                   schemaKey="cdfData.property.address.street_address"
                   getValue={getValue}
@@ -192,6 +199,7 @@ const CDPage4: React.FC<CDPage4Props> = ({ cdfData, getValue, setValue }) => {
                   }}
                 />
                 <CDField
+            documentMode={true}
                   value={`${cdfData?.property?.address?.city || ''}, ${cdfData?.property?.address?.state || ''} ${cdfData?.property?.address?.zip || ''}`}
                   schemaKey="cdfData.property.address"
                   getValue={getValue}
@@ -216,6 +224,7 @@ const CDPage4: React.FC<CDPage4Props> = ({ cdfData, getValue, setValue }) => {
             <div className="text-[9pt] mt-1">
               For now, your loan
               <CDField
+            documentMode={true}
                 value={cdfData?.loan_disclosures?.escrow_account}
                 schemaKey="cdfData.loan_disclosures.escrow_account"
                 getValue={getValue}
@@ -241,6 +250,7 @@ const CDPage4: React.FC<CDPage4Props> = ({ cdfData, getValue, setValue }) => {
                     <div>
                       <label className="flex items-center">
                         <CDField
+            documentMode={true}
                           value={cdfData?.loan_disclosures?.escrow_items?.property_taxes}
                           schemaKey="cdfData.loan_disclosures.escrow_items.property_taxes"
                           getValue={getValue}
@@ -260,6 +270,7 @@ const CDPage4: React.FC<CDPage4Props> = ({ cdfData, getValue, setValue }) => {
                     <div>
                       <label className="flex items-center">
                         <CDField
+            documentMode={true}
                           value={cdfData?.loan_disclosures?.escrow_items?.homeowners_insurance}
                           schemaKey="cdfData.loan_disclosures.escrow_items.homeowners_insurance"
                           getValue={getValue}
@@ -279,6 +290,7 @@ const CDPage4: React.FC<CDPage4Props> = ({ cdfData, getValue, setValue }) => {
                     <div>
                       <label className="flex items-center">
                         <CDField
+            documentMode={true}
                           value={cdfData?.loan_disclosures?.escrow_items?.other}
                           schemaKey="cdfData.loan_disclosures.escrow_items.other"
                           getValue={getValue}
@@ -294,6 +306,7 @@ const CDPage4: React.FC<CDPage4Props> = ({ cdfData, getValue, setValue }) => {
                         />
                         Other:
                         <CDField
+            documentMode={true}
                           value={cdfData?.loan_disclosures?.escrow_items?.other_description}
                           schemaKey="cdfData.loan_disclosures.escrow_items.other_description"
                           getValue={getValue}
@@ -319,6 +332,7 @@ const CDPage4: React.FC<CDPage4Props> = ({ cdfData, getValue, setValue }) => {
                   <div className="text-[9pt]">
                     Estimated total amount over year 1 for your escrowed property costs:
                     <CDField
+            documentMode={true}
                       value={cdfData?.loan_disclosures?.no_escrow_estimated_property_costs}
                       schemaKey="cdfData.loan_disclosures.no_escrow_estimated_property_costs"
                       getValue={getValue}
@@ -335,6 +349,7 @@ const CDPage4: React.FC<CDPage4Props> = ({ cdfData, getValue, setValue }) => {
                     <div className="mt-1">
                       Escrow waiver fee:
                       <CDField
+            documentMode={true}
                         value={cdfData?.loan_disclosures?.escrow_waiver_fee}
                         schemaKey="cdfData.loan_disclosures.escrow_waiver_fee"
                         getValue={getValue}
@@ -381,6 +396,7 @@ const CDPage4: React.FC<CDPage4Props> = ({ cdfData, getValue, setValue }) => {
                   <tr key={i}>
                     <td className="border border-black p-1 text-center">
                       <CDField
+            documentMode={true}
                         value={cdfData?.ap_table?.[`period_${i}`]?.interest_only}
                         schemaKey={`cdfData.ap_table.period_${i}.interest_only`}
                         getValue={getValue}
@@ -397,6 +413,7 @@ const CDPage4: React.FC<CDPage4Props> = ({ cdfData, getValue, setValue }) => {
                     </td>
                     <td className="border border-black p-1 text-center">
                       <CDField
+            documentMode={true}
                         value={cdfData?.ap_table?.[`period_${i}`]?.optional_payments}
                         schemaKey={`cdfData.ap_table.period_${i}.optional_payments`}
                         getValue={getValue}
@@ -413,6 +430,7 @@ const CDPage4: React.FC<CDPage4Props> = ({ cdfData, getValue, setValue }) => {
                     </td>
                     <td className="border border-black p-1 text-center">
                       <CDField
+            documentMode={true}
                         value={cdfData?.ap_table?.[`period_${i}`]?.step_payments}
                         schemaKey={`cdfData.ap_table.period_${i}.step_payments`}
                         getValue={getValue}
@@ -429,6 +447,7 @@ const CDPage4: React.FC<CDPage4Props> = ({ cdfData, getValue, setValue }) => {
                     </td>
                     <td className="border border-black p-1 text-center">
                       <CDField
+            documentMode={true}
                         value={cdfData?.ap_table?.[`period_${i}`]?.seasonal_payments}
                         schemaKey={`cdfData.ap_table.period_${i}.seasonal_payments`}
                         getValue={getValue}
@@ -445,6 +464,7 @@ const CDPage4: React.FC<CDPage4Props> = ({ cdfData, getValue, setValue }) => {
                     </td>
                     <td className="border border-black p-1 text-right">
                       <CDField
+            documentMode={true}
                         value={cdfData?.ap_table?.[`period_${i}`]?.monthly_payment}
                         schemaKey={`cdfData.ap_table.period_${i}.monthly_payment`}
                         getValue={getValue}
@@ -500,6 +520,7 @@ const CDPage4: React.FC<CDPage4Props> = ({ cdfData, getValue, setValue }) => {
               If your lender forecloses on this property and the foreclosure does not cover the amount of unpaid balance on this loan,
               <div className="mt-1">
                 <CDField
+            documentMode={true}
                   value={cdfData?.other_disclosures?.liability_after_foreclosure}
                   schemaKey="cdfData.other_disclosures.liability_after_foreclosure"
                   getValue={getValue}
@@ -552,6 +573,7 @@ const CDPage4: React.FC<CDPage4Props> = ({ cdfData, getValue, setValue }) => {
         <div>CLOSING DISCLOSURE</div>
         <div className="text-right pr-2">PAGE 4 OF 5 • LOAN ID # 
           <CDField
+            documentMode={true}
             value={cdfData?.loan?.loan_number}
             schemaKey="cdfData.loan.loan_number"
             getValue={getValue}

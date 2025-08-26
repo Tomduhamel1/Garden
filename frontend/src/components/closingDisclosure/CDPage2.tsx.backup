@@ -21,7 +21,6 @@ const CDPage2: React.FC = () => {
       <tr key={`${section}-${lineNum}`} className="border-b border-gray-300">
         <td className="py-1 px-2">
           <CDField
-            documentMode={true}
             fieldId={`${section}-line-${paddedNum}-description`}
             schemaKey={`${baseKey}.description`}
             type="text"
@@ -38,7 +37,6 @@ const CDPage2: React.FC = () => {
         </td>
         <td className="py-1 px-2 text-center">
           <CDField
-            documentMode={true}
             fieldId={`${section}-line-${paddedNum}-payee`}
             schemaKey={`${baseKey}.payee_name`}
             type="text"
@@ -52,7 +50,6 @@ const CDPage2: React.FC = () => {
         </td>
         <td className="py-1 px-2 text-right">
           <CDField
-            documentMode={true}
             fieldId={`${section}-line-${paddedNum}-borrower-at-closing`}
             schemaKey={`${baseKey}.borrower_paid_at_closing`}
             type="currency"
@@ -67,7 +64,6 @@ const CDPage2: React.FC = () => {
         </td>
         <td className="py-1 px-2 text-right">
           <CDField
-            documentMode={true}
             fieldId={`${section}-line-${paddedNum}-borrower-before-closing`}
             schemaKey={`${baseKey}.borrower_paid_before_closing`}
             type="currency"
@@ -82,7 +78,6 @@ const CDPage2: React.FC = () => {
         </td>
         <td className="py-1 px-2 text-right">
           <CDField
-            documentMode={true}
             fieldId={`${section}-line-${paddedNum}-seller-at-closing`}
             schemaKey={`${baseKey}.seller_paid_at_closing`}
             type="currency"
@@ -97,7 +92,6 @@ const CDPage2: React.FC = () => {
         </td>
         <td className="py-1 px-2 text-right">
           <CDField
-            documentMode={true}
             fieldId={`${section}-line-${paddedNum}-seller-before-closing`}
             schemaKey={`${baseKey}.seller_paid_before_closing`}
             type="currency"
@@ -112,7 +106,6 @@ const CDPage2: React.FC = () => {
         </td>
         <td className="py-1 px-2 text-right">
           <CDField
-            documentMode={true}
             fieldId={`${section}-line-${paddedNum}-paid-by-others`}
             schemaKey={`${baseKey}.paid_by_others`}
             type="currency"
@@ -152,7 +145,6 @@ const CDPage2: React.FC = () => {
         </td>
         <td className="py-1 px-2 text-center">
           <CDField
-            documentMode={true}
             fieldId={`other_charges-line-${paddedNum}-payee`}
             schemaKey={`${baseKey}.payee`}
             type="text"
@@ -166,7 +158,6 @@ const CDPage2: React.FC = () => {
         </td>
         <td className="py-1 px-2 text-right">
           <CDField
-            documentMode={true}
             fieldId={`other_charges-line-${paddedNum}-borrower-at-closing`}
             schemaKey={`${baseKey}.borrower_paid_at_closing`}
             type="currency"
@@ -182,7 +173,6 @@ const CDPage2: React.FC = () => {
         </td>
         <td className="py-1 px-2 text-right">
           <CDField
-            documentMode={true}
             fieldId={`other_charges-line-${paddedNum}-borrower-before-closing`}
             schemaKey={`${baseKey}.borrower_paid_before_closing`}
             type="currency"
@@ -198,7 +188,6 @@ const CDPage2: React.FC = () => {
         </td>
         <td className="py-1 px-2 text-right">
           <CDField
-            documentMode={true}
             fieldId={`other_charges-line-${paddedNum}-seller-at-closing`}
             schemaKey={`${baseKey}.seller_paid_at_closing`}
             type="currency"
@@ -214,7 +203,6 @@ const CDPage2: React.FC = () => {
         </td>
         <td className="py-1 px-2 text-right">
           <CDField
-            documentMode={true}
             fieldId={`other_charges-line-${paddedNum}-seller-before-closing`}
             schemaKey={`${baseKey}.seller_paid_before_closing`}
             type="currency"
@@ -230,7 +218,6 @@ const CDPage2: React.FC = () => {
         </td>
         <td className="py-1 px-2 text-right">
           <CDField
-            documentMode={true}
             fieldId={`other_charges-line-${paddedNum}-paid-by-others`}
             schemaKey={`${baseKey}.paid_by_others`}
             type="currency"
@@ -280,7 +267,6 @@ const CDPage2: React.FC = () => {
             <td colSpan={2} className="px-2 py-2">A. Origination Charges Subtotal</td>
             <td className="text-right px-2 py-2">
               <CDField
-            documentMode={true}
                 fieldId="section-a-total"
                 schemaKey="cdfData.origination_charges.total"
                 type="currency"
@@ -308,7 +294,6 @@ const CDPage2: React.FC = () => {
             <td colSpan={2} className="px-2 py-2">B. Services Borrower Did Not Shop For Subtotal</td>
             <td className="text-right px-2 py-2">
               <CDField
-            documentMode={true}
                 fieldId="section-b-total"
                 schemaKey="cdfData.services_borrower_did_not_shop_for.total"
                 type="currency"
@@ -336,7 +321,6 @@ const CDPage2: React.FC = () => {
             <td colSpan={2} className="px-2 py-2">C. Services Borrower Did Shop For Subtotal</td>
             <td className="text-right px-2 py-2">
               <CDField
-            documentMode={true}
                 fieldId="section-c-total"
                 schemaKey="cdfData.services_borrower_did_shop_for.total"
                 type="currency"
@@ -356,7 +340,6 @@ const CDPage2: React.FC = () => {
             <td colSpan={2} className="px-2 py-2">D. TOTAL LOAN COSTS (A + B + C)</td>
             <td className="text-right px-2 py-2">
               <CDField
-            documentMode={true}
                 fieldId="section-d-total"
                 schemaKey="cdfData.total_loan_costs"
                 type="currency"
@@ -395,7 +378,6 @@ const CDPage2: React.FC = () => {
             <td className="py-1 px-2">01 Recording Fees</td>
             <td className="py-1 px-2">Deed: 
               <CDField
-            documentMode={true}
                 fieldId="recording-deed"
                 schemaKey="cdfData.taxes_and_government_fees.line_01.deed_amount"
                 type="currency"
@@ -409,7 +391,6 @@ const CDPage2: React.FC = () => {
               />
               Mortgage: 
               <CDField
-            documentMode={true}
                 fieldId="recording-mortgage"
                 schemaKey="cdfData.taxes_and_government_fees.line_01.mortgage_amount"
                 type="currency"
@@ -424,7 +405,6 @@ const CDPage2: React.FC = () => {
             </td>
             <td className="py-1 px-2 text-right">
               <CDField
-            documentMode={true}
                 fieldId="recording-total-borrower"
                 schemaKey="cdfData.taxes_and_government_fees.line_01.paid_by_borrower"
                 type="currency"
@@ -438,7 +418,6 @@ const CDPage2: React.FC = () => {
             </td>
             <td className="py-1 px-2 text-right">
               <CDField
-            documentMode={true}
                 fieldId="recording-total-seller"
                 schemaKey="cdfData.taxes_and_government_fees.line_01.paid_by_seller"
                 type="currency"
@@ -459,7 +438,6 @@ const CDPage2: React.FC = () => {
             <td colSpan={2} className="px-2 py-2">E. Taxes and Other Government Fees Subtotal</td>
             <td className="text-right px-2 py-2">
               <CDField
-            documentMode={true}
                 fieldId="section-e-total"
                 schemaKey="cdfData.taxes_and_government_fees.total"
                 type="currency"
@@ -487,7 +465,6 @@ const CDPage2: React.FC = () => {
             <td colSpan={2} className="px-2 py-2">F. Prepaids Subtotal</td>
             <td className="text-right px-2 py-2">
               <CDField
-            documentMode={true}
                 fieldId="section-f-total"
                 schemaKey="cdfData.prepaid_item_information.total"
                 type="currency"
@@ -515,7 +492,6 @@ const CDPage2: React.FC = () => {
             <td colSpan={2} className="py-1 px-2">Aggregate Adjustment</td>
             <td className="py-1 px-2 text-right">
               <CDField
-            documentMode={true}
                 fieldId="aggregate-adjustment"
                 schemaKey="cdfData.escrow_information.aggregate_adjustment"
                 type="currency"
@@ -533,7 +509,6 @@ const CDPage2: React.FC = () => {
             <td colSpan={2} className="px-2 py-2">G. Initial Escrow Payment at Closing Subtotal</td>
             <td className="text-right px-2 py-2">
               <CDField
-            documentMode={true}
                 fieldId="section-g-total"
                 schemaKey="cdfData.escrow_information.total"
                 type="currency"
@@ -561,7 +536,6 @@ const CDPage2: React.FC = () => {
             <td colSpan={2} className="px-2 py-2">H. Other Subtotal</td>
             <td className="text-right px-2 py-2">
               <CDField
-            documentMode={true}
                 fieldId="section-h-total"
                 schemaKey="cdfData.other_charges.total"
                 type="currency"
@@ -582,7 +556,6 @@ const CDPage2: React.FC = () => {
             <td colSpan={2} className="px-2 py-2">I. TOTAL OTHER COSTS (E + F + G + H)</td>
             <td className="text-right px-2 py-2">
               <CDField
-            documentMode={true}
                 fieldId="section-i-total"
                 schemaKey="cdfData.total_other_costs"
                 type="currency"
@@ -602,7 +575,6 @@ const CDPage2: React.FC = () => {
             <td colSpan={2} className="px-2 py-2">J. TOTAL CLOSING COSTS (D + I)</td>
             <td className="text-right px-2 py-2">
               <CDField
-            documentMode={true}
                 fieldId="section-j-total"
                 schemaKey="cdfData.total_closing_costs"
                 type="currency"
@@ -621,7 +593,6 @@ const CDPage2: React.FC = () => {
             <td colSpan={2} className="px-2 py-1">Lender Credits</td>
             <td className="text-right px-2 py-1">
               <CDField
-            documentMode={true}
                 fieldId="lender-credits-section-j"
                 schemaKey="cdfData.lender_credits"
                 type="currency"
@@ -642,7 +613,6 @@ const CDPage2: React.FC = () => {
         <span>CLOSING DISCLOSURE</span>
         <span>PAGE 2 OF 5 • LOAN ID #{' '}
           <CDField
-            documentMode={true}
             fieldId="loan-id-footer-page2"
             schemaKey="cdfData.loans.0.loan_number"
             type="text"

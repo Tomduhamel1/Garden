@@ -26,6 +26,7 @@ const CDPage5: React.FC<CDPage5Props> = ({ cdfData, getValue, setValue }) => {
               </td>
               <td className="border border-black p-2 text-right">
                 <CDField
+            documentMode={true}
                   value={cdfData?.loan_calculations?.total_of_payments}
                   schemaKey="cdfData.loan_calculations.total_of_payments"
                   getValue={getValue}
@@ -55,6 +56,7 @@ const CDPage5: React.FC<CDPage5Props> = ({ cdfData, getValue, setValue }) => {
               </td>
               <td className="border border-black p-2 text-right">
                 <CDField
+            documentMode={true}
                   value={cdfData?.loan_calculations?.finance_charge}
                   schemaKey="cdfData.loan_calculations.finance_charge"
                   getValue={getValue}
@@ -84,6 +86,7 @@ const CDPage5: React.FC<CDPage5Props> = ({ cdfData, getValue, setValue }) => {
               </td>
               <td className="border border-black p-2 text-right">
                 <CDField
+            documentMode={true}
                   value={cdfData?.loan_calculations?.amount_financed}
                   schemaKey="cdfData.loan_calculations.amount_financed"
                   getValue={getValue}
@@ -113,6 +116,7 @@ const CDPage5: React.FC<CDPage5Props> = ({ cdfData, getValue, setValue }) => {
               </td>
               <td className="border border-black p-2 text-right">
                 <CDField
+            documentMode={true}
                   value={cdfData?.loan_calculations?.apr}
                   schemaKey="cdfData.loan_calculations.apr"
                   getValue={getValue}
@@ -142,6 +146,7 @@ const CDPage5: React.FC<CDPage5Props> = ({ cdfData, getValue, setValue }) => {
               </td>
               <td className="border border-black p-2 text-right">
                 <CDField
+            documentMode={true}
                   value={cdfData?.loan_calculations?.tip}
                   schemaKey="cdfData.loan_calculations.tip"
                   getValue={getValue}
@@ -190,6 +195,7 @@ const CDPage5: React.FC<CDPage5Props> = ({ cdfData, getValue, setValue }) => {
                   <div className="text-[9pt]">
                     <div className="mb-1">Name</div>
                     <CDField
+            documentMode={true}
                       value={cdfData?.contacts?.lender?.name}
                       schemaKey="cdfData.contacts.lender.name"
                       getValue={getValue}
@@ -206,6 +212,7 @@ const CDPage5: React.FC<CDPage5Props> = ({ cdfData, getValue, setValue }) => {
                     
                     <div className="mb-1">Address</div>
                     <CDField
+            documentMode={true}
                       value={cdfData?.contacts?.lender?.address}
                       schemaKey="cdfData.contacts.lender.address"
                       getValue={getValue}
@@ -222,6 +229,7 @@ const CDPage5: React.FC<CDPage5Props> = ({ cdfData, getValue, setValue }) => {
                     
                     <div className="mb-1">NMLS ID</div>
                     <CDField
+            documentMode={true}
                       value={cdfData?.contacts?.lender?.nmls_id}
                       schemaKey="cdfData.contacts.lender.nmls_id"
                       getValue={getValue}
@@ -238,6 +246,7 @@ const CDPage5: React.FC<CDPage5Props> = ({ cdfData, getValue, setValue }) => {
                     
                     <div className="mb-1">ST License ID</div>
                     <CDField
+            documentMode={true}
                       value={cdfData?.contacts?.lender?.state_license_id}
                       schemaKey="cdfData.contacts.lender.state_license_id"
                       getValue={getValue}
@@ -254,6 +263,7 @@ const CDPage5: React.FC<CDPage5Props> = ({ cdfData, getValue, setValue }) => {
                     
                     <div className="mb-1">Contact</div>
                     <CDField
+            documentMode={true}
                       value={cdfData?.contacts?.lender?.contact_name}
                       schemaKey="cdfData.contacts.lender.contact_name"
                       getValue={getValue}
@@ -270,6 +280,7 @@ const CDPage5: React.FC<CDPage5Props> = ({ cdfData, getValue, setValue }) => {
                     
                     <div className="mb-1">Email</div>
                     <CDField
+            documentMode={true}
                       value={cdfData?.contacts?.lender?.email}
                       schemaKey="cdfData.contacts.lender.email"
                       getValue={getValue}
@@ -286,6 +297,7 @@ const CDPage5: React.FC<CDPage5Props> = ({ cdfData, getValue, setValue }) => {
                     
                     <div className="mb-1">Phone</div>
                     <CDField
+            documentMode={true}
                       value={cdfData?.contacts?.lender?.phone}
                       schemaKey="cdfData.contacts.lender.phone"
                       getValue={getValue}
@@ -306,6 +318,7 @@ const CDPage5: React.FC<CDPage5Props> = ({ cdfData, getValue, setValue }) => {
                   <div className="text-[9pt]">
                     <div className="mb-1">Name</div>
                     <CDField
+            documentMode={true}
                       value={cdfData?.contacts?.mortgage_broker?.name}
                       schemaKey="cdfData.contacts.mortgage_broker.name"
                       getValue={getValue}
@@ -322,6 +335,7 @@ const CDPage5: React.FC<CDPage5Props> = ({ cdfData, getValue, setValue }) => {
                     
                     <div className="mb-1">Address</div>
                     <CDField
+            documentMode={true}
                       value={cdfData?.contacts?.mortgage_broker?.address}
                       schemaKey="cdfData.contacts.mortgage_broker.address"
                       getValue={getValue}
@@ -338,6 +352,7 @@ const CDPage5: React.FC<CDPage5Props> = ({ cdfData, getValue, setValue }) => {
                     
                     <div className="mb-1">NMLS ID</div>
                     <CDField
+            documentMode={true}
                       value={cdfData?.contacts?.mortgage_broker?.nmls_id}
                       schemaKey="cdfData.contacts.mortgage_broker.nmls_id"
                       getValue={getValue}
@@ -354,6 +369,7 @@ const CDPage5: React.FC<CDPage5Props> = ({ cdfData, getValue, setValue }) => {
                     
                     <div className="mb-1">ST License ID</div>
                     <CDField
+            documentMode={true}
                       value={cdfData?.contacts?.mortgage_broker?.state_license_id}
                       schemaKey="cdfData.contacts.mortgage_broker.state_license_id"
                       getValue={getValue}
@@ -370,6 +386,7 @@ const CDPage5: React.FC<CDPage5Props> = ({ cdfData, getValue, setValue }) => {
                     
                     <div className="mb-1">Contact</div>
                     <CDField
+            documentMode={true}
                       value={cdfData?.contacts?.mortgage_broker?.contact_name}
                       schemaKey="cdfData.contacts.mortgage_broker.contact_name"
                       getValue={getValue}
@@ -386,6 +403,7 @@ const CDPage5: React.FC<CDPage5Props> = ({ cdfData, getValue, setValue }) => {
                     
                     <div className="mb-1">Email</div>
                     <CDField
+            documentMode={true}
                       value={cdfData?.contacts?.mortgage_broker?.email}
                       schemaKey="cdfData.contacts.mortgage_broker.email"
                       getValue={getValue}
@@ -402,6 +420,7 @@ const CDPage5: React.FC<CDPage5Props> = ({ cdfData, getValue, setValue }) => {
                     
                     <div className="mb-1">Phone</div>
                     <CDField
+            documentMode={true}
                       value={cdfData?.contacts?.mortgage_broker?.phone}
                       schemaKey="cdfData.contacts.mortgage_broker.phone"
                       getValue={getValue}
@@ -422,6 +441,7 @@ const CDPage5: React.FC<CDPage5Props> = ({ cdfData, getValue, setValue }) => {
                   <div className="text-[9pt]">
                     <div className="mb-1">Name</div>
                     <CDField
+            documentMode={true}
                       value={cdfData?.contacts?.real_estate_broker_b?.name}
                       schemaKey="cdfData.contacts.real_estate_broker_b.name"
                       getValue={getValue}
@@ -438,6 +458,7 @@ const CDPage5: React.FC<CDPage5Props> = ({ cdfData, getValue, setValue }) => {
                     
                     <div className="mb-1">Address</div>
                     <CDField
+            documentMode={true}
                       value={cdfData?.contacts?.real_estate_broker_b?.address}
                       schemaKey="cdfData.contacts.real_estate_broker_b.address"
                       getValue={getValue}
@@ -454,6 +475,7 @@ const CDPage5: React.FC<CDPage5Props> = ({ cdfData, getValue, setValue }) => {
                     
                     <div className="mb-1">ST License ID</div>
                     <CDField
+            documentMode={true}
                       value={cdfData?.contacts?.real_estate_broker_b?.state_license_id}
                       schemaKey="cdfData.contacts.real_estate_broker_b.state_license_id"
                       getValue={getValue}
@@ -470,6 +492,7 @@ const CDPage5: React.FC<CDPage5Props> = ({ cdfData, getValue, setValue }) => {
                     
                     <div className="mb-1">Contact</div>
                     <CDField
+            documentMode={true}
                       value={cdfData?.contacts?.real_estate_broker_b?.contact_name}
                       schemaKey="cdfData.contacts.real_estate_broker_b.contact_name"
                       getValue={getValue}
@@ -486,6 +509,7 @@ const CDPage5: React.FC<CDPage5Props> = ({ cdfData, getValue, setValue }) => {
                     
                     <div className="mb-1">Email</div>
                     <CDField
+            documentMode={true}
                       value={cdfData?.contacts?.real_estate_broker_b?.email}
                       schemaKey="cdfData.contacts.real_estate_broker_b.email"
                       getValue={getValue}
@@ -502,6 +526,7 @@ const CDPage5: React.FC<CDPage5Props> = ({ cdfData, getValue, setValue }) => {
                     
                     <div className="mb-1">Phone</div>
                     <CDField
+            documentMode={true}
                       value={cdfData?.contacts?.real_estate_broker_b?.phone}
                       schemaKey="cdfData.contacts.real_estate_broker_b.phone"
                       getValue={getValue}
@@ -522,6 +547,7 @@ const CDPage5: React.FC<CDPage5Props> = ({ cdfData, getValue, setValue }) => {
                   <div className="text-[9pt]">
                     <div className="mb-1">Name</div>
                     <CDField
+            documentMode={true}
                       value={cdfData?.contacts?.real_estate_broker_s?.name}
                       schemaKey="cdfData.contacts.real_estate_broker_s.name"
                       getValue={getValue}
@@ -538,6 +564,7 @@ const CDPage5: React.FC<CDPage5Props> = ({ cdfData, getValue, setValue }) => {
                     
                     <div className="mb-1">Address</div>
                     <CDField
+            documentMode={true}
                       value={cdfData?.contacts?.real_estate_broker_s?.address}
                       schemaKey="cdfData.contacts.real_estate_broker_s.address"
                       getValue={getValue}
@@ -554,6 +581,7 @@ const CDPage5: React.FC<CDPage5Props> = ({ cdfData, getValue, setValue }) => {
                     
                     <div className="mb-1">ST License ID</div>
                     <CDField
+            documentMode={true}
                       value={cdfData?.contacts?.real_estate_broker_s?.state_license_id}
                       schemaKey="cdfData.contacts.real_estate_broker_s.state_license_id"
                       getValue={getValue}
@@ -570,6 +598,7 @@ const CDPage5: React.FC<CDPage5Props> = ({ cdfData, getValue, setValue }) => {
                     
                     <div className="mb-1">Contact</div>
                     <CDField
+            documentMode={true}
                       value={cdfData?.contacts?.real_estate_broker_s?.contact_name}
                       schemaKey="cdfData.contacts.real_estate_broker_s.contact_name"
                       getValue={getValue}
@@ -586,6 +615,7 @@ const CDPage5: React.FC<CDPage5Props> = ({ cdfData, getValue, setValue }) => {
                     
                     <div className="mb-1">Email</div>
                     <CDField
+            documentMode={true}
                       value={cdfData?.contacts?.real_estate_broker_s?.email}
                       schemaKey="cdfData.contacts.real_estate_broker_s.email"
                       getValue={getValue}
@@ -602,6 +632,7 @@ const CDPage5: React.FC<CDPage5Props> = ({ cdfData, getValue, setValue }) => {
                     
                     <div className="mb-1">Phone</div>
                     <CDField
+            documentMode={true}
                       value={cdfData?.contacts?.real_estate_broker_s?.phone}
                       schemaKey="cdfData.contacts.real_estate_broker_s.phone"
                       getValue={getValue}
@@ -628,6 +659,7 @@ const CDPage5: React.FC<CDPage5Props> = ({ cdfData, getValue, setValue }) => {
                       <div>
                         <div className="mb-1">Name</div>
                         <CDField
+            documentMode={true}
                           value={cdfData?.contacts?.settlement_agent?.name}
                           schemaKey="cdfData.contacts.settlement_agent.name"
                           getValue={getValue}
@@ -645,6 +677,7 @@ const CDPage5: React.FC<CDPage5Props> = ({ cdfData, getValue, setValue }) => {
                       <div>
                         <div className="mb-1">Address</div>
                         <CDField
+            documentMode={true}
                           value={cdfData?.contacts?.settlement_agent?.address}
                           schemaKey="cdfData.contacts.settlement_agent.address"
                           getValue={getValue}
@@ -662,6 +695,7 @@ const CDPage5: React.FC<CDPage5Props> = ({ cdfData, getValue, setValue }) => {
                       <div>
                         <div className="mb-1">Email</div>
                         <CDField
+            documentMode={true}
                           value={cdfData?.contacts?.settlement_agent?.email}
                           schemaKey="cdfData.contacts.settlement_agent.email"
                           getValue={getValue}
@@ -679,6 +713,7 @@ const CDPage5: React.FC<CDPage5Props> = ({ cdfData, getValue, setValue }) => {
                       <div>
                         <div className="mb-1">Phone</div>
                         <CDField
+            documentMode={true}
                           value={cdfData?.contacts?.settlement_agent?.phone}
                           schemaKey="cdfData.contacts.settlement_agent.phone"
                           getValue={getValue}
@@ -728,6 +763,7 @@ const CDPage5: React.FC<CDPage5Props> = ({ cdfData, getValue, setValue }) => {
         <div>CLOSING DISCLOSURE</div>
         <div className="text-right pr-2">PAGE 5 OF 5 • LOAN ID # 
           <CDField
+            documentMode={true}
             value={cdfData?.loan?.loan_number}
             schemaKey="cdfData.loan.loan_number"
             getValue={getValue}

@@ -38,6 +38,7 @@ const CDPage3: React.FC<CDPage3Props> = ({ cdfData, getValue, setValue }) => {
             </td>
             <td className="border border-black p-1">
               <CDField
+            documentMode={true}
                 value={cdfData?.cash_to_close?.loan_estimate?.total_closing_costs}
                 schemaKey="cdfData.cash_to_close.loan_estimate.total_closing_costs"
                 getValue={getValue}
@@ -54,6 +55,7 @@ const CDPage3: React.FC<CDPage3Props> = ({ cdfData, getValue, setValue }) => {
             </td>
             <td className="border border-black p-1">
               <CDField
+            documentMode={true}
                 value={cdfData?.cash_to_close?.final?.total_closing_costs}
                 schemaKey="cdfData.cash_to_close.final.total_closing_costs"
                 getValue={getValue}
@@ -80,6 +82,7 @@ const CDPage3: React.FC<CDPage3Props> = ({ cdfData, getValue, setValue }) => {
             </td>
             <td className="border border-black p-1">
               <CDField
+            documentMode={true}
                 value={cdfData?.cash_to_close?.loan_estimate?.closing_costs_financed}
                 schemaKey="cdfData.cash_to_close.loan_estimate.closing_costs_financed"
                 getValue={getValue}
@@ -96,6 +99,7 @@ const CDPage3: React.FC<CDPage3Props> = ({ cdfData, getValue, setValue }) => {
             </td>
             <td className="border border-black p-1">
               <CDField
+            documentMode={true}
                 value={cdfData?.cash_to_close?.final?.closing_costs_financed}
                 schemaKey="cdfData.cash_to_close.final.closing_costs_financed"
                 getValue={getValue}
@@ -122,6 +126,7 @@ const CDPage3: React.FC<CDPage3Props> = ({ cdfData, getValue, setValue }) => {
             </td>
             <td className="border border-black p-1">
               <CDField
+            documentMode={true}
                 value={cdfData?.cash_to_close?.loan_estimate?.down_payment}
                 schemaKey="cdfData.cash_to_close.loan_estimate.down_payment"
                 getValue={getValue}
@@ -138,6 +143,7 @@ const CDPage3: React.FC<CDPage3Props> = ({ cdfData, getValue, setValue }) => {
             </td>
             <td className="border border-black p-1">
               <CDField
+            documentMode={true}
                 value={cdfData?.cash_to_close?.final?.down_payment}
                 schemaKey="cdfData.cash_to_close.final.down_payment"
                 getValue={getValue}
@@ -164,6 +170,7 @@ const CDPage3: React.FC<CDPage3Props> = ({ cdfData, getValue, setValue }) => {
             </td>
             <td className="border border-black p-1">
               <CDField
+            documentMode={true}
                 value={cdfData?.cash_to_close?.loan_estimate?.deposit}
                 schemaKey="cdfData.cash_to_close.loan_estimate.deposit"
                 getValue={getValue}
@@ -180,6 +187,7 @@ const CDPage3: React.FC<CDPage3Props> = ({ cdfData, getValue, setValue }) => {
             </td>
             <td className="border border-black p-1">
               <CDField
+            documentMode={true}
                 value={cdfData?.cash_to_close?.final?.deposit}
                 schemaKey="cdfData.cash_to_close.final.deposit"
                 getValue={getValue}
@@ -206,6 +214,7 @@ const CDPage3: React.FC<CDPage3Props> = ({ cdfData, getValue, setValue }) => {
             </td>
             <td className="border border-black p-1">
               <CDField
+            documentMode={true}
                 value={cdfData?.cash_to_close?.loan_estimate?.funds_for_borrower}
                 schemaKey="cdfData.cash_to_close.loan_estimate.funds_for_borrower"
                 getValue={getValue}
@@ -222,6 +231,7 @@ const CDPage3: React.FC<CDPage3Props> = ({ cdfData, getValue, setValue }) => {
             </td>
             <td className="border border-black p-1">
               <CDField
+            documentMode={true}
                 value={cdfData?.cash_to_close?.final?.funds_for_borrower}
                 schemaKey="cdfData.cash_to_close.final.funds_for_borrower"
                 getValue={getValue}
@@ -248,6 +258,7 @@ const CDPage3: React.FC<CDPage3Props> = ({ cdfData, getValue, setValue }) => {
             </td>
             <td className="border border-black p-1">
               <CDField
+            documentMode={true}
                 value={cdfData?.cash_to_close?.loan_estimate?.seller_credits}
                 schemaKey="cdfData.cash_to_close.loan_estimate.seller_credits"
                 getValue={getValue}
@@ -264,6 +275,7 @@ const CDPage3: React.FC<CDPage3Props> = ({ cdfData, getValue, setValue }) => {
             </td>
             <td className="border border-black p-1">
               <CDField
+            documentMode={true}
                 value={cdfData?.cash_to_close?.final?.seller_credits}
                 schemaKey="cdfData.cash_to_close.final.seller_credits"
                 getValue={getValue}
@@ -290,6 +302,7 @@ const CDPage3: React.FC<CDPage3Props> = ({ cdfData, getValue, setValue }) => {
             </td>
             <td className="border border-black p-1">
               <CDField
+            documentMode={true}
                 value={cdfData?.cash_to_close?.loan_estimate?.adjustments}
                 schemaKey="cdfData.cash_to_close.loan_estimate.adjustments"
                 getValue={getValue}
@@ -306,6 +319,7 @@ const CDPage3: React.FC<CDPage3Props> = ({ cdfData, getValue, setValue }) => {
             </td>
             <td className="border border-black p-1">
               <CDField
+            documentMode={true}
                 value={cdfData?.cash_to_close?.final?.adjustments}
                 schemaKey="cdfData.cash_to_close.final.adjustments"
                 getValue={getValue}
@@ -332,6 +346,7 @@ const CDPage3: React.FC<CDPage3Props> = ({ cdfData, getValue, setValue }) => {
             </td>
             <td className="border border-black p-1">
               <CDField
+            documentMode={true}
                 value={cdfData?.cash_to_close?.loan_estimate?.cash_to_close}
                 schemaKey="cdfData.cash_to_close.loan_estimate.cash_to_close"
                 getValue={getValue}
@@ -348,6 +363,7 @@ const CDPage3: React.FC<CDPage3Props> = ({ cdfData, getValue, setValue }) => {
             </td>
             <td className="border border-black p-1">
               <CDField
+            documentMode={true}
                 value={cdfData?.cash_to_close?.final?.cash_to_close}
                 schemaKey="cdfData.cash_to_close.final.cash_to_close"
                 getValue={getValue}
@@ -391,6 +407,7 @@ const CDPage3: React.FC<CDPage3Props> = ({ cdfData, getValue, setValue }) => {
                     <td className="p-1 text-[9pt]">01 Sale Price of Property</td>
                     <td className="p-1 text-right">
                       <CDField
+            documentMode={true}
                         value={cdfData?.summaries?.borrower?.k_due_from?.line_01?.amount}
                         schemaKey="cdfData.summaries.borrower.k_due_from.line_01.amount"
                         getValue={getValue}
@@ -410,6 +427,7 @@ const CDPage3: React.FC<CDPage3Props> = ({ cdfData, getValue, setValue }) => {
                     <td className="p-1 text-[9pt]">02 Sale Price of Any Personal Property</td>
                     <td className="p-1 text-right">
                       <CDField
+            documentMode={true}
                         value={cdfData?.summaries?.borrower?.k_due_from?.line_02?.amount}
                         schemaKey="cdfData.summaries.borrower.k_due_from.line_02.amount"
                         getValue={getValue}
@@ -429,6 +447,7 @@ const CDPage3: React.FC<CDPage3Props> = ({ cdfData, getValue, setValue }) => {
                     <td className="p-1 text-[9pt]">03 Closing Costs (J)</td>
                     <td className="p-1 text-right">
                       <CDField
+            documentMode={true}
                         value={cdfData?.summaries?.borrower?.k_due_from?.line_03?.amount}
                         schemaKey="cdfData.summaries.borrower.k_due_from.line_03.amount"
                         getValue={getValue}
@@ -450,6 +469,7 @@ const CDPage3: React.FC<CDPage3Props> = ({ cdfData, getValue, setValue }) => {
                       <td className="p-1 text-[9pt]">
                         {String(i).padStart(2, '0')}
                         <CDField
+            documentMode={true}
                           value={cdfData?.summaries?.borrower?.k_due_from?.[`line_${String(i).padStart(2, '0')}`]?.description}
                           schemaKey={`cdfData.summaries.borrower.k_due_from.line_${String(i).padStart(2, '0')}.description`}
                           getValue={getValue}
@@ -466,6 +486,7 @@ const CDPage3: React.FC<CDPage3Props> = ({ cdfData, getValue, setValue }) => {
                       </td>
                       <td className="p-1 text-right">
                         <CDField
+            documentMode={true}
                           value={cdfData?.summaries?.borrower?.k_due_from?.[`line_${String(i).padStart(2, '0')}`]?.amount}
                           schemaKey={`cdfData.summaries.borrower.k_due_from.line_${String(i).padStart(2, '0')}.amount`}
                           getValue={getValue}
@@ -497,6 +518,7 @@ const CDPage3: React.FC<CDPage3Props> = ({ cdfData, getValue, setValue }) => {
                     <td className="p-1 text-[9pt]">01 Deposit</td>
                     <td className="p-1 text-right">
                       <CDField
+            documentMode={true}
                         value={cdfData?.summaries?.borrower?.l_paid_already?.line_01?.amount}
                         schemaKey="cdfData.summaries.borrower.l_paid_already.line_01.amount"
                         getValue={getValue}
@@ -516,6 +538,7 @@ const CDPage3: React.FC<CDPage3Props> = ({ cdfData, getValue, setValue }) => {
                     <td className="p-1 text-[9pt]">02 Loan Amount</td>
                     <td className="p-1 text-right">
                       <CDField
+            documentMode={true}
                         value={cdfData?.summaries?.borrower?.l_paid_already?.line_02?.amount}
                         schemaKey="cdfData.summaries.borrower.l_paid_already.line_02.amount"
                         getValue={getValue}
@@ -535,6 +558,7 @@ const CDPage3: React.FC<CDPage3Props> = ({ cdfData, getValue, setValue }) => {
                     <td className="p-1 text-[9pt]">03 Existing Loan(s) Assumed or Taken Subject to</td>
                     <td className="p-1 text-right">
                       <CDField
+            documentMode={true}
                         value={cdfData?.summaries?.borrower?.l_paid_already?.line_03?.amount}
                         schemaKey="cdfData.summaries.borrower.l_paid_already.line_03.amount"
                         getValue={getValue}
@@ -554,6 +578,7 @@ const CDPage3: React.FC<CDPage3Props> = ({ cdfData, getValue, setValue }) => {
                     <td className="p-1 text-[9pt]">04 Seller Credit</td>
                     <td className="p-1 text-right">
                       <CDField
+            documentMode={true}
                         value={cdfData?.summaries?.borrower?.l_paid_already?.line_04?.amount}
                         schemaKey="cdfData.summaries.borrower.l_paid_already.line_04.amount"
                         getValue={getValue}
@@ -575,6 +600,7 @@ const CDPage3: React.FC<CDPage3Props> = ({ cdfData, getValue, setValue }) => {
                       <td className="p-1 text-[9pt]">
                         {String(i).padStart(2, '0')}
                         <CDField
+            documentMode={true}
                           value={cdfData?.summaries?.borrower?.l_paid_already?.[`line_${String(i).padStart(2, '0')}`]?.description}
                           schemaKey={`cdfData.summaries.borrower.l_paid_already.line_${String(i).padStart(2, '0')}.description`}
                           getValue={getValue}
@@ -591,6 +617,7 @@ const CDPage3: React.FC<CDPage3Props> = ({ cdfData, getValue, setValue }) => {
                       </td>
                       <td className="p-1 text-right">
                         <CDField
+            documentMode={true}
                           value={cdfData?.summaries?.borrower?.l_paid_already?.[`line_${String(i).padStart(2, '0')}`]?.amount}
                           schemaKey={`cdfData.summaries.borrower.l_paid_already.line_${String(i).padStart(2, '0')}.amount`}
                           getValue={getValue}
@@ -621,6 +648,7 @@ const CDPage3: React.FC<CDPage3Props> = ({ cdfData, getValue, setValue }) => {
                   <td className="p-1 text-[9pt]">Total Due from Borrower at Closing (K)</td>
                   <td className="p-1 text-right font-bold">
                     <CDField
+            documentMode={true}
                       value={cdfData?.summaries?.borrower?.total_due_from}
                       schemaKey="cdfData.summaries.borrower.total_due_from"
                       getValue={getValue}
@@ -640,6 +668,7 @@ const CDPage3: React.FC<CDPage3Props> = ({ cdfData, getValue, setValue }) => {
                   <td className="p-1 text-[9pt]">Total Paid Already by/for Borrower at Closing (L)</td>
                   <td className="p-1 text-right font-bold">
                     <CDField
+            documentMode={true}
                       value={cdfData?.summaries?.borrower?.total_paid_already}
                       schemaKey="cdfData.summaries.borrower.total_paid_already"
                       getValue={getValue}
@@ -659,6 +688,7 @@ const CDPage3: React.FC<CDPage3Props> = ({ cdfData, getValue, setValue }) => {
                   <td className="p-1 text-[10pt] font-bold">Cash to Close ✖ From ☐ To Borrower</td>
                   <td className="p-1 text-right font-bold">
                     <CDField
+            documentMode={true}
                       value={cdfData?.summaries?.borrower?.cash_to_close}
                       schemaKey="cdfData.summaries.borrower.cash_to_close"
                       getValue={getValue}
@@ -695,6 +725,7 @@ const CDPage3: React.FC<CDPage3Props> = ({ cdfData, getValue, setValue }) => {
                     <td className="p-1 text-[9pt]">01 Sale Price of Property</td>
                     <td className="p-1 text-right">
                       <CDField
+            documentMode={true}
                         value={cdfData?.summaries?.seller?.m_due_to?.line_01?.amount}
                         schemaKey="cdfData.summaries.seller.m_due_to.line_01.amount"
                         getValue={getValue}
@@ -714,6 +745,7 @@ const CDPage3: React.FC<CDPage3Props> = ({ cdfData, getValue, setValue }) => {
                     <td className="p-1 text-[9pt]">02 Sale Price of Any Personal Property</td>
                     <td className="p-1 text-right">
                       <CDField
+            documentMode={true}
                         value={cdfData?.summaries?.seller?.m_due_to?.line_02?.amount}
                         schemaKey="cdfData.summaries.seller.m_due_to.line_02.amount"
                         getValue={getValue}
@@ -735,6 +767,7 @@ const CDPage3: React.FC<CDPage3Props> = ({ cdfData, getValue, setValue }) => {
                       <td className="p-1 text-[9pt]">
                         {String(i).padStart(2, '0')}
                         <CDField
+            documentMode={true}
                           value={cdfData?.summaries?.seller?.m_due_to?.[`line_${String(i).padStart(2, '0')}`]?.description}
                           schemaKey={`cdfData.summaries.seller.m_due_to.line_${String(i).padStart(2, '0')}.description`}
                           getValue={getValue}
@@ -751,6 +784,7 @@ const CDPage3: React.FC<CDPage3Props> = ({ cdfData, getValue, setValue }) => {
                       </td>
                       <td className="p-1 text-right">
                         <CDField
+            documentMode={true}
                           value={cdfData?.summaries?.seller?.m_due_to?.[`line_${String(i).padStart(2, '0')}`]?.amount}
                           schemaKey={`cdfData.summaries.seller.m_due_to.line_${String(i).padStart(2, '0')}.amount`}
                           getValue={getValue}
@@ -782,6 +816,7 @@ const CDPage3: React.FC<CDPage3Props> = ({ cdfData, getValue, setValue }) => {
                     <td className="p-1 text-[9pt]">01 Excess Deposit</td>
                     <td className="p-1 text-right">
                       <CDField
+            documentMode={true}
                         value={cdfData?.summaries?.seller?.n_due_from?.line_01?.amount}
                         schemaKey="cdfData.summaries.seller.n_due_from.line_01.amount"
                         getValue={getValue}
@@ -801,6 +836,7 @@ const CDPage3: React.FC<CDPage3Props> = ({ cdfData, getValue, setValue }) => {
                     <td className="p-1 text-[9pt]">02 Closing Costs</td>
                     <td className="p-1 text-right">
                       <CDField
+            documentMode={true}
                         value={cdfData?.summaries?.seller?.n_due_from?.line_02?.amount}
                         schemaKey="cdfData.summaries.seller.n_due_from.line_02.amount"
                         getValue={getValue}
@@ -820,6 +856,7 @@ const CDPage3: React.FC<CDPage3Props> = ({ cdfData, getValue, setValue }) => {
                     <td className="p-1 text-[9pt]">03 Existing Loan(s) Taken Subject to</td>
                     <td className="p-1 text-right">
                       <CDField
+            documentMode={true}
                         value={cdfData?.summaries?.seller?.n_due_from?.line_03?.amount}
                         schemaKey="cdfData.summaries.seller.n_due_from.line_03.amount"
                         getValue={getValue}
@@ -839,6 +876,7 @@ const CDPage3: React.FC<CDPage3Props> = ({ cdfData, getValue, setValue }) => {
                     <td className="p-1 text-[9pt]">04 Payoff of First Mortgage Loan</td>
                     <td className="p-1 text-right">
                       <CDField
+            documentMode={true}
                         value={cdfData?.summaries?.seller?.n_due_from?.line_04?.amount}
                         schemaKey="cdfData.summaries.seller.n_due_from.line_04.amount"
                         getValue={getValue}
@@ -858,6 +896,7 @@ const CDPage3: React.FC<CDPage3Props> = ({ cdfData, getValue, setValue }) => {
                     <td className="p-1 text-[9pt]">05 Payoff of Second Mortgage Loan</td>
                     <td className="p-1 text-right">
                       <CDField
+            documentMode={true}
                         value={cdfData?.summaries?.seller?.n_due_from?.line_05?.amount}
                         schemaKey="cdfData.summaries.seller.n_due_from.line_05.amount"
                         getValue={getValue}
@@ -879,6 +918,7 @@ const CDPage3: React.FC<CDPage3Props> = ({ cdfData, getValue, setValue }) => {
                       <td className="p-1 text-[9pt]">
                         {String(i).padStart(2, '0')}
                         <CDField
+            documentMode={true}
                           value={cdfData?.summaries?.seller?.n_due_from?.[`line_${String(i).padStart(2, '0')}`]?.description}
                           schemaKey={`cdfData.summaries.seller.n_due_from.line_${String(i).padStart(2, '0')}.description`}
                           getValue={getValue}
@@ -895,6 +935,7 @@ const CDPage3: React.FC<CDPage3Props> = ({ cdfData, getValue, setValue }) => {
                       </td>
                       <td className="p-1 text-right">
                         <CDField
+            documentMode={true}
                           value={cdfData?.summaries?.seller?.n_due_from?.[`line_${String(i).padStart(2, '0')}`]?.amount}
                           schemaKey={`cdfData.summaries.seller.n_due_from.line_${String(i).padStart(2, '0')}.amount`}
                           getValue={getValue}
@@ -925,6 +966,7 @@ const CDPage3: React.FC<CDPage3Props> = ({ cdfData, getValue, setValue }) => {
                   <td className="p-1 text-[9pt]">Total Due to Seller at Closing (M)</td>
                   <td className="p-1 text-right font-bold">
                     <CDField
+            documentMode={true}
                       value={cdfData?.summaries?.seller?.total_due_to}
                       schemaKey="cdfData.summaries.seller.total_due_to"
                       getValue={getValue}
@@ -944,6 +986,7 @@ const CDPage3: React.FC<CDPage3Props> = ({ cdfData, getValue, setValue }) => {
                   <td className="p-1 text-[9pt]">Total Due from Seller at Closing (N)</td>
                   <td className="p-1 text-right font-bold">
                     <CDField
+            documentMode={true}
                       value={cdfData?.summaries?.seller?.total_due_from}
                       schemaKey="cdfData.summaries.seller.total_due_from"
                       getValue={getValue}
@@ -963,6 +1006,7 @@ const CDPage3: React.FC<CDPage3Props> = ({ cdfData, getValue, setValue }) => {
                   <td className="p-1 text-[10pt] font-bold">Cash ☐ From ✖ To Seller</td>
                   <td className="p-1 text-right font-bold">
                     <CDField
+            documentMode={true}
                       value={cdfData?.summaries?.seller?.cash_to_seller}
                       schemaKey="cdfData.summaries.seller.cash_to_seller"
                       getValue={getValue}
@@ -989,6 +1033,7 @@ const CDPage3: React.FC<CDPage3Props> = ({ cdfData, getValue, setValue }) => {
         <div>CLOSING DISCLOSURE</div>
         <div className="text-right pr-2">PAGE 3 OF 5 • LOAN ID # 
           <CDField
+            documentMode={true}
             value={cdfData?.loan?.loan_number}
             schemaKey="cdfData.loan.loan_number"
             getValue={getValue}
