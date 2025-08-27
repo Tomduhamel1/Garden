@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useOrderData } from '../../hooks/useOrderData';
+import { useOrderDataContext } from '../../contexts/OrderDataContext';
 import { FeeAutocomplete } from '../common/FeeAutocomplete';
 
 interface PaymentType {
@@ -8,7 +8,13 @@ interface PaymentType {
 }
 
 const OtherCharges: React.FC = () => {
-  const { loading, saving, getValue, handleInputChange, handleSave } = useOrderData();
+  const { loading, saving, getValue, handleInputChange, handleFieldChange, handleSave } = useOrderDataContext();
+  
+  // Log to verify we're using the shared context
+  React.useEffect(() => {
+    console.log('🎯 OtherCharges - line_01 description:', getValue('cdfData.other_charges.line_01.description'));
+    console.log('🎯 OtherCharges - line_01 borrower_amount:', getValue('cdfData.other_charges.line_01.borrower_amount'));
+  }, [getValue('cdfData.other_charges.line_01.description')]);
   const [taxableToggle, setTaxableToggle] = useState(false);
   const [activePaymentType, setActivePaymentType] = useState('check');
 
@@ -22,87 +28,89 @@ const OtherCharges: React.FC = () => {
   ];
 
   const renderTableRow = (lineNumber: number) => {
-    const isSpecialLine = lineNumber === 4; // Line 04 has special Title Premium styling
-    const lineIndex = lineNumber - 1;
+    const paddedLine = lineNumber.toString().padStart(2, '0');
+    const lineKey = `line_${paddedLine}`; // Use line_01, line_02 format
 
     return (
       <tr 
         key={lineNumber}
-        className={`border-b border-gray-700 hover:bg-gray-750 focus-within:bg-gray-750 ${isSpecialLine ? 'bg-yellow-900/20' : ''}`}
+        className="border-b border-gray-700 hover:bg-gray-750 focus-within:bg-gray-750"
       >
-        <td className="py-3 px-4 text-gray-300 text-sm">
-          {lineNumber.toString().padStart(2, '0')}
+        <td className="py-2 px-3">
+          <FeeAutocomplete
+            value={getValue(`cdfData.other_charges.${lineKey}.description`) || ''}
+            onChange={(value) => {
+              handleFieldChange(`cdfData.other_charges.${lineKey}.description`, value);
+            }}
+            placeholder="Enter description..."
+            className="!bg-gray-700 !border-gray-600 text-sm"
+            data-schema-key={`cdfData.other_charges.${lineKey}.description`}
+          />
         </td>
-        <td className="py-3 px-4">
-          {isSpecialLine ? (
-            <input 
-              type="text" 
-              value={getValue(`cdfData.other_charges.line_${lineNumber.toString().padStart(2, '0')}.description`)}
-              onChange={handleInputChange}
-              className="w-full bg-transparent border-none outline-none focus:ring-0 text-gray-400"
-              placeholder="Description"
-              readOnly
-              data-schema-key={`cdfData.other_charges.line_${lineNumber.toString().padStart(2, '0')}.description`}
-            />
-          ) : (
-            <FeeAutocomplete
-              value={getValue(`cdfData.other_charges.line_${lineNumber.toString().padStart(2, '0')}.description`) || ''}
-              onChange={(value) => {
-                const event = {
-                  target: {
-                    dataset: { schemaKey: `cdfData.other_charges.line_${lineNumber.toString().padStart(2, '0')}.description` },
-                    value
-                  }
-                } as any;
-                handleInputChange(event);
-              }}
-              placeholder="Enter fee description..."
-              className="!bg-gray-700 !border-gray-600"
-              data-schema-key={`cdfData.other_charges.line_${lineNumber.toString().padStart(2, '0')}.description`}
-            />
-          )}
+        <td className="py-2 px-3">
+          <input 
+            type="text" 
+            value={getValue(`cdfData.other_charges.${lineKey}.payee_name`) || ''}
+            onChange={handleInputChange}
+            className="w-full bg-gray-700 border border-gray-600 rounded px-2 py-1 text-gray-100 text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            placeholder="Payee name"
+            data-schema-key={`cdfData.other_charges.${lineKey}.payee_name`}
+          />
         </td>
-        <td className="py-3 px-4 text-right">
+        <td className="py-2 px-3">
           <input 
             type="text" 
             inputMode="decimal"
-            value={getValue(`cdfData.other_charges.line_${lineNumber.toString().padStart(2, '0')}.amount`)}
+            value={getValue(`cdfData.other_charges.${lineKey}.borrower_amount`) || ''}
             onChange={handleInputChange}
-            className={`w-full bg-transparent border-none outline-none focus:ring-0 text-right ${isSpecialLine ? 'text-gray-400' : 'text-gray-100'}`}
+            className="w-full bg-gray-700 border border-gray-600 rounded px-2 py-1 text-gray-100 text-sm text-right focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             placeholder="0.00"
-            readOnly={isSpecialLine}
-            data-schema-key={`cdfData.other_charges.line_${lineNumber.toString().padStart(2, '0')}.amount`}
+            data-schema-key={`cdfData.other_charges.${lineKey}.borrower_amount`}
           />
         </td>
-        <td className="py-3 px-4 text-center">
+        <td className="py-2 px-3">
           <input 
-            type="checkbox" 
-            className="w-4 h-4 text-blue-600 bg-gray-700 border-gray-600 rounded focus:ring-blue-500"
-            defaultChecked={isSpecialLine}
-            disabled={isSpecialLine}
-            data-schema-key={`cdfData.other_charges.${lineIndex}.paid_by_borrower`}
+            type="text" 
+            inputMode="decimal"
+            value={getValue(`cdfData.other_charges.${lineKey}.borrower_poc_amount`) || ''}
+            onChange={handleInputChange}
+            className="w-full bg-gray-700 border border-gray-600 rounded px-2 py-1 text-gray-100 text-sm text-right focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            placeholder="0.00"
+            data-schema-key={`cdfData.other_charges.${lineKey}.borrower_poc_amount`}
           />
         </td>
-        <td className="py-3 px-4 text-center">
+        <td className="py-2 px-3">
           <input 
-            type="checkbox" 
-            className="w-4 h-4 text-blue-600 bg-gray-700 border-gray-600 rounded focus:ring-blue-500"
-            disabled={isSpecialLine}
-            data-schema-key={`cdfData.other_charges.${lineIndex}.paid_by_seller`}
+            type="text" 
+            inputMode="decimal"
+            value={getValue(`cdfData.other_charges.${lineKey}.seller_amount`) || ''}
+            onChange={handleInputChange}
+            className="w-full bg-gray-700 border border-gray-600 rounded px-2 py-1 text-gray-100 text-sm text-right focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            placeholder="0.00"
+            data-schema-key={`cdfData.other_charges.${lineKey}.seller_amount`}
           />
         </td>
-        <td className="py-3 px-4">
-          {isSpecialLine ? (
-            <button className="bg-blue-600 hover:bg-blue-700 text-white px-2 py-1 rounded text-xs font-medium">
-              Edit Premium Line
-            </button>
-          ) : (
-            <button className="text-gray-400 hover:text-red-400 p-1">
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
-              </svg>
-            </button>
-          )}
+        <td className="py-2 px-3">
+          <input 
+            type="text" 
+            inputMode="decimal"
+            value={getValue(`cdfData.other_charges.${lineKey}.seller_poc_amount`) || ''}
+            onChange={handleInputChange}
+            className="w-full bg-gray-700 border border-gray-600 rounded px-2 py-1 text-gray-100 text-sm text-right focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            placeholder="0.00"
+            data-schema-key={`cdfData.other_charges.${lineKey}.seller_poc_amount`}
+          />
+        </td>
+        <td className="py-2 px-3">
+          <input 
+            type="text" 
+            inputMode="decimal"
+            value={getValue(`cdfData.other_charges.${lineKey}.other_amount`) || ''}
+            onChange={handleInputChange}
+            className="w-full bg-gray-700 border border-gray-600 rounded px-2 py-1 text-gray-100 text-sm text-right focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            placeholder="0.00"
+            data-schema-key={`cdfData.other_charges.${lineKey}.other_amount`}
+          />
         </td>
       </tr>
     );
@@ -312,16 +320,17 @@ const OtherCharges: React.FC = () => {
                 <table className="w-full">
                   <thead>
                     <tr className="border-b border-gray-700">
-                      <th className="text-left py-3 px-4 text-gray-300 font-medium text-sm w-16">Line</th>
-                      <th className="text-left py-3 px-4 text-gray-300 font-medium text-sm">Description</th>
-                      <th className="text-right py-3 px-4 text-gray-300 font-medium text-sm w-32">Amount</th>
-                      <th className="text-center py-3 px-4 text-gray-300 font-medium text-sm w-24">To</th>
-                      <th className="text-center py-3 px-4 text-gray-300 font-medium text-sm w-24">From</th>
-                      <th className="w-10"></th>
+                      <th className="text-left py-3 px-3 text-gray-300 font-medium text-sm">Description</th>
+                      <th className="text-left py-3 px-3 text-gray-300 font-medium text-sm">Payee Name</th>
+                      <th className="text-center py-3 px-3 text-gray-300 font-medium text-sm" style={{minWidth: '110px'}}>Borrower<br/>At Closing</th>
+                      <th className="text-center py-3 px-3 text-gray-300 font-medium text-sm" style={{minWidth: '110px'}}>Borrower<br/>Before Closing</th>
+                      <th className="text-center py-3 px-3 text-gray-300 font-medium text-sm" style={{minWidth: '110px'}}>Seller<br/>At Closing</th>
+                      <th className="text-center py-3 px-3 text-gray-300 font-medium text-sm" style={{minWidth: '110px'}}>Seller<br/>Before Closing</th>
+                      <th className="text-center py-3 px-3 text-gray-300 font-medium text-sm" style={{minWidth: '110px'}}>By Others</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {[1, 2, 3, 4, 5, 6, 7, 8].map(lineNumber => renderTableRow(lineNumber))}
+                    {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(lineNumber => renderTableRow(lineNumber))}
                   </tbody>
                 </table>
               </div>

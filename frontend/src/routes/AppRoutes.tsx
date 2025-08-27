@@ -10,6 +10,8 @@ import OriginationCharges from '../components/orders/OriginationCharges';
 import DidShopFor from '../components/orders/DidShopFor';
 import DidNotShopFor from '../components/orders/DidNotShopFor';
 import OtherCharges from '../components/orders/OtherCharges';
+import OtherChargesTest from '../components/orders/OtherChargesTest';
+import OtherChargesDebug from '../components/orders/OtherChargesDebug';
 import TaxesAndFees from '../components/orders/TaxesAndFees';
 import TaxesDebug from '../components/orders/TaxesDebug';
 import TaxesAndFeesDebug from '../components/orders/TaxesAndFeesDebug';
@@ -46,6 +48,8 @@ import ApTable from '../components/orders/ApTable';
 import EnvelopesShipping from '../components/orders/EnvelopesShipping';
 import Recording from '../components/orders/Recording';
 import SchemaInspector from '../components/orders/SchemaInspector';
+import TestSync from '../components/orders/TestSync';
+import SyncTest from '../components/orders/SyncTest';
 import Login from '../pages/Login';
 import GlobalContacts from '../pages/GlobalContacts';
 
@@ -64,6 +68,8 @@ const AppRoutes = () => {
         <Route path="did-shop-for" element={<DidShopFor />} />
         <Route path="did-not-shop-for" element={<DidNotShopFor />} />
         <Route path="other-charges" element={<OtherCharges />} />
+        <Route path="other-charges-test" element={<OtherChargesTest />} />
+        <Route path="other-charges-debug" element={<OtherChargesDebug />} />
         <Route path="taxes-and-fees" element={<TaxesAndFees />} />
         <Route path="prepaids" element={<Prepaids />} />
         <Route path="escrow" element={<Escrow />} />
@@ -97,6 +103,8 @@ const AppRoutes = () => {
         <Route path="envelopes-shipping" element={<EnvelopesShipping />} />
         <Route path="recording" element={<Recording />} />
         <Route path="schema-inspector" element={<SchemaInspector />} />
+        <Route path="test-sync" element={<TestSync />} />
+        <Route path="sync-test" element={<SyncTest />} />
         {/* Route aliases for AppShell menu compatibility */}
         <Route path="taxes-fees" element={<TaxesAndFees />} />
         <Route path="taxes-debug" element={<TaxesDebug />} />

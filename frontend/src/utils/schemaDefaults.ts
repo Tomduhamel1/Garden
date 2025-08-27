@@ -35,6 +35,16 @@ export const createEmptyLineItem = (): CDFLineItem => ({
   not_required: false
 });
 
+export const createEmptyOtherChargeItem = () => ({
+  description: '',
+  payee_name: '',
+  borrower_amount: 0,
+  borrower_poc_amount: 0,
+  seller_amount: 0,
+  seller_poc_amount: 0,
+  other_amount: 0
+});
+
 export const createEmptyCreditDebitItem = (): CDFCreditDebitItem => ({
   description: '',
   amount: 0,
@@ -259,16 +269,18 @@ export const createEmptyCDFData = (): CDFData => ({
   },
   
   // Section H - Other (8 items as array)
-  other_charges: [
-    createEmptyLineItem(),
-    createEmptyLineItem(),
-    createEmptyLineItem(),
-    createEmptyLineItem(),
-    createEmptyLineItem(),
-    createEmptyLineItem(),
-    createEmptyLineItem(),
-    createEmptyLineItem()
-  ],
+  other_charges: {
+    line_01: createEmptyOtherChargeItem(),
+    line_02: createEmptyOtherChargeItem(),
+    line_03: createEmptyOtherChargeItem(),
+    line_04: createEmptyOtherChargeItem(),
+    line_05: createEmptyOtherChargeItem(),
+    line_06: createEmptyOtherChargeItem(),
+    line_07: createEmptyOtherChargeItem(),
+    line_08: createEmptyOtherChargeItem(),
+    line_09: createEmptyOtherChargeItem(),
+    line_10: createEmptyOtherChargeItem()
+  },
   
   // Section K - Borrower Credits (17 lines)
   borrower_credit_information: {

@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import orderService from '../../services/orderService';
+import React, { useState } from 'react';
+import { useOrderDataContext } from '../../contexts/OrderDataContext';
 
 interface TaxLine {
   description: string;
@@ -21,10 +20,8 @@ interface Document {
 }
 
 const TaxesAndFees: React.FC = () => {
-  const { orderId } = useParams<{ orderId: string }>();
+  const { loading, saving, getValue, handleInputChange, handleSave } = useOrderDataContext();
   const [activeRow, setActiveRow] = useState<number>(1);
-  const [saving, setSaving] = useState(false);
-  const [loading, setLoading] = useState(true);
   const [showDocumentDropdown, setShowDocumentDropdown] = useState(false);
   const [documentSearch, setDocumentSearch] = useState('');
   const [documents, setDocuments] = useState<Document[]>([
@@ -33,127 +30,27 @@ const TaxesAndFees: React.FC = () => {
   ]);
   const [activePaymentType, setActivePaymentType] = useState('check');
   const [selectedLine, setSelectedLine] = useState(1);
-  
-  // Initialize with Recording fees for line 01
-  const [localData, setLocalData] = useState<Record<string, TaxLine>>({
-    'line_01': {
-      description: 'Recording fees',
-      payee_name: '',
-      paid_by_borrower: '',
-      paid_before_closing: '',
-      paid_by_seller: '',
-      paid_before_closing_seller: '',
-      paid_by_others: ''
-    },
-    'line_02': {
-      description: '',
-      payee_name: '',
-      paid_by_borrower: '',
-      paid_before_closing: '',
-      paid_by_seller: '',
-      paid_before_closing_seller: '',
-      paid_by_others: ''
-    },
-    'line_03': {
-      description: '',
-      payee_name: '',
-      paid_by_borrower: '',
-      paid_before_closing: '',
-      paid_by_seller: '',
-      paid_before_closing_seller: '',
-      paid_by_others: ''
-    },
-    'line_04': {
-      description: '',
-      payee_name: '',
-      paid_by_borrower: '',
-      paid_before_closing: '',
-      paid_by_seller: '',
-      paid_before_closing_seller: '',
-      paid_by_others: ''
-    }
-  });
 
-  // Load data on mount
-  useEffect(() => {
-    const loadData = async () => {
-      if (!orderId) {
-        setLoading(false);
-        return;
-      }
-      
-      try {
-        const order = await orderService.getOrder(orderId);
-        if (order?.cdfData?.taxes_and_government_fees) {
-          const taxes = order.cdfData.taxes_and_government_fees;
-          const newData: Record<string, TaxLine> = {};
-          
-          for (let i = 1; i <= 4; i++) {
-            const lineKey = `line_${i.toString().padStart(2, '0')}`;
-            const lineData = taxes[lineKey] || {};
-            newData[lineKey] = {
-              description: lineData.description || (i === 1 ? 'Recording fees' : ''),
-              payee_name: lineData.payee_name || '',
-              paid_by_borrower: lineData.paid_by_borrower || '',
-              paid_before_closing: lineData.paid_before_closing || '',
-              paid_by_seller: lineData.paid_by_seller || '',
-              paid_before_closing_seller: lineData.paid_before_closing_seller || '',
-              paid_by_others: lineData.paid_by_others || ''
-            };
-          }
-          
-          setLocalData(newData);
-        }
-      } catch (error) {
-        console.error('Error loading order:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    
-    loadData();
-  }, [orderId]);
-
-  const handleLocalChange = (lineKey: string, field: keyof TaxLine, value: string) => {
-    setLocalData(prev => ({
-      ...prev,
-      [lineKey]: {
-        ...prev[lineKey],
-        [field]: value
-      }
-    }));
+  // Helper to get tax line data
+  const getTaxLineValue = (lineKey: string, field: string) => {
+    return getValue(`cdfData.taxes_and_government_fees.${lineKey}.${field}`) || '';
   };
 
-  const handleClearField = (lineKey: string, field: keyof TaxLine) => {
-    handleLocalChange(lineKey, field, '');
+  const handleTaxLineChange = (lineKey: string, field: string, value: string) => {
+    const event = {
+      target: {
+        dataset: { schemaKey: `cdfData.taxes_and_government_fees.${lineKey}.${field}` },
+        value
+      }
+    } as any;
+    handleInputChange(event);
   };
 
-  const handleSave = async () => {
-    if (!orderId) return;
-    
-    setSaving(true);
-    try {
-      const order = await orderService.getOrder(orderId);
-      
-      if (!order.cdfData) order.cdfData = {};
-      if (!order.cdfData.taxes_and_government_fees) {
-        order.cdfData.taxes_and_government_fees = {};
-      }
-      
-      Object.entries(localData).forEach(([lineKey, lineData]) => {
-        order.cdfData.taxes_and_government_fees[lineKey] = lineData;
-      });
-      
-      await orderService.updateOrder(orderId, order);
-      console.log('Saved taxes data:', order.cdfData.taxes_and_government_fees);
-      
-    } catch (error) {
-      console.error('Error saving:', error);
-      alert('Error saving data. Check console.');
-    } finally {
-      setSaving(false);
-    }
+  const handleClearField = (lineKey: string, field: string) => {
+    handleTaxLineChange(lineKey, field, '');
   };
+
+  // Use the hook's handleSave function
 
   const calculateTotals = () => {
     const totals = {
@@ -164,13 +61,14 @@ const TaxesAndFees: React.FC = () => {
       paid_by_others: 0
     };
 
-    Object.values(localData).forEach(line => {
-      totals.paid_by_borrower += parseFloat(line.paid_by_borrower || '0');
-      totals.paid_before_closing += parseFloat(line.paid_before_closing || '0');
-      totals.paid_by_seller += parseFloat(line.paid_by_seller || '0');
-      totals.paid_before_closing_seller += parseFloat(line.paid_before_closing_seller || '0');
-      totals.paid_by_others += parseFloat(line.paid_by_others || '0');
-    });
+    for (let i = 1; i <= 4; i++) {
+      const lineKey = `line_${i.toString().padStart(2, '0')}`;
+      totals.paid_by_borrower += parseFloat(getTaxLineValue(lineKey, 'paid_by_borrower') || '0');
+      totals.paid_before_closing += parseFloat(getTaxLineValue(lineKey, 'paid_before_closing') || '0');
+      totals.paid_by_seller += parseFloat(getTaxLineValue(lineKey, 'paid_by_seller') || '0');
+      totals.paid_before_closing_seller += parseFloat(getTaxLineValue(lineKey, 'paid_before_closing_seller') || '0');
+      totals.paid_by_others += parseFloat(getTaxLineValue(lineKey, 'paid_by_others') || '0');
+    }
 
     return totals;
   };
@@ -200,13 +98,13 @@ const TaxesAndFees: React.FC = () => {
     
     // Update Line 01 with calculated recording fee
     if (recordingFee > 0) {
-      handleLocalChange('line_01', 'paid_by_borrower', recordingFee.toFixed(2));
+      handleTaxLineChange('line_01', 'paid_by_borrower', recordingFee.toFixed(2));
     }
     
     // Update Line 02 with calculated transfer tax
     if (transferTax > 0) {
-      handleLocalChange('line_02', 'description', 'Transfer tax (auto-calculated)');
-      handleLocalChange('line_02', 'paid_by_seller', transferTax.toFixed(2));
+      handleTaxLineChange('line_02', 'description', 'Transfer tax (auto-calculated)');
+      handleTaxLineChange('line_02', 'paid_by_seller', transferTax.toFixed(2));
     }
   };
 
@@ -219,7 +117,15 @@ const TaxesAndFees: React.FC = () => {
   const renderTableRow = (lineNumber: number) => {
     const lineKey = `line_${lineNumber.toString().padStart(2, '0')}`;
     const isActive = activeRow === lineNumber;
-    const lineData = localData[lineKey];
+    const lineData = {
+      description: getTaxLineValue(lineKey, 'description') || (lineNumber === 1 ? 'Recording fees' : ''),
+      payee_name: getTaxLineValue(lineKey, 'payee_name'),
+      paid_by_borrower: getTaxLineValue(lineKey, 'paid_by_borrower'),
+      paid_before_closing: getTaxLineValue(lineKey, 'paid_before_closing'),
+      paid_by_seller: getTaxLineValue(lineKey, 'paid_by_seller'),
+      paid_before_closing_seller: getTaxLineValue(lineKey, 'paid_before_closing_seller'),
+      paid_by_others: getTaxLineValue(lineKey, 'paid_by_others')
+    };
     const isLine01 = lineNumber === 1;
 
     return (
@@ -237,7 +143,7 @@ const TaxesAndFees: React.FC = () => {
             type="text" 
             className="w-full px-3 py-1.5 bg-gray-700 text-white border border-gray-500 rounded text-sm focus:outline-none focus:border-blue-500"
             value={lineData.description}
-            onChange={(e) => handleLocalChange(lineKey, 'description', e.target.value)}
+            onChange={(e) => handleTaxLineChange(lineKey, 'description', e.target.value)}
             onFocus={() => setActiveRow(lineNumber)}
           />
         </td>
@@ -249,7 +155,7 @@ const TaxesAndFees: React.FC = () => {
                 type="text" 
                 className="w-full pl-3 pr-8 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                 value={lineData.payee_name}
-                onChange={(e) => handleLocalChange(lineKey, 'payee_name', e.target.value)}
+                onChange={(e) => handleTaxLineChange(lineKey, 'payee_name', e.target.value)}
                 onFocus={() => setActiveRow(lineNumber)}
                 placeholder="Payee"
               />
@@ -266,7 +172,7 @@ const TaxesAndFees: React.FC = () => {
               type="text" 
               className="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
               value={lineData.payee_name}
-              onChange={(e) => handleLocalChange(lineKey, 'payee_name', e.target.value)}
+              onChange={(e) => handleTaxLineChange(lineKey, 'payee_name', e.target.value)}
               onFocus={() => setActiveRow(lineNumber)}
               placeholder="Payee"
             />
@@ -279,7 +185,7 @@ const TaxesAndFees: React.FC = () => {
             inputMode="decimal"
             className="w-full px-3 py-1.5 bg-gray-700 text-white border border-gray-500 rounded text-sm text-right focus:outline-none focus:border-blue-500"
             value={lineData.paid_by_borrower}
-            onChange={(e) => handleLocalChange(lineKey, 'paid_by_borrower', e.target.value)}
+            onChange={(e) => handleTaxLineChange(lineKey, 'paid_by_borrower', e.target.value)}
             onFocus={() => setActiveRow(lineNumber)}
             placeholder="0.00"
           />
@@ -291,7 +197,7 @@ const TaxesAndFees: React.FC = () => {
             inputMode="decimal"
             className="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500"
             value={lineData.paid_before_closing}
-            onChange={(e) => handleLocalChange(lineKey, 'paid_before_closing', e.target.value)}
+            onChange={(e) => handleTaxLineChange(lineKey, 'paid_before_closing', e.target.value)}
             onFocus={() => setActiveRow(lineNumber)}
             placeholder="0.00"
           />
@@ -305,7 +211,7 @@ const TaxesAndFees: React.FC = () => {
                 inputMode="decimal"
                 className="w-full pl-3 pr-8 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500"
                 value={lineData.paid_by_seller}
-                onChange={(e) => handleLocalChange(lineKey, 'paid_by_seller', e.target.value)}
+                onChange={(e) => handleTaxLineChange(lineKey, 'paid_by_seller', e.target.value)}
                 onFocus={() => setActiveRow(lineNumber)}
                 placeholder="0.00"
               />
@@ -323,7 +229,7 @@ const TaxesAndFees: React.FC = () => {
               inputMode="decimal"
               className="w-full px-3 py-1.5 bg-gray-700 text-white border border-gray-500 rounded text-sm text-right focus:outline-none focus:border-blue-500"
               value={lineData.paid_by_seller}
-              onChange={(e) => handleLocalChange(lineKey, 'paid_by_seller', e.target.value)}
+              onChange={(e) => handleTaxLineChange(lineKey, 'paid_by_seller', e.target.value)}
               onFocus={() => setActiveRow(lineNumber)}
               placeholder="0.00"
             />
@@ -336,7 +242,7 @@ const TaxesAndFees: React.FC = () => {
             inputMode="decimal"
             className="w-full px-3 py-1.5 bg-gray-700 border border-gray-500 rounded text-white text-sm text-right focus:outline-none focus:border-blue-500"
             value={lineData.paid_before_closing_seller}
-            onChange={(e) => handleLocalChange(lineKey, 'paid_before_closing_seller', e.target.value)}
+            onChange={(e) => handleTaxLineChange(lineKey, 'paid_before_closing_seller', e.target.value)}
             onFocus={() => setActiveRow(lineNumber)}
             placeholder="0.00"
           />
@@ -348,7 +254,7 @@ const TaxesAndFees: React.FC = () => {
             inputMode="decimal"
             className="w-full px-3 py-1.5 bg-gray-700 text-white border border-gray-500 rounded text-sm text-right focus:outline-none focus:border-blue-500"
             value={lineData.paid_by_others}
-            onChange={(e) => handleLocalChange(lineKey, 'paid_by_others', e.target.value)}
+            onChange={(e) => handleTaxLineChange(lineKey, 'paid_by_others', e.target.value)}
             onFocus={() => setActiveRow(lineNumber)}
             placeholder="0.00"
           />
@@ -752,7 +658,7 @@ const TaxesAndFees: React.FC = () => {
           <h4 className="text-lg font-semibold text-white mb-4 flex items-center gap-3">
             Payments
             <span className="bg-green-600 px-3 py-1 rounded text-sm">
-              {localData[`line_${selectedLine.toString().padStart(2, '0')}`]?.description || 'Recording fees'}
+              {getTaxLineValue(`line_${selectedLine.toString().padStart(2, '0')}`, 'description') || 'Recording fees'}
             </span>
           </h4>
           

@@ -1,5 +1,6 @@
 import React from 'react';
-import CDField from './CDField';
+import CDField from './CDFieldWrapper';
+import { useOrderDataContext } from '../../contexts/OrderDataContext';
 
 // Import the exact styles from the original ClosingDisclosure
 const documentStyles = `
@@ -82,6 +83,9 @@ const documentStyles = `
 `;
 
 const CDPage1: React.FC = () => {
+  const orderData = useOrderDataContext();
+  const { getValue, handleFieldChange } = orderData;
+  
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: documentStyles }} />
@@ -101,6 +105,8 @@ const CDPage1: React.FC = () => {
                   <td>Date Issued</td>
                   <td>
                     <CDField
+                      getValue={getValue}
+                      handleFieldChange={handleFieldChange}
             documentMode={true}
                       fieldId="date-issued"
                       schemaKey="cdfData.transaction_information.borrower_statement_issued_date"
@@ -119,6 +125,8 @@ const CDPage1: React.FC = () => {
                   <td>Closing Date</td>
                   <td>
                     <CDField
+                      getValue={getValue}
+                      handleFieldChange={handleFieldChange}
             documentMode={true}
                       fieldId="closing-date"
                       schemaKey="closingDate"
@@ -138,6 +146,8 @@ const CDPage1: React.FC = () => {
                   <td>Disbursement Date</td>
                   <td>
                     <CDField
+                      getValue={getValue}
+                      handleFieldChange={handleFieldChange}
             documentMode={true}
                       fieldId="disbursement-date"
                       schemaKey="cdfData.transaction_information.disbursement_date"
@@ -155,6 +165,8 @@ const CDPage1: React.FC = () => {
                   <td>Settlement Agent</td>
                   <td>
                     <CDField
+                      getValue={getValue}
+                      handleFieldChange={handleFieldChange}
             documentMode={true}
                       fieldId="settlement-agent"
                       schemaKey="contactsData.title_companies.0.company_name"
@@ -173,6 +185,8 @@ const CDPage1: React.FC = () => {
                   <td>File #</td>
                   <td>
                     <CDField
+                      getValue={getValue}
+                      handleFieldChange={handleFieldChange}
             documentMode={true}
                       fieldId="file-number"
                       schemaKey="file_number"
@@ -191,6 +205,8 @@ const CDPage1: React.FC = () => {
                   <td>Property</td>
                   <td>
                     <CDField
+                      getValue={getValue}
+                      handleFieldChange={handleFieldChange}
             documentMode={true}
                       fieldId="property-address"
                       schemaKey="propertiesData.properties.0.address"
@@ -203,6 +219,8 @@ const CDPage1: React.FC = () => {
                       }}
                     /><br />
                     <CDField
+                      getValue={getValue}
+                      handleFieldChange={handleFieldChange}
             documentMode={true}
                       fieldId="property-city"
                       schemaKey="propertiesData.properties.0.city"
@@ -215,6 +233,8 @@ const CDPage1: React.FC = () => {
                       }}
                     />, 
                     <CDField
+                      getValue={getValue}
+                      handleFieldChange={handleFieldChange}
             documentMode={true}
                       fieldId="property-state"
                       schemaKey="propertiesData.properties.0.state"
@@ -228,6 +248,8 @@ const CDPage1: React.FC = () => {
                       }}
                     />{' '}
                     <CDField
+                      getValue={getValue}
+                      handleFieldChange={handleFieldChange}
             documentMode={true}
                       fieldId="property-zip"
                       schemaKey="propertiesData.properties.0.zip"
@@ -245,6 +267,8 @@ const CDPage1: React.FC = () => {
                   <td>Sale Price</td>
                   <td style={{ fontWeight: 'bold' }}>
                     <CDField
+                      getValue={getValue}
+                      handleFieldChange={handleFieldChange}
             documentMode={true}
                       fieldId="sale-price"
                       schemaKey="cdfData.transaction_information.purchase_price"
@@ -271,6 +295,8 @@ const CDPage1: React.FC = () => {
                   <td>Borrower(s)</td>
                   <td>
                     <CDField
+                      getValue={getValue}
+                      handleFieldChange={handleFieldChange}
             documentMode={true}
                       fieldId="borrower-first-name"
                       schemaKey="contactsData.borrowers.0.first_name"
@@ -283,6 +309,8 @@ const CDPage1: React.FC = () => {
                       }}
                     />{' '}
                     <CDField
+                      getValue={getValue}
+                      handleFieldChange={handleFieldChange}
             documentMode={true}
                       fieldId="borrower-last-name"
                       schemaKey="contactsData.borrowers.0.last_name"
@@ -295,6 +323,8 @@ const CDPage1: React.FC = () => {
                       }}
                     /><br />
                     <CDField
+                      getValue={getValue}
+                      handleFieldChange={handleFieldChange}
             documentMode={true}
                       fieldId="borrower-address"
                       schemaKey="contactsData.borrowers.0.current_address.address_1"
@@ -307,6 +337,8 @@ const CDPage1: React.FC = () => {
                       }}
                     /><br />
                     <CDField
+                      getValue={getValue}
+                      handleFieldChange={handleFieldChange}
             documentMode={true}
                       fieldId="borrower-city"
                       schemaKey="contactsData.borrowers.0.current_address.city"
@@ -319,6 +351,8 @@ const CDPage1: React.FC = () => {
                       }}
                     />, 
                     <CDField
+                      getValue={getValue}
+                      handleFieldChange={handleFieldChange}
             documentMode={true}
                       fieldId="borrower-state"
                       schemaKey="contactsData.borrowers.0.current_address.state"
@@ -332,6 +366,8 @@ const CDPage1: React.FC = () => {
                       }}
                     />{' '}
                     <CDField
+                      getValue={getValue}
+                      handleFieldChange={handleFieldChange}
             documentMode={true}
                       fieldId="borrower-zip"
                       schemaKey="contactsData.borrowers.0.current_address.zipcode"
@@ -349,6 +385,8 @@ const CDPage1: React.FC = () => {
                   <td>Seller(s)</td>
                   <td>
                     <CDField
+                      getValue={getValue}
+                      handleFieldChange={handleFieldChange}
             documentMode={true}
                       fieldId="seller-first-name"
                       schemaKey="contactsData.sellers.0.first_name"
@@ -361,6 +399,8 @@ const CDPage1: React.FC = () => {
                       }}
                     />{' '}
                     <CDField
+                      getValue={getValue}
+                      handleFieldChange={handleFieldChange}
             documentMode={true}
                       fieldId="seller-last-name"
                       schemaKey="contactsData.sellers.0.last_name"
@@ -373,6 +413,8 @@ const CDPage1: React.FC = () => {
                       }}
                     /><br />
                     <CDField
+                      getValue={getValue}
+                      handleFieldChange={handleFieldChange}
             documentMode={true}
                       fieldId="seller-address"
                       schemaKey="contactsData.sellers.0.current_address.address_1"
@@ -385,6 +427,8 @@ const CDPage1: React.FC = () => {
                       }}
                     /><br />
                     <CDField
+                      getValue={getValue}
+                      handleFieldChange={handleFieldChange}
             documentMode={true}
                       fieldId="seller-city"
                       schemaKey="contactsData.sellers.0.current_address.city"
@@ -397,6 +441,8 @@ const CDPage1: React.FC = () => {
                       }}
                     />, 
                     <CDField
+                      getValue={getValue}
+                      handleFieldChange={handleFieldChange}
             documentMode={true}
                       fieldId="seller-state"
                       schemaKey="contactsData.sellers.0.current_address.state"
@@ -410,6 +456,8 @@ const CDPage1: React.FC = () => {
                       }}
                     />{' '}
                     <CDField
+                      getValue={getValue}
+                      handleFieldChange={handleFieldChange}
             documentMode={true}
                       fieldId="seller-zip"
                       schemaKey="contactsData.sellers.0.current_address.zipcode"
@@ -427,6 +475,8 @@ const CDPage1: React.FC = () => {
                   <td>Lender</td>
                   <td>
                     <CDField
+                      getValue={getValue}
+                      handleFieldChange={handleFieldChange}
             documentMode={true}
                       fieldId="lender-name"
                       schemaKey="contactsData.lenders.0.company_name"
@@ -452,6 +502,8 @@ const CDPage1: React.FC = () => {
                   <td>Loan Term</td>
                   <td>
                     <CDField
+                      getValue={getValue}
+                      handleFieldChange={handleFieldChange}
             documentMode={true}
                       fieldId="loan-term"
                       schemaKey="cdfData.loans.0.loan_term_years"
@@ -468,6 +520,8 @@ const CDPage1: React.FC = () => {
                   <td>Purpose</td>
                   <td>
                     <CDField
+                      getValue={getValue}
+                      handleFieldChange={handleFieldChange}
             documentMode={true}
                       fieldId="loan-purpose"
                       schemaKey="cdfData.loans.0.loan_purpose"
@@ -485,6 +539,8 @@ const CDPage1: React.FC = () => {
                   <td>Product</td>
                   <td>
                     <CDField
+                      getValue={getValue}
+                      handleFieldChange={handleFieldChange}
             documentMode={true}
                       fieldId="loan-product"
                       schemaKey="cdfData.loans.0.loan_product"
@@ -501,6 +557,8 @@ const CDPage1: React.FC = () => {
                   <td>Loan Type</td>
                   <td>
                     <CDField
+                      getValue={getValue}
+                      handleFieldChange={handleFieldChange}
             documentMode={true}
                       fieldId="loan-type"
                       schemaKey="cdfData.loans.0.loan_type"
@@ -518,6 +576,8 @@ const CDPage1: React.FC = () => {
                   <td>Loan ID #</td>
                   <td>
                     <CDField
+                      getValue={getValue}
+                      handleFieldChange={handleFieldChange}
             documentMode={true}
                       fieldId="loan-number"
                       schemaKey="cdfData.loans.0.loan_number"
@@ -535,6 +595,8 @@ const CDPage1: React.FC = () => {
                   <td>MIC #</td>
                   <td>
                     <CDField
+                      getValue={getValue}
+                      handleFieldChange={handleFieldChange}
             documentMode={true}
                       fieldId="mic-number"
                       schemaKey="cdfData.loans.0.mortgage_insurance_case_number"
@@ -677,6 +739,8 @@ const CDPage1: React.FC = () => {
                   <td>Principal & Interest</td>
                   <td>
                     <CDField
+                      getValue={getValue}
+                      handleFieldChange={handleFieldChange}
             documentMode={true}
                       fieldId="year1-pi"
                       schemaKey="cdfData.projected_payments.year1.principal_interest"
@@ -695,6 +759,8 @@ const CDPage1: React.FC = () => {
                   <td>Mortgage Insurance</td>
                   <td>+ 
                     <CDField
+                      getValue={getValue}
+                      handleFieldChange={handleFieldChange}
             documentMode={true}
                       fieldId="year1-mi"
                       schemaKey="cdfData.projected_payments.year1.mortgage_insurance"
@@ -714,6 +780,8 @@ const CDPage1: React.FC = () => {
                   <td>Estimated Escrow<br /><small style={{ fontSize: '8px' }}>Amount can increase over time.</small></td>
                   <td>+ 
                     <CDField
+                      getValue={getValue}
+                      handleFieldChange={handleFieldChange}
             documentMode={true}
                       fieldId="year1-escrow"
                       schemaKey="cdfData.projected_payments.year1.estimated_escrow"
@@ -733,6 +801,8 @@ const CDPage1: React.FC = () => {
                   <td><strong>Estimated Total Monthly Payment</strong></td>
                   <td>
                     <CDField
+                      getValue={getValue}
+                      handleFieldChange={handleFieldChange}
             documentMode={true}
                       fieldId="year1-total"
                       schemaKey="cdfData.projected_payments.year1.total_payment"
@@ -762,6 +832,8 @@ const CDPage1: React.FC = () => {
                 <tr>
                   <td>
                     <CDField
+                      getValue={getValue}
+                      handleFieldChange={handleFieldChange}
             documentMode={true}
                       fieldId="estimated-tia"
                       schemaKey="cdfData.estimated_taxes_insurance_assessments"

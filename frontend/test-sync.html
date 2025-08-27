@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Sync</title>
+</head>
+<body>
+    <h1>Test Bidirectional Sync</h1>
+    <p>1. Open BasicInfo in one tab: <a href="http://localhost:5174/orders/39a531b6-3144-43c8-b023-a4130f8eb079/basic-info" target="_blank">BasicInfo</a></p>
+    <p>2. Open ClosingDisclosure in another tab: <a href="http://localhost:5174/orders/39a531b6-3144-43c8-b023-a4130f8eb079/closing-disclosure" target="_blank">Closing Disclosure</a></p>
+    <p>3. Edit the Purchase Price in BasicInfo and watch if it updates in CD</p>
+    <p>4. Edit the Purchase Price in CD and watch if it updates in BasicInfo</p>
+    
+    <h2>Current Status</h2>
+    <p id="status">Testing...</p>
+    
+    <script>
+        // Test if we can reach the API
+        fetch('http://localhost:3002/api/orders/39a531b6-3144-43c8-b023-a4130f8eb079', {
+            headers: {
+                'Authorization': 'Bearer demo-token-12345'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('status').innerHTML = 
+                'API works! Purchase price: $' + 
+                (data.data?.order?.cdfData?.transaction_information?.purchase_price || 'Not set');
+        })
+        .catch(err => {
+            document.getElementById('status').innerHTML = 'API Error: ' + err.message;
+        });
+    </script>
+</body>
+</html>

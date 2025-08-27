@@ -181,6 +181,16 @@ export interface CDFLineItem {
   not_required?: boolean;
 }
 
+export interface OtherChargeItem {
+  description?: string;
+  payee_name?: string;
+  borrower_amount?: MISMOAmount;
+  borrower_poc_amount?: MISMOAmount;
+  seller_amount?: MISMOAmount;
+  seller_poc_amount?: MISMOAmount;
+  other_amount?: MISMOAmount;
+}
+
 export interface CDFCreditDebitItem {
   description?: string;
   amount?: MISMOAmount;
@@ -308,8 +318,19 @@ export interface CDFData {
     line_08?: CDFLineItem;
   };
   
-  // Section H - Other (8 lines as array)
-  other_charges?: CDFLineItem[];
+  // Section H - Other (10 lines as object)
+  other_charges?: {
+    line_01?: OtherChargeItem;
+    line_02?: OtherChargeItem;
+    line_03?: OtherChargeItem;
+    line_04?: OtherChargeItem;
+    line_05?: OtherChargeItem;
+    line_06?: OtherChargeItem;
+    line_07?: OtherChargeItem;
+    line_08?: OtherChargeItem;
+    line_09?: OtherChargeItem;
+    line_10?: OtherChargeItem;
+  };
   
   // Section K - Borrower Credits (17 lines)
   borrower_credit_information?: {

@@ -1,69 +1,8 @@
-import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import orderService from '../../services/orderService';
-// import type { Order } from '../../services/orderService';
-import { type OrderData } from '../../types/schema';
-import { getFieldValue, setFieldValue, initializeOrderDefaults } from '../../utils/schemaDefaults';
+import React from 'react';
+import { useOrderDataContext } from '../../contexts/OrderDataContext';
 
-const BasicInfo = () => {
-  const { orderId } = useParams<{ orderId: string }>();
-  const [loading, setLoading] = useState(true);
-  const [saving, setSaving] = useState(false);
-  const [orderData, setOrderData] = useState<OrderData | null>(null);
-
-  useEffect(() => {
-    if (orderId) {
-      fetchOrder();
-    }
-  }, [orderId]);
-
-  const fetchOrder = async () => {
-    try {
-      setLoading(true);
-      const data = await orderService.getOrder(orderId!);
-      console.log('Fetched order data:', data);
-      // Initialize with defaults if needed
-      const initialized = initializeOrderDefaults(data as Partial<OrderData>);
-      console.log('Initialized order data:', initialized);
-      setOrderData(initialized);
-    } catch (err) {
-      console.error('Error fetching order:', err);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value, type } = e.target;
-    const fieldPath = e.target.getAttribute('data-schema-key') || name;
-    
-    if (!orderData) return;
-    
-    const newOrderData = { ...orderData };
-    const fieldValue = type === 'checkbox' 
-      ? (e.target as HTMLInputElement).checked
-      : type === 'number' 
-      ? parseFloat(value) || 0
-      : value;
-    
-    setFieldValue(newOrderData, fieldPath, fieldValue);
-    setOrderData(newOrderData);
-  };
-
-  const handleSave = async () => {
-    if (!orderId || !orderData) return;
-    
-    try {
-      setSaving(true);
-      await orderService.updateOrder(orderId, orderData);
-      alert('Order saved successfully!');
-    } catch (err) {
-      console.error('Error saving order:', err);
-      alert('Failed to save order');
-    } finally {
-      setSaving(false);
-    }
-  };
+const BasicInfo: React.FC = () => {
+  const { orderId, orderData, loading, saving, getValue, handleInputChange, handleSave } = useOrderDataContext();
 
   return (
     <>
@@ -124,7 +63,7 @@ const BasicInfo = () => {
                           type="date"
                           name="closingDate"
                           data-schema-key="closingDate"
-                          value={orderData.closingDate || ''}
+                          value={getValue('closingDate') || ''}
                           onChange={handleInputChange}
                           className="w-full pl-9 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                         />
@@ -138,7 +77,7 @@ const BasicInfo = () => {
                           type="date"
                           name="contractDate"
                           data-schema-key="cdfData.transaction_information.contract_date"
-                          value={getFieldValue(orderData, 'cdfData.transaction_information.contract_date') || ''}
+                          value={getValue('cdfData.transaction_information.contract_date') || ''}
                           onChange={handleInputChange}
                           className="w-full pl-9 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                         />
@@ -155,7 +94,7 @@ const BasicInfo = () => {
                           type="date"
                           name="dateIssued"
                           data-schema-key="cdfData.date_issued"
-                          value={getFieldValue(orderData, 'cdfData.date_issued') || ''}
+                          value={getValue('cdfData.date_issued') || ''}
                           onChange={handleInputChange}
                           className="w-full pl-9 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                         />
@@ -169,7 +108,7 @@ const BasicInfo = () => {
                           type="date"
                           name="disbursementDate"
                           data-schema-key="cdfData.disbursement_date"
-                          value={getFieldValue(orderData, 'cdfData.disbursement_date') || ''}
+                          value={getValue('cdfData.disbursement_date') || ''}
                           onChange={handleInputChange}
                           className="w-full pl-9 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                         />
@@ -191,7 +130,7 @@ const BasicInfo = () => {
                           type="number"
                           name="purchasePrice"
                           data-schema-key="cdfData.transaction_information.purchase_price"
-                          value={getFieldValue(orderData, 'cdfData.transaction_information.purchase_price') || ''}
+                          value={getValue('cdfData.transaction_information.purchase_price') || ''}
                           onChange={handleInputChange}
                           className="w-full pl-7 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                           placeholder="0.00"
@@ -207,7 +146,7 @@ const BasicInfo = () => {
                           type="number"
                           name="loanAmount"
                           data-schema-key="cdfData.loans.0.initial_loan_amount"
-                          value={getFieldValue(orderData, 'cdfData.loans.0.initial_loan_amount') || ''}
+                          value={getValue('cdfData.loans.0.initial_loan_amount') || ''}
                           onChange={handleInputChange}
                           className="w-full pl-7 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                           placeholder="0.00"
@@ -226,7 +165,7 @@ const BasicInfo = () => {
                           type="number"
                           name="deposit"
                           data-schema-key="cdfData.transaction_information.deposit"
-                          value={getFieldValue(orderData, 'cdfData.transaction_information.deposit') || ''}
+                          value={getValue('cdfData.transaction_information.deposit') || ''}
                           onChange={handleInputChange}
                           className="w-full pl-7 pr-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                           placeholder="0.00"
@@ -242,7 +181,7 @@ const BasicInfo = () => {
                           type="number"
                           name="downPayment"
                           data-schema-key="cdfData.transaction_information.down_payment"
-                          value={(getFieldValue(orderData, 'cdfData.transaction_information.purchase_price') || 0) - (getFieldValue(orderData, 'cdfData.loans.0.initial_loan_amount') || 0)}
+                          value={(getValue('cdfData.transaction_information.purchase_price') || 0) - (getValue('cdfData.loans.0.initial_loan_amount') || 0)}
                           className="w-full pl-7 pr-3 py-2.5 bg-gray-600 border border-gray-500 rounded text-gray-400 text-sm"
                           readOnly
                           title="Automatically calculated from Purchase Price - Loan Amount"
@@ -257,7 +196,7 @@ const BasicInfo = () => {
                         type="checkbox"
                         name="cashOnly"
                         data-schema-key="cdfData.loans.0.cash_only"
-                        checked={getFieldValue(orderData, 'cdfData.loans.0.cash_only') || false}
+                        checked={getValue('cdfData.loans.0.cash_only') || false}
                         onChange={handleInputChange}
                         className="w-4 h-4 text-blue-500 bg-gray-700 border-gray-500 rounded focus:ring-blue-500 focus:ring-2"
                       />
@@ -268,7 +207,7 @@ const BasicInfo = () => {
                         type="checkbox"
                         name="heloc"
                         data-schema-key="cdfData.loans.0.is_heloc"
-                        checked={getFieldValue(orderData, 'cdfData.loans.0.is_heloc') || false}
+                        checked={getValue('cdfData.loans.0.is_heloc') || false}
                         onChange={handleInputChange}
                         className="w-4 h-4 text-blue-500 bg-gray-700 border-gray-500 rounded focus:ring-blue-500 focus:ring-2"
                       />
@@ -288,7 +227,7 @@ const BasicInfo = () => {
                         type="text"
                         name="lenderName"
                         data-schema-key="cdfData.lender.name"
-                        value={getFieldValue(orderData, 'cdfData.lender.name') || ''}
+                        value={getValue('cdfData.lender.name') || ''}
                         onChange={handleInputChange}
                         className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                         placeholder="Enter lender name"
@@ -300,7 +239,7 @@ const BasicInfo = () => {
                         type="text"
                         name="lenderAddress"
                         data-schema-key="cdfData.lender.address"
-                        value={getFieldValue(orderData, 'cdfData.lender.address') || ''}
+                        value={getValue('cdfData.lender.address') || ''}
                         onChange={handleInputChange}
                         className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                         placeholder="Enter lender address"
@@ -314,7 +253,7 @@ const BasicInfo = () => {
                       <input
                         type="text"
                         data-schema-key="cdfData.lender.city"
-                        value={getFieldValue(orderData, 'cdfData.lender.city') || ''}
+                        value={getValue('cdfData.lender.city') || ''}
                         onChange={handleInputChange}
                         className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                         placeholder="City"
@@ -325,7 +264,7 @@ const BasicInfo = () => {
                       <input
                         type="text"
                         data-schema-key="cdfData.lender.state"
-                        value={getFieldValue(orderData, 'cdfData.lender.state') || ''}
+                        value={getValue('cdfData.lender.state') || ''}
                         onChange={handleInputChange}
                         className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                         placeholder="ST"
@@ -337,7 +276,7 @@ const BasicInfo = () => {
                       <input
                         type="text"
                         data-schema-key="cdfData.lender.zip"
-                        value={getFieldValue(orderData, 'cdfData.lender.zip') || ''}
+                        value={getValue('cdfData.lender.zip') || ''}
                         onChange={handleInputChange}
                         className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                         placeholder="ZIP"
@@ -351,7 +290,7 @@ const BasicInfo = () => {
                       <input
                         type="text"
                         data-schema-key="cdfData.lender.nmls_id"
-                        value={getFieldValue(orderData, 'cdfData.lender.nmls_id') || ''}
+                        value={getValue('cdfData.lender.nmls_id') || ''}
                         onChange={handleInputChange}
                         className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                         placeholder="NMLS ID"
@@ -362,7 +301,7 @@ const BasicInfo = () => {
                       <input
                         type="text"
                         data-schema-key="cdfData.lender.state_license_id"
-                        value={getFieldValue(orderData, 'cdfData.lender.state_license_id') || ''}
+                        value={getValue('cdfData.lender.state_license_id') || ''}
                         onChange={handleInputChange}
                         className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                         placeholder="State License ID"
@@ -376,7 +315,7 @@ const BasicInfo = () => {
                       <input
                         type="text"
                         data-schema-key="cdfData.lender.contact_name"
-                        value={getFieldValue(orderData, 'cdfData.lender.contact_name') || ''}
+                        value={getValue('cdfData.lender.contact_name') || ''}
                         onChange={handleInputChange}
                         className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                         placeholder="Contact person name"
@@ -387,7 +326,7 @@ const BasicInfo = () => {
                       <input
                         type="email"
                         data-schema-key="cdfData.lender.email"
-                        value={getFieldValue(orderData, 'cdfData.lender.email') || ''}
+                        value={getValue('cdfData.lender.email') || ''}
                         onChange={handleInputChange}
                         className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                         placeholder="email@example.com"
@@ -398,7 +337,7 @@ const BasicInfo = () => {
                       <input
                         type="tel"
                         data-schema-key="cdfData.lender.phone"
-                        value={getFieldValue(orderData, 'cdfData.lender.phone') || ''}
+                        value={getValue('cdfData.lender.phone') || ''}
                         onChange={handleInputChange}
                         className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                         placeholder="(555) 555-5555"
@@ -417,7 +356,7 @@ const BasicInfo = () => {
                       <input
                         type="text"
                         data-schema-key="cdfData.settlement_agent.name"
-                        value={getFieldValue(orderData, 'cdfData.settlement_agent.name') || ''}
+                        value={getValue('cdfData.settlement_agent.name') || ''}
                         onChange={handleInputChange}
                         className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                         placeholder="Settlement company name"
@@ -428,7 +367,7 @@ const BasicInfo = () => {
                       <input
                         type="text"
                         data-schema-key="cdfData.settlement_agent.address"
-                        value={getFieldValue(orderData, 'cdfData.settlement_agent.address') || ''}
+                        value={getValue('cdfData.settlement_agent.address') || ''}
                         onChange={handleInputChange}
                         className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                         placeholder="Address"
@@ -442,7 +381,7 @@ const BasicInfo = () => {
                       <input
                         type="text"
                         data-schema-key="cdfData.settlement_agent.city"
-                        value={getFieldValue(orderData, 'cdfData.settlement_agent.city') || ''}
+                        value={getValue('cdfData.settlement_agent.city') || ''}
                         onChange={handleInputChange}
                         className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                         placeholder="City"
@@ -453,7 +392,7 @@ const BasicInfo = () => {
                       <input
                         type="text"
                         data-schema-key="cdfData.settlement_agent.state"
-                        value={getFieldValue(orderData, 'cdfData.settlement_agent.state') || ''}
+                        value={getValue('cdfData.settlement_agent.state') || ''}
                         onChange={handleInputChange}
                         className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                         placeholder="ST"
@@ -465,7 +404,7 @@ const BasicInfo = () => {
                       <input
                         type="text"
                         data-schema-key="cdfData.settlement_agent.zip"
-                        value={getFieldValue(orderData, 'cdfData.settlement_agent.zip') || ''}
+                        value={getValue('cdfData.settlement_agent.zip') || ''}
                         onChange={handleInputChange}
                         className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                         placeholder="ZIP"
@@ -476,7 +415,7 @@ const BasicInfo = () => {
                       <input
                         type="tel"
                         data-schema-key="cdfData.settlement_agent.phone"
-                        value={getFieldValue(orderData, 'cdfData.settlement_agent.phone') || ''}
+                        value={getValue('cdfData.settlement_agent.phone') || ''}
                         onChange={handleInputChange}
                         className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                         placeholder="(555) 555-5555"
@@ -495,7 +434,7 @@ const BasicInfo = () => {
                       <select
                         name="transactionType"
                         data-schema-key="cdfData.loans.0.loan_purpose"
-                        value={getFieldValue(orderData, 'cdfData.loans.0.loan_purpose') || 'Purchase'}
+                        value={getValue('cdfData.loans.0.loan_purpose') || 'Purchase'}
                         onChange={handleInputChange}
                         className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                       >
@@ -509,7 +448,7 @@ const BasicInfo = () => {
                       <select
                         name="representing"
                         data-schema-key="cdfData.transaction_information.representing"
-                        value={getFieldValue(orderData, 'cdfData.transaction_information.representing') || 'buyer'}
+                        value={getValue('cdfData.transaction_information.representing') || 'buyer'}
                         onChange={handleInputChange}
                         className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                       >
@@ -535,7 +474,7 @@ const BasicInfo = () => {
                         type="text"
                         name="propertyAddress"
                         data-schema-key="propertiesData.properties.0.address"
-                        value={getFieldValue(orderData, 'propertiesData.properties.0.address') || ''}
+                        value={getValue('propertiesData.properties.0.address') || ''}
                         onChange={handleInputChange}
                         className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                         placeholder="Property address"
@@ -549,7 +488,7 @@ const BasicInfo = () => {
                           type="text"
                           name="propertyCity"
                           data-schema-key="propertiesData.properties.0.city"
-                          value={getFieldValue(orderData, 'propertiesData.properties.0.city') || ''}
+                          value={getValue('propertiesData.properties.0.city') || ''}
                           onChange={handleInputChange}
                           className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                           placeholder="City"
@@ -561,7 +500,7 @@ const BasicInfo = () => {
                           type="text"
                           name="propertyState"
                           data-schema-key="propertiesData.properties.0.state"
-                          value={getFieldValue(orderData, 'propertiesData.properties.0.state') || ''}
+                          value={getValue('propertiesData.properties.0.state') || ''}
                           onChange={handleInputChange}
                           className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                           placeholder="State"
@@ -583,7 +522,7 @@ const BasicInfo = () => {
                           type="text"
                           name="borrowerFirstName"
                           data-schema-key="contactsData.borrowers.0.first_name"
-                          value={getFieldValue(orderData, 'contactsData.borrowers.0.first_name') || ''}
+                          value={getValue('contactsData.borrowers.0.first_name') || ''}
                           onChange={handleInputChange}
                           className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                           placeholder="First name"
@@ -595,7 +534,7 @@ const BasicInfo = () => {
                           type="text"
                           name="borrowerLastName"
                           data-schema-key="contactsData.borrowers.0.last_name"
-                          value={getFieldValue(orderData, 'contactsData.borrowers.0.last_name') || ''}
+                          value={getValue('contactsData.borrowers.0.last_name') || ''}
                           onChange={handleInputChange}
                           className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                           placeholder="Last name"
@@ -609,7 +548,7 @@ const BasicInfo = () => {
                         type="email"
                         name="borrowerEmail"
                         data-schema-key="contactsData.borrowers.0.email"
-                        value={getFieldValue(orderData, 'contactsData.borrowers.0.email') || ''}
+                        value={getValue('contactsData.borrowers.0.email') || ''}
                         onChange={handleInputChange}
                         className="w-full px-3 py-2.5 bg-gray-700 border border-gray-500 rounded text-white text-sm focus:outline-none focus:border-blue-500"
                         placeholder="Email address"

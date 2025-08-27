@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
+import { OrderDataProvider } from '../../contexts/OrderDataContext';
 
 interface NavItem {
   label: string;
@@ -645,7 +646,9 @@ export default function AppShell() {
       </section>
 
       {/* Main Content Area + Right Rail (handled by child components) */}
-      <Outlet />
+      <OrderDataProvider>
+        <Outlet />
+      </OrderDataProvider>
     </div>
   </div>
   );

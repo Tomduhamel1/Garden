@@ -6,7 +6,7 @@ import CDPage4 from './CDPage4';
 import CDPage5 from './CDPage5';
 import { getFieldTypeByUCD } from '../../utils/cdFieldTypes';
 
-const ClosingDisclosure: React.FC = () => {
+const ClosingDisclosureContent: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [showCoverageStats, setShowCoverageStats] = useState(true);
   const [selectedField, setSelectedField] = useState<any>(null);
@@ -450,5 +450,8 @@ const ClosingDisclosure: React.FC = () => {
     </div>
   );
 };
+
+// No longer need to wrap with OrderDataProvider as AppShell provides it
+const ClosingDisclosure: React.FC = ClosingDisclosureContent;
 
 export default ClosingDisclosure;

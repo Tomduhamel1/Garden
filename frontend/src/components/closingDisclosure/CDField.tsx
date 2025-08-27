@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useRef, useMemo } from 'react';
-import { useOrderData } from '../../hooks/useOrderData';
+import React, { useState, useEffect, useRef, useMemo, useContext } from 'react';
 import { getFieldTypeByUCD, validateFieldValue, formatFieldInput } from '../../utils/cdFieldTypes';
 import type { FieldTypeDefinition } from '../../utils/cdFieldTypes';
 
@@ -25,6 +24,8 @@ interface CDFieldProps {
   section?: string; // For tracking which CD section this belongs to
   documentMode?: boolean; // For seamless document integration
   style?: React.CSSProperties; // Allow inline styles
+  getValue?: (path: string) => any; // Pass from parent
+  handleFieldChange?: (path: string, value: any) => void; // Pass from parent
 }
 
 const CDField: React.FC<CDFieldProps> = ({
@@ -41,10 +42,13 @@ const CDField: React.FC<CDFieldProps> = ({
   placeholder,
   section,
   documentMode = false,
-  style = {}
+  style = {},
+  getValue: getValueProp,
+  handleFieldChange: handleFieldChangeProp
 }) => {
-  const orderData = useOrderData();
-  const { getValue, handleFieldChange } = orderData;
+  // Use props directly - context will be provided by wrapper if needed
+  const getValue = getValueProp;
+  const handleFieldChange = handleFieldChangeProp;
   
   // Determine field type from UCD mapping
   const fieldTypeDef: FieldTypeDefinition | undefined = useMemo(() => {
@@ -174,7 +178,7 @@ const CDField: React.FC<CDFieldProps> = ({
   };
 
   const handleCancel = () => {
-    setLocalValue(getValue(schemaKey) || initialValue || '');
+    setLocalValue(getValue ? getValue(schemaKey) : initialValue || '');
     setIsEditing(false);
   };
 

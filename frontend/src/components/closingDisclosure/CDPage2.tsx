@@ -1,15 +1,38 @@
 import React from 'react';
-import CDField from './CDField';
+import CDField from './CDFieldWrapper';
 import { FeeAutocomplete } from '../common/FeeAutocomplete';
-import { useOrderData } from '../../hooks/useOrderData';
+import { useOrderDataContext } from '../../contexts/OrderDataContext';
+import { compactLineItems, compactCDFSections } from '../../utils/lineCompaction';
 // import FeeTypeAutocomplete from '../ui/FeeTypeAutocomplete';
 // import { UCDCompliantFee } from '../../utils/ucdFeeTypes';
 
 const CDPage2: React.FC = () => {
-  const { getValue, handleInputChange } = useOrderData();
+  const { getValue, handleInputChange, handleFieldChange, orderData } = useOrderDataContext();
+  
+  // Clean up lines function for a specific section
+  const cleanupSection = (sectionName: string, maxLines: number) => {
+    if (!orderData?.cdfData?.[sectionName]) return;
+    
+    console.log(`Cleaning up ${sectionName}...`);
+    
+    // Get current section data
+    const currentSection = orderData.cdfData[sectionName];
+    
+    // Compact the lines
+    const compactedSection = compactLineItems(currentSection, maxLines);
+    
+    // Update each line in the section
+    Object.entries(compactedSection).forEach(([lineKey, lineData]) => {
+      const schemaKey = `cdfData.${sectionName}.${lineKey}`;
+      handleFieldChange(schemaKey, lineData);
+    });
+    
+    console.log(`Cleaned up ${sectionName} successfully`);
+  };
   // Helper to render line items for each section
   const renderLineItem = (section: string, lineNum: string, index: number) => {
     const paddedNum = lineNum.padStart(2, '0');
+    // Use line_ format for all sections including other_charges
     const baseKey = `cdfData.${section}.line_${paddedNum}`;
     
     // Special handling for Section H (Other) to use UCD-compliant autocomplete
@@ -54,7 +77,7 @@ const CDPage2: React.FC = () => {
           <CDField
             documentMode={true}
             fieldId={`${section}-line-${paddedNum}-borrower-at-closing`}
-            schemaKey={`${baseKey}.borrower_paid_at_closing`}
+            schemaKey={`${baseKey}.borrower_amount`}
             type="currency"
             format="currency"
             placeholder="0.00"
@@ -69,7 +92,7 @@ const CDPage2: React.FC = () => {
           <CDField
             documentMode={true}
             fieldId={`${section}-line-${paddedNum}-borrower-before-closing`}
-            schemaKey={`${baseKey}.borrower_paid_before_closing`}
+            schemaKey={`${baseKey}.borrower_poc_amount`}
             type="currency"
             format="currency"
             placeholder="0.00"
@@ -84,7 +107,7 @@ const CDPage2: React.FC = () => {
           <CDField
             documentMode={true}
             fieldId={`${section}-line-${paddedNum}-seller-at-closing`}
-            schemaKey={`${baseKey}.seller_paid_at_closing`}
+            schemaKey={`${baseKey}.seller_amount`}
             type="currency"
             format="currency"
             placeholder="0.00"
@@ -99,7 +122,7 @@ const CDPage2: React.FC = () => {
           <CDField
             documentMode={true}
             fieldId={`${section}-line-${paddedNum}-seller-before-closing`}
-            schemaKey={`${baseKey}.seller_paid_before_closing`}
+            schemaKey={`${baseKey}.seller_poc_amount`}
             type="currency"
             format="currency"
             placeholder="0.00"
@@ -114,7 +137,7 @@ const CDPage2: React.FC = () => {
           <CDField
             documentMode={true}
             fieldId={`${section}-line-${paddedNum}-paid-by-others`}
-            schemaKey={`${baseKey}.paid_by_others`}
+            schemaKey={`${baseKey}.other_amount`}
             type="currency"
             format="currency"
             placeholder="0.00"
@@ -155,13 +178,13 @@ const CDPage2: React.FC = () => {
           <CDField
             documentMode={true}
             fieldId={`other_charges-line-${paddedNum}-payee`}
-            schemaKey={`${baseKey}.payee`}
+            schemaKey={`${baseKey}.payee_name`}
             type="text"
             placeholder="Payee"
             className="w-24"
             mappings={{
               ucd: null,
-              qualia: `other_charges.line_${paddedNum}.payee`
+              qualia: `other_charges.line_${paddedNum}.payee_name`
             }}
           />
         </td>
@@ -169,14 +192,14 @@ const CDPage2: React.FC = () => {
           <CDField
             documentMode={true}
             fieldId={`other_charges-line-${paddedNum}-borrower-at-closing`}
-            schemaKey={`${baseKey}.borrower_paid_at_closing`}
+            schemaKey={`${baseKey}.borrower_amount`}
             type="currency"
             format="currency"
             placeholder="0.00"
             className="text-right"
             mappings={{
               ucd: null,
-              qualia: `other_charges.line_${paddedNum}.borrower_paid_at_closing`,
+              qualia: `other_charges.line_${paddedNum}.borrower_amount`,
               gui: "OtherCharges.tsx"
             }}
           />
@@ -185,14 +208,14 @@ const CDPage2: React.FC = () => {
           <CDField
             documentMode={true}
             fieldId={`other_charges-line-${paddedNum}-borrower-before-closing`}
-            schemaKey={`${baseKey}.borrower_paid_before_closing`}
+            schemaKey={`${baseKey}.borrower_poc_amount`}
             type="currency"
             format="currency"
             placeholder="0.00"
             className="text-right"
             mappings={{
               ucd: null,
-              qualia: `other_charges.line_${paddedNum}.borrower_paid_before_closing`,
+              qualia: `other_charges.line_${paddedNum}.borrower_poc_amount`,
               gui: "OtherCharges.tsx"
             }}
           />
@@ -201,14 +224,14 @@ const CDPage2: React.FC = () => {
           <CDField
             documentMode={true}
             fieldId={`other_charges-line-${paddedNum}-seller-at-closing`}
-            schemaKey={`${baseKey}.seller_paid_at_closing`}
+            schemaKey={`${baseKey}.seller_amount`}
             type="currency"
             format="currency"
             placeholder="0.00"
             className="text-right"
             mappings={{
               ucd: null,
-              qualia: `other_charges.line_${paddedNum}.seller_paid_at_closing`,
+              qualia: `other_charges.line_${paddedNum}.seller_amount`,
               gui: "OtherCharges.tsx"
             }}
           />
@@ -217,14 +240,14 @@ const CDPage2: React.FC = () => {
           <CDField
             documentMode={true}
             fieldId={`other_charges-line-${paddedNum}-seller-before-closing`}
-            schemaKey={`${baseKey}.seller_paid_before_closing`}
+            schemaKey={`${baseKey}.seller_poc_amount`}
             type="currency"
             format="currency"
             placeholder="0.00"
             className="text-right"
             mappings={{
               ucd: null,
-              qualia: `other_charges.line_${paddedNum}.seller_paid_before_closing`,
+              qualia: `other_charges.line_${paddedNum}.seller_poc_amount`,
               gui: "OtherCharges.tsx"
             }}
           />
@@ -233,14 +256,14 @@ const CDPage2: React.FC = () => {
           <CDField
             documentMode={true}
             fieldId={`other_charges-line-${paddedNum}-paid-by-others`}
-            schemaKey={`${baseKey}.paid_by_others`}
+            schemaKey={`${baseKey}.other_amount`}
             type="currency"
             format="currency"
             placeholder="0.00"
             className="text-right"
             mappings={{
               ucd: null,
-              qualia: `other_charges.line_${paddedNum}.paid_by_others`,
+              qualia: `other_charges.line_${paddedNum}.other_amount`,
               gui: "OtherCharges.tsx"
             }}
           />
@@ -270,8 +293,17 @@ const CDPage2: React.FC = () => {
         <tbody>
           {/* Section A - Origination Charges */}
           <tr className="bg-gray-100">
-            <td colSpan={6} className="font-bold px-2 py-1 border-b-2 border-black">
+            <td colSpan={5} className="font-bold px-2 py-1 border-b-2 border-black">
               A. Origination Charges
+            </td>
+            <td className="px-2 py-1 border-b-2 border-black">
+              <button
+                onClick={() => cleanupSection('origination_charges', 8)}
+                className="text-xs bg-blue-600 text-white px-2 py-1 rounded hover:bg-blue-700 transition-colors"
+                title="Remove empty lines and compact remaining charges"
+              >
+                Clean Up Lines
+              </button>
             </td>
           </tr>
           {[1, 2, 3, 4, 5, 6, 7, 8].map(num => 
@@ -298,8 +330,17 @@ const CDPage2: React.FC = () => {
 
           {/* Section B - Services Borrower Did Not Shop For */}
           <tr className="bg-gray-100">
-            <td colSpan={6} className="font-bold px-2 py-1 border-t-2 border-b-2 border-black">
+            <td colSpan={5} className="font-bold px-2 py-1 border-t-2 border-b-2 border-black">
               B. Services Borrower Did Not Shop For
+            </td>
+            <td className="px-2 py-1 border-t-2 border-b-2 border-black">
+              <button
+                onClick={() => cleanupSection('services_borrower_did_not_shop_for', 8)}
+                className="text-xs bg-blue-600 text-white px-2 py-1 rounded hover:bg-blue-700 transition-colors"
+                title="Remove empty lines and compact remaining services"
+              >
+                Clean Up Lines
+              </button>
             </td>
           </tr>
           {[1, 2, 3, 4, 5, 6, 7, 8].map(num => 
@@ -326,8 +367,17 @@ const CDPage2: React.FC = () => {
 
           {/* Section C - Services Borrower Did Shop For */}
           <tr className="bg-gray-100">
-            <td colSpan={6} className="font-bold px-2 py-1 border-t-2 border-b-2 border-black">
+            <td colSpan={5} className="font-bold px-2 py-1 border-t-2 border-b-2 border-black">
               C. Services Borrower Did Shop For
+            </td>
+            <td className="px-2 py-1 border-t-2 border-b-2 border-black">
+              <button
+                onClick={() => cleanupSection('services_borrower_did_shop_for', 8)}
+                className="text-xs bg-blue-600 text-white px-2 py-1 rounded hover:bg-blue-700 transition-colors"
+                title="Remove empty lines and compact remaining services"
+              >
+                Clean Up Lines
+              </button>
             </td>
           </tr>
           {[1, 2, 3, 4, 5, 6, 7, 8].map(num => 
@@ -388,8 +438,17 @@ const CDPage2: React.FC = () => {
         <tbody>
           {/* Section E - Taxes and Other Government Fees */}
           <tr className="bg-gray-100">
-            <td colSpan={6} className="font-bold px-2 py-1 border-b-2 border-black">
+            <td colSpan={5} className="font-bold px-2 py-1 border-b-2 border-black">
               E. Taxes and Other Government Fees
+            </td>
+            <td className="px-2 py-1 border-b-2 border-black">
+              <button
+                onClick={() => cleanupSection('taxes_and_government_fees', 4)}
+                className="text-xs bg-blue-600 text-white px-2 py-1 rounded hover:bg-blue-700 transition-colors"
+                title="Remove empty lines and compact remaining taxes"
+              >
+                Clean Up Lines
+              </button>
             </td>
           </tr>
           <tr className="border-b border-gray-300">
@@ -551,8 +610,17 @@ const CDPage2: React.FC = () => {
 
           {/* Section H - Other */}
           <tr className="bg-gray-100">
-            <td colSpan={6} className="font-bold px-2 py-1 border-t-2 border-b-2 border-black">
+            <td colSpan={5} className="font-bold px-2 py-1 border-t-2 border-b-2 border-black">
               H. Other
+            </td>
+            <td className="px-2 py-1 border-t-2 border-b-2 border-black">
+              <button
+                onClick={() => cleanupSection('other_charges', 8)}
+                className="text-xs bg-blue-600 text-white px-2 py-1 rounded hover:bg-blue-700 transition-colors"
+                title="Remove empty lines and compact remaining other charges"
+              >
+                Clean Up Lines
+              </button>
             </td>
           </tr>
           {[1, 2, 3, 4, 5, 6, 7, 8].map(num => 
