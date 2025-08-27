@@ -4,7 +4,41 @@
 **Session Duration**: ~1.5 hours
 **Progress**: **Closing Disclosure Dropdown Visibility Fixed!**
 
-## ✅ What Was Accomplished This Session
+## ✅ What Was Accomplished This Session (2025-08-27)
+
+### 🔧 **Fixed OtherCharges Bidirectional Sync - COMPLETE**
+
+Successfully diagnosed and repaired broken sync between OtherCharges GUI and Closing Disclosure Section H.
+
+**Root Cause Analysis**:
+- Database stored `other_charges` as **array** format
+- Frontend expected **object** with `line_01`, `line_02` keys
+- Field name mismatch: `paid_by_borrower` vs `borrower_amount`
+- TypeScript types still defined array instead of object
+
+**Technical Fixes Applied**:
+
+1. **Database Migration**
+   - Created SQL migration converting array → object structure
+   - Migrated field names to new format
+   - Added test data verifying structure
+
+2. **TypeScript Updates**
+   - Changed `CDFData.other_charges` from array to object
+   - Created `OtherChargeItem` interface with proper fields
+   - Updated schema defaults with `createEmptyOtherChargeItem()`
+
+3. **Component Updates**
+   - Restored OtherCharges to match Qualia's 7-column layout
+   - Fixed field paths using `line_01.description` format
+   - Updated CDPage2 Section H with matching structure
+
+4. **Testing & Verification**
+   - Created OtherChargesDebug for deep inspection
+   - Created OtherChargesTest for sync testing
+   - Added test data showing proper bidirectional sync
+
+**Result**: ✅ Full bidirectional sync working - changes in either GUI or CD reflect within 2 seconds
 
 ### 🎨 **Closing Disclosure Dropdown Visibility Fixes**
 
